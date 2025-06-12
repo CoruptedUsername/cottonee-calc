@@ -41,213 +41,273 @@ const SV_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   Arachnode: {
     types: ['Electric'],
     bs: {hp: 105, at: 30, df: 75, sa: 85, sd: 100, sp: 60},
-    weightkg: 10,
+    weightkg: 61.5,
     abilities: {0: 'Clear Body'},
   },
   Arsenstorm: {
     types: ['Poison', 'Ground'],
     bs: {hp: 110, at: 50, df: 65, sa: 80, sd: 90, sp: 55},
-    weightkg: 10,
+    weightkg: 15,
     abilities: {0: 'Neutralizing Gas'}
   },
   Badjur: {
     types: ['Normal'],
     bs: {hp: 100, at: 100, df: 75, sa: 60, sd: 75, sp: 105},
-    weightkg: 10,
+    weightkg: 16,
     abilities: {0: 'Poison Heal'}
   },
   Blobbiam: {
     types: ['Water', 'Fairy'],
     bs: {hp: 100, at: 100, df: 110, sa: 20, sd: 80, sp: 75},
-    weightkg: 10,
+    weightkg: 12,
     abilities: {0: 'Volt Absorb'}
   },
   Brasspecter: {
     types: ['Steel', 'Ghost'],
     bs: {hp: 100, at: 90, df: 100, sa: 40, sd: 95, sp: 35},
-    weightkg: 10,
+    weightkg: 40,
     abilities: {0: 'Tough Claws'}
   },
   Bugswarm: {
     types: ['Fire', 'Bug'],
     bs: {hp: 100, at: 85, df: 70, sa: 70, sd: 70, sp: 60},
-    weightkg: 10,
+    weightkg: 420,
     abilities: {0: 'Triage'}
   },
   Bulionage: {
     types: ['Dark', 'Water'],
     bs: {hp: 85, at: 100, df: 85, sa: 40, sd: 110, sp: 50},
-    weightkg: 10,
+    weightkg: 300,
     abilities: {0: 'Strong Jaw'}
   },
   Capricorrie: {
     types: ['Ice', 'Ground'],
     bs: {hp: 100, at: 110, df: 80, sa: 50, sd: 70, sp: 90},
-    weightkg: 10,
+    weightkg: 146,
     abilities: {0: 'Snow Warning'}
   },
   Copperhead: {
     types: ['Ground', 'Steel'],
     bs: {hp: 80, at: 80, df: 100, sa: 50, sd: 75, sp: 50},
-    weightkg: 10,
+    weightkg: 101.9,
     abilities: {0: "Water Absorb"}
   },
   Craggon: {
     types: ['Dragon', 'Ground'],
     bs: {hp: 120, at: 81, df: 81, sa: 82, sd: 81, sp: 100},
-    weightkg: 10,
+    weightkg: 404,
     abilities: {0: 'Natural Cure'}
   },
   Crystuit: {
     types: ['Rock', 'Electric'],
     bs: {hp: 70, at: 50, df: 80, sa: 105, sd: 70, sp: 110},
-    weightkg: 10,
+    weightkg: 420.6,
     abilities: {0: 'Sturdy'}
   },
   Drakkanon: {
     types: ['Fighting', 'Dragon'],
     bs: {hp: 80, at: 50, df: 75, sa: 100, sd: 85, sp: 93},
-    weightkg: 10,
+    weightkg: 59,
     abilities: {0: 'Mega Launcher'}
   },
   Eolikopter: {
     types: ['Flying', 'Electric'],
     bs: {hp: 90, at: 50, df: 80, sa: 100, sd: 70, sp: 110},
-    weightkg: 10,
+    weightkg: 400,
     abilities: {0: 'Cloud Nine'}
   },
   Faeruin: {
     types: ['Ghost', 'Fairy'],
     bs: {hp: 90, at: 96, df: 70, sa: 50, sd: 80, sp: 93},
-    weightkg: 10,
+    weightkg: 33,
     abilities: {0: 'Prankster'}
   },
   Fettogre: {
     types: ['Ghost', 'Fighting'],
     bs: {hp: 70, at: 45, df: 140, sa: 45, sd: 80, sp: 55},
-    weightkg: 10,
+    weightkg: 200,
     abilities: {0: 'Immunity'}
   },
   Florustitia: {
     types: ['Grass', 'Fighting'],
     bs: {hp: 70, at: 85, df: 60, sa: 40, sd: 95, sp: 100},
-    weightkg: 10,
+    weightkg: 110,
     abilities: {0: 'Sharpness'}
   },
   Freightmare: {
     types: ['Ghost', 'Steel'],
     bs: {hp: 100, at: 40, df: 80, sa: 100, sd: 85, sp: 74},
-    weightkg: 10,
+    weightkg: 720,
     abilities: {0: 'Sand Rush'}
   },
   Frostengu: {
     types: ['Fighting', 'Ice'],
     bs: {hp: 50, at: 110, df: 50, sa: 100, sd: 50, sp: 87},
-    weightkg: 10,
+    weightkg: 68,
     abilities: {0: 'No Guard'}
   },
   Goblantern: {
     types: ['Fire', 'Grass'],
     bs: {hp: 90, at: 40, df: 80, sa: 100, sd: 80, sp: 77},
-    weightkg: 10,
+    weightkg: 3,
     abilities: {0: 'Prankster'}
   },
   Hippaint: {
     types: ['Water', 'Ground'],
     bs: {hp: 70, at: 40, df: 70, sa: 105, sd: 85, sp: 80},
-    weightkg: 10,
+    weightkg: 90,
     abilities: {0: 'Pastel Veil'}
   },
   'Jack-o-swarm': {
     types: ['Steel', 'Flying'],
     bs: {hp: 90, at: 50, df: 95, sa: 70, sd: 90, sp: 70},
-    weightkg: 10,
+    weightkg: 74.8,
     abilities: {0: 'Pickpocket'}
   },
   Jokerpent: {
     types: ['Dragon', 'Poison'],
     bs: {hp: 90, at: 70, df: 100, sa: 30, sd: 95, sp: 20},
-    weightkg: 10,
+    weightkg: 67,
     abilities: {0: 'Unaware'}
   },
   Kadraoke: {
     types: ['Psychic', 'Dragon'],
     bs: {hp: 90, at: 30, df: 80, sa: 85, sd: 100, sp: 85},
-    weightkg: 10,
+    weightkg: 19.7,
     abilities: {0: 'Punk Rock'}
   },
   Karmalice: {
     types: ['Ice', 'Electric'],
     bs: {hp: 70, at: 55, df: 40, sa: 105, sd: 55, sp: 111},
-    weightkg: 10,
+    weightkg: 690,
     abilities: {0: 'Refrigerate'}
   },
   Lavalisk: {
     types: ['Poison', 'Fire'],
     bs: {hp: 100, at: 105, df: 80, sa: 40, sd: 80, sp: 65},
-    weightkg: 10,
+    weightkg: 150,
     abilities: {0: 'Mold Breaker'}
   },
   Llanfairwyrm: {
     types: ['Dragon'],
     bs: {hp: 85, at: 120, df: 90, sa: 55, sd: 90, sp: 70},
-    weightkg: 10,
+    weightkg: 600,
     abilities: {0: 'Rough Skin'}
   },
   Martorse: {
     types: ['Ground', 'Fire'],
     bs: {hp: 75, at: 90, df: 70, sa: 35, sd: 90, sp: 105},
-    weightkg: 10,
+    weightkg: 173,
     abilities: {0: 'Trace'}
   },
   Massassin: {
     types: ['Fighting', 'Dark'],
     bs: {hp: 100, at: 100, df: 80, sa: 50, sd: 80, sp: 15},
-    weightkg: 10,
+    weightkg: 888,
     abilities: {0: 'Quark Drive'}
   },
   Mohawtter: {
     types: ['Water', 'Grass'],
     bs: {hp: 75, at: 50, df: 70, sa: 70, sd: 100, sp: 55},
-    weightkg: 10,
+    weightkg: 32,
     abilities: {0: 'Tablets of Ruin'}
   },
   'Mon Mothra': {
     types: ['Fairy', 'Bug'],
     bs: {hp: 80, at: 50, df: 70, sa: 100, sd: 70, sp: 90},
-    weightkg: 10,
+    weightkg: 50,
     abilities: {0: 'Fluffy'}
   },
   Parasike: {
     types: ['Psychic', 'Bug'],
     bs: {hp: 50, at: 85, df: 75, sa: 50, sd: 55, sp: 109},
-    weightkg: 10,
+    weightkg: 0.8,
     abilities: {0: 'Strong Jaw'}
   },
   Pinaturbo: {
     types: ['Fire'],
     bs: {hp: 70, at: 70, df: 60, sa: 100, sd: 95, sp: 115},
-    weightkg: 10,
+    weightkg: 126,
     abilities: {0: 'Mold Breaker'}
   },
   Piss: {
     types: ['Normal'],
     bs: {hp: 70, at: 95, df: 60, sa: 50, sd: 60, sp: 95},
-    weightkg: 10,
+    weightkg: 382,
     abilities: {0: 'Magic Guard'}
   },
-  // Primordialith: {},
-  // Reversadusa: {},
-  // Sculptera: {},
-  // Searytch: {},
-  // 'Sleet Shell': {},
-  // Snabterra: {},
-  // "Socknbusk'n": {},
-  // Thaumaton: {},
-  // Versalyre: {},
-  // Vipult: {},
-  // Wizhazard: {},
-  // Yamateraph: {},
+  Primordialith: {
+    types: ['Rock'],
+    bs: {hp: 100, at: 100, df: 100, sa: 35, sd: 90, sp: 30},
+    weightkg: 90,
+    abilities: {0: 'Sand Stream'}
+  },
+  Reversadusa: {
+    types: ['Psychic', 'Dark'],
+    bs: {hp: 70, at: 50, df: 70, sa: 70, sd: 70, sp: 110},
+    weightkg: 55.2,
+    abilities: {0: 'Contrary'}
+  },
+  Sculptera: {
+    types: ['Rock', 'Dragon'],
+    bs: {hp: 100, at: 105, df: 70, sa: 40, sd: 85, sp: 85},
+    weightkg: 729,
+    abilities: {0: 'Skill Link'}
+  },
+  Searytch: {
+    types: ['Fairy', 'Fire'],
+    bs: {hp: 85, at: 30, df: 75, sa: 90, sd: 100, sp: 50},
+    weightkg: 52,
+    abilities: {0: 'Stamina'}
+  },
+  'Sleet Shell': {
+    types: ['Ice', 'Steel'],
+    bs: {hp: 83, at: 95, df: 107, sa: 47, sd: 71, sp: 103},
+    weightkg: 674.5,
+    abilities: {0: 'Protosynthesis'}
+  },
+  Snabterra: {
+    types: ['Bug', 'Ground'],
+    bs: {hp: 85, at: 100, df: 85, sa: 40, sd: 80, sp: 85},
+    weightkg: 600,
+    abilities: {0: 'Compound Eyes'}
+  },
+  "Socknbusk'n": {
+    types: ['Normal', 'Fighting'],
+    bs: {hp: 95, at: 95, df: 75, sa: 40, sd: 70, sp: 110},
+    weightkg: 65,
+    abilities: {0: 'Scrappy'}
+  },
+  Thaumaton: {
+    types: ['Poison', 'Steel'],
+    bs: {hp: 95, at: 70, df: 70, sa: 100, sd: 100, sp: 75},
+    weightkg: 666,
+    abilities: {0: 'Unburden'}
+  },
+  Versalyre: {
+    types: ['Flying'],
+    bs: {hp: 70, at: 110, df: 65, sa: 30, sd: 70, sp: 90},
+    weightkg: 2,
+    abilities: {0: 'Protean'}
+  },
+  Vipult: {
+    types: ['Poison', 'Dark'],
+    bs: {hp: 100, at: 65, df: 70, sa: 100, sd: 100, sp: 70},
+    weightkg: 23,
+    abilities: {0: 'Intimidate'}
+  },
+  Wizhazard: {
+    types: ['Psychic', 'Steel'],
+    bs: {hp: 90, at: 40, df: 90, sa: 100, sd: 70, sp: 60},
+    weightkg: 69,
+    abilities: {0: 'Magic Bounce'}
+  },
+  Yamateraph: {
+    types: ['Normal', 'Fairy'],
+    bs: {hp: 90, at: 110, df: 80, sa: 15, sd: 80, sp: 105},
+    weightkg: 255,
+    abilities: {0: 'Psychic Surge'}
+  },
 };
 const SV: {[name: string]: SpeciesData} = extend(true, {}, SS, SV_PATCH, PLA_PATCH);
 
