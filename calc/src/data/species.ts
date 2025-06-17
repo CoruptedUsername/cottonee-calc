@@ -52,13 +52,13 @@ const SV_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   },
   Badjur: {
     types: ['Normal'],
-    bs: {hp: 100, at: 100, df: 75, sa: 60, sd: 75, sp: 105},
+    bs: {hp: 100, at: 100, df: 75, sa: 60, sd: 75, sp: 80},
     weightkg: 16,
     abilities: {0: 'Poison Heal'}
   },
   Blobbiam: {
     types: ['Water', 'Fairy'],
-    bs: {hp: 100, at: 100, df: 110, sa: 20, sd: 80, sp: 75},
+    bs: {hp: 110, at: 100, df: 110, sa: 20, sd: 80, sp: 75},
     weightkg: 12,
     abilities: {0: 'Volt Absorb'}
   },
@@ -76,7 +76,7 @@ const SV_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   },
   Bulionage: {
     types: ['Dark', 'Water'],
-    bs: {hp: 85, at: 100, df: 85, sa: 40, sd: 110, sp: 50},
+    bs: {hp: 95, at: 100, df: 85, sa: 40, sd: 120, sp: 50},
     weightkg: 300,
     abilities: {0: 'Strong Jaw'}
   },
@@ -88,7 +88,7 @@ const SV_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   },
   Copperhead: {
     types: ['Ground', 'Steel'],
-    bs: {hp: 80, at: 80, df: 100, sa: 50, sd: 75, sp: 50},
+    bs: {hp: 95, at: 80, df: 120, sa: 50, sd: 90, sp: 50},
     weightkg: 101.9,
     abilities: {0: "Water Absorb"}
   },
@@ -166,7 +166,7 @@ const SV_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   },
   Jokerpent: {
     types: ['Dragon', 'Poison'],
-    bs: {hp: 90, at: 70, df: 100, sa: 30, sd: 95, sp: 20},
+    bs: {hp: 110, at: 70, df: 100, sa: 30, sd: 95, sp: 20},
     weightkg: 67,
     abilities: {0: 'Unaware'}
   },
@@ -208,7 +208,7 @@ const SV_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   },
   Mohawtter: {
     types: ['Water', 'Grass'],
-    bs: {hp: 75, at: 50, df: 70, sa: 70, sd: 100, sp: 55},
+    bs: {hp: 85, at: 50, df: 70, sa: 70, sd: 110, sp: 55},
     weightkg: 32,
     abilities: {0: 'Tablets of Ruin'}
   },
