@@ -158,6 +158,11 @@ export function calculateRBYGSC(
     df = Math.floor(df / 2);
   }
 
+  if (move.named('Brick Break')) {
+    field.defenderSide.isReflect = false;
+    field.defenderSide.isLightScreen = false;
+  }
+
   if (!ignoreMods) {
     if (isPhysical && field.defenderSide.isReflect) {
       df *= 2;
