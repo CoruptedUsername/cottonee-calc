@@ -57,13 +57,11 @@ const RBY: {[name: string]: SpeciesData} = {
     types: ['Ice', 'Flying'],
     bs: {hp: 90, at: 85, df: 100, sp: 85, sl: 125},
     weightkg: 55.4,
-    otherFormes: ['Articuno-Galar'],
   },
   'Articuno-Galar': {
     types: ['Psychic', 'Flying'],
     bs: {hp: 90, at: 85, df: 85, sp: 95, sl: 125},
     weightkg: 50.9,
-    baseSpecies: 'Articuno',
   },
   Audino: {
     types: ['Normal'],
@@ -161,13 +159,11 @@ const RBY: {[name: string]: SpeciesData} = {
     types: ['Rock', 'Normal'],
     bs: {hp: 50, at: 100, df: 150, sp: 50, sl: 150},
     weightkg: 8.8,
-    otherFormes: ['Diancie-Mega'],
   },
   'Diancie-Mega': {
     types: ['Rock', 'Normal'],
     bs: {hp: 50, at: 160, df: 110, sp: 110, sl: 160},
     weightkg: 27.8,
-    baseSpecies: 'Diancie',
   },
   Diglett: {
     types: ['Ground'],
@@ -536,13 +532,11 @@ const RBY: {[name: string]: SpeciesData} = {
     types: ['Fire', 'Flying'],
     bs: {hp: 90, at: 100, df: 90, sp: 90, sl: 125},
     weightkg: 60,
-    otherFormes: ['Moltres-Galar'],
   },
   'Moltres-Galar': {
     types: ['Ghost', 'Flying'],
     bs: {hp: 90, at: 85, df: 90, sp: 90, sl: 125},
     weightkg: 66,
-    baseSpecies: 'Moltres',
   },
   'Mr. Mime': {
     types: ['Psychic'],
@@ -933,13 +927,11 @@ const RBY: {[name: string]: SpeciesData} = {
     types: ['Electric', 'Flying'],
     bs: {hp: 90, at: 90, df: 85, sp: 100, sl: 125},
     weightkg: 52.6,
-    otherFormes: ['Zapdos-Galar'],
   },
   'Zapdos-Galar': {
     types: ['Fighting', 'Flying'],
     bs: {hp: 90, at: 125, df: 90, sp: 100, sl: 90},
     weightkg: 58.2,
-    baseSpecies: 'Zapdos'
   },
   Zubat: {
     types: ['Poison', 'Flying'],
