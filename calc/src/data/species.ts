@@ -971,7 +971,7 @@ const SV: {[name: string]: SpeciesData} = {
   },
   Badjur: {
     types: ['Normal'],
-    bs: {hp: 100, at: 100, df: 75, sa: 60, sd: 75, sp: 80},
+    bs: {hp: 85, at: 100, df: 75, sa: 60, sd: 75, sp: 80},
     weightkg: 16,
     abilities: {0: 'Poison Heal'}
   },
@@ -1103,7 +1103,7 @@ const SV: {[name: string]: SpeciesData} = {
   },
   Lavalisk: {
     types: ['Poison', 'Fire'],
-    bs: {hp: 100, at: 105, df: 80, sa: 40, sd: 80, sp: 65},
+    bs: {hp: 100, at: 105, df: 80, sa: 40, sd: 80, sp: 76},
     weightkg: 150,
     abilities: {0: 'Mold Breaker'}
   },
@@ -1175,7 +1175,7 @@ const SV: {[name: string]: SpeciesData} = {
   },
   Searytch: {
     types: ['Fairy', 'Fire'],
-    bs: {hp: 85, at: 30, df: 75, sa: 90, sd: 100, sp: 50},
+    bs: {hp: 85, at: 30, df: 75, sa: 105, sd: 100, sp: 60},
     weightkg: 52,
     abilities: {0: 'Stamina'}
   },
