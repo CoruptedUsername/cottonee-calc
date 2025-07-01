@@ -5006,6 +5006,7 @@ const BW_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   },
 };
 const BW_DUMMY: {[name: string]: SpeciesData} = extend(true, {}, DPP_DUMMY, BW_PATCH);
+// @ts-ignore readonly
   delete BW_DUMMY['Pichu'].otherFormes;
   delete BW_DUMMY['Pichu-Spiky-eared'];
 const XY_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
