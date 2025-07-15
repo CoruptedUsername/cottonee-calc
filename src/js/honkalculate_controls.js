@@ -263,11 +263,11 @@ $(".mode").change(function () {
 $(".tiers label").mouseup(function () {
 	var oldID = $('.tiers input:checked').attr("id");
 	var newID = $(this).attr("for");
-	if ((oldID === "Doubles" || startsWith(oldID, "VGC")) && (newID !== oldID)) {
+	if ((oldID === "Doubles" || oldID.includes("VGC")) && (newID !== oldID)) {
 		$("#singles-format").attr("disabled", false);
 		$("#singles-format").prop("checked", true);
 	}
-	if ((startsWith(oldID, "VGC") || oldID === "LC") && (!startsWith(newID, "VGC") && newID !== "LC")) {
+	if ((oldID.includes("VGC") || oldID === "LC") && (!newID.includes("VGC") && newID !== "LC")) {
 		setLevel("100");
 	}
 });
@@ -286,7 +286,7 @@ $(".tiers input").change(function () {
 		setLevel("5");
 	}
 
-	if (startsWith(id, "VGC") && $('.level').val() !== "50") {
+	if (id.includes("VGC") && $('.level').val() !== "50") {
 		setLevel("50");
 	}
 });
