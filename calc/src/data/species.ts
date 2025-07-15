@@ -10953,6 +10953,9 @@ const RBY: {[name: string]: SpeciesData} = {
   },
 };
 
+// Do Not Use
+const SS: {[name: string]: SpeciesData} = {};
+
 // Blank Canvas
 const SV: {[name: string]: SpeciesData} = {
   Arachnode: {
