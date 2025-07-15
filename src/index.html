@@ -62,7 +62,7 @@
             <input class="gen visually-hidden" type="radio" name="gen" value="5" id="gen5" /><label class="btn btn-small btn-mid" for="gen5">B/W</label>
             <input class="gen visually-hidden" type="radio" name="gen" value="6" id="gen6" /><label class="btn btn-small btn-mid" for="gen6">X/Y</label>
             <input class="gen visually-hidden" type="radio" name="gen" value="7" id="gen7" /><label class="btn btn-small btn-mid" for="gen7">S/M</label>
-            <input class="gen visually-hidden" type="radio" name="gen" value="8" id="gen8" /><label class="btn btn-small btn-mid" for="gen8">S/S</label>
+            <input class="gen visually-hidden" type="radio" name="gen" value="8" id="gen8" /><label class="btn btn-small btn-mid" for="gen8">Do Not Use</label>
             <input class="gen visually-hidden" type="radio" name="gen" value="9" id="gen9" checked="checked" /><label class="btn btn-small btn-right" for="gen9">Blank Canvas</label>
         </span>
         <span class="notationSelection" aria-labelledby="selectNotationInstruction" role="radiogroup" title="Select the output notation.">
@@ -740,7 +740,7 @@
                         <label class="btn btn-small btn-mid" for="rain">Rain</label>
                         <input class="weather visually-hidden calc-trigger" type="radio" name="weather" value="Sand" id="sand" />
                         <label class="btn btn-small btn-mid" for="sand">Sand</label>
-                        <span class="gen-specific g3 g4 g5 g6 g7 g8">
+                        <span class="gen-specific g3 g4 g5 g6 g7">
                             <input class="weather visually-hidden calc-trigger" type="radio" name="weather" value="Hail" id="hail" />
                             <label class="btn btn-small btn-right" for="hail">Hail</label>
                         </span>
@@ -968,7 +968,7 @@
                                 <label class="btn btn-xxwide" for="flowerGiftR">Flower Gift</label>
                             </div></td>
                         </tr>
-                        <tr class="gen-specific g9">
+                        <tr class="gen-specific g8 g9">
                             <td><div class="left" title="Is the Pok&eacute;mon affected by an ally's Steely Spirit?">
                                 <div hidden id="selectSteelySpiritInstruction">Is the Pok&eacute;mon affected by an ally's Steely Spirit?</div>
                                 <input aria-describedby="selectSteelySpiritInstruction" class="visually-hidden calc-trigger" type="checkbox" id="steelySpiritL" />
@@ -1085,7 +1085,7 @@
                     <select aria-label="Type 2" class="type2 terrain-trigger calc-trigger"></select>
                     <small class="right">(<a class="analysis links-lighten" target="_blank" href="">Smogon&nbsp;analysis</a>)</small>
                 </div>
-                <div class="gen-specific g9">
+                <div class="gen-specific g8 g9">
                     <label>Tera Type</label>
                     <select class="teraType terrain-trigger calc-trigger"></select>
                     <input type="checkbox" title= "Has this Pok&eacute;mon terastalized?" class="teraToggle terrain-trigger calc-trigger">
