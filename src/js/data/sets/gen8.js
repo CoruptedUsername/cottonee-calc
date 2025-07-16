@@ -192,4 +192,4 @@ var SETDEX_SS = {
 	"Zubat": {
 		"OU Special Defog": {"level":100,"ability":"Infiltrator","item":"Eviolite","nature":"Gentle","evs":{"hp":248,"at":8,"sd":252},"moves":["Sludge Bomb","Brave Bird","Defog","Roost"]}
 	}
-}
+};
