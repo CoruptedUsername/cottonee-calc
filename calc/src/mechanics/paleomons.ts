@@ -302,7 +302,7 @@ export function calculatePM(
       type = 'Fire';
     } else if (attacker.named('Tauros-Paldea-Aqua')) {
       type = 'Water';
-    } else if (attacker.named('Tauros-Paldea-Ancestor')) {
+    } else if (attacker.named('Tauros-Ancestor')) {
       type = 'Ghost';
     }
 
