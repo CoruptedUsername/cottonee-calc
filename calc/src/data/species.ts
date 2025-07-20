@@ -10127,6 +10127,106 @@ const JS_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
 }
 const JS: {[name: string]: SpeciesData} = extend(true, {}, RBY_DUMMY, JS_PATCH);
 
+// Paleomons
+const PM: {[name: string]: SpeciesData} = {
+  Aerodactyl: {
+    types: ['Ghost', 'Flying'],
+    bs: {hp: 90, at: 105, df: 95, sa: 40, sd: 75, sp: 130},
+    weightkg: 10,
+    abilities: {0: 'Infiltrator'},
+  },
+  Alticombat: {
+    types: ['Flying', 'Fighting'],
+    bs: {hp: 105, at: 100, df: 60, sa: 60, sd: 75, sp: 120},
+    weightkg: 10,
+    abilities: {0: 'Cloud Nine'}
+  },
+  Archeops: {
+    types: ['Rock', 'Fighting'],
+    bs: {hp: 85, at: 110, df: 85, sa: 92, sd: 65, sp: 110},
+    weightkg: 10,
+    abilities: {0: 'First Flight'},
+  },
+  Arctobyss: {
+    types: ['Ice', 'Ghost'],
+    bs: {hp: 125, at: 65, df: 85, sa: 100, sd: 90, sp: 75},
+    weightkg: 10,
+    abilities: {0: 'Cursed Body'},
+  },
+  Armaldo: {
+    types: ['Bug', 'Ground'],
+    bs: {hp: 95, at: 110, df: 110, sa: 55, sd: 80, sp: 70},
+    weightkg: 10,
+    abilities: {0: 'Battle Armor'},
+  },
+  Aurorus: {
+    types: ['Dragon', 'Ghost'],
+    bs: {hp: 123, at: 57, df: 82, sa: 109, sd: 92, sp: 58},
+    weightkg: 10,
+    abilities: {0: 'Thick Fat'},
+  },
+  Bastiodon: {
+    types: ['Rock', 'Fairy'],
+    bs: {hp: 70, at: 52, df: 148, sa: 107, sd: 138, sp: 30},
+    weightkg: 10,
+    abilities: {0: 'Solid Rock'},
+  },
+  'Bellibolt-Twisted': {
+    types: ['Electric', 'Dark'],
+    bs: {hp: 109, at: 64, df: 91, sa: 103, sd: 83, sp: 45},
+    weightkg: 10,
+    abilities: {0: 'Electromorphosis'},
+  },
+  Brawlutra: {
+    types: ['Ground', 'Fighting'],
+    bs: {hp: 95, at: 110, df: 60, sa: 65, sd: 65, sp: 90},
+    weightkg: 10,
+    abilities: {0: 'Fur Coat'},
+  },
+  Cardantis: {
+    types: ['Normal', 'Fighting'],
+    bs: {hp: 100, at: 88, df: 105, sa: 87, sd: 80, sp: 70},
+    weightkg: 10,
+    abilities: {0: 'Sharpness'},
+  },
+  Carracosta: {
+    types: ['Dark', 'Poison'],
+    bs: {hp: 84, at: 108, df: 85, sa: 73, sd: 133, sp: 32},
+    weightkg: 10,
+    abilities: {0: 'Leatherback'},
+  },
+  Carriguana: {
+    types: ['Ground', 'Ghost'],
+    bs: {hp: 90, at: 60, df: 110, sa: 90, sd: 95, sp: 60},
+    weightkg: 10,
+    abilities: {0: 'Oblivious'},
+  },
+  'Conkeldurr-Conch': {
+    types: ['Water', 'Normal'],
+    bs: {hp: 100, at: 55, df: 65, sa: 95, sd: 115, sp: 75},
+    weightkg: 10,
+    abilities: {0: 'Pure Power'},
+  },
+  Cradily: {
+    types: ['Grass', 'Water'],
+    bs: {hp: 76, at: 88, df: 93, sa: 108, sd: 103, sp: 47},
+    weightkg: 10,
+    abilities: {0: 'Storm Drain'},
+  },
+  'Crobat-Ancient': {
+    types: ['Dark', 'Ground'],
+    bs: {hp: 85, at: 70, df: 80, sa: 90, sd: 80, sp: 130},
+    weightkg: 10,
+    abilities: {0: 'Night Watch'},
+  },
+  Dracomizer: {
+    types: ['Dragon', 'Fire'],
+    bs: {hp: 100, at: 101, df: 112, sa: 90, sd: 80, sp: 52},
+    weightkg: 10,
+    abilities: {0: 'Sand Rush'},
+  },
+};
+
 // Do Not Use
 const DNU: {[name: string]: SpeciesData} = {
   Caterpie: {
@@ -10983,6 +11083,7 @@ const DNU: {[name: string]: SpeciesData} = {
   },
 };
 
+
 // Blank Canvas
 const BC: {[name: string]: SpeciesData} = {
   Arachnode: {
@@ -11257,7 +11358,7 @@ const BC: {[name: string]: SpeciesData} = {
   },
 };
 
-export const SPECIES = [{}, JS, GSC_DUMMY, ADV_DUMMY, DPP_DUMMY, BW_DUMMY, XY_DUMMY, SM_DUMMY, DNU, BC];
+export const SPECIES = [{}, JS, GSC_DUMMY, ADV_DUMMY, DPP_DUMMY, BW_DUMMY, XY_DUMMY, PM, DNU, BC];
 
 export class Species implements I.Species {
   private readonly gen: I.GenerationNum;

@@ -339,7 +339,20 @@ const SV = SS.concat([
   'Zero to Hero',
 ]);
 
-export const ABILITIES = [[], RBY, GSC, ADV, DPP, BW, XY, SM, SV, SV];
+// Paleomons
+const PM = SV.concat([
+  'First Flight',
+  'Head Barrage',
+  'Leatherback',
+  'Night Watch',
+  'Permafrost',
+  'Sedimentary',
+  'Specterate'
+])
+
+
+
+export const ABILITIES = [[], RBY, GSC, ADV, DPP, BW, XY, PM, SV, SV];
 
 export class Abilities implements I.Abilities {
   private readonly gen: I.GenerationNum;
