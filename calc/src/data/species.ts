@@ -10225,6 +10225,20 @@ const PM: {[name: string]: SpeciesData} = {
     weightkg: 10,
     abilities: {0: 'Sand Rush'},
   },
+  Eleffigy: {
+    types: ['Psychic', 'Fighting'],
+    bs: {hp: 105, at: 121, df: 111, sa: 53, sd: 67, sp: 87},
+    weightkg: 10,
+    abilities: {0: 'Rough Skin'},
+    otherFormes: ['Eleffigy-Zen'],
+  },
+  'Eleffigy-Zen': {
+    types: ['Psychic', 'Fighting'],
+    bs: {hp: 105, at: 53, df: 67, sa: 131, sd: 71, sp: 117},
+    weightkg: 10,
+    abilities: {0: 'Zen Mode'},
+    otherFormes: ['Eleffigy'],
+  }
 };
 
 // Do Not Use
