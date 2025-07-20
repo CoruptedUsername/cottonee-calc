@@ -1,5 +1,5 @@
 var SETDEX_SM = {
   "Aerodactyl": {
-    "Literally required for the calc not to crash": {"ability":"Infiltrator","nature":"Serious", "moves": ['Ancient Power']},
+	  "Literally Required": {"ability":"Infiltrator","item":"Heavy-Duty Boots","nature":"Jolly","evs":{"at":252,"df":4,"sp":252},"moves":["Ancient Power","Aqua Tail","Crunch","Agility"]},
   }
 };
