@@ -378,7 +378,6 @@ export function calculatePM(
 
   if (move.named('Tera Blast') && attacker.teraType) {
     type = attacker.teraType;
-    defender.boosts.def = defender.boosts.def + 1
   }
 
   move.type = type;
