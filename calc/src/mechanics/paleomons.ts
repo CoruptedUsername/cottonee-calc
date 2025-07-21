@@ -371,10 +371,14 @@ export function calculatePM(
     } else if (isLiquidVoice) {
       desc.attackerAbility = attacker.ability;
     }
+    if ( move.type === 'Water' && defender.hasAbility('Permafrost')) {
+      type = 'Ice'
+    }
   }
 
   if (move.named('Tera Blast') && attacker.teraType) {
     type = attacker.teraType;
+    defender.boosts.def = defender.boosts.def + 1
   }
 
   move.type = type;
@@ -1145,8 +1149,6 @@ export function calculateBPModsPM(
       bpMods.push(5461);
       desc.moveBP = basePower * (5461 / 4096);
     }
-  } else if (attacker.hasAbility('Night Watch') && defender.hasType('Dark')) {
-    bpMods.push(6144)
   }
 
   if (field.attackerSide.isHelpingHand) {
@@ -1228,6 +1230,10 @@ export function calculateBPModsPM(
     desc.attackerAbility = attacker.ability;
   }
 
+  if (attacker.hasAbility('Night Watch') && defender.hasType('Dark')) {
+    bpMods.push(6144)
+  }
+
   if (field.attackerSide.isBattery && move.category === 'Special') {
     bpMods.push(5325);
     desc.isBattery = true;
@@ -1247,6 +1253,10 @@ export function calculateBPModsPM(
       desc.rivalry = 'nerfed';
     }
     desc.attackerAbility = attacker.ability;
+  }
+
+  if (attacker.hasAbility('Sedimentary') && move.type === 'Bug' && field.weather === 'Rain') {
+    bpMods.push(6144)
   }
 
   // The -ate abilities already changed move typing earlier, so most checks are done and desc is set
@@ -1529,7 +1539,7 @@ export function calculateDefensePM(
 ) {
   let defense: number;
   const hitsPhysical = move.overrideDefensiveStat === 'def' || move.category === 'Physical' ||
-    (move.named('Shell Side Arm') && getShellSideArmCategory(attacker, defender) === 'Physical');
+    (move.named('Shell Side Arm') && getShellSideArmCategory(attacker, defender) === 'Physical') || (attacker.hasAbility('Head Barrage') && move.category === 'Special');
   const defenseStat = hitsPhysical ? 'def' : 'spd';
   desc.defenseEVs = getStatDescriptionText(gen, defender, defenseStat, defender.nature);
   if (defender.boosts[defenseStat] === 0 ||
