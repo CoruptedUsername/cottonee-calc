@@ -492,7 +492,7 @@ export function calculatePM(
       defender.hasAbility('Leatherback', 'Lightning Rod', 'Motor Drive', 'Volt Absorb')) ||
     (move.hasType('Ground') &&
       !field.isGravity && !move.named('Thousand Arrows') &&
-      !defender.hasItem('Iron Ball') && (defender.hasAbility('Levitate') || defender.hasAbility('First Flight'))) ||
+      !defender.hasItem('Iron Ball') && (defender.hasAbility('Levitate') || (defender.hasAbility('First Flight') && defender.abilityOn))) ||
     (move.flags.bullet && defender.hasAbility('Bulletproof')) ||
     (move.flags.sound && !move.named('Clangorous Soul') && defender.hasAbility('Soundproof')) ||
     (move.priority > 0 && defender.hasAbility('Queenly Majesty', 'Dazzling', 'Armor Tail')) ||
