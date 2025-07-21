@@ -205,6 +205,24 @@ export function getRecoil(
       recoil = [minRecoilDamage, maxRecoilDamage];
       text = `${minRecoilDamage} - ${maxRecoilDamage}${notation} recoil damage`;
     }
+  } else if (attacker.hasAbility('Head Barrage') && move.category === 'Special') {
+    const mod = (1 / 4) * 100;
+    let minRecoilDamage, maxRecoilDamage;
+    if (damageOverflow) {
+      minRecoilDamage =
+        toDisplay(notation, defender.curHP() * mod, attacker.maxHP(), 100);
+      maxRecoilDamage =
+        toDisplay(notation, defender.curHP() * mod, attacker.maxHP(), 100);
+    } else {
+      minRecoilDamage = toDisplay(
+        notation, Math.min(min, defender.curHP()) * mod, attacker.maxHP(), 100
+      );
+      maxRecoilDamage = toDisplay(
+        notation, Math.min(max, defender.curHP()) * mod, attacker.maxHP(), 100
+      );
+    }
+    recoil = [minRecoilDamage, maxRecoilDamage];
+    text = `${minRecoilDamage} - ${maxRecoilDamage}${notation} recoil damage`;
   } else if (move.hasCrashDamage) {
     const genMultiplier = gen.num === 2 ? 12.5 : gen.num >= 3 ? 50 : 1;
 

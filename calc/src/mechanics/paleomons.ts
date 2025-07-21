@@ -335,6 +335,7 @@ export function calculatePM(
   let isGalvanize = false;
   let isLiquidVoice = false;
   let isNormalize = false;
+  let isSpecterate = false;
   const noTypeChange = move.named(
     'Revelation Dance',
     'Judgment',
@@ -361,8 +362,10 @@ export function calculatePM(
       type = 'Ice';
     } else if ((isNormalize = attacker.hasAbility('Normalize'))) { // Boosts any type
       type = 'Normal';
+    } else if ((isSpecterate = attacker.hasAbility('Specterate') && normal)) {
+      type = 'Ghost';
     }
-    if (isGalvanize || isPixilate || isRefrigerate || isAerilate || isNormalize) {
+    if (isGalvanize || isPixilate || isRefrigerate || isAerilate || isNormalize || isSpecterate) {
       desc.attackerAbility = attacker.ability;
       hasAteAbilityTypeChange = true;
     } else if (isLiquidVoice) {
@@ -483,10 +486,10 @@ export function calculatePM(
     (move.hasType('Fire') && defender.hasAbility('Flash Fire', 'Well-Baked Body')) ||
     (move.hasType('Water') && defender.hasAbility('Dry Skin', 'Storm Drain', 'Water Absorb')) ||
     (move.hasType('Electric') &&
-      defender.hasAbility('Lightning Rod', 'Motor Drive', 'Volt Absorb')) ||
+      defender.hasAbility('Leatherback', 'Lightning Rod', 'Motor Drive', 'Volt Absorb')) ||
     (move.hasType('Ground') &&
       !field.isGravity && !move.named('Thousand Arrows') &&
-      !defender.hasItem('Iron Ball') && defender.hasAbility('Levitate')) ||
+      !defender.hasItem('Iron Ball') && (defender.hasAbility('Levitate') || defender.hasAbility('First Flight'))) ||
     (move.flags.bullet && defender.hasAbility('Bulletproof')) ||
     (move.flags.sound && !move.named('Clangorous Soul') && defender.hasAbility('Soundproof')) ||
     (move.priority > 0 && defender.hasAbility('Queenly Majesty', 'Dazzling', 'Armor Tail')) ||
@@ -570,7 +573,7 @@ export function calculatePM(
   // #endregion
   // #region Base Power
 
-  const basePower = calculateBasePowerSMSSSV(
+  const basePower = calculateBasePowerPM(
     gen,
     attacker,
     defender,
@@ -585,7 +588,7 @@ export function calculatePM(
 
   // #endregion
   // #region (Special) Attack
-  const attack = calculateAttackSMSSSV(gen, attacker, defender, move, field, desc, isCritical);
+  const attack = calculateAttackPM(gen, attacker, defender, move, field, desc, isCritical);
   const attackStat =
     move.named('Shell Side Arm') &&
     getShellSideArmCategory(attacker, defender) === 'Physical'
@@ -599,7 +602,7 @@ export function calculatePM(
 
   // #region (Special) Defense
 
-  const defense = calculateDefenseSMSSSV(gen, attacker, defender, move, field, desc, isCritical);
+  const defense = calculateDefensePM(gen, attacker, defender, move, field, desc, isCritical);
   const hitsPhysical = move.overrideDefensiveStat === 'def' || move.category === 'Physical' ||
     (move.named('Shell Side Arm') && getShellSideArmCategory(attacker, defender) === 'Physical');
   const defenseStat = hitsPhysical ? 'def' : 'spd';
@@ -607,7 +610,7 @@ export function calculatePM(
   // #endregion
   // #region Damage
 
-  const baseDamage = calculateBaseDamageSMSSSV(
+  const baseDamage = calculateBaseDamagePM(
     gen,
     attacker,
     defender,
@@ -639,7 +642,7 @@ export function calculatePM(
     !attacker.hasAbility('Guts') &&
     !move.named('Facade');
   desc.isBurned = applyBurn;
-  const finalMods = calculateFinalModsSMSSSV(
+  const finalMods = calculateFinalModsPM(
     gen,
     attacker,
     defender,
@@ -698,14 +701,14 @@ export function calculatePM(
     for (let times = 1; times < numAttacks; times++) {
       usedItems = checkMultihitBoost(gen, attacker, defender, move,
         field, desc, usedItems[0], usedItems[1]);
-      const newAttack = calculateAttackSMSSSV(gen, attacker, defender, move,
+      const newAttack = calculateAttackPM(gen, attacker, defender, move,
         field, desc, isCritical);
-      const newDefense = calculateDefenseSMSSSV(gen, attacker, defender, move,
+      const newDefense = calculateDefensePM(gen, attacker, defender, move,
         field, desc, isCritical);
       // Check if lost -ate ability. Typing stays the same, only boost is lost
       // Cannot be regained during multihit move and no Normal moves with stat drawbacks
       hasAteAbilityTypeChange = hasAteAbilityTypeChange &&
-        attacker.hasAbility('Aerilate', 'Galvanize', 'Pixilate', 'Refrigerate', 'Normalize');
+        attacker.hasAbility('Aerilate', 'Galvanize', 'Pixilate', 'Refrigerate', 'Normalize', 'Specterate');
 
       if (move.timesUsed! > 1) {
         // Adaptability does not change between hits of a multihit, only between turns
@@ -716,7 +719,7 @@ export function calculatePM(
         stabMod = getStellarStabMod(attacker, move, preStellarStabMod, times);
       }
 
-      const newBasePower = calculateBasePowerSMSSSV(
+      const newBasePower = calculateBasePowerPM(
         gen,
         attacker,
         defender,
@@ -726,7 +729,7 @@ export function calculatePM(
         desc,
         times + 1
       );
-      const newBaseDamage = calculateBaseDamageSMSSSV(
+      const newBaseDamage = calculateBaseDamagePM(
         gen,
         attacker,
         defender,
@@ -738,7 +741,7 @@ export function calculatePM(
         desc,
         isCritical
       );
-      const newFinalMods = calculateFinalModsSMSSSV(
+      const newFinalMods = calculateFinalModsPM(
         gen,
         attacker,
         defender,
@@ -777,7 +780,7 @@ export function calculatePM(
   return result;
 }
 
-export function calculateBasePowerSMSSSV(
+export function calculateBasePowerPM(
   gen: Generation,
   attacker: Pokemon,
   defender: Pokemon,
@@ -1017,7 +1020,7 @@ export function calculateBasePowerSMSSSV(
     // show z-move power in description
     desc.moveBP = move.bp;
   }
-  const bpMods = calculateBPModsSMSSSV(
+  const bpMods = calculateBPModsPM(
     gen,
     attacker,
     defender,
@@ -1042,7 +1045,7 @@ export function calculateBasePowerSMSSSV(
   return basePower;
 }
 
-export function calculateBPModsSMSSSV(
+export function calculateBPModsPM(
   gen: Generation,
   attacker: Pokemon,
   defender: Pokemon,
@@ -1142,6 +1145,8 @@ export function calculateBPModsSMSSSV(
       bpMods.push(5461);
       desc.moveBP = basePower * (5461 / 4096);
     }
+  } else if (attacker.hasAbility('Night Watch') && defender.hasType('Dark')) {
+    bpMods.push(6144)
   }
 
   if (field.attackerSide.isHelpingHand) {
@@ -1313,7 +1318,7 @@ export function calculateBPModsSMSSSV(
   return bpMods;
 }
 
-export function calculateAttackSMSSSV(
+export function calculateAttackPM(
   gen: Generation,
   attacker: Pokemon,
   defender: Pokemon,
@@ -1324,8 +1329,7 @@ export function calculateAttackSMSSSV(
 ) {
   let attack: number;
   const attackStat =
-    move.named('Shell Side Arm') &&
-    getShellSideArmCategory(attacker, defender) === 'Physical'
+    (move.named('Shell Side Arm') && getShellSideArmCategory(attacker, defender) === 'Physical') || (attacker.hasAbility('Head Barrage') && move.category === 'Special')
       ? 'atk'
       : move.named('Body Press')
         ? 'def'
@@ -1353,12 +1357,12 @@ export function calculateAttackSMSSSV(
     attack = pokeRound((attack * 3) / 2);
     desc.attackerAbility = attacker.ability;
   }
-  const atMods = calculateAtModsSMSSSV(gen, attacker, defender, move, field, desc);
+  const atMods = calculateAtModsPM(gen, attacker, defender, move, field, desc);
   attack = OF16(Math.max(1, pokeRound((attack * chainMods(atMods, 410, 131072)) / 4096)));
   return attack;
 }
 
-export function calculateAtModsSMSSSV(
+export function calculateAtModsPM(
   gen: Generation,
   attacker: Pokemon,
   defender: Pokemon,
@@ -1514,7 +1518,7 @@ export function calculateAtModsSMSSSV(
   return atMods;
 }
 
-export function calculateDefenseSMSSSV(
+export function calculateDefensePM(
   gen: Generation,
   attacker: Pokemon,
   defender: Pokemon,
@@ -1550,7 +1554,7 @@ export function calculateDefenseSMSSSV(
     desc.weather = field.weather;
   }
 
-  const dfMods = calculateDfModsSMSSSV(
+  const dfMods = calculateDfModsPM(
     gen,
     attacker,
     defender,
@@ -1564,7 +1568,7 @@ export function calculateDefenseSMSSSV(
   return OF16(Math.max(1, pokeRound((defense * chainMods(dfMods, 410, 131072)) / 4096)));
 }
 
-export function calculateDfModsSMSSSV(
+export function calculateDfModsPM(
   gen: Generation,
   attacker: Pokemon,
   defender: Pokemon,
@@ -1647,7 +1651,7 @@ export function calculateDfModsSMSSSV(
   return dfMods;
 }
 
-function calculateBaseDamageSMSSSV(
+function calculateBaseDamagePM(
   gen: Generation,
   attacker: Pokemon,
   defender: Pokemon,
@@ -1699,7 +1703,7 @@ function calculateBaseDamageSMSSSV(
   return baseDamage;
 }
 
-export function calculateFinalModsSMSSSV(
+export function calculateFinalModsPM(
   gen: Generation,
   attacker: Pokemon,
   defender: Pokemon,
