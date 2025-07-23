@@ -10605,7 +10605,7 @@ const DNU: {[name: string]: SpeciesData} = {
     bs: {hp: 35, at: 20, df: 65, sa: 40, sd: 65, sp: 20},
     weightkg: 1.5,
     nfe: true,
-    abilities: {0: 'Hustle'},
+    abilities: {0: 'Serene Grace'},
   },
   Tyrogue: {
     types: ['Fighting'],
