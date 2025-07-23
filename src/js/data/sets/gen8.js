@@ -92,9 +92,12 @@ var SETDEX_SS = {
 		"OU Mixed Wall": {"level":100,"ability":"Purifying Salt","item":"Eviolite","nature":"Careful","evs":{"hp":248,"df":44,"sd":216},"moves":["Rock Slide","Earthquake","Recover","Stealth Rock"]},
 		"DNUVGC Life Orb": {"level":50,"ability":"Purifying Salt","item":"Life Orb","nature":"Brave","evs":{"hp":252,"at":252,"sd":4},"ivs":{"sp":0},"moves":["Rock Slide","Earthquake","Protect","Stone Edge"]}
 	},
+	"Nidoran-M": {
+		"OU Physical Setup": {"level": 100,"ability":"Poison Point","item":"Eviolite","nature":"Adamant","evs":{"hp":252,"at":252,"sd":4},"mopves":["Poison Jab","Drill Run","Sucker Punch","Hone Claws"]}
+	},
 	"Nidoran-F": {
 		"OU Special Attacker": {"level":100,"ability":"Poison Point","item":"Eviolite","nature":"Modest","evs":{"hp":248,"df":8,"sa":252},"moves":["Sludge Bomb","Earth Power","Ice Beam","Toxic Spikes"]},
-		"OU Hustle": {"level":100,"ability":"Hustle","item":"Eviolite","nature":"Adamant","evs":{"hp":252,"at":252,"sd":4},"moves":["Poison Jab","Sucker Punch","Hone Claws","Super Fang"]}
+		"OU Physical Setup": {"level":100,"ability":"Poison Point","item":"Eviolite","nature":"Adamant","evs":{"hp":252,"at":252,"sd":4},"moves":["Poison Jab","Sucker Punch","Hone Claws","Super Fang"]}
 	},
 	"Nymble": {
 		"OU Choice Band": {"level":100,"ability":"Tinted Lens","item":"Choice Band","nature":"Adamant","evs":{"at":252,"df":4,"sp":252},"moves":["First Impression","U-turn","Leech Life","Assurance"]},
@@ -108,7 +111,7 @@ var SETDEX_SS = {
 		"OU Guts": {"level":100,"ability":"Guts","item":"Flame Orb","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Facade","Crunch","U-turn","Iron Tail"]}
 	},
 	"Rattata-Alola": {
-		"OU Choice Scarf": {"level":100,"ability":"Hustle / Thick Fat","item":"Choice Scarf","nature":"Adamant","evs":{"at":252,"sd":4,"sp":252},"moves":["Pursuit","U-turn","Double-Edge","Crunch"]},
+		"OU Choice Scarf": {"level":100,"ability":"Thick Fat","item":"Choice Scarf","nature":"Adamant","evs":{"at":252,"sd":4,"sp":252},"moves":["Pursuit","U-turn","Double-Edge","Crunch"]},
 		"OU Pursuit Pivot": {"level":100,"ability":"Thick Fat","item":"Heavy-Duty Boots","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Pursuit","Crunch","Return","U-turn"]},
 		"DNUVGC Choice Scarf": {"level":50,"ability":"Hustle","item":"Choice Scarf","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["U-turn","Crunch","Pursuit","Double-Edge"]}
 	},
