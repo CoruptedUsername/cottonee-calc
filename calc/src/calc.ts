@@ -9,6 +9,7 @@ import {calculateADV} from './mechanics/gen3';
 import {calculateDPP} from './mechanics/gen4';
 import {calculateBWXY} from './mechanics/gen56';
 import {calculateSMSSSV} from './mechanics/gen789';
+import {calculateTS} from './mechanics/tiersovereign';
 import {calculatePM} from './mechanics/paleomons';
 
 const MECHANICS = [
@@ -18,7 +19,7 @@ const MECHANICS = [
   calculateADV,
   calculateDPP,
   calculateBWXY,
-  calculateBWXY,
+  calculateTS,
   calculatePM,
   calculateSMSSSV,
   calculateSMSSSV,

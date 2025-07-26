@@ -5099,6 +5099,10 @@ const JS: {[name: string]: MoveData} = {
   'Diamond Storm': {bp: 100, type: 'Rock'},
 };
 
+// Tier Sovereign
+const TS_PATCH: {[name: string]: DeepPartial<MoveData>} = {};
+const TS: {[name: string]: MoveData} = extend(true, {}, SV, TS_PATCH);
+
 // Paleomons
 const PM_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Blood Stream': {
@@ -5179,7 +5183,7 @@ const PM_PATCH: {[name: string]: DeepPartial<MoveData>} = {
 };
 const PM: {[name: string]: MoveData} = extend(true, {}, SV, PM_PATCH);
 
-export const MOVES = [{}, JS, GSC, ADV, DPP, BW, XY, PM, SS, SV];
+export const MOVES = [{}, JS, GSC, ADV, DPP, BW, TS, PM, SV, SV];
 
 export class Moves implements I.Moves {
   private readonly gen: I.GenerationNum;

@@ -339,6 +339,9 @@ const SV = SS.concat([
   'Zero to Hero',
 ]);
 
+// Tier Sovereign
+const TS = SV.concat([])
+
 // Paleomons
 const PM = SV.concat([
   'First Flight',
@@ -352,7 +355,7 @@ const PM = SV.concat([
 
 
 
-export const ABILITIES = [[], RBY, GSC, ADV, DPP, BW, XY, PM, SV, SV];
+export const ABILITIES = [[], RBY, GSC, ADV, DPP, BW, TS, PM, SV, SV];
 
 export class Abilities implements I.Abilities {
   private readonly gen: I.GenerationNum;

@@ -10127,6 +10127,9 @@ const JS_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
 }
 const JS: {[name: string]: SpeciesData} = extend(true, {}, RBY_DUMMY, JS_PATCH);
 
+// Tier Sovereign
+const TS: {[name: string]: SpeciesData} = {};
+
 // Paleomons
 const PM: {[name: string]: SpeciesData} = {
   Aerodactyl: {
@@ -11269,7 +11272,6 @@ const DNU: {[name: string]: SpeciesData} = {
   },
 };
 
-
 // Blank Canvas
 const BC: {[name: string]: SpeciesData} = {
   Arachnode: {
@@ -11544,7 +11546,7 @@ const BC: {[name: string]: SpeciesData} = {
   },
 };
 
-export const SPECIES = [{}, JS, GSC_DUMMY, ADV_DUMMY, DPP_DUMMY, BW_DUMMY, XY_DUMMY, PM, DNU, BC];
+export const SPECIES = [{}, JS, GSC_DUMMY, ADV_DUMMY, DPP_DUMMY, BW_DUMMY, TS, PM, DNU, BC];
 
 export class Species implements I.Species {
   private readonly gen: I.GenerationNum;
