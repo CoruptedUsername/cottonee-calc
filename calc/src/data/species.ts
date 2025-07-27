@@ -10917,6 +10917,13 @@ const DNU: {[name: string]: SpeciesData} = {
     nfe: true,
     abilities: {0: 'Run Away'},
   },
+  Petilil: {
+    types: ['Grass'],
+    bs: {hp: 45, at: 35, df: 50, sa: 70, sd: 50, sp: 30},
+    weightkg: 6.6,
+    nfe: true,
+    abilities: {0: 'Chlorophyll'},
+  },
   Pidove: {
     types: ['Normal', 'Flying'],
     bs: {hp: 50, at: 55, df: 50, sa: 36, sd: 30, sp: 43},
