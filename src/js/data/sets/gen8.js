@@ -115,6 +115,9 @@ var SETDEX_SS = {
 		"OU Pursuit Pivot": {"level":100,"ability":"Thick Fat","item":"Heavy-Duty Boots","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Pursuit","Crunch","Return","U-turn"]},
 		"DNUVGC Choice Scarf": {"level":50,"ability":"Hustle","item":"Choice Scarf","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["U-turn","Crunch","Pursuit","Double-Edge"]}
 	},
+	"Rellor": {
+		"Ubers GUNKER": {"level":100,"ability":"Compound Eyes","item":"Eviolite","nature":"Adamant","evs":{"at":252,"df":252,"sd":4},"moves":["Rest", "Sleep Talk", "Gunk Shot", "Leech Life"]}
+	},
 	"Rockruff": {
 		"OU Choice Band": {"level":100,"ability":"Own Tempo","item":"Choice Band","nature":"Adamant","evs":{"at":252,"sd":4,"sp":252},"moves":["Stone Edge","Stomping Tantrum","Iron Head","Crunch"]},
 		"OU Eviolite": {"level":100,"ability":"Own Tempo","item":"Eviolite","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Stone Edge","Stomping Tantrum","Sucker Punch","Swords Dance"]},
