@@ -1,7 +1,7 @@
 var SETDEX_SV = {
 	"Socknbusk'n": {
 		"MetaA Offensive Pivot": {"level":100,"ability":"Scrappy","item":"Heavy-Duty Boots","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Fake Out","Drain Punch","U-turn","Rapid Spin"]},
-		"MetaA Choice Band": {"level":100,"ability":"Scrappy","item":"Choice Band","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Sacred Sword","U-turn","Rapid Spin","Mach Punch"]}
+		"MetaA Choice Band": {"level":100,"ability":"Scrappy","item":"Choice Band","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Close Combat","U-turn","Rapid Spin","Mach Punch"]}
 	},
 	"Hippaint": {
 		"MetaA Work Up": {"level":100,"ability":"Pastel Veil","item":"Loaded Dice","nature":"Timid","evs":{"sa":252,"sd":4,"sp":252},"ivs":{"at":0},"moves":["Work Up","Water Shuriken","Earth Power","Fire Pledge"]}
@@ -27,7 +27,7 @@ var SETDEX_SV = {
 		"MetaA RestTalk": {"level":100,"ability":"Immunity","item":"Leftovers","nature":"Relaxed","evs":{"hp":248,"df":252,"sd":8},"ivs":{"sp":0},"moves":["Body Press","Flip Turn","Rest","Sleep Talk"]}
 	},
 	"Sleet Shell": {
-		"MetaA Booster Energy": {"level":100,"ability":"Protosynthesis","item":"Booster Energy","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Swords Dance","Sunsteel Strike","Mighty Cleave","Ice Spinner"]}
+		"MetaA Booster Energy": {"level":100,"ability":"Protosynthesis","item":"Booster Energy","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Swords Dance","Sunsteel Strike","Mighty Cleave","Triple Axel"]}
 	},
 	"Versalyre": {
 		"MetaA Choice Band": {"level":100,"ability":"Protean","item":"Choice Band","nature":"Jolly","evs":{"at":252,"df":4,"sp":252},"moves":["Brave Bird","Mountain Gale","Drill Run","Fire Lash"]},
@@ -105,8 +105,7 @@ var SETDEX_SV = {
 		"MetaA Choice Band": {"level":100,"ability":"Psychic Surge","item":"Choice Band","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Double-Edge","Play Rough","Psychic Fangs","Body Slam"]}
 	},
 	"Badjur": {
-		"MetaA Howl": {"level":100,"ability":"Poison Heal","item":"Toxic Orb","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Facade","Play Rough","Howl","Protect"]},
-		"MetaA Utility": {"level":100,"ability":"Poison Heal","item":"Toxic Orb","nature":"Careful","evs":{"hp":240,"df":52,"sd":200,"sp":16},"moves":["Facade","Knock Off","Spikes","Protect"]}
+		"MetaA Howl": {"level":100,"ability":"Poison Heal","item":"Toxic Orb","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Facade","Play Rough","Howl","Protect"]}
 	},
 	"Mon Mothra": {
 		"MetaA Choice Scarf": {"level":100,"ability":"Tinted Lens","item":"Choice Scarf","nature":"Timid","evs":{"sa":252,"sd":4,"sp":252},"moves":["Moonblast","Earth Power","U-turn","Mystical Fire"]},
@@ -116,10 +115,6 @@ var SETDEX_SV = {
 	"Searytch": {
 		"MetaA Nasty Plot": {"level":100,"ability":"Stamina","item":"Heavy-Duty Boots","nature":"Modest","evs":{"hp":168,"sa":252,"sp":88},"ivs":{"at":0},"moves":["Nasty Plot","Flamethrower","Moonblast","Slack Off"]},
 		"MetaA Defensive": {"level":100,"ability":"Stamina","item":"Heavy-Duty Boots","nature":"Bold","evs":{"hp":248,"df":252,"sd":8},"ivs":{"at":0},"moves":["Moonblast","Flamethrower","Will-O-Wisp","Slack Off"]}
-	},
-	"Reversadusa": {
-		"MetaA Choice Specs": {"level":100,"ability":"Contrary","item":"Choice Specs","nature":"Timid","evs":{"sa":252,"sd":4,"sp":252},"ivs":{"at":0},"moves":["Psycho Boost","Dark Pulse","Aura Sphere","Parting Shot"]},
-		"MetaA Taunt": {"level":100,"ability":"Contrary","item":"Tanga Berry","nature":"Timid","evs":{"sa":252,"sd":4,"sp":252},"ivs":{"at":0},"moves":["Psycho Boost","Dark Pulse","Taunt","Moonlight"]}
 	},
 	"Wizhazard": {
 		"MetaA Physically Defensive": {"level":100,"ability":"Magic Bounce","item":"Leftovers","nature":"Bold","evs":{"hp":252,"df":252,"sa":4},"ivs":{"at":0},"moves":["Psystrike","Mystical Fire","Leech Seed","Protect"]},
@@ -150,7 +145,7 @@ var SETDEX_SV = {
 		"MetaA Coil": {"level":100,"ability":"Unaware","item":"Leftovers","nature":"Careful","evs":{"hp":248,"at":8,"sd":252},"moves":["Coil","Dragon Tail","Barb Barrage","Recover"]}
 	},
 	"Brasspecter": {
-		"MetaA Swords Dance": {"level":100,"ability":"Tough Claws","item":"Leftovers","nature":"Adamant","evs":{"hp":252,"at":252,"sd":4},"moves":["Swords Dance","Shadow Sneak","Shadow Claw","Gigaton Hammer"]}
+		"MetaA Swords Dance": {"level":100,"ability":"Tough Claws","item":"Leftovers","nature":"Adamant","evs":{"hp":252,"at":252,"sd":4},"moves":["Swords Dance","Shadow Sneak","Poltergeist","Gigaton Hammer"]}
 	},
 	"Goblantern": {
 		"MetaA Torch Song": {"level":100,"ability":"Prankster","item":"Leftovers","nature":"Timid","evs":{"hp":252,"sa":16,"sp":240},"ivs":{"at":0},"moves":["Torch Song","Matcha Gotcha","Synthesis","Taunt"]},
@@ -169,7 +164,6 @@ var SETDEX_SV = {
 		"MetaA Offensive Utility": {"level":100,"ability":"Quark Drive","item":"Leftovers","nature":"Relaxed","evs":{"hp":248,"at":8,"df":252},"ivs":{"sp":0},"moves":["Knock Off","Ceaseless Edge","Parting Shot","Slack Off"]}
 	},
 	"Faeruin": {
-		"MetaA Screens Setter": {"level":100,"ability":"Prankster","item":"Light Clay","nature":"Calm","evs":{"hp":248,"sa":8,"sd":252},"ivs":{"at":0},"moves":["Reflect","Light Screen","Encore","Alluring Voice"]},
 		"MetaA Specially Defensive": {"level":100,"ability":"Prankster","item":"Heavy-Duty Boots","nature":"Careful","evs":{"hp":252,"df":4,"sd":252},"moves":["Rapid Spin","Shadow Claw","Encore","Rest"]}
 	},
 	"Snabterra": {

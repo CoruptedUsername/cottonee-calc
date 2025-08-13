@@ -11301,25 +11301,25 @@ const BC: {[name: string]: SpeciesData} = {
   },
   Blobbiam: {
     types: ['Water', 'Fairy'],
-    bs: {hp: 110, at: 100, df: 110, sa: 20, sd: 80, sp: 75},
+    bs: {hp: 95, at: 100, df: 110, sa: 20, sd: 80, sp: 75},
     weightkg: 12,
     abilities: {0: 'Volt Absorb'}
   },
   Brasspecter: {
     types: ['Steel', 'Ghost'],
-    bs: {hp: 100, at: 90, df: 100, sa: 40, sd: 95, sp: 35},
+    bs: {hp: 110, at: 95, df: 100, sa: 40, sd: 95, sp: 35},
     weightkg: 40,
     abilities: {0: 'Tough Claws'}
   },
   Bugswarm: {
     types: ['Fire', 'Bug'],
-    bs: {hp: 100, at: 85, df: 70, sa: 70, sd: 70, sp: 60},
+    bs: {hp: 100, at: 90, df: 70, sa: 70, sd: 70, sp: 60},
     weightkg: 420,
     abilities: {0: 'Triage'}
   },
   Bulionage: {
     types: ['Dark', 'Water'],
-    bs: {hp: 95, at: 100, df: 85, sa: 40, sd: 120, sp: 50},
+    bs: {hp: 95, at: 90, df: 85, sa: 40, sd: 120, sp: 50},
     weightkg: 300,
     abilities: {0: 'Strong Jaw'}
   },
@@ -11331,7 +11331,7 @@ const BC: {[name: string]: SpeciesData} = {
   },
   Copperhead: {
     types: ['Ground', 'Steel'],
-    bs: {hp: 95, at: 80, df: 120, sa: 50, sd: 90, sp: 50},
+    bs: {hp: 85, at: 80, df: 100, sa: 50, sd: 90, sp: 50},
     weightkg: 101.9,
     abilities: {0: "Water Absorb"}
   },
@@ -11349,7 +11349,7 @@ const BC: {[name: string]: SpeciesData} = {
   },
   Drakkanon: {
     types: ['Fighting', 'Dragon'],
-    bs: {hp: 80, at: 50, df: 75, sa: 100, sd: 85, sp: 93},
+    bs: {hp: 80, at: 50, df: 95, sa: 100, sd: 105, sp: 73},
     weightkg: 59,
     abilities: {0: 'Mega Launcher'}
   },
@@ -11379,7 +11379,7 @@ const BC: {[name: string]: SpeciesData} = {
   },
   Freightmare: {
     types: ['Ghost', 'Steel'],
-    bs: {hp: 100, at: 40, df: 80, sa: 100, sd: 85, sp: 74},
+    bs: {hp: 100, at: 40, df: 80, sa: 105, sd: 85, sp: 74},
     weightkg: 720,
     abilities: {0: 'Sand Rush'}
   },
@@ -11397,7 +11397,7 @@ const BC: {[name: string]: SpeciesData} = {
   },
   Hippaint: {
     types: ['Water', 'Ground'],
-    bs: {hp: 70, at: 40, df: 70, sa: 105, sd: 85, sp: 80},
+    bs: {hp: 70, at: 40, df: 70, sa: 110, sd: 85, sp: 80},
     weightkg: 90,
     abilities: {0: 'Pastel Veil'}
   },
@@ -11409,7 +11409,7 @@ const BC: {[name: string]: SpeciesData} = {
   },
   Jokerpent: {
     types: ['Dragon', 'Poison'],
-    bs: {hp: 110, at: 70, df: 100, sa: 30, sd: 95, sp: 20},
+    bs: {hp: 100, at: 70, df: 100, sa: 30, sd: 75, sp: 20},
     weightkg: 67,
     abilities: {0: 'Unaware'}
   },
@@ -11433,7 +11433,7 @@ const BC: {[name: string]: SpeciesData} = {
   },
   Llanfairwyrm: {
     types: ['Dragon'],
-    bs: {hp: 85, at: 120, df: 90, sa: 55, sd: 90, sp: 70},
+    bs: {hp: 85, at: 120, df: 100, sa: 55, sd: 90, sp: 70},
     weightkg: 600,
     abilities: {0: 'Rough Skin'}
   },
@@ -11445,7 +11445,7 @@ const BC: {[name: string]: SpeciesData} = {
   },
   Massassin: {
     types: ['Fighting', 'Dark'],
-    bs: {hp: 100, at: 100, df: 80, sa: 50, sd: 80, sp: 15},
+    bs: {hp: 110, at: 110, df: 80, sa: 50, sd: 80, sp: 30},
     weightkg: 888,
     abilities: {0: 'Quark Drive'}
   },
@@ -11463,7 +11463,7 @@ const BC: {[name: string]: SpeciesData} = {
   },
   Parasike: {
     types: ['Psychic', 'Bug'],
-    bs: {hp: 50, at: 85, df: 75, sa: 50, sd: 55, sp: 109},
+    bs: {hp: 50, at: 90, df: 75, sa: 50, sd: 55, sp: 109},
     weightkg: 0.8,
     abilities: {0: 'Strong Jaw'}
   },
@@ -11487,7 +11487,7 @@ const BC: {[name: string]: SpeciesData} = {
   },
   Reversadusa: {
     types: ['Psychic', 'Dark'],
-    bs: {hp: 70, at: 50, df: 70, sa: 70, sd: 70, sp: 110},
+    bs: {hp: 90, at: 90, df: 80, sa: 70, sd: 70, sp: 95},
     weightkg: 55.2,
     abilities: {0: 'Contrary'}
   },
@@ -11511,7 +11511,7 @@ const BC: {[name: string]: SpeciesData} = {
   },
   Snabterra: {
     types: ['Bug', 'Ground'],
-    bs: {hp: 85, at: 100, df: 85, sa: 40, sd: 80, sp: 85},
+    bs: {hp: 85, at: 110, df: 85, sa: 40, sd: 80, sp: 85},
     weightkg: 600,
     abilities: {0: 'Compound Eyes'}
   },
@@ -11541,7 +11541,7 @@ const BC: {[name: string]: SpeciesData} = {
   },
   Wizhazard: {
     types: ['Psychic', 'Steel'],
-    bs: {hp: 90, at: 40, df: 90, sa: 100, sd: 70, sp: 60},
+    bs: {hp: 95, at: 40, df: 90, sa: 100, sd: 70, sp: 60},
     weightkg: 69,
     abilities: {0: 'Magic Bounce'}
   },
