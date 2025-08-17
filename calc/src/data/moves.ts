@@ -5129,6 +5129,12 @@ const PM_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     isBite: true,
     makesContact: true,
   },
+  'Ferrous Force': {
+    bp: 110,
+    type: 'Rock',
+    category: 'Special',
+    secondaries: true,
+  },
   'Fishious Rend': {
     bp: 75
   },

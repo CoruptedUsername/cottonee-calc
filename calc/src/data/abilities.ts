@@ -349,6 +349,7 @@ const PM = SV.concat([
   'Leatherback',
   'Night Watch',
   'Permafrost',
+  'Predator',
   'Sedimentary',
   'Specterate'
 ])

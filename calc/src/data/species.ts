@@ -10204,6 +10204,12 @@ const PM: {[name: string]: SpeciesData} = {
     weightkg: 420,
     abilities: {0: 'Oblivious'},
   },
+  Combysa: {
+    types: ['Fire', 'Fighting'],
+    bs: {hp: 85, at: 85, df: 85, sa: 125, sd: 79, sp: 91},
+    weightkg: 92,
+    abilities: {0: 'Compound Eyes'},
+  },
   'Conkeldurr-Conch': {
     types: ['Water', 'Normal'],
     bs: {hp: 100, at: 55, df: 65, sa: 95, sd: 115, sp: 75},
@@ -10306,6 +10312,12 @@ const PM: {[name: string]: SpeciesData} = {
     weightkg: 220,
     abilities: {0: 'Heatproof'},
   },
+  Magnestone: {
+    types: ['Electric', 'Rock'],
+    bs: {hp: 85, at: 71, df: 97, sa: 121, sd: 65, sp: 101},
+    weightkg: 60,
+    abilities: {0: 'Predator'}
+  },
   'Meganium-Sonic': {
     types: ['Grass', 'Electric'],
     bs: {hp: 109, at: 75, df: 81, sa: 108, sd: 111, sp: 42},
@@ -10318,11 +10330,23 @@ const PM: {[name: string]: SpeciesData} = {
     weightkg: 292.2,
     abilities: {0: 'Corrosion'},
   },
+  Nochummer: {
+    types: ['Normal', 'Dark'],
+    bs: {hp: 90, at: 127, df: 80, sa: 53, sd: 60, sp: 90},
+    weightkg: 380,
+    abilities: {0: 'Dry Skin'},
+  },
   Nurturaptor: {
     types: ['Normal', 'Dragon'],
     bs: {hp: 80, at: 76, df: 80, sa: 85, sd: 85, sp: 119},
     weightkg: 30,
     abilities: {0: 'Natural Cure'},
+  },
+  Nymphamane: {
+    types: ['Fairy', 'Water'],
+    bs: {hp: 55, at: 60, df: 125, sa: 105, sd: 85, sp: 100},
+    weightkg: 4,
+    abilities: {0: 'Aroma Veil'},
   },
   Omastar: {
     types: ['Poison', 'Psychic'],

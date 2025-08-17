@@ -120,7 +120,7 @@ export function getRecovery(
 
   const ignoresShellBell =
     gen.num === 3 && move.named('Doom Desire', 'Future Sight');
-  if (attacker.hasItem('Shell Bell') && !ignoresShellBell) {
+  if ((attacker.hasItem('Shell Bell') || attacker.hasAbility('Predator'))&& !ignoresShellBell) {
     for (let i = 0; i < minD.length; i++) {
       recovery[0] += minD[i] > 0 ? Math.max(Math.round(minD[i] / 8), 1) : 0;
       recovery[1] += maxD[i] > 0 ? Math.max(Math.round(maxD[i] / 8), 1) : 0;
