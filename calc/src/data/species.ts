@@ -10140,7 +10140,7 @@ const PM: {[name: string]: SpeciesData} = {
   },
   Alticombat: {
     types: ['Flying', 'Fighting'],
-    bs: {hp: 105, at: 100, df: 60, sa: 60, sd: 75, sp: 120},
+    bs: {hp: 105, at: 85, df: 60, sa: 60, sd: 75, sp: 120},
     weightkg: 11,
     abilities: {0: 'Cloud Nine'}
   },
@@ -10170,13 +10170,13 @@ const PM: {[name: string]: SpeciesData} = {
   },
   Bastiodon: {
     types: ['Rock', 'Fairy'],
-    bs: {hp: 70, at: 52, df: 148, sa: 107, sd: 138, sp: 30},
+    bs: {hp: 60, at: 52, df: 148, sa: 107, sd: 138, sp: 30},
     weightkg: 149.5,
     abilities: {0: 'Solid Rock'},
   },
   'Bellibolt-Twisted': {
     types: ['Electric', 'Dark'],
-    bs: {hp: 109, at: 64, df: 91, sa: 103, sd: 83, sp: 45},
+    bs: {hp: 109, at: 45, df: 91, sa: 113, sd: 83, sp: 54},
     weightkg: 113,
     abilities: {0: 'Electromorphosis'},
   },
@@ -10230,7 +10230,7 @@ const PM: {[name: string]: SpeciesData} = {
   },
   Dracomizer: {
     types: ['Dragon', 'Fire'],
-    bs: {hp: 100, at: 101, df: 112, sa: 90, sd: 80, sp: 52},
+    bs: {hp: 100, at: 111, df: 117, sa: 80, sd: 80, sp: 52},
     weightkg: 287,
     abilities: {0: 'Sand Rush'},
   },
@@ -10250,7 +10250,7 @@ const PM: {[name: string]: SpeciesData} = {
   },
   Goldoco: {
     types: ['Steel'],
-    bs: {hp: 100, at: 135, df: 100, sa: 50, sd: 70, sp: 50},
+    bs: {hp: 100, at: 135, df: 100, sa: 50, sd: 85, sp: 50},
     weightkg: 40,
     abilities: {0: 'Good as Gold'},
   },
@@ -10320,13 +10320,13 @@ const PM: {[name: string]: SpeciesData} = {
   },
   'Meganium-Sonic': {
     types: ['Grass', 'Electric'],
-    bs: {hp: 109, at: 75, df: 81, sa: 108, sd: 111, sp: 42},
+    bs: {hp: 109, at: 59, df: 86, sa: 118, sd: 111, sp: 42},
     weightkg: 100.5,
     abilities: {0: 'Punk Rock'},
   },
   Moscourge: {
     types: ['Poison', 'Ghost'],
-    bs: {hp: 66, at: 96, df: 76, sa: 116, sd: 86, sp: 106},
+    bs: {hp: 76, at: 76, df: 76, sa: 126, sd: 86, sp: 106},
     weightkg: 292.2,
     abilities: {0: 'Corrosion'},
   },
@@ -10368,7 +10368,7 @@ const PM: {[name: string]: SpeciesData} = {
   },
   'Salazzle-Ancient': {
     types: ['Ice', 'Dark'],
-    bs: {hp: 60, at: 60, df: 69, sa: 108, sd: 69, sp: 114},
+    bs: {hp: 60, at: 60, df: 64, sa: 114, sd: 68, sp: 114},
     weightkg: 22.2,
     abilities: {0: 'Oblivious'},
   },
@@ -10380,7 +10380,7 @@ const PM: {[name: string]: SpeciesData} = {
   },
   Shivertherium: {
     types: ['Ice', 'Steel'],
-    bs: {hp: 105, at: 115, df: 105, sa: 65, sd: 60, sp: 80},
+    bs: {hp: 105, at: 115, df: 105, sa: 65, sd: 60, sp: 90},
     weightkg: 101,
     abilities: {0: 'Stamina'},
   },
