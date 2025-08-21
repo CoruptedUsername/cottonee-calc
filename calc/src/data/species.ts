@@ -10127,6 +10127,46 @@ const JS_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
 }
 const JS: {[name: string]: SpeciesData} = extend(true, {}, RBY_DUMMY, JS_PATCH);
 
+// Six by Six
+const SBS: {[name: string]: SpeciesData} = {
+  'Bisharp-Centurion': {
+    types: ['Fighting', 'Steel'],
+    bs: {hp: 70, at: 140, df: 115, sa: 55, sd: 70, sp: 70},
+    weightkg: 70,
+    abilities: {0: 'Overcoat'},
+  },
+  'Corviknight-Thunderbird': {
+    types: ['Flying', 'Electric'],
+    bs: {hp: 85, at: 55, df: 105, sa: 115, sd: 85, sp: 85},
+    weightkg: 75,
+    abilities: {0: 'Pickpocket'},
+  },
+  Kingdra: {
+    types: ['Water', 'Dragon'],
+    bs: {hp: 90, at: 70, df: 80, sa: 130, sd: 90, sp: 90},
+    weightkg: 152,
+    abilities: {0: 'Berserk'},
+  },
+  'Krookodile-Infernal': {
+    types: ['Fire', 'Dark'],
+    bs: {hp: 90, at: 80, df: 85, sa: 105, sd: 90, sp: 100},
+    weightkg: 96.3,
+    abilities: {0: 'Magic Guard'},
+  },
+  Nidoqueen: {
+    types: ['Poison', 'Ground'],
+    bs: {hp: 135, at: 115, df: 60, sa: 90, sd: 85, sp: 55},
+    weightkg: 60,
+    abilities: {0: 'Cheek Pouch'},
+  },
+  'Ogerpon-Muerta': {
+    types: ['Fairy', 'Ghost'],
+    bs: {hp: 90, at: 120, df: 70, sa: 100, sd: 90, sp: 130},
+    weightkg: 39.8,
+    abilities: {0: 'Wandering Spirit'},
+  }
+};
+
 // Tier Sovereign
 const TS: {[name: string]: SpeciesData} = {};
 
@@ -11577,7 +11617,7 @@ const BC: {[name: string]: SpeciesData} = {
   },
 };
 
-export const SPECIES = [{}, JS, GSC_DUMMY, ADV_DUMMY, DPP_DUMMY, BW_DUMMY, TS, PM, DNU, BC];
+export const SPECIES = [{}, JS, GSC_DUMMY, ADV_DUMMY, DPP_DUMMY, SBS, TS, PM, DNU, BC];
 
 export class Species implements I.Species {
   private readonly gen: I.GenerationNum;

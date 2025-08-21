@@ -18,7 +18,7 @@ const MECHANICS = [
   calculateRBYGSC,
   calculateADV,
   calculateDPP,
-  calculateBWXY,
+  calculateSMSSSV,
   calculateTS,
   calculatePM,
   calculateSMSSSV,
