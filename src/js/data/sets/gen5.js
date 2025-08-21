@@ -14,7 +14,7 @@ var SETDEX_BW = {
 	"Nidoqueen": {
 
 	},
-	'Ogerpon-Muerta': {
+	"Ogerpon-Muerta": {
 
 	}
 };
