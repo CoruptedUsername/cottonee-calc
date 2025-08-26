@@ -10168,7 +10168,32 @@ const SBS: {[name: string]: SpeciesData} = {
 };
 
 // Tier Sovereign
-const TS: {[name: string]: SpeciesData} = {};
+const TS: {[name: string]: SpeciesData} = {
+  Glashrimp: {
+    types: ['Water', 'Fairy'],
+    bs: {hp: 85, at: 45, df: 85, sa: 65, sd: 95, sp: 105},
+    weightkg: 2.4,
+    abilities: {0: 'Clear Body'},
+  },
+  Lindwallow: {
+    types: ['Ground', 'Dragon'],
+    bs: {hp: 109, at: 117, df: 104, sa: 78, sd: 90, sp: 70},
+    weightkg: 264,
+    abilities: {0: 'Natural Cure'},
+  },
+  Reoozeiclus: {
+    types: ['Psychic', 'Poison'],
+    bs: {hp: 110, at: 65, df: 85, sa: 115, sd: 85, sp: 30},
+    weightkg: 20.1,
+    abilities: {0: 'Magic Guard'},
+  },
+  Tempesra: {
+    types: ['Electric', 'Fire'],
+    bs: {hp: 67, at: 67, df: 71, sa: 103, sd: 100, sp: 119},
+    weightkg: 27,
+    abilities: {0: 'Flash Fire'},
+  }
+};
 
 // Paleomons
 const PM: {[name: string]: SpeciesData} = {
