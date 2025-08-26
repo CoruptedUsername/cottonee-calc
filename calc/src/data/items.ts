@@ -574,7 +574,7 @@ const BERRIES: {[berry: string]: {t: I.TypeName; p: number}} = {
   'Yache Berry': {t: 'Ice', p: 80},
 };
 
-export const ITEMS = [[], RBY, GSC, ADV, DPP, SV, XY, SM, SV, SV];
+export const ITEMS = [[], RBY, GSC, ADV, DPP, SV, SV, SV, SV, SV];
 
 export class Items implements I.Items {
   private readonly gen: I.GenerationNum;
