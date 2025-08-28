@@ -181,8 +181,8 @@ var SETDEX_SV = {
 		"MetaC Bulky Attacker": {"level":100,"ability":"Mold Breaker","item":"Leftovers","nature":"Adamant","evs":{"hp":252,"at":252,"sd":4},"moves":["Iron Head","Mighty Cleave","Bullet Punch","Lunar Blessing"]},
 		"MetaC Slow Disruptor": {"level":100,"ability":"Mold Breaker","item":"Heavy-Duty Boots","nature":"Modest","evs":{"hp":252,"sa":252,"sd":4},"moves":["Flash Cannon","Toxic","Volt Switch","Roar"]}
 	},
-	"Surgarou": {
-		"MetaC Fast Attacker": {"level":100,"ability":"Regenerator","item":"Heavy-Duty Boots","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Thunder Punch","Drill Peck","Taunt","Volt Switch"]},
+	"Lyvamp": {
+		"MetaC Fast Attacker": {"level":100,"ability":"Regenerator","item":"Heavy-Duty Boots","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Supercell Slam","Drill Peck","Taunt","Volt Switch"]},
 		"MetaC Hazard Lead": {"level":100,"ability":"Regenerator","item":"Focus Sash","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Stone Axe","Rapid Spin","Thunder Wave","Volt Switch"]}
 	},
 	"Treatmint": {

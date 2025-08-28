@@ -11654,7 +11654,7 @@ const BC: {[name: string]: SpeciesData} = {
     weightkg: 180,
     abilities: {0: 'Mold Breaker'}
   },
-  Surgarou: {
+  Lyvamp: {
     types: ['Electric', 'Flying'],
     bs: {hp: 96, at: 100, df: 70, sa: 41, sd: 70, sp: 91},
     weightkg: 189,
