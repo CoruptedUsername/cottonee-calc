@@ -190,8 +190,8 @@ var SETDEX_SV = {
 		"MetaC Stall Support": {"level":100,"ability":"Natural Cure","item":"Leftovers","nature":"Modest","evs":{"hp":252,"sa":252,"sd":4},"moves":["Wish", "Heal Bell", "Toxic", "Matcha Gotcha"]}
 	},
 	"Triceracotta": {
-		"MetaC Choice Band": {"level":100,"ability":"Technician","item":"Choice Band","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["High Horsepower", "Shadow Punch", "Triple Axel", "U-Turn"]},
-		"MetaC Speed Control": {"level":100,"ability":"Technician","item":"Leftovers","nature":"Jolly","evs":{"hp":44,"at":252,"sp":212},"moves":["Bulldoze", "Shadow Punch", "Shadow Sneak", "U-Turn"]}
+		"MetaC Choice Band": {"level":100,"ability":"Technician","item":"Choice Band","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["High Horsepower", "Shadow Punch", "Triple Axel", "U-turn"]},
+		"MetaC Speed Control": {"level":100,"ability":"Technician","item":"Leftovers","nature":"Jolly","evs":{"hp":44,"at":252,"sp":212},"moves":["Bulldoze", "Shadow Punch", "Shadow Sneak", "U-turn"]}
 	},
 	"Turvarpega": {
 		"MetaC Mid-Speed Attacker": {"level":100,"ability":"Rock Head","item":"Heavy-Duty Boots","nature":"Adamant","evs":{"hp":64,"at":252,"sp":192},"moves":["Brave Bird", "Flare Blitz", "Knock Off", "High Horsepower"]},
