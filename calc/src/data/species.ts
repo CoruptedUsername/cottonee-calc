@@ -11660,7 +11660,7 @@ const BC: {[name: string]: SpeciesData} = {
     weightkg: 189,
     abilities: {0: 'Regenerator'}
   },
-  Treatment: {
+  Treatmint: {
     types: ['Grass', 'Poison'],
     bs: {hp: 100, at: 25, df: 90, sa: 100, sd: 70, sp: 45},
     weightkg: 8.4,
