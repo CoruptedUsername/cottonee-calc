@@ -5100,7 +5100,14 @@ const JS: {[name: string]: MoveData} = {
 };
 
 // Tier Sovereign
-const TS_PATCH: {[name: string]: DeepPartial<MoveData>} = {};
+const TS_PATCH: {[name: string]: DeepPartial<MoveData>} = {
+  'Calamity Quake': {
+    bp: 75,
+    type: 'Ground',
+    category: 'Special',
+    secondaries: true,
+  }
+};
 const TS: {[name: string]: MoveData} = extend(true, {}, SV, TS_PATCH);
 
 // Paleomons

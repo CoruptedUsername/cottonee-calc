@@ -11370,6 +11370,7 @@ const DNU: {[name: string]: SpeciesData} = {
 
 // Blank Canvas
 const BC: {[name: string]: SpeciesData} = {
+  // Meta A
   Arachnode: {
     types: ['Electric'],
     bs: {hp: 105, at: 30, df: 75, sa: 85, sd: 100, sp: 60},
@@ -11640,6 +11641,49 @@ const BC: {[name: string]: SpeciesData} = {
     weightkg: 255,
     abilities: {0: 'Psychic Surge'}
   },
+  // Meta C
+  Goodjur: {
+    types: ['Psychic', 'Fighting'],
+    bs: {hp: 70, at: 25, df: 60, sa: 120, sd: 70, sp: 90},
+    weightkg: 42.5,
+    abilities: {0: 'Natural Cure'}
+  },
+  Liftaton: {
+    types: ['Steel'],
+    bs: {hp: 110, at: 90, df: 80, sa: 80, sd: 85, sp: 20},
+    weightkg: 180,
+    abilities: {0: 'Mold Breaker'}
+  },
+  Surgarou: {
+    types: ['Electric', 'Flying'],
+    bs: {hp: 96, at: 100, df: 70, sa: 41, sd: 70, sp: 91},
+    weightkg: 189,
+    abilities: {0: 'Regenerator'}
+  },
+  Treatment: {
+    types: ['Grass', 'Poison'],
+    bs: {hp: 100, at: 25, df: 90, sa: 100, sd: 70, sp: 45},
+    weightkg: 8.4,
+    abilities: {0: 'Filter'}
+  },
+  Triceracotta: {
+    types: ['Ground', 'Ghost'],
+    bs: {hp: 84, at: 111, df: 95, sa: 35, sd: 75, sp: 84},
+    weightkg: 100,
+    abilities: {0: 'Flash Fire'},
+  },
+  Turvarpega: {
+    types: ['Ground', 'Flying'],
+    bs: {hp: 100, at: 100, df: 85, sa: 30, sd: 70, sp: 55},
+    weightkg: 680,
+    abilities: {0: 'Big Pecks'}
+  },
+  Woolverine: {
+    types: ['Dark', 'Fairy'],
+    bs: {hp: 70, at: 120, df: 70, sa: 40, sd: 70, sp: 70},
+    weightkg: 40,
+    abilities: {0: 'Fluffy'}
+  }
 };
 
 export const SPECIES = [{}, JS, GSC_DUMMY, ADV_DUMMY, DPP_DUMMY, SBS, TS, PM, DNU, BC];
