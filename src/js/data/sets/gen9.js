@@ -1,5 +1,4 @@
 var SETDEX_SV = {
-	// Meta A
 	"Socknbusk'n": {
 		"MetaA Offensive Pivot": {"level":100,"ability":"Scrappy","item":"Heavy-Duty Boots","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Fake Out","Drain Punch","U-turn","Rapid Spin"]},
 		"MetaA Choice Band": {"level":100,"ability":"Scrappy","item":"Choice Band","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Close Combat","U-turn","Rapid Spin","Mach Punch"]}
@@ -174,7 +173,6 @@ var SETDEX_SV = {
 	"Lavalisk": {
 		"MetaA Specially Defensive": {"level":100,"ability":"Mold Breaker","item":"Heavy-Duty Boots","nature":"Careful","evs":{"hp":248,"df":8,"sd":252},"moves":["Fire Lash","Mortal Spin","Toxic Spikes","Slack Off"]}
 	},
-	// Meta C
 	"Goodjur": {
 		"MetaC Calm Mind": {"level":100,"ability":"Natural Cure","item":"Leftovers","nature":"timid","evs":{"sa":252,"sd":4,"sp":252},"moves":["Psychic","Secret Sword","Thunderbolt","Calm Mind"]},
 		"MetaC Scarf Pivot": {"level":100,"ability":"Natural Cure","item":"Choice Scarf","nature":"modest","evs":{"hp":252,"sa":252,"sd":4},"moves":["Psychic","Secret Sword","Volt Switch","Trick"]}
