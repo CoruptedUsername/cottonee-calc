@@ -23,6 +23,7 @@ const MECHANICS = [
   calculatePM,
   calculateSMSSSV,
   calculateSMSSSV,
+  calculateSMSSSV,
 ];
 
 export function calculate(

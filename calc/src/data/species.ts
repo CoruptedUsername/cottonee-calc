@@ -10134,6 +10134,14 @@ const SBS: {[name: string]: SpeciesData} = {
     bs: {hp: 70, at: 140, df: 115, sa: 55, sd: 70, sp: 70},
     weightkg: 70,
     abilities: {0: 'Overcoat'},
+    otherFormes: ['Bisharp-Savage'],
+  },
+  'Bisharp-Savage': {
+    types: ['Grass', 'Steel'],
+    bs: {hp: 90, at: 110, df: 135, sa: 40, sd: 80, sp: 65},
+    weightkg: 70,
+    abilities: {0: 'Bulletproof'},
+    baseSpecies: 'Bisharp-Centurion',
   },
   'Corviknight-Thunderbird': {
     types: ['Flying', 'Electric'],
@@ -10146,6 +10154,14 @@ const SBS: {[name: string]: SpeciesData} = {
     bs: {hp: 90, at: 70, df: 80, sa: 130, sd: 90, sp: 90},
     weightkg: 152,
     abilities: {0: 'Berserk'},
+    otherFormes: ['Kingdra-Brinepool'],
+  },
+  'Kingdra-Brinepool': {
+    types: ['Water', 'Poison'],
+    bs: {hp: 130, at: 35, df: 105, sa: 130, sd: 85, sp: 65},
+    weightkg: 152,
+    abilities: {0: 'Storm Drain'},
+    baseSpecies: 'Kingdra',
   },
   'Krookodile-Infernal': {
     types: ['Fire', 'Dark'],
@@ -10158,6 +10174,14 @@ const SBS: {[name: string]: SpeciesData} = {
     bs: {hp: 135, at: 115, df: 60, sa: 90, sd: 85, sp: 55},
     weightkg: 60,
     abilities: {0: 'Cheek Pouch'},
+    otherFormes: ['Nidoqueen-Erudite'],
+  },
+  'Nidoqueen-Erudite': {
+    types: ['Psychic', 'Ground'],
+    bs: {hp: 95, at: 100, df: 80, sa: 115, sd: 110, sp: 40},
+    weightkg: 60,
+    abilities: {0: 'Cute Charm'},
+    baseSpecies: 'Nidoqueen',
   },
   'Ogerpon-Muerta': {
     types: ['Fairy', 'Ghost'],
@@ -11368,8 +11392,8 @@ const DNU: {[name: string]: SpeciesData} = {
   },
 };
 
-// Blank Canvas
-const BC: {[name: string]: SpeciesData} = {
+// Blank Canvas Meta A/B
+const BCA: {[name: string]: SpeciesData} = {
   // Meta A
   Arachnode: {
     types: ['Electric'],
@@ -11641,30 +11665,171 @@ const BC: {[name: string]: SpeciesData} = {
     weightkg: 255,
     abilities: {0: 'Psychic Surge'}
   },
-  // Meta C
+};
+
+// Blank Canvas Meta C
+const BCC: {[name: string]: SpeciesData} = {
+  Armie: {
+    types: ['Psychic', 'Water'],
+    bs: {hp: 90, at: 100, df: 120, sa: 30, sd: 70, sp: 30},
+    weightkg: 80,
+    abilities: {0: 'Iron Fist'},
+  },
+  Bunnyumi: {
+    types: ['Grass', 'Normal'],
+    bs: {hp: 90, at: 55, df: 80, sa: 30, sd: 90, sp: 85},
+    weightkg: 0.5,
+    abilities: {0: 'Harvest'},
+  },
+  Centaghoul: {
+    types: ['Ghost', 'Steel'],
+    bs: {hp: 87, at: 108, df: 94, sa: 30, sd: 115, sp: 31},
+    weightkg: 20,
+    abilities: {0: 'Bulletproof'},
+  },
+  Combustoad: {
+    types: ['Fire', 'Ground'],
+    bs: {hp: 70, at: 95, df: 70, sa: 63, sd: 70, sp: 108},
+    weightkg: 2,
+    abilities: {0: 'Neutralizing Gas'},
+  },
+  Formaldehydra: {
+    types: ['Poison', 'Dragon'],
+    bs: {hp: 95, at: 100, df: 110, sa: 60, sd: 85, sp: 60},
+    weightkg: 165.5,
+    abilities: {0: 'Rough Skin'},
+  },
   Goodjur: {
     types: ['Psychic', 'Fighting'],
     bs: {hp: 70, at: 25, df: 60, sa: 120, sd: 70, sp: 90},
     weightkg: 42.5,
-    abilities: {0: 'Natural Cure'}
+    abilities: {0: 'Natural Cure'},
+  },
+  Guttergar: {
+    types: ['Water'],
+    bs: {hp: 116, at: 108, df: 55, sa: 30, sd: 104, sp: 63},
+    weightkg: 106,
+    abilities: {0: 'Mold Breaker'},
+  },
+  Hearthind: {
+    types: ['Fire', 'Fighting'],
+    bs: {hp: 71, at: 93, df: 68, sa: 20, sd: 66, sp: 122},
+    weightkg: 11.3,
+    abilities: {0: 'Grassy Surge'},
+  },
+  'Iron Mike': {
+    types: ['Fairy', 'Normal'],
+    bs: {hp: 88, at: 30, df: 68, sa: 106, sd: 76, sp: 106},
+    weightkg: 51.8,
+    abilities: {0: 'Quark Drive'},
+  },
+  Koiryu: {
+    types: ['Water', 'Dragon'],
+    bs: {hp: 90, at: 25, df: 60, sa: 100, sd: 90, sp: 60},
+    weightkg: 829.7,
+    abilities: {0: 'Multiscale'},
   },
   Liftaton: {
     types: ['Steel'],
     bs: {hp: 110, at: 90, df: 80, sa: 80, sd: 85, sp: 20},
     weightkg: 180,
-    abilities: {0: 'Mold Breaker'}
+    abilities: {0: 'Mold Breaker'},
   },
   Lyvamp: {
     types: ['Electric', 'Flying'],
     bs: {hp: 96, at: 100, df: 70, sa: 41, sd: 70, sp: 91},
-    weightkg: 189,
-    abilities: {0: 'Regenerator'}
+    weightkg: 61.5,
+    abilities: {0: 'Regenerator'},
+  },
+  Metarachne: {
+    types: ['Bug', 'Steel'],
+    bs: {hp: 105, at: 105, df: 70, sa: 45, sd: 70, sp: 30},
+    weightkg: 985.9,
+    abilities: {0: 'Analytic'},
+  },
+  Monsnooze: {
+    types: ['Water', 'Flying'],
+    bs: {hp: 80, at: 105, df: 100, sa: 35, sd: 75, sp: 70},
+    weightkg: 1.7,
+    abilities: {0: 'Comatose'},
+  },
+  Noirwark: {
+    types: ['Dark', 'Fighting'],
+    bs: {hp: 85, at: 30, df: 95, sa: 80, sd: 85, sp: 95},
+    weightkg: 75,
+    abilities: {0: 'Shadow Shield'},
+  },
+  Oreamoss: {
+    types: ['Grass', 'Rock'],
+    bs: {hp: 100, at: 105, df: 96, sa: 36, sd: 75, sp: 76},
+    weightkg: 145,
+    abilities: {0: 'Hydration'},
+  },
+  Parfae: {
+    types: ['Ice', 'Fairy'],
+    bs: {hp: 70, at: 30, df: 66, sa: 100, sd: 75, sp: 109},
+    weightkg: 2,
+    abilities: {0: 'Infiltrator'},
+  },
+  Pestiligy: {
+    types: ['Poison', 'Ghost'],
+    bs: {hp: 105, at: 15, df: 107, sa: 77, sd: 96, sp: 61},
+    weightkg: 11.3,
+    abilities: {0: 'Liquid Ooze'},
+  },
+  Rakasa: {
+    types: ['Psychic', 'Fairy'],
+    bs: {hp: 101, at: 31, df: 79, sa: 105, sd: 81, sp: 23},
+    weightkg: 19,
+    abilities: {0: 'Prankster'},
+  },
+  Sascratch: {
+    types: ['Ice', 'Rock'],
+    bs: {hp: 70, at: 100, df: 95, sa: 50, sd: 60, sp: 110},
+    weightkg: 20,
+    abilities: {0: 'Tough Claws'},
+  },
+  Saxum: {
+    types: ['Rock', 'Ground'],
+    bs: {hp: 70, at: 100, df: 70, sa: 100, sd: 70, sp: 65},
+    weightkg: 430,
+    abilities: {0: 'Levitate'},
+  },
+  Siltworm: {
+    types: ['Bug', 'Ground'],
+    bs: {hp: 80, at: 105, df: 100, sa: 30, sd: 70, sp: 75},
+    weightkg: 88,
+    abilities: {0: 'Thick Fat'},
+  },
+  Strumorthio: {
+    types: ['Normal', 'Ghost'],
+    bs: {hp: 90, at: 20, df: 87, sa: 95, sd: 95, sp: 20},
+    weightkg: 110,
+    abilities: {0: 'Early Bird'},
+  },
+  Sucrillon: {
+    types: ['Fairy', 'Flying'],
+    bs: {hp: 65, at: 50, df: 65, sa: 90, sd: 75, sp: 105},
+    weightkg: 0.5,
+    abilities: {0: 'Dazzling'},
+  },
+  Taranferno: {
+    types: ['Bug', 'Fire'],
+    bs: {hp: 105, at: 36, df: 85, sa: 86, sd: 105, sp: 75},
+    weightkg: 27,
+    abilities: {0: 'Magic Guard'},
+  },
+  Thermostatic: {
+    types: ['Electric'],
+    bs: {hp: 90, at: 50, df: 105, sa: 90, sd: 85, sp: 35},
+    weightkg: 60,
+    abilities: {0: 'Electromorphosis'},
   },
   Treatmint: {
     types: ['Grass', 'Poison'],
     bs: {hp: 100, at: 25, df: 90, sa: 100, sd: 70, sp: 45},
     weightkg: 8.4,
-    abilities: {0: 'Filter'}
+    abilities: {0: 'Filter'},
   },
   Triceracotta: {
     types: ['Ground', 'Ghost'],
@@ -11676,17 +11841,29 @@ const BC: {[name: string]: SpeciesData} = {
     types: ['Ground', 'Flying'],
     bs: {hp: 100, at: 100, df: 85, sa: 30, sd: 70, sp: 55},
     weightkg: 680,
-    abilities: {0: 'Big Pecks'}
+    abilities: {0: 'Rock Head'},
+  },
+  Urslag: {
+    types: ['Ground', 'Steel'],
+    bs: {hp: 90, at: 30, df: 105, sa: 109, sd: 85, sp: 74},
+    weightkg: 723,
+    abilities: {0: 'Flash Fire'},
+  },
+  Whalestro: {
+    types: ['Steel', 'Water'],
+    bs: {hp: 90, at: 40, df: 100, sa: 90, sd: 70, sp: 40},
+    weightkg: 999,
+    abilities: {0: 'Punk Rock'},
   },
   Woolverine: {
     types: ['Dark', 'Fairy'],
     bs: {hp: 70, at: 120, df: 70, sa: 40, sd: 70, sp: 70},
     weightkg: 40,
-    abilities: {0: 'Fluffy'}
-  }
+    abilities: {0: 'Fluffy'},
+  },
 };
 
-export const SPECIES = [{}, JS, GSC_DUMMY, ADV_DUMMY, DPP_DUMMY, SBS, TS, PM, DNU, BC];
+export const SPECIES = [{}, JS, GSC_DUMMY, ADV_DUMMY, DPP_DUMMY, SBS, TS, PM, DNU, BCA, BCC];
 
 export class Species implements I.Species {
   private readonly gen: I.GenerationNum;

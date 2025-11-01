@@ -1317,7 +1317,8 @@ var GENERATION = {
 	'6': 6, 'xy': 6, 'oras': 6,
 	'7': 7, 'sm': 7, 'usm': 7, 'usum': 7,
 	'8': 8, 'ss': 8,
-	'9': 9, 'sv': 9
+	'9': 9, 'sv': 9,
+	'10': 10
 };
 
 var SETDEX = [
@@ -1331,6 +1332,7 @@ var SETDEX = [
 	typeof SETDEX_SM === 'undefined' ? {} : SETDEX_SM,
 	typeof SETDEX_SS === 'undefined' ? {} : SETDEX_SS,
 	typeof SETDEX_SV === 'undefined' ? {} : SETDEX_SV,
+	typeof SETDEX_10 === 'undefined' ? {} : SETDEX_10,
 ];
 
 /*

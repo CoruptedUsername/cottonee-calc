@@ -5196,7 +5196,7 @@ const PM_PATCH: {[name: string]: DeepPartial<MoveData>} = {
 };
 const PM: {[name: string]: MoveData} = extend(true, {}, SV, PM_PATCH);
 
-export const MOVES = [{}, JS, GSC, ADV, DPP, SV, TS, PM, SV, SV];
+export const MOVES = [{}, JS, GSC, ADV, DPP, SV, TS, PM, SV, SV, SV];
 
 export class Moves implements I.Moves {
   private readonly gen: I.GenerationNum;

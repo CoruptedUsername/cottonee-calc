@@ -356,7 +356,7 @@ const PM = SV.concat([
 
 
 
-export const ABILITIES = [[], RBY, GSC, ADV, DPP, SV, TS, PM, SV, SV];
+export const ABILITIES = [[], RBY, GSC, ADV, DPP, SV, TS, PM, SV, SV, SV];
 
 export class Abilities implements I.Abilities {
   private readonly gen: I.GenerationNum;
