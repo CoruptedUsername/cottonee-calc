@@ -172,5 +172,5 @@ var SETDEX_SV = {
 	},
 	"Lavalisk": {
 		"MetaA Specially Defensive": {"level":100,"ability":"Mold Breaker","item":"Heavy-Duty Boots","nature":"Careful","evs":{"hp":248,"df":8,"sd":252},"moves":["Fire Lash","Mortal Spin","Toxic Spikes","Slack Off"]}
-	},
+	}
 };

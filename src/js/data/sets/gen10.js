@@ -26,5 +26,5 @@ var SETDEX_10 = {
 	"Woolverine": {
 		"MetaC Choice Band": {"level":100,"ability":"Fluffy","item":"Choice Band","nature":"Adamant","evs":{"at":252,"df":4,"sd":252},"moves":["Crunch", "Play Rough", "Drain Punch", "Parting Shot"]},
 		"MetaC Bulky Support": {"level":100,"ability":"Fluffy","item":"Leftovers","nature":"Adamant","evs":{"hp":252,"at":252,"sd":4},"moves":["Stealth Rock", "Parting Shot", "Spirit Break", "Taunt"]}
-	},
+	}
 };
