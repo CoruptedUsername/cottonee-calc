@@ -10188,7 +10188,7 @@ const SBS: {[name: string]: SpeciesData} = {
     bs: {hp: 90, at: 120, df: 70, sa: 100, sd: 90, sp: 130},
     weightkg: 39.8,
     abilities: {0: 'Wandering Spirit'},
-  }
+  },
 };
 
 // Tier Sovereign
@@ -11695,7 +11695,7 @@ const BCC: {[name: string]: SpeciesData} = {
   },
   Formaldehydra: {
     types: ['Poison', 'Dragon'],
-    bs: {hp: 95, at: 100, df: 110, sa: 60, sd: 85, sp: 60},
+    bs: {hp: 95, at: 100, df: 100, sa: 60, sd: 85, sp: 60},
     weightkg: 165.5,
     abilities: {0: 'Rough Skin'},
   },
@@ -11722,6 +11722,12 @@ const BCC: {[name: string]: SpeciesData} = {
     bs: {hp: 88, at: 30, df: 68, sa: 106, sd: 76, sp: 106},
     weightkg: 51.8,
     abilities: {0: 'Quark Drive'},
+  },
+  Kodiacomb: {
+    types: ['Fighting'],
+    bs: {hp: 105, at: 30, df: 110, sa: 80, sd: 55, sp: 110},
+    weightkg: 356,
+    abilities: {0: 'Sticky Hold'},
   },
   Koiryu: {
     types: ['Water', 'Dragon'],
@@ -11777,6 +11783,18 @@ const BCC: {[name: string]: SpeciesData} = {
     weightkg: 11.3,
     abilities: {0: 'Liquid Ooze'},
   },
+  Ptoxidactyl: {
+    types: ['Poison', 'Flying'],
+    bs: {hp: 105, at: 30, df: 70, sa: 101, sd: 85, sp: 61},
+    weightkg: 6,
+    abilities: {0: 'Compound Eyes'}
+  },
+  Pyrelli: {
+    types: ['Steel', 'Psychic'],
+    bs: {hp: 100, at: 100, df: 90, sa: 30, sd: 85, sp: 80},
+    weightkg: 9.5,
+    abilities: {0: 'Contrary'},
+  },
   Rakasa: {
     types: ['Psychic', 'Fairy'],
     bs: {hp: 101, at: 31, df: 79, sa: 105, sd: 81, sp: 23},
@@ -11801,6 +11819,12 @@ const BCC: {[name: string]: SpeciesData} = {
     weightkg: 88,
     abilities: {0: 'Thick Fat'},
   },
+  Staroboros: {
+    types: ['Electric', 'Dragon'],
+    bs: {hp: 75, at: 20, df: 90, sa: 100, sd: 90, sp: 95},
+    weightkg: 777.7,
+    abilities: {0: 'Poison Heal'},
+  },
   Strumorthio: {
     types: ['Normal', 'Ghost'],
     bs: {hp: 90, at: 20, df: 87, sa: 95, sd: 95, sp: 20},
@@ -11811,7 +11835,7 @@ const BCC: {[name: string]: SpeciesData} = {
     types: ['Fairy', 'Flying'],
     bs: {hp: 65, at: 50, df: 65, sa: 90, sd: 75, sp: 105},
     weightkg: 0.5,
-    abilities: {0: 'Dazzling'},
+    abilities: {0: 'Shield Dust'},
   },
   Taranferno: {
     types: ['Bug', 'Fire'],
