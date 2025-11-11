@@ -564,7 +564,7 @@ function stringifyCalcSets(calcSets: {[specie: string]: {[name: string]: CalcSet
     console.log(`${outDir} is not a directory`);
     process.exit(1);
   }
-  const genNames = ['RBY', 'GSC', 'ADV', 'DPP', 'BW', 'XY', 'SM', 'SS', 'SV'];
+  const genNames = ['RBY', 'GSC', 'ADV', 'DPP', 'BW', 'XY', 'SM', 'SS', 'SV', 'BCC'];
   for (const [i, genName] of genNames.entries()) {
     const calcSets = await importGen(gens.get(i + 1));
     const path = `${outDir}/gen${i + 1}.js`;

@@ -1,4 +1,4 @@
-var SETDEX_10 = {
+var SETDEX_BCC = {
 	"Goodjur": {
 		"MetaC Calm Mind": {"level":100,"ability":"Natural Cure","item":"Leftovers","nature":"Timid","evs":{"sa":252,"sd":4,"sp":252},"moves":["Psychic","Secret Sword","Thunderbolt","Calm Mind"]},
 		"MetaC Scarf Pivot": {"level":100,"ability":"Natural Cure","item":"Choice Scarf","nature":"Modest","evs":{"hp":252,"sa":252,"sd":4},"moves":["Psychic","Secret Sword","Volt Switch","Trick"]}

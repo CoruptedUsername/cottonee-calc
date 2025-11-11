@@ -10,9 +10,10 @@ const XY: StatID[] = GSC;
 const SM: StatID[] = GSC;
 const SS: StatID[] = GSC;
 const SV: StatID[] = GSC;
+const BCC: StatID[] = GSC;
 
 export const STATS: Array<Array<StatID | 'spc'> | StatID[]> =
-  [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV];
+  [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, BCC];
 
 type HPTypeName = Exclude<TypeName, 'Normal' | 'Fairy' | 'Stellar' | '???'>;
 
