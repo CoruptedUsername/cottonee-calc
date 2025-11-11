@@ -10129,65 +10129,107 @@ const JS: {[name: string]: SpeciesData} = extend(true, {}, RBY_DUMMY, JS_PATCH);
 
 // Six by Six
 const SBS: {[name: string]: SpeciesData} = {
-  'Bisharp-Centurion': {
-    types: ['Fighting', 'Steel'],
-    bs: {hp: 70, at: 140, df: 115, sa: 55, sd: 70, sp: 70},
-    weightkg: 70,
-    abilities: {0: 'Overcoat'},
-    otherFormes: ['Bisharp-Savage'],
-  },
-  'Bisharp-Savage': {
-    types: ['Grass', 'Steel'],
-    bs: {hp: 90, at: 110, df: 135, sa: 40, sd: 80, sp: 65},
-    weightkg: 70,
-    abilities: {0: 'Bulletproof'},
-    baseSpecies: 'Bisharp-Centurion',
-  },
-  'Corviknight-Thunderbird': {
-    types: ['Flying', 'Electric'],
-    bs: {hp: 85, at: 55, df: 105, sa: 115, sd: 85, sp: 85},
-    weightkg: 75,
-    abilities: {0: 'Pickpocket'},
-  },
-  Kingdra: {
-    types: ['Water', 'Dragon'],
-    bs: {hp: 90, at: 70, df: 80, sa: 130, sd: 90, sp: 90},
+  // King
+  'Kingdra-Ancient': {
+    types: ['Fire', 'Grass'],
+    bs: {hp: 89, at: 89, df: 91, sa: 111, sd: 91, sp: 79},
     weightkg: 152,
-    abilities: {0: 'Berserk'},
-    otherFormes: ['Kingdra-Brinepool'],
+    abilities: {0: 'Competitive'},
+    otherFormes: ['Kingdra-Bard', 'Kingdra-Brinepool', 'Kingdra-Classic',
+      'Kingdra-Druid', 'Kingdra-Gourmet'],
+  },
+  'Kingdra-Bard': {
+    types: ['Water', 'Fairy'],
+    bs: {hp: 90, at: 70, df: 80, sa: 130, sd: 100, sp: 80},
+    weightkg: 152,
+    abilities: {0: 'Cute Charm'},
+    otherFormes: ['Kingdra-Ancient', 'Kingdra-Brinepool', 'Kingdra-Classic',
+      'Kingdra-Druid', 'Kingdra-Gourmet'],
   },
   'Kingdra-Brinepool': {
     types: ['Water', 'Poison'],
     bs: {hp: 130, at: 35, df: 105, sa: 130, sd: 85, sp: 65},
     weightkg: 152,
     abilities: {0: 'Storm Drain'},
-    baseSpecies: 'Kingdra',
+    otherFormes: ['Kingdra-Ancient', 'Kingdra-Bard', 'Kingdra-Classic',
+      'Kingdra-Druid', 'Kingdra-Gourmet'],
+  },
+  'Kingdra-Classic': {
+    types: ['Water', 'Dragon'],
+    bs: {hp: 90, at: 70, df: 80, sa: 130, sd: 90, sp: 90},
+    weightkg: 152,
+    abilities: {0: 'Berserk'},
+    otherFormes: ['Kingdra-Ancient', 'Kingdra-Bard', 'Kingdra-Brinepool',
+      'Kingdra-Druid', 'Kingdra-Gourmet'],
+  },
+  'Kingdra-Druid': {
+    types: ['Steel', 'Dragon'],
+    bs: {hp: 105, at: 65, df: 90, sa: 120, sd: 120, sp: 50},
+    weightkg: 152,
+    abilities: {0: 'Berserk'},
+    otherFormes: ['Kingdra-Ancient', 'Kingdra-Bard', 'Kingdra-Brinepool',
+      'Kingdra-Classic', 'Kingdra-Gourmet'],
+  },
+  'Kingdra-Gourmet': {
+    types: ['Normal', 'Dragon'],
+    bs: {hp: 110, at: 110, df: 80, sa: 90, sd: 100, sp: 60},
+    weightkg: 152,
+    abilities: {0: 'Emergency Exit'},
+    otherFormes: ['Kingdra-Ancient', 'Kingdra-Bard', 'Kingdra-Brinepool',
+      'Kingdra-Classic', 'Kingdra-Druid'],
+  },
+
+  // Queen
+
+
+  'Bisharp-Centurion': {
+    types: ['Fighting', 'Steel'],
+    bs: {hp: 70, at: 140, df: 115, sa: 55, sd: 70, sp: 70},
+    weightkg: 70,
+    abilities: {0: 'Overcoat'},
+    otherFormes: [],
+  },
+  'Bisharp-Savage': {
+    types: ['Grass', 'Steel'],
+    bs: {hp: 90, at: 110, df: 135, sa: 40, sd: 80, sp: 65},
+    weightkg: 70,
+    abilities: {0: 'Bulletproof'},
+    otherFormes: [],
+  },
+  'Corviknight-Thunderbird': {
+    types: ['Flying', 'Electric'],
+    bs: {hp: 85, at: 55, df: 105, sa: 115, sd: 85, sp: 85},
+    weightkg: 75,
+    abilities: {0: 'Pickpocket'},
+    otherFormes: [],
   },
   'Krookodile-Infernal': {
     types: ['Fire', 'Dark'],
     bs: {hp: 90, at: 80, df: 85, sa: 105, sd: 90, sp: 100},
     weightkg: 96.3,
     abilities: {0: 'Magic Guard'},
+    otherFormes: [],
   },
-  Nidoqueen: {
+  'Nidoqueen-Classic': {
     types: ['Poison', 'Ground'],
     bs: {hp: 135, at: 115, df: 60, sa: 90, sd: 85, sp: 55},
     weightkg: 60,
     abilities: {0: 'Cheek Pouch'},
-    otherFormes: ['Nidoqueen-Erudite'],
+    otherFormes: [],
   },
   'Nidoqueen-Erudite': {
     types: ['Psychic', 'Ground'],
     bs: {hp: 95, at: 100, df: 80, sa: 115, sd: 110, sp: 40},
     weightkg: 60,
     abilities: {0: 'Cute Charm'},
-    baseSpecies: 'Nidoqueen',
+    otherFormes: [],
   },
   'Ogerpon-Muerta': {
     types: ['Fairy', 'Ghost'],
     bs: {hp: 90, at: 120, df: 70, sa: 100, sd: 90, sp: 130},
     weightkg: 39.8,
     abilities: {0: 'Wandering Spirit'},
+    otherFormes: [],
   },
 };
 
