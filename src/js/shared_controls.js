@@ -1408,6 +1408,7 @@ var RANDDEX = [
 	typeof GEN7RANDOMBATTLE === 'undefined' ? {} : GEN7RANDOMBATTLE,
 	GEN8RANDSETS,
 	GEN9RANDSETS,
+	{},
 ];
 var gen, genWasChanged, notation, pokedex, setdex, randdex, typeChart, moves, abilities, items, calcHP, calcStat, GENERATION;
 
