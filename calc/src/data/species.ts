@@ -10178,31 +10178,154 @@ const SBS: {[name: string]: SpeciesData} = {
     otherFormes: ['Kingdra-Ancient', 'Kingdra-Bard', 'Kingdra-Brinepool',
       'Kingdra-Classic', 'Kingdra-Druid'],
   },
-
   // Queen
-
-
+  'Nidoqueen-Classic': {
+    types: ['Poison', 'Ground'],
+    bs: {hp: 135, at: 115, df: 60, sa: 90, sd: 85, sp: 55},
+    weightkg: 60,
+    abilities: {0: 'Cheek Pouch'},
+    otherFormes: ['Nidoqueen-Erudite', 'Nidoqueen-Jasper', 'Nidoqueen-Rosegold',
+      'Nidoqueen-Shaman', 'Nidoqueen-Volcanic'],
+  },
+  'Nidoqueen-Erudite': {
+    types: ['Psychic', 'Ground'],
+    bs: {hp: 95, at: 100, df: 80, sa: 115, sd: 110, sp: 40},
+    weightkg: 60,
+    abilities: {0: 'Cute Charm'},
+    otherFormes: ['Nidoqueen-Classic','Nidoqueen-Jasper', 'Nidoqueen-Rosegold',
+      'Nidoqueen-Shaman', 'Nidoqueen-Volcanic'],
+  },
+  'Nidoqueen-Jasper': {
+    types: ['Poison', 'Rock'],
+    bs: {hp: 135, at: 125, df: 70, sa: 80, sd: 85, sp: 45},
+    weightkg: 60,
+    abilities: {0: 'Clear Body'},
+    otherFormes: ['Nidoqueen-Classic', 'Nidoqueen-Erudite','Nidoqueen-Rosegold',
+      'Nidoqueen-Shaman', 'Nidoqueen-Volcanic'],
+  },
+  'Nidoqueen-Rosegold': {
+    types: ['Poison', 'Grass'],
+    bs: {hp: 125, at: 70, df: 100, sa: 100, sd: 85, sp: 60},
+    weightkg: 60,
+    abilities: {0: 'Cheek Pouch'},
+    otherFormes: ['Nidoqueen-Classic', 'Nidoqueen-Erudite', 'Nidoqueen-Jasper',
+      'Nidoqueen-Shaman', 'Nidoqueen-Volcanic'],
+  },
+  'Nidoqueen-Shaman': {
+    types: ['Poison', 'Ghost'],
+    bs: {hp: 95, at: 120, df: 60, sa: 90, sd: 80, sp: 95},
+    weightkg: 60,
+    abilities: {0: 'Regenerator'},
+    otherFormes: ['Nidoqueen-Classic', 'Nidoqueen-Erudite', 'Nidoqueen-Jasper',
+      'Nidoqueen-Rosegold', 'Nidoqueen-Volcanic'],
+  },
+  'Nidoqueen-Volcanic': {
+    types: ['Fire', 'Ground'],
+    bs: {hp: 125, at: 75, df: 100, sa: 110, sd: 75, sp: 55},
+    weightkg: 60,
+    abilities: {0: 'Cheek Pouch'},
+    otherFormes: ['Nidoqueen-Classic', 'Nidoqueen-Erudite', 'Nidoqueen-Jasper',
+      'Nidoqueen-Rosegold', 'Nidoqueen-Shaman'],
+  },
+  // Bishop
+  'Bisharp-Assassin': {
+    types: ['Fighting', 'Ice'],
+    bs: {hp: 80, at: 130, df: 110, sa: 55, sd: 70, sp: 75},
+    weightkg: 70,
+    abilities: {0: 'Dazzling'},
+    otherFormes: ['Bisharp-Centurion', 'Bisharp-Mantis', 'Bisharp-Revenant',
+      'Bisharp-Ronin', 'Bisharp-Savage'],
+  },
   'Bisharp-Centurion': {
     types: ['Fighting', 'Steel'],
     bs: {hp: 70, at: 140, df: 115, sa: 55, sd: 70, sp: 70},
     weightkg: 70,
     abilities: {0: 'Overcoat'},
-    otherFormes: [],
+    otherFormes: ['Bisharp-Assassin', 'Bisharp-Mantis', 'Bisharp-Revenant',
+      'Bisharp-Ronin', 'Bisharp-Savage'],
+  },
+  'Bisharp-Mantis': {
+    types: ['Dark', 'Bug'],
+    bs: {hp: 80, at: 120, df: 105, sa: 45, sd: 85, sp: 85},
+    weightkg: 70,
+    abilities: {0: 'Overcoat'},
+    otherFormes: ['Bisharp-Assassin', 'Bisharp-Centurion', 'Bisharp-Revenant',
+      'Bisharp-Ronin', 'Bisharp-Savage'],
+  },
+  'Bisharp-Revenant': {
+    types: ['Ghost', 'Steel'],
+    bs: {hp: 80, at: 135, df: 120, sa: 45, sd: 70, sp: 70},
+    weightkg: 70,
+    abilities: {0: 'Magic Bounce'},
+    otherFormes: ['Bisharp-Assassin', 'Bisharp-Centurion', 'Bisharp-Mantis',
+      'Bisharp-Ronin', 'Bisharp-Savage'],
+  },
+  'Bisharp-Ronin': {
+    types: ['Fighting', 'Poison'],
+    bs: {hp: 70, at: 115, df: 110, sa: 45, sd: 70, sp: 110},
+    weightkg: 70,
+    abilities: {0: 'Overcoat'},
+    otherFormes: ['Bisharp-Assassin', 'Bisharp-Centurion', 'Bisharp-Mantis',
+      'Bisharp-Revenant', 'Bisharp-Savage'],
   },
   'Bisharp-Savage': {
     types: ['Grass', 'Steel'],
     bs: {hp: 90, at: 110, df: 135, sa: 40, sd: 80, sp: 65},
     weightkg: 70,
     abilities: {0: 'Bulletproof'},
-    otherFormes: [],
+    otherFormes: ['Bisharp-Assassin', 'Bisharp-Centurion', 'Bisharp-Mantis',
+      'Bisharp-Revenant', 'Bisharp-Ronin'],
+  },
+  // Knight
+  'Corviknight-Analytical': {
+    types: ['Psychic', 'Electric'],
+    bs: {hp: 85, at: 55, df: 80, sa: 110, sd: 85, sp: 115},
+    weightkg: 75,
+    abilities: {0: 'Flare Boost'},
+    otherFormes: ['Corviknight-Falcon', 'Corviknight-Genie', 'Corviknight-Martian',
+      'Corviknight-Thunderbird', 'Corviknight-Yeti'],
+  },
+  'Corviknight-Falcon': {
+    types: ['Flying', 'Fighting'],
+    bs: {hp: 86, at: 95, df: 75, sa: 75, sd: 85, sp: 114},
+    weightkg: 75,
+    abilities: {0: 'Guts'},
+    otherFormes: ['Corviknight-Analytical', 'Corviknight-Genie', 'Corviknight-Martian',
+      'Corviknight-Thunderbird', 'Corviknight-Yeti'],
+  },
+  'Corviknight-Genie': {
+    types: ['Flying', 'Ground'],
+    bs: {hp: 89, at: 45, df: 95, sa: 120, sd: 90, sp: 91},
+    weightkg: 75,
+    abilities: {0: 'Intimidate'},
+    otherFormes: ['Corviknight-Analytical', 'Corviknight-Falcon', 'Corviknight-Martian',
+      'Corviknight-Thunderbird', 'Corviknight-Yeti'],
+  },
+  'Corviknight-Martian': {
+    types: ['Psychic', 'Steel'],
+    bs: {hp: 95, at: 45, df: 120, sa: 100, sd: 105, sp: 65},
+    weightkg: 75,
+    abilities: {0: 'Iron Barbs'},
+    otherFormes: ['Corviknight-Analytical', 'Corviknight-Falcon', 'Corviknight-Genie',
+      'Corviknight-Thunderbird', 'Corviknight-Yeti'],
   },
   'Corviknight-Thunderbird': {
     types: ['Flying', 'Electric'],
     bs: {hp: 85, at: 55, df: 105, sa: 115, sd: 85, sp: 85},
     weightkg: 75,
     abilities: {0: 'Pickpocket'},
-    otherFormes: [],
+    otherFormes: ['Corviknight-Analytical', 'Corviknight-Falcon', 'Corviknight-Genie',
+      'Corviknight-Martian', 'Corviknight-Yeti'],
   },
+  'Corviknight-Yeti': {
+    types: ['Flying', 'Ice'],
+    bs: {hp: 85, at: 55, df: 80, sa: 95, sd: 110, sp: 110},
+    weightkg: 75,
+    abilities: {0: 'Mummy'},
+    otherFormes: ['Corviknight-Analytical', 'Corviknight-Falcon', 'Corviknight-Genie',
+      'Corviknight-Martian', 'Corviknight-Thunderbird'],
+  },
+  // Rook
   'Krookodile-Infernal': {
     types: ['Fire', 'Dark'],
     bs: {hp: 90, at: 80, df: 85, sa: 105, sd: 90, sp: 100},
@@ -10210,20 +10333,8 @@ const SBS: {[name: string]: SpeciesData} = {
     abilities: {0: 'Magic Guard'},
     otherFormes: [],
   },
-  'Nidoqueen-Classic': {
-    types: ['Poison', 'Ground'],
-    bs: {hp: 135, at: 115, df: 60, sa: 90, sd: 85, sp: 55},
-    weightkg: 60,
-    abilities: {0: 'Cheek Pouch'},
-    otherFormes: [],
-  },
-  'Nidoqueen-Erudite': {
-    types: ['Psychic', 'Ground'],
-    bs: {hp: 95, at: 100, df: 80, sa: 115, sd: 110, sp: 40},
-    weightkg: 60,
-    abilities: {0: 'Cute Charm'},
-    otherFormes: [],
-  },
+
+  // Pawn
   'Ogerpon-Muerta': {
     types: ['Fairy', 'Ghost'],
     bs: {hp: 90, at: 120, df: 70, sa: 100, sd: 90, sp: 130},
@@ -11717,6 +11828,12 @@ const BCC: {[name: string]: SpeciesData} = {
     weightkg: 80,
     abilities: {0: 'Iron Fist'},
   },
+  Boreetle: {
+    types: ['Normal', 'Bug'],
+    bs: {hp: 65, at: 100, df: 65, sa: 30, sd: 65, sp: 115},
+    weightkg: 0.1,
+    abilities: {0: 'Protean'}
+  },
   Bunnyumi: {
     types: ['Grass', 'Normal'],
     bs: {hp: 90, at: 55, df: 80, sa: 30, sd: 90, sp: 85},
@@ -11759,11 +11876,23 @@ const BCC: {[name: string]: SpeciesData} = {
     weightkg: 11.3,
     abilities: {0: 'Grassy Surge'},
   },
+  Hyakutari: {
+    types: ['Rock', 'Fairy'],
+    bs: {hp: 75, at: 40, df: 70, sa: 90, sd: 110, sp: 110},
+    weightkg: 42,
+    abilities: {0: 'Unaware'},
+  },
   'Iron Mike': {
     types: ['Fairy', 'Normal'],
     bs: {hp: 88, at: 30, df: 68, sa: 106, sd: 76, sp: 106},
     weightkg: 51.8,
     abilities: {0: 'Quark Drive'},
+  },
+  Kaovern: {
+    types: ['Dark', 'Fire'],
+    bs: {hp: 88, at: 30, df: 70, sa: 100, sd: 80, sp: 101},
+    weightkg: 666,
+    abilities: {0: 'Armor Tail'},
   },
   Kodiacomb: {
     types: ['Fighting'],
@@ -11926,6 +12055,12 @@ const BCC: {[name: string]: SpeciesData} = {
     bs: {hp: 70, at: 120, df: 70, sa: 40, sd: 70, sp: 70},
     weightkg: 40,
     abilities: {0: 'Fluffy'},
+  },
+  Zhuguo: {
+    types: ['Ice', 'Dragon'],
+    bs: {hp: 100, at: 45, df: 70, sa: 102, sd: 71, sp: 100},
+    weightkg: 218.5,
+    abilities: {0: 'Misty Surge'},
   },
 };
 
