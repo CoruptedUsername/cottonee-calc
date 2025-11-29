@@ -11906,6 +11906,12 @@ const BCC: {[name: string]: SpeciesData} = {
     weightkg: 829.7,
     abilities: {0: 'Multiscale'},
   },
+  Lianzhao: {
+    types: ['Grass', 'Water'],
+    bs: {hp: 80, at: 25, df: 80, sa: 110, sd: 70, sp: 100},
+    weightkg: 45,
+    abilities: {0: 'Intimidate'},
+  },
   Liftaton: {
     types: ['Steel'],
     bs: {hp: 110, at: 90, df: 80, sa: 80, sd: 85, sp: 20},
@@ -11954,6 +11960,12 @@ const BCC: {[name: string]: SpeciesData} = {
     weightkg: 11.3,
     abilities: {0: 'Liquid Ooze'},
   },
+  Prionice: {
+    types: ['Ice', 'Poison'],
+    bs: {hp: 110, at: 85, df: 80, sa: 30, sd: 100, sp: 45},
+    weightkg: 150,
+    abilities: {0: 'Heatproof'},
+  },
   Ptoxidactyl: {
     types: ['Poison', 'Flying'],
     bs: {hp: 105, at: 30, df: 70, sa: 101, sd: 85, sp: 61},
@@ -11990,6 +12002,12 @@ const BCC: {[name: string]: SpeciesData} = {
     weightkg: 88,
     abilities: {0: 'Thick Fat'},
   },
+  Shinobomi: {
+    types: ['Dark', 'Poison'],
+    bs: {hp: 76, at: 77, df: 70, sa: 75, sd: 65, sp: 111},
+    weightkg: 35,
+    abilities: {0: 'Sharpness'},
+  },
   Staroboros: {
     types: ['Electric', 'Dragon'],
     bs: {hp: 75, at: 20, df: 90, sa: 100, sd: 90, sp: 95},
@@ -12019,6 +12037,12 @@ const BCC: {[name: string]: SpeciesData} = {
     bs: {hp: 90, at: 50, df: 105, sa: 90, sd: 85, sp: 35},
     weightkg: 60,
     abilities: {0: 'Electromorphosis'},
+  },
+  Tiaratron: {
+    types: ['Electric', 'Fairy'],
+    bs: {hp: 85, at: 100, df: 100, sa: 50, sd: 60, sp: 55},
+    weightkg: 100,
+    abilities: {0: 'Galvanize'},
   },
   Treatmint: {
     types: ['Grass', 'Poison'],
