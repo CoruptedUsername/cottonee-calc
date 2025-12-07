@@ -11,13 +11,14 @@ import {calculateBWXY} from './mechanics/gen56';
 import {calculateSMSSSV} from './mechanics/gen789';
 import {calculateTS} from './mechanics/tiersovereign';
 import {calculatePM} from './mechanics/paleomons';
+import {calculateMH} from './mechanics/monsterhunter';
 
 const MECHANICS = [
   () => {},
   calculateRBYGSC,
   calculateRBYGSC,
   calculateADV,
-  calculateDPP,
+  calculateMH,
   calculateSMSSSV,
   calculateTS,
   calculatePM,

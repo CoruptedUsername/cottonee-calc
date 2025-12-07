@@ -5106,7 +5106,7 @@ const TS_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Ground',
     category: 'Special',
     secondaries: true,
-  }
+  },
 };
 const TS: {[name: string]: MoveData} = extend(true, {}, SV, TS_PATCH);
 
@@ -5122,7 +5122,7 @@ const PM_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 85,
     type: 'Electric',
     category: 'Physical',
-    makesContact: true
+    makesContact: true,
   },
   Decibloom: {
     bp: 80,
@@ -5143,7 +5143,7 @@ const PM_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     secondaries: true,
   },
   'Fishious Rend': {
-    bp: 75
+    bp: 75,
   },
   'Frigid Fin': {
     bp: 85,
@@ -5186,17 +5186,408 @@ const PM_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 85,
     type: 'Fire',
     category: 'Physical',
-    makesContact: true
+    makesContact: true,
   },
   'Trash Compactor': {
     bp: 0,
     type: 'Poison',
     category: 'Status',
-  }
+  },
 };
 const PM: {[name: string]: MoveData} = extend(true, {}, SV, PM_PATCH);
 
-export const MOVES = [{}, JS, GSC, ADV, DPP, SV, TS, PM, SV, SV, SV];
+// Monster Hunter
+const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
+  'Abyssal Eruption': {
+    bp: 130,
+    category: 'Special',
+    type: 'Dark',
+    self: {boosts: {spa: -2}},
+  },
+  'Ancestral Thunder': { // Todo: Make fail if not electric type
+    bp: 130,
+    category: 'Special',
+    type: 'Electric',
+  },
+  'Apex Burst': {
+    bp: 100,
+    category: 'Special',
+    type: 'Fairy',
+  },
+  'Arctic Shriek': {
+    bp: 100,
+    category: 'Special',
+    type: 'Ice',
+    isSound: true,
+  },
+  'Avinia\'s Blessing': {
+    bp: 0,
+    category: 'Status',
+    type: 'Ice',
+  },
+  'Bewitched Bubble': {
+    bp: 75,
+    category: 'Special',
+    type: 'Water',
+    drain: [1, 2],
+  },
+  'Blast Bite': {
+    bp: 75,
+    category: 'Physical',
+    type: 'Fire',
+    isBite: true,
+  },
+  'Blaze Ball': {
+    bp: 90,
+    category: 'Special',
+    type: 'Fire',
+    isBullet: true,
+  },
+  'Bolt Breath': { // Todo: Power doubling on faster
+    bp: 70,
+    category: 'Special',
+    type: 'Electric',
+  },
+  'Boomblast': {
+    bp: 100,
+    category: 'Physical',
+    type: 'Fire',
+    target: 'allAdjacentFoes',
+  },
+  'Boulder Punch': {
+    bp: 85,
+    category: 'Physical',
+    type: 'Rock',
+    isPunch: true,
+  },
+  'Brimstone Blade': {
+    bp: 85,
+    category: 'Physical',
+    type: 'Rock',
+    isSlicing: true,
+  },
+  'Butterflare': {
+    bp: 100,
+    category: 'Special',
+    type: 'Bug',
+  },
+  'Butterflight': {
+    bp: 70,
+    category: 'Physical',
+    type: 'Flying',
+  },
+  'Cloaking Glow': {
+    bp: 80,
+    category: 'Special',
+    type: 'Psychic',
+  },
+  'Cold Snap': {
+    bp: 0,
+    category: 'Status',
+    type: 'Ice',
+  },
+  'Convection Nova': {
+    bp: 135,
+    category: 'Special',
+    type: 'Ice',
+  },
+  'Creepy Noise': {
+    bp: 50,
+    category: 'Special',
+    type: 'Bug',
+    isSound: true,
+  },
+  'Crimson Dawn': { // Todo: Make fail if not fire type
+    bp: 130,
+    category: 'Physical',
+    type: 'Fire',
+  },
+  'Cruel Claw': {
+    bp: 75,
+    category: 'Physical',
+    type: 'Dark',
+  },
+  'Cutwing Barrage': {
+    bp: 90,
+    category: 'Physical',
+    type: 'Flying',
+    isSlicing: true,
+  },
+  'Cyclone Rend': {
+    bp: 70,
+    category: 'Special',
+    type: 'Water',
+  },
+  'Decay Duster': {
+    bp: 0,
+    category: 'Status',
+    type: 'Bug',
+  },
+  'Devil\'s Jaw': {
+    bp: 90,
+    category: 'Physical',
+    type: 'Dragon',
+    isBite: true,
+  },
+  'Devour': {
+    bp: 0,
+    category: 'Status',
+    type: 'Normal',
+  },
+  'Dracophage': {
+    bp: 0,
+    category: 'Status',
+    type: 'Dragon',
+  },
+  'Dragon Charge': {
+    bp: 0,
+    category: 'Status',
+    type: 'Dragon',
+  },
+  'Dragonator': { // Todo: Make SE against Dragons
+    bp: 100,
+    category: 'Physical',
+    type: 'Steel',
+  },
+  'Dreadrock Cannon': {
+    bp: 100,
+    category: 'Special',
+    type: 'Rock',
+    isPulse: true,
+  },
+  'Egg Barrage': {
+    bp: 20,
+    category: 'Physical',
+    type: 'Normal',
+    multihit: 3,
+    multiaccuracy: true,
+  },
+  'Frenzy Pulse': {
+    bp: 100,
+    category: 'Special',
+    type: 'Psychic',
+    self: {boosts: {spa: -1}},
+    isPulse: true,
+  },
+  'Frenzy Slam': {
+    bp: 90,
+    category: 'Physical',
+    type: 'Dark',
+  },
+  'Frozen Cleave': { // Todo: Make SE against Water
+    bp: 70,
+    category: 'Physical',
+    type: 'Ice',
+    isSlicing: true,
+  },
+  'Glacial Gale': {
+    bp: 85,
+    category: 'Special',
+    type: 'Ice',
+    isWind: true,
+  },
+  'Glide Bomb': {
+    bp: 25,
+    category: 'Physical',
+    type: 'Fire',
+    multihit: [2, 5],
+  },
+  'Graceful Sweep': {
+    bp: 100,
+    category: 'Physical',
+    type: 'Fairy',
+  },
+  'Harsh Sting': {
+    bp: 15,
+    category: 'Physical',
+    type: 'Bug',
+  },
+  'Heatbeam': {
+    bp: 100,
+    category: 'Physical',
+    type: 'Fire',
+    overrideDefensiveStat: 'spd',
+  },
+  'Hellfire Rifle': {
+    bp: 90,
+    category: 'Physical',
+    type: 'Poison',
+    isPulse: true,
+  },
+  'Hellflare': {
+    bp: 120,
+    category: 'Special',
+    type: 'Fire',
+  },
+  'Ignition Flare': {
+    bp: 120,
+    category: 'Special',
+    type: 'Fire',
+  },
+  'Immolation Order': {
+    bp: 120,
+    category: 'Special',
+    type: 'Dragon',
+  },
+  'Magma Surge': {
+    bp: 60,
+    category: 'Physical',
+    type: 'Fire',
+  },
+  'Magna Lance': {
+    bp: 70,
+    category: 'Physical',
+    type: 'Fire',
+  },
+  'Mental Load': {
+    bp: 80,
+    category: 'Special',
+    type: 'Psychic',
+    overrideOffensiveStat: 'spd',
+  },
+  'Moss Bomb': {
+    bp: 100,
+    category: 'Physical',
+    type: 'Grass',
+  },
+  'Nether Current': {
+    bp: 80,
+    category: 'Special',
+    type: 'Water',
+  },
+  'Oxide Airstrike': {
+    bp: 75,
+    category: 'Physical',
+    type: 'Flying',
+    isSlicing: true,
+  },
+  'Perfume Pulse': {
+    bp: 80,
+    category: 'Special',
+    type: 'Poison',
+    isPulse: true,
+  },
+  'Phlegm Shot': {
+    bp: 120,
+    category: 'Physical',
+    type: 'Poison',
+  },
+  'Powderkeg': { // Todo: Add and implement isPowder tag
+    bp: 45,
+    category: 'Special',
+    type: 'Fire',
+  },
+  'Psycho Crush': {
+    bp: 95,
+    category: 'Special',
+    type: 'Psychic',
+  },
+  'Pyrotoxic Gale': {
+    bp: 100,
+    category: 'Special',
+    type: 'Poison',
+    isWind: true,
+  },
+  'Quicksand Breath': {
+    bp: 100,
+    category: 'Special',
+    type: 'Ground',
+  },
+  'Rage Ray': { // Todo: Implement level damage multiplier
+    bp: 0,
+    category: 'Special',
+    type: 'Psychic',
+  },
+  'Risen Burst': {
+    bp: 60,
+    category: 'Special',
+    type: 'Dark',
+  },
+  'Roughhouse': {
+    bp: 90,
+    category: 'Physical',
+    type: 'Fighting',
+  },
+  'Sedative Spine': {
+    bp: 60,
+    category: 'Physical',
+    type: 'Bug',
+  },
+  'Selenite Beam': {
+    bp: 90,
+    category: 'Special',
+    type: 'Fairy',
+  },
+  'Seraphic Shift': {
+    bp: 100,
+    category: 'Special',
+    type: 'Ice',
+  },
+  'Shroom Shield': {
+    bp: 0,
+    category: 'Status',
+    type: 'Grass',
+  },
+  'Slime Punch': {
+    bp: 95,
+    category: 'Physical',
+    type: 'Poison',
+    isPunch: true,
+  },
+  'Slimy Spit': {
+    bp: 50,
+    category: 'Special',
+    type: 'Water',
+  },
+  'Snowball Cannon': {
+    bp: 95,
+    category: 'Physical',
+    type: 'Ice',
+  },
+  'Stink Bomb': {
+    bp: 90,
+    category: 'Special',
+    type: 'Poison',
+    isBullet: true,
+  },
+  'Supremacy Squall': {
+    bp: 0,
+    category: 'Status',
+    type: 'Flying',
+    isSound: true,
+  },
+  'Sweet Lick': {
+    bp: 50,
+    category: 'Physical',
+    type: 'Poison',
+  },
+  'Thousand Blades': {
+    bp: 95,
+    category: 'Physical',
+    type: 'Fighting',
+    isSlicing: true,
+  },
+  'Thunder Rush': {
+    bp: 55,
+    category: 'Physical',
+    type: 'Electric',
+    willCrit: true,
+  },
+  'Virulent Volley': { // Todo: Make destroy screens
+    bp: 25,
+    category: 'Physical',
+    type: 'Poison',
+    multihit: [2, 5],
+  },
+  'Wretched Water': {
+    bp: 90,
+    category: 'Special',
+    type: 'Water',
+  },
+};
+const MH: {[name: string]: MoveData} = extend(true, {}, SV, MH_PATCH);
+
+export const MOVES = [{}, JS, GSC, ADV, MH, SV, TS, PM, SV, SV, SV];
 
 export class Moves implements I.Moves {
   private readonly gen: I.GenerationNum;

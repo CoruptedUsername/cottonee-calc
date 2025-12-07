@@ -340,7 +340,7 @@ const SV = SS.concat([
 ]);
 
 // Tier Sovereign
-const TS = SV.concat([])
+const TS = SV.concat([]);
 
 // Paleomons
 const PM = SV.concat([
@@ -351,12 +351,93 @@ const PM = SV.concat([
   'Permafrost',
   'Predator',
   'Sedimentary',
-  'Specterate'
-])
+  'Specterate',
+]);
 
+// Monster Hunter
+const MH = SV.concat([
+  'Absolute Zero',
+  'Aggravation',
+  'Airbag',
+  'Ambush',
+  'Bewitching Tail',
+  'Blind Rage',
+  'Butterfly Star',
+  'Centrifuge',
+  'Corrosive Claws',
+  'Corrupted Poison',
+  'Crystalblight',
+  'Debris',
+  'Dense Cortex',
+  'Destruction Star',
+  'Disaster Star',
+  'Direspike Scales',
+  'Dragon Eater',
+  'Dragonblight',
+  'Dragonvein',
+  'Duke\'s Bayonet',
+  'Dulled Blades',
+  'Dust Devil',
+  'Empress Throne',
+  'Escaton',
+  'Fervent Scales',
+  'Foolproof',
+  'Frostnip',
+  'Frozen Calamity',
+  'Gemini Core',
+  'Generalist',
+  'Gravedrum',
+  'Heatsink',
+  'Howling Thunder',
+  'Ice Breaker',
+  'Ice-Armor',
+  'Ignite',
+  'Incandescent',
+  'Insect Armor',
+  'Item Bag',
+  'Mad Dragon',
+  'Megiddo\'s Gift',
+  'Mighty Wall',
+  'Mountaineer',
+  'Mucus Veil',
+  'Oceanic Veil',
+  'Oilmucus',
+  'Oilslick',
+  'Overload',
+  'Pathogenic',
+  'Perforating',
+  'Permafrost',
+  'Plow',
+  'Protopyre',
+  'Puff-Up',
+  'Pungency',
+  'Raging Rebel',
+  'Reactive Core',
+  'Reactive Touch',
+  'Relentless',
+  'Riptide',
+  'Risen Burst',
+  'Rusted Gale',
+  'Sacred Jewel',
+  'Silver Subsume',
+  'Snow Seethe',
+  'Solar Core',
+  'Solar Wrath',
+  'Spongy',
+  'Starving Bite',
+  'Stealth Silver',
+  'Strafe',
+  'Tempest Energy',
+  'Tempest Force',
+  'Terrestrial',
+  'Thunderstorm',
+  'Twilight Dust',
+  'Vampirism',
+  'Wylk Encasing',
+  'Wyversion',
+]);
 
-
-export const ABILITIES = [[], RBY, GSC, ADV, DPP, SV, TS, PM, SV, SV, SV];
+export const ABILITIES = [[], RBY, GSC, ADV, MH, SV, TS, PM, SV, SV, SV];
 
 export class Abilities implements I.Abilities {
   private readonly gen: I.GenerationNum;
