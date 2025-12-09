@@ -270,7 +270,7 @@ export function checkWindRider(source: Pokemon, attackingSide: Side) {
 
 export function checkTempestEnergy(source: Pokemon, attackingSide: Side, isSandy: boolean) {
   if (source.hasAbility('Tempest Energy') && (attackingSide.isTailwind || isSandy)) {
-    source.boosts.atk = Math.min(6, source.boosts.spa + 1); // Todo: Add Dust Devil
+    source.boosts.spa = Math.min(6, source.boosts.spa + 1); // Todo: Add Dust Devil
   }
 }
 
