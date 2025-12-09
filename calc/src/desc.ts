@@ -662,7 +662,9 @@ function getEndOfTurn(
     !defender.hasAbility('Magic Guard', 'Klutz')) {
     damage -= Math.floor(defender.maxHP() / 8);
     texts.push('Sticky Barb damage');
-  } else if (defender.hasAbility('Pathogenic') && !defender.hasType('Poison')) {
+  }
+
+  if (defender.hasAbility('Pathogenic') && !defender.hasType('Poison')) {
     damage -= Math.floor(defender.maxHP() / 8);
     texts.push('Pathogenic damage');
   }

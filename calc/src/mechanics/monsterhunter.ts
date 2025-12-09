@@ -31,6 +31,7 @@ import {
   checkWindRider,
   checkTempestEnergy,
   checkTempestForce,
+  checkAggravation,
   checkWonderRoom,
   computeFinalStats,
   countBoosts,
@@ -93,6 +94,9 @@ export function calculateMH(
   checkTempestEnergy(defender, field.defenderSide, field.hasWeather('Sand'));
   checkTempestForce(attacker, field.attackerSide, field.hasWeather('Sand'));
   checkTempestForce(defender, field.defenderSide, field.hasWeather('Sand'));
+
+  checkAggravation(attacker)
+  checkAggravation(defender)
 
   if (move.named('Meteor Beam', 'Electro Shot')) {
     attacker.boosts.spa +=
@@ -1402,7 +1406,8 @@ export function calculateAtModsMH(
      attacker.hasAbility('Flower Gift') &&
      field.hasWeather('Sun', 'Harsh Sunshine') &&
      move.category === 'Physical') ||
-    (attacker.hasAbility('Solar Wrath') && move.category === 'Physical')) {
+    (attacker.hasAbility('Solar Wrath') && field.hasWeather('Sun', 'Harsh Sunshine') &&
+      move.category === 'Physical')) {
     atMods.push(6144);
     desc.attackerAbility = attacker.ability;
     desc.weather = field.weather;

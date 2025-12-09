@@ -269,14 +269,20 @@ export function checkWindRider(source: Pokemon, attackingSide: Side) {
 }
 
 export function checkTempestEnergy(source: Pokemon, attackingSide: Side, isSandy: boolean) {
-  if (source.hasAbility('Tempest Energy') && attackingSide.isTailwind && isSandy) {
+  if (source.hasAbility('Tempest Energy') && (attackingSide.isTailwind || isSandy)) {
     source.boosts.atk = Math.min(6, source.boosts.spa + 1); // Todo: Add Dust Devil
   }
 }
 
 export function checkTempestForce(source: Pokemon, attackingSide: Side, isSandy: boolean) {
-  if (source.hasAbility('Tempest Force') && attackingSide.isTailwind && isSandy) {
+  if (source.hasAbility('Tempest Force') && (attackingSide.isTailwind || isSandy)) {
     source.boosts.atk = Math.min(6, source.boosts.atk + 1); // Todo: Add Dust Devil
+  }
+}
+
+export function checkAggravation(source: Pokemon) {
+  if (source.hasAbility('Aggravation') && source.curHP() <= source.maxHP() / 2) {
+    source.boosts.atk = Math.min(6, source.boosts.atk + 1);
   }
 }
 

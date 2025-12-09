@@ -568,7 +568,7 @@ $(".move-selector").change(function () {
 $(".item").change(function () {
 	var itemName = $(this).val();
 	var $metronomeControl = $(this).closest('.poke-info').find('.metronome');
-	if (itemName === "Metronome") {
+	if (itemName === "Metronome" || $(this).closest(".poke-info").find(".ability").val() === 'Relentless') {
 		$metronomeControl.show();
 	} else {
 		$metronomeControl.hide();
