@@ -29,6 +29,8 @@ import {
   checkSeedBoost,
   checkTeraformZero,
   checkWindRider,
+  checkTempestEnergy,
+  checkTempestForce,
   checkWonderRoom,
   computeFinalStats,
   countBoosts,
@@ -86,6 +88,11 @@ export function calculateMH(
 
   checkWindRider(attacker, field.attackerSide);
   checkWindRider(defender, field.defenderSide);
+  // Todo: Add Dust Devil
+  checkTempestEnergy(attacker, field.attackerSide, field.hasWeather('Sand'));
+  checkTempestEnergy(defender, field.defenderSide, field.hasWeather('Sand'));
+  checkTempestForce(attacker, field.attackerSide, field.hasWeather('Sand'));
+  checkTempestForce(defender, field.defenderSide, field.hasWeather('Sand'));
 
   if (move.named('Meteor Beam', 'Electro Shot')) {
     attacker.boosts.spa +=
@@ -231,7 +238,8 @@ export function calculateMH(
   // Merciless does not ignore Shell Armor, damage dealt to a poisoned Pokemon with Shell Armor
   // will not be a critical hit (UltiMario)
   const isCritical = !defender.hasAbility('Battle Armor', 'Shell Armor') &&
-    (move.isCrit || (attacker.hasAbility('Merciless') && defender.hasStatus('psn', 'tox'))) &&
+    (move.isCrit || (attacker.hasAbility('Merciless') && defender.hasStatus('psn', 'tox')) ||
+      (attacker.hasAbility('Ambush') && attacker.curHP() <= attacker.maxHP() / 3)) &&
     move.timesUsed === 1;
 
   let type = move.type;
@@ -329,6 +337,7 @@ export function calculateMH(
   let hasAteAbilityTypeChange = false;
   let isAerilate = false;
   let isPixilate = false;
+  let isIgnite = false;
   let isRefrigerate = false;
   let isGalvanize = false;
   let isLiquidVoice = false;
@@ -357,10 +366,12 @@ export function calculateMH(
       type = 'Fairy';
     } else if ((isRefrigerate = attacker.hasAbility('Refrigerate') && normal)) {
       type = 'Ice';
+    } else if ((isIgnite = attacker.hasAbility('Ignite') && normal)) {
+      type = 'Fire'
     } else if ((isNormalize = attacker.hasAbility('Normalize'))) { // Boosts any type
       type = 'Normal';
     }
-    if (isGalvanize || isPixilate || isRefrigerate || isAerilate || isNormalize) {
+    if (isGalvanize || isPixilate || isRefrigerate || isAerilate || isNormalize || isIgnite) {
       desc.attackerAbility = attacker.ability;
       hasAteAbilityTypeChange = true;
     } else if (isLiquidVoice) {
@@ -478,18 +489,22 @@ export function calculateMH(
 
   if ((defender.hasAbility('Wonder Guard') && typeEffectiveness <= 1) ||
       (move.hasType('Grass') && defender.hasAbility('Sap Sipper')) ||
-      (move.hasType('Fire') && defender.hasAbility('Flash Fire', 'Well-Baked Body')) ||
+      (move.hasType('Fire') && defender.hasAbility('Flash Fire', 'Well-Baked Body', 'Heatsink',
+        'Incandescent', 'Oilmucus')) ||
       (move.hasType('Water') && defender.hasAbility('Dry Skin', 'Storm Drain', 'Water Absorb')) ||
       (move.hasType('Electric') &&
         defender.hasAbility('Lightning Rod', 'Motor Drive', 'Volt Absorb')) ||
       (move.hasType('Ground') &&
         !field.isGravity && !move.named('Thousand Arrows') &&
         !defender.hasItem('Iron Ball') && defender.hasAbility('Levitate')) ||
+      (move.hasType('Dragon') && defender.hasAbility('Dragon Eater')) ||
       (move.flags.bullet && defender.hasAbility('Bulletproof')) ||
       (move.flags.sound && !move.named('Clangorous Soul') && defender.hasAbility('Soundproof')) ||
+      (move.flags.slicing && defender.hasAbility('Dense Cortex')) ||
+      ((move.flags.sound || move.flags.bullet) && defender.hasAbility('Foolproof')) ||
       (move.priority > 0 && defender.hasAbility('Queenly Majesty', 'Dazzling', 'Armor Tail')) ||
-      (move.hasType('Ground') && defender.hasAbility('Earth Eater')) ||
-      (move.flags.wind && defender.hasAbility('Wind Rider'))
+      (move.hasType('Ground') && defender.hasAbility('Earth Eater', 'Centrifuge', 'Plow')) ||
+      (move.flags.wind && defender.hasAbility('Wind Rider', 'Tempest Energy', 'Tempest Force'))
   ) {
     desc.defenderAbility = defender.ability;
     return result;
@@ -703,7 +718,7 @@ export function calculateMH(
       // Check if lost -ate ability. Typing stays the same, only boost is lost
       // Cannot be regained during multihit move and no Normal moves with stat drawbacks
       hasAteAbilityTypeChange = hasAteAbilityTypeChange &&
-        attacker.hasAbility('Aerilate', 'Galvanize', 'Pixilate', 'Refrigerate', 'Normalize');
+        attacker.hasAbility('Aerilate', 'Galvanize', 'Pixilate', 'Refrigerate', 'Normalize', 'Ignite');
 
       if (move.timesUsed! > 1) {
         // Adaptability does not change between hits of a multihit, only between turns
@@ -1246,6 +1261,22 @@ export function calculateBPModsMH(
   } else if (defender.hasAbility('Dry Skin') && move.hasType('Fire')) {
     bpMods.push(5120);
     desc.defenderAbility = defender.ability;
+  } else if (defender.hasAbility('Oilmucus') && move.hasType('Water')) {
+    bpMods.push(5120);
+    desc.defenderAbility = defender.ability;
+  } else if (defender.hasAbility('Risen Burst') && move.hasType('Dark')) {
+    bpMods.push(2048);
+    desc.defenderAbility = defender.ability;
+  } else if (defender.hasAbility('Terrestrial') && move.hasType('Ground')) {
+    bpMods.push(2048);
+    desc.defenderAbility = defender.ability;
+  } else if (defender.hasAbility('Insect Armor') && move.hasType('Fighting', 'Ground', 'Grass')) {
+    bpMods.push(2048);
+    desc.defenderAbility = defender.ability;
+  } else if (defender.hasAbility('Mad Dragon') && move.hasType('Fire', 'Water', 'Grass',
+    'Electric')) {
+    bpMods.push(2048);
+    desc.defenderAbility = defender.ability;
   }
 
   if (attacker.hasAbility('Supreme Overlord') && attacker.alliesFainted) {
@@ -1358,6 +1389,11 @@ export function calculateAtModsMH(
   ) {
     atMods.push(2048);
     desc.attackerAbility = attacker.ability;
+  } else if ((attacker.hasAbility('Aggravation') && attacker.abilityOn &&
+    move.category === 'Physical' && attacker.curHP() >= attacker.maxHP() / 2)
+  ) {
+    atMods.push(6144);
+    desc.attackerAbility = attacker.ability;
   } else if (
     (attacker.hasAbility('Solar Power') &&
      field.hasWeather('Sun', 'Harsh Sunshine') &&
@@ -1365,7 +1401,13 @@ export function calculateAtModsMH(
     (attacker.named('Cherrim') &&
      attacker.hasAbility('Flower Gift') &&
      field.hasWeather('Sun', 'Harsh Sunshine') &&
-     move.category === 'Physical')) {
+     move.category === 'Physical') ||
+    (attacker.hasAbility('Solar Wrath') && move.category === 'Physical')) {
+    atMods.push(6144);
+    desc.attackerAbility = attacker.ability;
+    desc.weather = field.weather;
+  } else if (attacker.hasAbility('Snow Seethe') && move.category === 'Physical' &&
+    field.hasWeather('Snow')) { // Todo: Add Absolute Zero Support
     atMods.push(6144);
     desc.attackerAbility = attacker.ability;
     desc.weather = field.weather;
@@ -1395,6 +1437,9 @@ export function calculateAtModsMH(
     (attacker.hasAbility('Rocky Payload') && move.hasType('Rock'))
   ) {
     atMods.push(6144);
+    desc.attackerAbility = attacker.ability;
+  } else if (attacker.hasAbility('Overload') && move.hasType('Dragon')) {
+    atMods.push(5374);
     desc.attackerAbility = attacker.ability;
   } else if (attacker.hasAbility('Transistor') && move.hasType('Electric')) {
     atMods.push(gen.num >= 9 ? 5325 : 6144);
@@ -1728,7 +1773,7 @@ export function calculateFinalModsMH(
     finalMods.push(8192);
   }
 
-  if (defender.hasAbility('Multiscale', 'Shadow Shield') &&
+  if (defender.hasAbility('Multiscale', 'Shadow Shield', 'Direspike Scales') &&
       defender.curHP() === defender.maxHP() &&
       hitCount === 0 &&
       (!field.defenderSide.isSR && (!field.defenderSide.spikes || defender.hasType('Flying')) ||
@@ -1739,6 +1784,9 @@ export function calculateFinalModsMH(
   }
 
   if (defender.hasAbility('Fluffy') && move.flags.contact && !attacker.hasAbility('Long Reach')) {
+    finalMods.push(2048);
+    desc.defenderAbility = defender.ability;
+  } else if (defender.hasAbility('Spongy') && move.category === 'Special') {
     finalMods.push(2048);
     desc.defenderAbility = defender.ability;
   } else if (
@@ -1759,7 +1807,7 @@ export function calculateFinalModsMH(
     desc.isFriendGuard = true;
   }
 
-  if (defender.hasAbility('Fluffy') && move.hasType('Fire')) {
+  if (defender.hasAbility('Fluffy', 'Spongy') && move.hasType('Fire')) {
     finalMods.push(8192);
     desc.defenderAbility = defender.ability;
   }
@@ -1770,14 +1818,19 @@ export function calculateFinalModsMH(
   } else if (attacker.hasItem('Life Orb')) {
     finalMods.push(5324);
     desc.attackerItem = attacker.item;
-  } else if (attacker.hasItem('Metronome') && move.timesUsedWithMetronome! >= 1) {
+  } else if ((attacker.hasItem('Metronome') || attacker.hasAbility('Relentless')) &&
+    move.timesUsedWithMetronome! >= 1) {
     const timesUsedWithMetronome = Math.floor(move.timesUsedWithMetronome!);
     if (timesUsedWithMetronome <= 4) {
       finalMods.push(4096 + timesUsedWithMetronome * 819);
     } else {
       finalMods.push(8192);
     }
-    desc.attackerItem = attacker.item;
+    if (attacker.hasAbility('Relentless')) {
+      desc.attackerAbility = attacker.ability;
+    } else {
+      desc.attackerItem = attacker.item;
+    }
   }
 
   if (move.hasType(getBerryResistType(defender.item)) &&

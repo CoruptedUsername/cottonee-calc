@@ -205,7 +205,8 @@ export function getRecoil(
       recoil = [minRecoilDamage, maxRecoilDamage];
       text = `${minRecoilDamage} - ${maxRecoilDamage}${notation} recoil damage`;
     }
-  } else if (attacker.hasAbility('Head Barrage') && move.category === 'Special') {
+  } else if ((attacker.hasAbility('Head Barrage') && move.category === 'Special') ||
+  attacker.hasAbility('Overload') && move.hasType('Dragon')) {
     const mod = (1 / 4) * 100;
     let minRecoilDamage, maxRecoilDamage;
     if (damageOverflow) {
@@ -533,7 +534,7 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
   if (defender.hasItem('Heavy-Duty Boots')) {
     return {damage, texts};
   }
-  if (defenderSide.isSR && !defender.hasAbility('Magic Guard', 'Mountaineer')) {
+  if (defenderSide.isSR && !defender.hasAbility('Magic Guard', 'Mountaineer', 'Plow')) {
     const rockType = gen.types.get('rock' as ID)!;
     const effectiveness =
       rockType.effectiveness[defender.types[0]]! *
@@ -551,7 +552,7 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
   }
 
   if (!defender.hasType('Flying') &&
-      !defender.hasAbility('Magic Guard', 'Levitate') &&
+      !defender.hasAbility('Magic Guard', 'Levitate', 'Plow') &&
       !defender.hasItem('Air Balloon')
   ) {
     if (defenderSide.spikes === 1) {
@@ -598,9 +599,12 @@ function getEndOfTurn(
     );
 
   if (field.hasWeather('Sun', 'Harsh Sunshine')) {
-    if (defender.hasAbility('Dry Skin', 'Solar Power')) {
+    if (defender.hasAbility('Dry Skin', 'Solar Power', 'Solar Wrath')) {
       damage -= Math.floor(defender.maxHP() / 8);
       texts.push(defender.ability + ' damage');
+    } else if (defender.hasAbility('Oilmucus')) {
+      damage += Math.floor(defender.maxHP() / 8);
+      texts.push('Oilmucus Recovery');
     }
   } else if (field.hasWeather('Rain', 'Heavy Rain') && !healBlock) {
     if (defender.hasAbility('Dry Skin')) {
@@ -609,6 +613,9 @@ function getEndOfTurn(
     } else if (defender.hasAbility('Rain Dish')) {
       damage += Math.floor(defender.maxHP() / 16);
       texts.push('Rain Dish recovery');
+    } else if (defender.hasAbility('Oilmucus')) {
+      damage -= Math.floor(defender.maxHP() / 8);
+      texts.push('Oilmucus damage');
     }
   } else if (field.hasWeather('Sand')) {
     if (
@@ -631,6 +638,10 @@ function getEndOfTurn(
     ) {
       damage -= Math.floor(defender.maxHP() / 16);
       texts.push('hail damage');
+    } else if (defender.hasAbility('Snow Seethe') &&
+      field.hasWeather('Snow')) { // Todo: Add Absolute Zero
+      damage -= Math.floor(defender.maxHP() / 8);
+      texts.push('Snow Seethe damage');
     }
   }
 
@@ -651,6 +662,9 @@ function getEndOfTurn(
     !defender.hasAbility('Magic Guard', 'Klutz')) {
     damage -= Math.floor(defender.maxHP() / 8);
     texts.push('Sticky Barb damage');
+  } else if (defender.hasAbility('Pathogenic') && !defender.hasType('Poison')) {
+    damage -= Math.floor(defender.maxHP() / 8);
+    texts.push('Pathogenic damage');
   }
 
   if (field.defenderSide.isSeeded) {

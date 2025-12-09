@@ -268,6 +268,18 @@ export function checkWindRider(source: Pokemon, attackingSide: Side) {
   }
 }
 
+export function checkTempestEnergy(source: Pokemon, attackingSide: Side, isSandy: boolean) {
+  if (source.hasAbility('Tempest Energy') && attackingSide.isTailwind && isSandy) {
+    source.boosts.atk = Math.min(6, source.boosts.spa + 1); // Todo: Add Dust Devil
+  }
+}
+
+export function checkTempestForce(source: Pokemon, attackingSide: Side, isSandy: boolean) {
+  if (source.hasAbility('Tempest Force') && attackingSide.isTailwind && isSandy) {
+    source.boosts.atk = Math.min(6, source.boosts.atk + 1); // Todo: Add Dust Devil
+  }
+}
+
 export function checkEmbody(source: Pokemon, gen: Generation) {
   if (gen.num < 9) return;
   switch (source.ability) {
@@ -591,7 +603,19 @@ export function getStabMod(pokemon: Pokemon, move: Move, desc: RawDesc) {
   let stabMod = 4096;
   if (pokemon.hasOriginalType(move.type)) {
     stabMod += 2048;
-  } else if (pokemon.hasAbility('Protean', 'Libero') && !pokemon.teraType) {
+  } else if (pokemon.hasAbility('Protean', 'Libero', 'Escaton') && !pokemon.teraType) {
+    stabMod += 2048;
+    desc.attackerAbility = pokemon.ability;
+  } else if (pokemon.hasAbility('Incandescent') && move.type === 'Fire') {
+    stabMod += 2048;
+    desc.attackerAbility = pokemon.ability;
+  } else if (pokemon.hasAbility('Insect Armor') && move.type === 'Bug') {
+    stabMod += 2048;
+    desc.attackerAbility = pokemon.ability;
+  } else if (pokemon.hasAbility('Mad Dragon') && move.type === 'Dragon') {
+    stabMod += 2048;
+    desc.attackerAbility = pokemon.ability;
+  } else if (pokemon.hasAbility('Risen Burst') && move.type === 'Dark') {
     stabMod += 2048;
     desc.attackerAbility = pokemon.ability;
   }
@@ -602,6 +626,10 @@ export function getStabMod(pokemon: Pokemon, move: Move, desc: RawDesc) {
   }
   if (pokemon.hasAbility('Adaptability') && pokemon.hasType(move.type)) {
     stabMod += teraType && pokemon.hasOriginalType(teraType) ? 1024 : 2048;
+    desc.attackerAbility = pokemon.ability;
+  }
+  if (stabMod === 4096 && pokemon.hasAbility('Generalist')) {
+    stabMod = 5325;
     desc.attackerAbility = pokemon.ability;
   }
   return stabMod;

@@ -398,7 +398,6 @@ const MH = SV.concat([
   'Mad Dragon',
   'Megiddo\'s Gift',
   'Mighty Wall',
-  'Mountaineer',
   'Mucus Veil',
   'Oceanic Veil',
   'Oilmucus',
