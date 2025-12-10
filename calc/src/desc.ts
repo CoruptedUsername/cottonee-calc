@@ -620,13 +620,32 @@ function getEndOfTurn(
   } else if (field.hasWeather('Sand')) {
     if (
       !defender.hasType('Rock', 'Ground', 'Steel') &&
-      !defender.hasAbility('Magic Guard', 'Overcoat', 'Sand Force', 'Sand Rush', 'Sand Veil') &&
+      !defender.hasAbility('Dust Devil', 'Magic Guard', 'Overcoat', 'Sand Force', 'Sand Rush',
+        'Sand Veil', 'Tempest Energy', 'Tempest Force') &&
       !defender.hasItem('Safety Goggles')
     ) {
       damage -= Math.floor(defender.maxHP() / (gen.num === 2 ? 8 : 16));
       texts.push('sandstorm damage');
     }
-  } else if (field.hasWeather('Hail', 'Snow')) {
+  } else if (field.hasWeather('Dust Devil')) {
+    if (
+      !defender.hasAbility('Dust Devil', 'Magic Guard', 'Overcoat', 'Sand Force', 'Sand Rush',
+        'Sand Veil', 'Tempest Energy', 'Tempest Force') &&
+      !defender.hasItem('Safety Goggles')
+    ) {
+      damage -= Math.floor(defender.maxHP() / 16);
+      texts.push('Dust Devil damage');
+    }
+  } else if (field.hasWeather('Absolute Zero')) {
+    if (
+      !defender.hasAbility('Absolute Zero', 'Ice Body', 'Icebreaker', 'Magic Guard', 'Overcoat',
+        'Snow Cloak', 'Slush Rush') &&
+      !defender.hasItem('Safety Goggles')
+    ) {
+      damage -= Math.floor(defender.maxHP() / 16);
+      texts.push('Absolute Zero damage');
+    }
+  } else if (field.hasWeather('Hail', 'Snow', 'Absolute Zero')) {
     if (defender.hasAbility('Ice Body') && !healBlock) {
       damage += Math.floor(defender.maxHP() / 16);
       texts.push('Ice Body recovery');
@@ -639,7 +658,7 @@ function getEndOfTurn(
       damage -= Math.floor(defender.maxHP() / 16);
       texts.push('hail damage');
     } else if (defender.hasAbility('Snow Seethe') &&
-      field.hasWeather('Snow')) { // Todo: Add Absolute Zero
+      field.hasWeather('Snow', 'Absolute Zero')) {
       damage -= Math.floor(defender.maxHP() / 8);
       texts.push('Snow Seethe damage');
     }

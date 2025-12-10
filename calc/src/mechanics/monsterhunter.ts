@@ -90,10 +90,10 @@ export function calculateMH(
   checkWindRider(attacker, field.attackerSide);
   checkWindRider(defender, field.defenderSide);
   // Todo: Add Dust Devil
-  checkTempestEnergy(attacker, field.attackerSide, field.hasWeather('Sand'));
-  checkTempestEnergy(defender, field.defenderSide, field.hasWeather('Sand'));
-  checkTempestForce(attacker, field.attackerSide, field.hasWeather('Sand'));
-  checkTempestForce(defender, field.defenderSide, field.hasWeather('Sand'));
+  checkTempestEnergy(attacker, field.attackerSide, field.hasWeather('Sand', 'Dust Devil'));
+  checkTempestEnergy(defender, field.defenderSide, field.hasWeather('Sand', 'Dust Devil'));
+  checkTempestForce(attacker, field.attackerSide, field.hasWeather('Sand', 'Dust Devil'));
+  checkTempestForce(defender, field.defenderSide, field.hasWeather('Sand', 'Dust Devil'));
 
   checkAggravation(attacker);
   checkAggravation(defender);
@@ -252,8 +252,8 @@ export function calculateMH(
     type =
       field.hasWeather('Sun', 'Harsh Sunshine') && !holdingUmbrella ? 'Fire'
       : field.hasWeather('Rain', 'Heavy Rain') && !holdingUmbrella ? 'Water'
-      : field.hasWeather('Sand') ? 'Rock'
-      : field.hasWeather('Hail', 'Snow') ? 'Ice'
+      : field.hasWeather('Sand', 'Dust Devil') ? 'Rock'
+      : field.hasWeather('Hail', 'Snow', 'Absolute Zero') ? 'Ice'
       : 'Normal';
     desc.weather = field.weather;
     desc.moveType = type;
@@ -1119,7 +1119,8 @@ export function calculateBPModsMH(
     bpMods.push(6144);
     desc.moveBP = basePower * 1.5;
   } else if (move.named('Solar Beam', 'Solar Blade') &&
-      field.hasWeather('Rain', 'Heavy Rain', 'Sand', 'Hail', 'Snow')) {
+      field.hasWeather('Rain', 'Heavy Rain', 'Sand', 'Dust Devil', 'Hail', 'Snow',
+        'Absolute Zero')) {
     bpMods.push(2048);
     desc.moveBP = basePower / 2;
     desc.weather = field.weather;
@@ -1222,7 +1223,7 @@ export function calculateBPModsMH(
     (attacker.hasAbility('Sheer Force') &&
       (move.secondaries || move.named('Order Up')) && !move.isMax) ||
     (attacker.hasAbility('Sand Force') &&
-      field.hasWeather('Sand') && move.hasType('Rock', 'Ground', 'Steel')) ||
+      field.hasWeather('Sand', 'Dust Devil') && move.hasType('Rock', 'Ground', 'Steel')) ||
     (attacker.hasAbility('Analytic') &&
       (turnOrder !== 'first' || field.defenderSide.isSwitching === 'out')) ||
     (attacker.hasAbility('Tough Claws') && move.flags.contact) ||
@@ -1419,7 +1420,7 @@ export function calculateAtModsMH(
     desc.attackerAbility = attacker.ability;
     desc.weather = field.weather;
   } else if (attacker.hasAbility('Snow Seethe') && move.category === 'Physical' &&
-    field.hasWeather('Snow')) { // Todo: Add Absolute Zero Support
+    field.hasWeather('Snow', 'Absolute Zero')) {
     atMods.push(6144);
     desc.attackerAbility = attacker.ability;
     desc.weather = field.weather;
@@ -1586,11 +1587,11 @@ export function calculateDefenseMH(
   }
 
   // unlike all other defense modifiers, Sandstorm SpD boost gets applied directly
-  if (field.hasWeather('Sand') && defender.hasType('Rock') && !hitsPhysical) {
+  if (field.hasWeather('Sand', 'Dust Devil') && defender.hasType('Rock') && !hitsPhysical) {
     defense = pokeRound((defense * 3) / 2);
     desc.weather = field.weather;
   }
-  if (field.hasWeather('Snow') && defender.hasType('Ice') && hitsPhysical) {
+  if (field.hasWeather('Snow', 'Absolute Zero') && defender.hasType('Ice') && hitsPhysical) {
     defense = pokeRound((defense * 3) / 2);
     desc.weather = field.weather;
   }

@@ -101,9 +101,9 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
 
   if ((pokemon.hasAbility('Unburden') && pokemon.abilityOn) ||
       (pokemon.hasAbility('Chlorophyll') && weather.includes('Sun')) ||
-      (pokemon.hasAbility('Sand Rush') && weather === 'Sand') ||
+      (pokemon.hasAbility('Sand Rush') && ['Sand', 'Dust Devil'].includes(weather)) ||
       (pokemon.hasAbility('Swift Swim') && weather.includes('Rain')) ||
-      (pokemon.hasAbility('Slush Rush') && ['Hail', 'Snow'].includes(weather)) ||
+      (pokemon.hasAbility('Slush Rush') && ['Hail', 'Snow', 'Absolute Zero'].includes(weather)) ||
       (pokemon.hasAbility('Surge Surfer') && terrain === 'Electric')
   ) {
     speedMods.push(8192);
@@ -113,6 +113,10 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
     speedMods.push(2048);
   } else if (isQPActive(pokemon, field) && getQPBoostedStat(pokemon, gen) === 'spe') {
     speedMods.push(6144);
+  }
+
+  if (!pokemon.hasAbility('Absolute Zero') && weather.includes('Absolute Zero')) {
+    speedMods.push(3072);
   }
 
   if (!(pokemon.hasAbility('Unburden') && pokemon.abilityOn)) {
@@ -193,6 +197,7 @@ export function checkForecast(pokemon: Pokemon, weather?: Weather) {
       break;
     case 'Hail':
     case 'Snow':
+    case 'Absolute Zero':
       pokemon.types = ['Ice'];
       break;
     default:

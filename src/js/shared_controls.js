@@ -379,6 +379,14 @@ function autosetWeather(ability, i) {
 		lastAutoWeather[i] = "Strong Winds";
 		$("#strong-winds").prop("checked", true);
 		break;
+	case "Absolute Zero":
+		lastAutoWeather[i] = "Absolute Zero";
+		$("#absolute-zero").prop("checked", true);
+		break;
+	case "Dust Devil":
+		lastAutoWeather[i] = "Dust Devil";
+		$("#dust-devil").prop("checked", true);
+		break;
 	default:
 		lastAutoWeather[i] = "";
 		var newWeather = lastAutoWeather[1 - i] !== "" ? lastAutoWeather[1 - i] : "";
