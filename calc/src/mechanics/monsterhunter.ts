@@ -1692,6 +1692,7 @@ export function calculateDfModsMH(
     dfMods.push(8192);
     desc.defenderItem = defender.item;
   }
+  return dfMods;
 }
 
 function calculateBaseDamageMH(
