@@ -668,6 +668,10 @@ function getEndOfTurn(
     damage -= Math.floor(defender.maxHP() / 8);
     texts.push('Pathogenic damage');
   }
+  if (defender.hasAbility('Oceanic Veil')) {
+    damage += Math.floor(defender.maxHP() / 16);
+    texts.push('Oceanic Veil recovery');
+  }
 
   if (field.defenderSide.isSeeded) {
     if (!defender.hasAbility('Magic Guard')) {

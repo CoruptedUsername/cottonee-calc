@@ -95,8 +95,8 @@ export function calculateMH(
   checkTempestForce(attacker, field.attackerSide, field.hasWeather('Sand'));
   checkTempestForce(defender, field.defenderSide, field.hasWeather('Sand'));
 
-  checkAggravation(attacker)
-  checkAggravation(defender)
+  checkAggravation(attacker);
+  checkAggravation(defender);
 
   if (move.named('Meteor Beam', 'Electro Shot')) {
     attacker.boosts.spa +=
@@ -371,7 +371,7 @@ export function calculateMH(
     } else if ((isRefrigerate = attacker.hasAbility('Refrigerate') && normal)) {
       type = 'Ice';
     } else if ((isIgnite = attacker.hasAbility('Ignite') && normal)) {
-      type = 'Fire'
+      type = 'Fire';
     } else if ((isNormalize = attacker.hasAbility('Normalize'))) { // Boosts any type
       type = 'Normal';
     }
@@ -403,13 +403,15 @@ export function calculateMH(
       field.defenderSide.isForesight;
   const isRingTarget =
     defender.hasItem('Ring Target') && !defender.hasAbility('Klutz');
+  const isPerforated = attacker.hasAbility('Perforated');
   const type1Effectiveness = getMoveEffectiveness(
     gen,
     move,
     defender.types[0],
     isGhostRevealed,
     field.isGravity,
-    isRingTarget
+    isRingTarget,
+    isPerforated
   );
   const type2Effectiveness = defender.types[1]
     ? getMoveEffectiveness(
@@ -418,10 +420,14 @@ export function calculateMH(
       defender.types[1],
       isGhostRevealed,
       field.isGravity,
-      isRingTarget
+      isRingTarget,
+      isPerforated
     )
     : 1;
   let typeEffectiveness = type1Effectiveness * type2Effectiveness;
+  if (defender.hasAbility('Airbag') && move.category === 'Physical' && typeEffectiveness > 1) {
+    typeEffectiveness = 1;
+  }
 
   if (defender.teraType && defender.teraType !== 'Stellar') {
     typeEffectiveness = getMoveEffectiveness(
@@ -722,7 +728,8 @@ export function calculateMH(
       // Check if lost -ate ability. Typing stays the same, only boost is lost
       // Cannot be regained during multihit move and no Normal moves with stat drawbacks
       hasAteAbilityTypeChange = hasAteAbilityTypeChange &&
-        attacker.hasAbility('Aerilate', 'Galvanize', 'Pixilate', 'Refrigerate', 'Normalize', 'Ignite');
+        attacker.hasAbility('Aerilate', 'Galvanize', 'Pixilate', 'Refrigerate', 'Normalize',
+          'Ignite');
 
       if (move.timesUsed! > 1) {
         // Adaptability does not change between hits of a multihit, only between turns
@@ -1458,6 +1465,11 @@ export function calculateAtModsMH(
   ) {
     atMods.push(8192);
     desc.attackerAbility = attacker.ability;
+  } else if (attacker.hasAbility('Raging Rebel') && (defender.boosts.atk < 0 ||
+    defender.boosts.def < 0 || defender.boosts.spa < 0 || defender.boosts.spd < 0 ||
+    defender.boosts.spe < 0)) {
+    atMods.push(5325);
+    desc.attackerAbility = attacker.ability;
   }
 
   if (
@@ -1582,6 +1594,9 @@ export function calculateDefenseMH(
     defense = pokeRound((defense * 3) / 2);
     desc.weather = field.weather;
   }
+  if (defender.hasAbility('Strafe')) {
+    defense += Math.floor(defender.stats.spe * 0.2);
+  }
 
   const dfMods = calculateDfModsMH(
     gen,
@@ -1677,7 +1692,6 @@ export function calculateDfModsMH(
     dfMods.push(8192);
     desc.defenderItem = defender.item;
   }
-  return dfMods;
 }
 
 function calculateBaseDamageMH(

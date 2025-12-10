@@ -12942,6 +12942,12 @@ const BCC: {[name: string]: SpeciesData} = {
     weightkg: 11.3,
     abilities: {0: 'Liquid Ooze'},
   },
+  Phantamp: {
+    types: ['Electric', 'Ghost'],
+    bs: {hp: 60, at: 93, df: 50, sa: 90, sd: 50, sp: 116},
+    weightkg: 15,
+    abilities: {0: 'Electric Surge'},
+  },
   Prionice: {
     types: ['Ice', 'Poison'],
     bs: {hp: 110, at: 85, df: 80, sa: 30, sd: 100, sp: 45},
@@ -12959,6 +12965,12 @@ const BCC: {[name: string]: SpeciesData} = {
     bs: {hp: 100, at: 100, df: 90, sa: 30, sd: 85, sp: 80},
     weightkg: 9.5,
     abilities: {0: 'Contrary'},
+  },
+  Pysrex: {
+    types: ['Electric', 'Psychic'],
+    bs: {hp: 83, at: 118, df: 80, sa: 40, sd: 95, sp: 86},
+    weightkg: 999,
+    abilities: {0: 'Illuminate'},
   },
   Rakasa: {
     types: ['Psychic', 'Fairy'],
@@ -13050,6 +13062,12 @@ const BCC: {[name: string]: SpeciesData} = {
     weightkg: 723,
     abilities: {0: 'Flash Fire'},
   },
+  Waroach: {
+    types: ['Fighting', 'Bug'],
+    bs: {hp: 70, at: 100, df: 70, sa: 90, sd: 70, sp: 100},
+    weightkg: 85,
+    abilities: {0: 'Download'},
+  },
   Whalestro: {
     types: ['Steel', 'Water'],
     bs: {hp: 90, at: 40, df: 100, sa: 90, sd: 70, sp: 40},
@@ -13061,6 +13079,12 @@ const BCC: {[name: string]: SpeciesData} = {
     bs: {hp: 70, at: 120, df: 70, sa: 40, sd: 70, sp: 70},
     weightkg: 40,
     abilities: {0: 'Fluffy'},
+  },
+  Wyldemoer: {
+    types: ['Grass', 'Ghost'],
+    bs: {hp: 50, at: 45, df: 95, sa: 85, sd: 90, sp: 72},
+    weightkg: 9.5,
+    abilities: {0: 'Unburden'},
   },
   Zhuguo: {
     types: ['Ice', 'Dragon'],

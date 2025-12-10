@@ -142,10 +142,13 @@ export function getMoveEffectiveness(
   isGhostRevealed?: boolean,
   isGravity?: boolean,
   isRingTarget?: boolean,
+  isPerforated?: boolean,
 ) {
   if (isGhostRevealed && type === 'Ghost' && move.hasType('Normal', 'Fighting')) {
     return 1;
   } else if (isGravity && type === 'Flying' && move.hasType('Ground')) {
+    return 1;
+  } else if (isPerforated && type === 'Steel' && move.hasType('Poison')) {
     return 1;
   } else if (move.named('Freeze-Dry') && type === 'Water') {
     return 2;
@@ -270,13 +273,13 @@ export function checkWindRider(source: Pokemon, attackingSide: Side) {
 
 export function checkTempestEnergy(source: Pokemon, attackingSide: Side, isSandy: boolean) {
   if (source.hasAbility('Tempest Energy') && (attackingSide.isTailwind || isSandy)) {
-    source.boosts.spa = Math.min(6, source.boosts.spa + 1); // Todo: Add Dust Devil
+    source.boosts.spa = Math.min(6, source.boosts.spa + 1);
   }
 }
 
 export function checkTempestForce(source: Pokemon, attackingSide: Side, isSandy: boolean) {
   if (source.hasAbility('Tempest Force') && (attackingSide.isTailwind || isSandy)) {
-    source.boosts.atk = Math.min(6, source.boosts.atk + 1); // Todo: Add Dust Devil
+    source.boosts.atk = Math.min(6, source.boosts.atk + 1);
   }
 }
 
