@@ -746,6 +746,16 @@ function getEndOfTurn(
       damage -= Math.floor(defender.maxHP() / (gen.num === 1 || gen.num > 6 ? 16 : 8));
       texts.push('burn damage');
     }
+  } else if (defender.hasStatus('dgb')) {
+    if (!defender.hasType('Fairy') && !defender.hasAbility('Magic Guard')) {
+      damage -= Math.floor(defender.maxHP() / 16);
+      texts.push('dragonblight damage');
+    }
+  } else if (defender.hasStatus('frb')) {
+    if (!defender.hasAbility('Magic Guard')) {
+      damage -= Math.floor(defender.maxHP() / 16);
+      texts.push('frostbite damage');
+    }
   } else if (
     (defender.hasStatus('slp') || defender.hasAbility('Comatose')) &&
     attacker.hasAbility('Bad Dreams') &&

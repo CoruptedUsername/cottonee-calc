@@ -47,7 +47,10 @@ var CALC_STATUS = {
 	'Badly Poisoned': 'tox',
 	'Burned': 'brn',
 	'Asleep': 'slp',
-	'Frozen': 'frz'
+	'Frozen': 'frz',
+	'Dragonblighted': 'dgb',
+	'Drowsy': 'drs',
+	'Frostbitten': 'frb'
 };
 
 function legacyStatToStat(st) {
@@ -557,6 +560,9 @@ $(".move-selector").change(function () {
 			moveHits = 5;
 		} else if (pokemon.find(".item").val() === 'Loaded Dice') {
 			moveHits = 4;
+		}
+		if (pokemon.find(".status").val() === 'Drowsy') {
+			moveHits = 1;
 		}
 
 		moveGroupObj.children(".move-hits").val(moveHits);

@@ -1866,6 +1866,10 @@ export function calculateFinalModsMH(
     desc.defenderItem = defender.item;
   }
 
+  if (defender.hasStatus('drs')) {
+    finalMods.push(4915);
+  }
+
   return finalMods;
 }
 

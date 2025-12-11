@@ -645,6 +645,8 @@ export function getStabMod(pokemon: Pokemon, move: Move, desc: RawDesc) {
   if (stabMod === 4096 && pokemon.hasAbility('Generalist')) {
     stabMod = 5325;
     desc.attackerAbility = pokemon.ability;
+  } else if (pokemon.hasStatus('dgb') && !pokemon.hasOriginalType('Fairy')) {
+    stabMod = 4096;
   }
   return stabMod;
 }
