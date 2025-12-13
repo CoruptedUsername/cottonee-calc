@@ -701,8 +701,8 @@ export function calculateMH(
   const damage = [];
   for (let i = 0; i < 16; i++) {
     damage[i] =
-      getFinalDamage(baseDamage, i, typeEffectiveness, applyBurn, applyFrostbite, stabMod, finalMod,
-        protect);
+      getFinalDamage(baseDamage, i, typeEffectiveness, (applyBurn || applyFrostbite), stabMod,
+        finalMod, protect);
   }
   result.damage = childDamage ? [damage, childDamage] : damage;
 
@@ -786,8 +786,7 @@ export function calculateMH(
           newBaseDamage,
           i,
           typeEffectiveness,
-          applyBurn,
-          applyFrostbite,
+          (applyBurn || applyFrostbite),
           stabMod,
           newFinalMod,
           protect
