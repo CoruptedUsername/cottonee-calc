@@ -56,8 +56,10 @@ var CALC_STATUS = {
 var statusType;
 if (gen === 4) {
 	statusType = ".status2";
+	console.log("Status 2");
 } else {
 	statusType = ".status";
+	console.log("Status 1");
 }
 
 function legacyStatToStat(st) {
