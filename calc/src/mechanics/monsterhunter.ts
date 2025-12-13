@@ -662,6 +662,10 @@ export function calculateMH(
     !attacker.hasAbility('Guts') &&
     !move.named('Facade');
   desc.isBurned = applyBurn;
+  const applyFrostbite =
+    attacker.hasStatus('frb') &&
+    move.category === 'Special';
+  desc.isFrostbitten = applyFrostbite;
   const finalMods = calculateFinalModsMH(
     gen,
     attacker,
@@ -697,7 +701,8 @@ export function calculateMH(
   const damage = [];
   for (let i = 0; i < 16; i++) {
     damage[i] =
-      getFinalDamage(baseDamage, i, typeEffectiveness, applyBurn, stabMod, finalMod, protect);
+      getFinalDamage(baseDamage, i, typeEffectiveness, applyBurn, applyFrostbite, stabMod, finalMod,
+        protect);
   }
   result.damage = childDamage ? [damage, childDamage] : damage;
 
@@ -782,6 +787,7 @@ export function calculateMH(
           i,
           typeEffectiveness,
           applyBurn,
+          applyFrostbite,
           stabMod,
           newFinalMod,
           protect
