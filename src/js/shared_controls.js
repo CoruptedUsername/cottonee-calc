@@ -53,6 +53,13 @@ var CALC_STATUS = {
 	'Frostbitten': 'frb'
 };
 
+var statusType;
+if (gen === 4) {
+	statusType = ".status2";
+} else {
+	statusType = ".status";
+}
+
 function legacyStatToStat(st) {
 	switch (st) {
 	case 'hp':
@@ -450,28 +457,29 @@ $("#p1 .item").bind("keyup change", function () {
 var lastManualStatus = {"#p1": "Healthy"};
 var lastAutoStatus = {"#p1": "Healthy"};
 function autosetStatus(p, item) {
-	var currentStatus = $(p + " .status").val();
+
+	var currentStatus = $(p + " " + statusType).val();
 	if (currentStatus !== lastAutoStatus[p]) {
 		lastManualStatus[p] = currentStatus;
 	}
 	if (item === "Flame Orb") {
 		lastAutoStatus[p] = "Burned";
-		$(p + " .status").val("Burned");
-		$(p + " .status").change();
+		$(p + " " + statusType).val("Burned");
+		$(p + " " + statusType).change();
 	} else if (item === "Toxic Orb") {
 		lastAutoStatus[p] = "Badly Poisoned";
-		$(p + " .status").val("Badly Poisoned");
-		$(p + " .status").change();
+		$(p + " " + statusType).val("Badly Poisoned");
+		$(p + " " + statusType).change();
 	} else {
 		lastAutoStatus[p] = "Healthy";
 		if (currentStatus !== lastManualStatus[p]) {
-			$(p + " .status").val(lastManualStatus[p]);
-			$(p + " .status").change();
+			$(p + " " + statusType).val(lastManualStatus[p]);
+			$(p + " " + statusType).change();
 		}
 	}
 }
 
-$(".status").bind("keyup change", function () {
+$(statusType).bind("keyup change", function () {
 	if ($(this).val() === 'Badly Poisoned') {
 		$(this).parent().children(".toxic-counter").show();
 	} else {
@@ -561,7 +569,7 @@ $(".move-selector").change(function () {
 		} else if (pokemon.find(".item").val() === 'Loaded Dice') {
 			moveHits = 4;
 		}
-		if (pokemon.find(".status").val() === 'Drowsy') {
+		if (pokemon.find(statusType).val() === 'Drowsy') {
 			moveHits = 1;
 		}
 
@@ -640,8 +648,8 @@ $(".set-selector").change(function () {
 		}
 		pokeObj.find(".boost").val(0);
 		pokeObj.find(".percent-hp").val(100);
-		pokeObj.find(".status").val("Healthy");
-		$(".status").change();
+		pokeObj.find(statusType).val("Healthy");
+		$(statusType).change();
 		var moveObj;
 		var abilityObj = pokeObj.find(".ability");
 		var itemObj = pokeObj.find(".item");
@@ -1132,8 +1140,8 @@ function createPokemon(pokeInfo) {
 			teraType: teraType,
 			boosts: boosts,
 			curHP: curHP,
-			status: CALC_STATUS[pokeInfo.find(".status").val()],
-			toxicCounter: pokeInfo.find(".status").val() === 'Badly Poisoned' ? ~~pokeInfo.find(".toxic-counter").val() : 0,
+			status: CALC_STATUS[pokeInfo.find(statusType).val()],
+			toxicCounter: pokeInfo.find(statusType).val() === 'Badly Poisoned' ? ~~pokeInfo.find(".toxic-counter").val() : 0,
 			moves: [
 				getMoveDetails(pokeInfo.find(".move1"), opts),
 				getMoveDetails(pokeInfo.find(".move2"), opts),
@@ -1691,43 +1699,43 @@ function getTerrainEffects() {
 		if (terrainValue === "Electric") {
 			$("#" + id).find("[value='Asleep']").prop("disabled", isPokeInfoGrounded($("#" + id)));
 		} else if (terrainValue === "Misty") {
-			$("#" + id).find(".status").prop("disabled", isPokeInfoGrounded($("#" + id)));
+			$("#" + id).find(statusType).prop("disabled", isPokeInfoGrounded($("#" + id)));
 		}
 		break;
 	case "ability":
 		// with autoset, ability change may cause terrain change, need to consider both sides
 		var terrainValue = $("input:checkbox[name='terrain']:checked").val();
 		if (terrainValue === "Electric") {
-			$("#p1").find(".status").prop("disabled", false);
-			$("#p2").find(".status").prop("disabled", false);
+			$("#p1").find(statusType).prop("disabled", false);
+			$("#p2").find(statusType).prop("disabled", false);
 			$("#p1").find("[value='Asleep']").prop("disabled", isPokeInfoGrounded($("#p1")));
 			$("#p2").find("[value='Asleep']").prop("disabled", isPokeInfoGrounded($("#p2")));
 		} else if (terrainValue === "Misty") {
-			$("#p1").find(".status").prop("disabled", isPokeInfoGrounded($("#p1")));
-			$("#p2").find(".status").prop("disabled", isPokeInfoGrounded($("#p2")));
+			$("#p1").find(statusType).prop("disabled", isPokeInfoGrounded($("#p1")));
+			$("#p2").find(statusType).prop("disabled", isPokeInfoGrounded($("#p2")));
 		} else {
 			$("#p1").find("[value='Asleep']").prop("disabled", false);
-			$("#p1").find(".status").prop("disabled", false);
+			$("#p1").find(statusType).prop("disabled", false);
 			$("#p2").find("[value='Asleep']").prop("disabled", false);
-			$("#p2").find(".status").prop("disabled", false);
+			$("#p2").find(statusType).prop("disabled", false);
 		}
 		break;
 	default:
 		$("input:checkbox[name='terrain']").not(this).prop("checked", false);
 		if ($(this).prop("checked") && $(this).val() === "Electric") {
 			// need to enable status because it may be disabled by Misty Terrain before.
-			$("#p1").find(".status").prop("disabled", false);
-			$("#p2").find(".status").prop("disabled", false);
+			$("#p1").find(statusType).prop("disabled", false);
+			$("#p2").find(statusType).prop("disabled", false);
 			$("#p1").find("[value='Asleep']").prop("disabled", isPokeInfoGrounded($("#p1")));
 			$("#p2").find("[value='Asleep']").prop("disabled", isPokeInfoGrounded($("#p2")));
 		} else if ($(this).prop("checked") && $(this).val() === "Misty") {
-			$("#p1").find(".status").prop("disabled", isPokeInfoGrounded($("#p1")));
-			$("#p2").find(".status").prop("disabled", isPokeInfoGrounded($("#p2")));
+			$("#p1").find(statusType).prop("disabled", isPokeInfoGrounded($("#p1")));
+			$("#p2").find(statusType).prop("disabled", isPokeInfoGrounded($("#p2")));
 		} else {
 			$("#p1").find("[value='Asleep']").prop("disabled", false);
-			$("#p1").find(".status").prop("disabled", false);
+			$("#p1").find(statusType).prop("disabled", false);
 			$("#p2").find("[value='Asleep']").prop("disabled", false);
-			$("#p2").find(".status").prop("disabled", false);
+			$("#p2").find(statusType).prop("disabled", false);
 		}
 		break;
 	}
