@@ -1440,6 +1440,13 @@ $(".gen").change(function () {
 	/*eslint-disable */
 	gen = ~~$(this).val() || 9;
 	GENERATION = calc.Generations.get(gen);
+	if (gen === 4) {
+		statusType = '.status2';
+		console.log('Status 2');
+	} else {
+		statusType = '.status';
+		console.log('Status');
+	}
 	var params = new URLSearchParams(window.location.search);
 	if (gen === 9) {
 		params.delete('gen');
