@@ -278,6 +278,9 @@ $(".ability").bind("keyup change", function () {
 		} else if ($(this).closest(".poke-info").find(".item").val() === 'Loaded Dice') {
 			moveHits = 4;
 		}
+		if ($(this).closest(".poke-info").find(statusType).val() === 'Drowsy') {
+			moveHits = 1;
+		}
 		$(this).closest(".poke-info").find(moveSelector).find(".move-hits").val(moveHits);
 	}
 
@@ -608,6 +611,9 @@ $(".item").change(function () {
 			moveHits = 5;
 		} else if ($(this).closest(".poke-info").find(".item").val() === 'Loaded Dice') {
 			moveHits = 4;
+		}
+		if ($(this).closest(".poke-info").find(statusType).val() === 'Drowsy') {
+			moveHits = 1;
 		}
 		$(this).closest(".poke-info").find(moveSelector).find(".move-hits").val(moveHits);
 	}
