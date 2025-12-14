@@ -119,7 +119,8 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
   if (opp) {
     if (pokemon.hasAbility('Bewitching Tail') && opp.hasStatus('drs')) {
       speedMods.push(4915);
-    } else if (pokemon.hasAbility('Gravedrum') && opp.hasStatus('brn')) { // Todo: Add Blast support
+    } else if (pokemon.hasAbility('Gravedrum') && (opp.hasStatus('brn') ||
+      field.defenderSide.isBlastblighted)) { // Todo: Add Blast support
       speedMods.push(8192);
     }
   }

@@ -772,6 +772,11 @@ function getEndOfTurn(
   ) {
     damage -= Math.floor(defender.maxHP() / 8);
     texts.push('Bad Dreams');
+  } else if (defender.hasStatus('par') && attacker.hasAbility('Crystalblight')) {
+    if (!defender.hasAbility('Magic Guard')) {
+      damage -= Math.floor(defender.maxHP() / 16);
+      texts.push('crystalblight damage');
+    }
   }
 
   if (!defender.hasAbility('Magic Guard') && TRAPPING.includes(move.name)) {

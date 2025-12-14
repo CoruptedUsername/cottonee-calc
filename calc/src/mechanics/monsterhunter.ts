@@ -204,7 +204,8 @@ export function calculateMH(
     'Sunsteel Strike'
   );
 
-  if (defenderAbilityIgnored && (attackerIgnoresAbility || moveIgnoresAbility)) {
+  if (defenderAbilityIgnored && (attackerIgnoresAbility || moveIgnoresAbility ||
+    (attacker.hasAbility('Starving Bite') && move.flags.bite))) {
     if (attackerIgnoresAbility) desc.attackerAbility = attacker.ability;
     if (defender.hasItem('Ability Shield')) {
       desc.defenderItem = defender.item;
@@ -1690,6 +1691,9 @@ export function calculateDfModsMH(
     'drs', 'par', 'frb', 'psn', 'tox', 'dgb'))) {
     dfMods.push(6144);
     desc.defenderAbility = defender.ability;
+  } else if (attacker.hasAbility('Rusted Gale') && !defender.hasType('Steel')) {
+    dfMods.push(3072);
+    desc.attackerAbility = attacker.ability;
   }
   // Pokemon with "-of Ruin" Ability are immune to the opposing "-of Ruin" ability
   const isSwordOfRuinActive = (attacker.hasAbility('Sword of Ruin') || field.isSwordOfRuin) &&
