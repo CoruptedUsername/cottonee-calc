@@ -52,6 +52,7 @@ export interface RawDesc {
   terrain?: Terrain;
   weather?: Weather;
   isDefenderDynamaxed?: boolean;
+  isDefenseDown?: boolean;
 }
 
 export function display(
@@ -569,6 +570,13 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
     } else if (defenderSide.spikes === 3) {
       damage += Math.floor(defender.maxHP() / 4);
       texts.push('3 layers of Spikes');
+    }
+  }
+
+  if (defenderSide.isBlastblighted) {
+    if (!defender.hasAbility('Magic Guard')) {
+      damage += Math.floor(defender.maxHP() / 6);
+      texts.push('Blastblight');
     }
   }
 
@@ -1130,6 +1138,9 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   }
   if (description.isFriendGuard) {
     output += ' with an ally\'s Friend Guard';
+  }
+  if (description.isDefenseDown) {
+    output += ' with Defenses Down';
   }
   if (description.isAuroraVeil) {
     output += ' with an ally\'s Aurora Veil';

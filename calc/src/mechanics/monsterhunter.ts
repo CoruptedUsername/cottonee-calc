@@ -67,8 +67,8 @@ export function calculateMH(
   checkTeraformZero(defender, field);
   checkForecast(attacker, field.weather);
   checkForecast(defender, field.weather);
-  checkItem(attacker, field.isMagicRoom);
-  checkItem(defender, field.isMagicRoom);
+  checkItem(attacker, field.isMagicRoom, field.attackerSide.isStenched);
+  checkItem(defender, field.isMagicRoom, field.defenderSide.isStenched);
   checkWonderRoom(attacker, field.isWonderRoom);
   checkWonderRoom(defender, field.isWonderRoom);
   checkSeedBoost(attacker, field);
@@ -407,7 +407,6 @@ export function calculateMH(
       field.defenderSide.isForesight;
   const isRingTarget =
     defender.hasItem('Ring Target') && !defender.hasAbility('Klutz');
-  const isPerforated = attacker.hasAbility('Perforating');
   const type1Effectiveness = getMoveEffectiveness(
     gen,
     move,
@@ -415,7 +414,8 @@ export function calculateMH(
     isGhostRevealed,
     field.isGravity,
     isRingTarget,
-    isPerforated
+    attacker.hasAbility('Perforating'),
+    field.defenderSide.isRusted
   );
   const type2Effectiveness = defender.types[1]
     ? getMoveEffectiveness(
@@ -425,7 +425,8 @@ export function calculateMH(
       isGhostRevealed,
       field.isGravity,
       isRingTarget,
-      isPerforated
+      attacker.hasAbility('Perforating'),
+      field.defenderSide.isRusted
     )
     : 1;
   let typeEffectiveness = type1Effectiveness * type2Effectiveness;
@@ -440,7 +441,9 @@ export function calculateMH(
       defender.teraType,
       isGhostRevealed,
       field.isGravity,
-      isRingTarget
+      isRingTarget,
+      attacker.hasAbility('Perforating'),
+      field.defenderSide.isRusted
     );
   }
 
@@ -1147,7 +1150,9 @@ export function calculateBPModsMH(
       types[0],
       isGhostRevealed,
       field.isGravity,
-      isRingTarget
+      isRingTarget,
+      attacker.hasAbility('Perforating'),
+      field.defenderSide.isRusted
     );
     const type2Effectiveness = types[1] ? getMoveEffectiveness(
       gen,
@@ -1155,7 +1160,9 @@ export function calculateBPModsMH(
       types[1],
       isGhostRevealed,
       field.isGravity,
-      isRingTarget
+      isRingTarget,
+      attacker.hasAbility('Perforating'),
+      field.defenderSide.isRusted
     ) : 1;
     if (type1Effectiveness * type2Effectiveness >= 2) {
       bpMods.push(5461);
@@ -1722,6 +1729,10 @@ export function calculateDfModsMH(
   ) {
     dfMods.push(8192);
     desc.defenderItem = defender.item;
+  }
+  if (field.defenderSide.isDefenseDown && hitsPhysical) {
+    dfMods.push(2048);
+    desc.isDefenseDown = true;
   }
   return dfMods;
 }

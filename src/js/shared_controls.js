@@ -1231,6 +1231,11 @@ function createField() {
 	var isSaltCured = [$("#saltCureL").prop("checked"), $("#saltCureR").prop("checked")];
 	var isForesight = [$("#foresightL").prop("checked"), $("#foresightR").prop("checked")];
 	var isHelpingHand = [$("#helpingHandL").prop("checked"), $("#helpingHandR").prop("checked")];
+	var isBlastblighted = [$("#blastblightL").prop("checked"), $("#blastblightR").prop("checked")];
+	var isBubbleblighted = [$("#bubbleblightL").prop("checked"), $("#bubbleblightR").prop("checked")];
+	var isDefenseDown = [$("#defenseDownL").prop("checked"), $("#defenseDownR").prop("checked")];
+	var isStenched = [$("#stenchL").prop("checked"), $("#stenchR").prop("checked")];
+	var isRusted = [$("#rustedL").prop("checked"), $("#rustedR").prop("checked")];
 	var isTailwind = [$("#tailwindL").prop("checked"), $("#tailwindR").prop("checked")];
 	var isFlowerGift = [$("#flowerGiftL").prop("checked"), $("#flowerGiftR").prop("checked")];
 	var isSteelySpirit = [$("#steelySpiritL").prop("checked"), $("#steelySpiritR").prop("checked")];
@@ -1264,7 +1269,12 @@ function createField() {
 			isAuroraVeil: isAuroraVeil[i],
 			isBattery: isBattery[i],
 			isPowerSpot: isPowerSpot[i],
-			isSwitching: isSwitchingOut[i] ? 'out' : undefined
+			isSwitching: isSwitchingOut[i] ? 'out' : undefined,
+			isBlastblighted: isBlastblighted[i],
+			isBubbleblighted: isBubbleblighted[i],
+			isDefenseDown: isDefenseDown[i],
+			isStenched: isStenched[i],
+			isRusted: isRusted[i],
 		});
 	};
 	return new calc.Field({
@@ -1546,6 +1556,16 @@ function clearField() {
 	$("#foresightR").prop("checked", false);
 	$("#helpingHandL").prop("checked", false);
 	$("#helpingHandR").prop("checked", false);
+	$("#blastblightL").prop("checked", false);
+	$("#blastblightR").prop("checked", false);
+	$("#bubbleblightL").prop("checked", false);
+	$("#bubbleblightR").prop("checked", false);
+	$("#defenseDownL").prop("checked", false);
+	$("#defenseDownR").prop("checked", false);
+	$("#stenchL").prop("checked", false);
+	$("#stenchR").prop("checked", false);
+	$("#rustedL").prop("checked", false);
+	$("#rustedR").prop("checked", false);
 	$("#tailwindL").prop("checked", false);
 	$("#tailwindR").prop("checked", false);
 	$("#friendGuardL").prop("checked", false);

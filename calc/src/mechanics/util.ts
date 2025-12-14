@@ -139,6 +139,10 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
     }
   }
 
+  if (side.isBubbleblighted) {
+    speedMods.push(8192);
+  }
+
   speed = OF32(pokeRound((speed * chainMods(speedMods, 410, 131172)) / 4096));
   if (pokemon.hasStatus('par') && !pokemon.hasAbility('Quick Feet')) {
     speed = Math.floor(OF32(speed * (gen.num < 7 ? 25 : 50)) / 100);
@@ -156,6 +160,7 @@ export function getMoveEffectiveness(
   isGravity?: boolean,
   isRingTarget?: boolean,
   isPerforated?: boolean,
+  isRusted?: boolean,
 ) {
   if (isGhostRevealed && type === 'Ghost' && move.hasType('Normal', 'Fighting')) {
     return 1;
@@ -175,6 +180,9 @@ export function getMoveEffectiveness(
     if (move.named('Flying Press')) {
       // Can only do this because flying has no other interactions
       effectiveness *= gen.types.get('flying' as ID)!.effectiveness[type]!;
+    }
+    if (isRusted && type === 'Steel' && effectiveness < 1) {
+      effectiveness = 1;
     }
     return effectiveness;
   }
@@ -215,12 +223,12 @@ export function checkForecast(pokemon: Pokemon, weather?: Weather) {
   }
 }
 
-export function checkItem(pokemon: Pokemon, magicRoomActive?: boolean) {
+export function checkItem(pokemon: Pokemon, magicRoomActive?: boolean, isStenched?: boolean) {
   // Pokemon with Klutz still get their speed dropped in generation 4
   if (pokemon.gen.num === 4 && pokemon.hasItem('Iron Ball')) return;
   if (
     pokemon.hasAbility('Klutz') && !EV_ITEMS.includes(pokemon.item!) ||
-    magicRoomActive
+    magicRoomActive || isStenched
   ) {
     pokemon.disabledItem = pokemon.item;
     pokemon.item = '' as ItemName;

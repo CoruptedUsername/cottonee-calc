@@ -94,6 +94,11 @@ export class Side implements State.Side {
   isPowerSpot: boolean;
   isSteelySpirit: boolean;
   isSwitching?: 'out' | 'in';
+  isBlastblighted?: boolean;
+  isBubbleblighted?: boolean;
+  isDefenseDown?: boolean;
+  isStenched?: boolean;
+  isRusted?: boolean;
 
   constructor(side: State.Side = {}) {
     this.spikes = side.spikes || 0;
