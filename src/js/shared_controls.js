@@ -293,7 +293,7 @@ $(".ability").bind("keyup change", function () {
 	}
 	var boostedStat = $(this).closest(".poke-info").find(".boostedStat");
 
-	if (ability === "Protosynthesis" || ability === "Quark Drive") {
+	if (ability === "Protosynthesis" || ability === "Quark Drive" || ability === "Protopyre") {
 		boostedStat.show();
 		autosetQP($(this).closest(".poke-info"));
 	} else {
@@ -321,7 +321,7 @@ function autosetQP(pokemon) {
 	if (!boostedStat || boostedStat === "auto") {
 		if (
 			(item === "Booster Energy") ||
-			(ability === "Protosynthesis" && currentWeather === "Sun") ||
+			((ability === "Protosynthesis" || ability === "Protopyre") && currentWeather === "Sun") ||
 			(ability === "Quark Drive" && currentTerrain === "Electric")
 		) {
 			pokemon.find(".boostedStat").val("auto");
@@ -1231,6 +1231,8 @@ function createField() {
 	var isSaltCured = [$("#saltCureL").prop("checked"), $("#saltCureR").prop("checked")];
 	var isForesight = [$("#foresightL").prop("checked"), $("#foresightR").prop("checked")];
 	var isHelpingHand = [$("#helpingHandL").prop("checked"), $("#helpingHandR").prop("checked")];
+	var isCharged = [$("#chargeL").prop("checked"), $("#chargeR").prop("checked")];
+	var isDragonCharged = [$("#dragonChargeL").prop("checked"), $("#dragonChargeR").prop("checked")];
 	var isBlastblighted = [$("#blastblightL").prop("checked"), $("#blastblightR").prop("checked")];
 	var isBubbleblighted = [$("#bubbleblightL").prop("checked"), $("#bubbleblightR").prop("checked")];
 	var isDefenseDown = [$("#defenseDownL").prop("checked"), $("#defenseDownR").prop("checked")];
@@ -1270,6 +1272,8 @@ function createField() {
 			isBattery: isBattery[i],
 			isPowerSpot: isPowerSpot[i],
 			isSwitching: isSwitchingOut[i] ? 'out' : undefined,
+			isCharged: isCharged[i],
+			isDragoncharged: isDragonCharged[i],
 			isBlastblighted: isBlastblighted[i],
 			isBubbleblighted: isBubbleblighted[i],
 			isDefenseDown: isDefenseDown[i],
@@ -1556,6 +1560,10 @@ function clearField() {
 	$("#foresightR").prop("checked", false);
 	$("#helpingHandL").prop("checked", false);
 	$("#helpingHandR").prop("checked", false);
+	$("#chargeL").prop("checked", false);
+	$("#chargeR").prop("checked", false);
+	$("#dragonChargeL").prop("checked", false);
+	$("#dragonChargeR").prop("checked", false);
 	$("#blastblightL").prop("checked", false);
 	$("#blastblightR").prop("checked", false);
 	$("#bubbleblightL").prop("checked", false);

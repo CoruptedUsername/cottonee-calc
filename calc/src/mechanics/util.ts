@@ -81,7 +81,16 @@ export function computeFinalStats(
   for (const [pokemon, side] of sides) {
     for (const stat of stats) {
       if (stat === 'spe') {
-        pokemon.stats.spe = getFinalSpeed(gen, pokemon, field, side);
+        let opp;
+        let oppSide;
+        if (pokemon === attacker) {
+          opp = defender;
+          oppSide = field.defenderSide;
+        } else {
+          opp = attacker;
+          oppSide = field.attackerSide;
+        }
+        pokemon.stats.spe = getFinalSpeed(gen, pokemon, field, side, opp, oppSide);
       } else {
         pokemon.stats[stat] = getModifiedStat(pokemon.rawStats[stat]!, pokemon.boosts[stat]!, gen);
       }
@@ -90,7 +99,7 @@ export function computeFinalStats(
 }
 
 export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, side: Side,
-  opp?: Pokemon) {
+  opp?: Pokemon, oppSide?: Side) {
   const weather = field.weather || '';
   const terrain = field.terrain;
   let speed = getModifiedStat(pokemon.rawStats.spe, pokemon.boosts.spe, gen);
@@ -116,11 +125,11 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
     speedMods.push(6144);
   }
 
-  if (opp) {
+  if (opp && oppSide) {
     if (pokemon.hasAbility('Bewitching Tail') && opp.hasStatus('drs')) {
       speedMods.push(4915);
     } else if (pokemon.hasAbility('Gravedrum') && (opp.hasStatus('brn') ||
-      field.defenderSide.isBlastblighted)) { // Todo: Add Blast support
+      oppSide.isBlastblighted)) {
       speedMods.push(8192);
     }
   }
@@ -563,7 +572,7 @@ export function isQPActive(
   const terrain = field.terrain;
 
   return (
-    (pokemon.hasAbility('Protosynthesis') &&
+    ((pokemon.hasAbility('Protosynthesis') || pokemon.hasAbility('Protopyre')) &&
       (weather.includes('Sun') || pokemon.hasItem('Booster Energy'))) ||
     (pokemon.hasAbility('Quark Drive') &&
       (terrain === 'Electric' || pokemon.hasItem('Booster Energy'))) ||

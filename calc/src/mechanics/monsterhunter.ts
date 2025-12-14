@@ -1494,7 +1494,7 @@ export function calculateAtModsMH(
   } else if (attacker.hasAbility('Frostnip') && defender.hasStatus('frb')) {
     atMods.push(6144);
     desc.attackerAbility = attacker.ability;
-  } else if (attacker.hasAbility('Ice Breaker') && field.hasWeather('Absolute Zero')) {
+  } else if (attacker.hasAbility('Ice Breaker') && field.hasWeather('Snow', 'Absolute Zero')) {
     atMods.push(5325);
     desc.attackerAbility = attacker.ability;
   } else if (attacker.hasAbility('Duke\'s Bayonet') && field.defenderSide.isProtected &&
@@ -1502,6 +1502,14 @@ export function calculateAtModsMH(
     atMods.push(2048);
     desc.attackerAbility = attacker.ability;
     desc.isProtected = true;
+  } else if (attacker.hasAbility('Howling Thunder') && field.attackerSide.isCharged &&
+    move.category === 'Physical') {
+    atMods.push(8192);
+    desc.attackerAbility = attacker.ability;
+  } else if ((field.attackerSide.isDragonCharged && move.hasType('Dragon')) &&
+    attacker.hasAbility('Wyversion')) {
+    atMods.push(8192);
+    desc.attackerAbility = attacker.ability;
   }
 
   if (
@@ -1587,6 +1595,9 @@ export function calculateAtModsMH(
   ) {
     atMods.push(6144);
     desc.attackerItem = attacker.item;
+  }
+  if ((field.attackerSide.isCharged && move.hasType('Electric'))) {
+    atMods.push(8192);
   }
   return atMods;
 }

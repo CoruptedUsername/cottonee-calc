@@ -94,6 +94,8 @@ export class Side implements State.Side {
   isPowerSpot: boolean;
   isSteelySpirit: boolean;
   isSwitching?: 'out' | 'in';
+  isCharged?: boolean;
+  isDragonCharged?: boolean;
   isBlastblighted?: boolean;
   isBubbleblighted?: boolean;
   isDefenseDown?: boolean;
@@ -123,6 +125,8 @@ export class Side implements State.Side {
     this.isPowerSpot = !!side.isPowerSpot;
     this.isSteelySpirit = !!side.isSteelySpirit;
     this.isSwitching = side.isSwitching;
+    this.isCharged = !!side.isCharged;
+    this.isDragonCharged = !!side.isDragoncharged;
     this.isBlastblighted = !!side.isBlastblighted;
     this.isBubbleblighted = !!side.isBubbleblighted;
     this.isDefenseDown = !!side.isDefenseDown;

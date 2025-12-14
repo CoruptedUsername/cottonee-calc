@@ -647,7 +647,7 @@ function getEndOfTurn(
     }
   } else if (field.hasWeather('Absolute Zero')) {
     if (
-      !defender.hasAbility('Absolute Zero', 'Ice Body', 'Icebreaker', 'Magic Guard', 'Overcoat',
+      !defender.hasAbility('Absolute Zero', 'Ice Body', 'Ice Breaker', 'Magic Guard', 'Overcoat',
         'Snow Cloak', 'Slush Rush') &&
       !defender.hasItem('Safety Goggles')
     ) {
