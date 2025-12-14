@@ -152,7 +152,8 @@ export function calculateMH(
   }
 
   const breaksProtect = move.breaksProtect || move.isZ || attacker.isDynamaxed ||
-  (attacker.hasAbility('Unseen Fist') && move.flags.contact);
+  (attacker.hasAbility('Unseen Fist') && move.flags.contact) ||
+    (attacker.hasAbility('Duke\'s Bayonet') && move.flags.contact);
 
   if (field.defenderSide.isProtected && !breaksProtect) {
     desc.isProtected = true;
@@ -336,6 +337,9 @@ export function calculateMH(
     field.defenderSide.isReflect = false;
     field.defenderSide.isLightScreen = false;
     field.defenderSide.isAuroraVeil = false;
+  } else if (move.hasType('Water') && defender.hasAbility('Permafrost')) {
+    type = 'Ice';
+    desc.defenderAbility = defender.ability;
   }
 
   let hasAteAbilityTypeChange = false;
@@ -403,7 +407,7 @@ export function calculateMH(
       field.defenderSide.isForesight;
   const isRingTarget =
     defender.hasItem('Ring Target') && !defender.hasAbility('Klutz');
-  const isPerforated = attacker.hasAbility('Perforated');
+  const isPerforated = attacker.hasAbility('Perforating');
   const type1Effectiveness = getMoveEffectiveness(
     gen,
     move,
@@ -1476,6 +1480,20 @@ export function calculateAtModsMH(
     defender.boosts.spe < 0)) {
     atMods.push(5325);
     desc.attackerAbility = attacker.ability;
+  } else if (attacker.hasAbility('Bewitching Tail') && defender.hasStatus('drs')) {
+    atMods.push(4915);
+    desc.attackerAbility = attacker.ability;
+  } else if (attacker.hasAbility('Frostnip') && defender.hasStatus('frb')) {
+    atMods.push(6144);
+    desc.attackerAbility = attacker.ability;
+  } else if (attacker.hasAbility('Ice Breaker') && field.hasWeather('Absolute Zero')) {
+    atMods.push(5325);
+    desc.attackerAbility = attacker.ability;
+  } else if (attacker.hasAbility('Duke\'s Bayonet') && field.defenderSide.isProtected &&
+    move.flags.contact) {
+    atMods.push(2048);
+    desc.attackerAbility = attacker.ability;
+    desc.isProtected = true;
   }
 
   if (
@@ -1657,6 +1675,13 @@ export function calculateDfModsMH(
     desc.defenderAbility = defender.ability;
   } else if (defender.hasAbility('Fur Coat') && hitsPhysical) {
     dfMods.push(8192);
+    desc.defenderAbility = defender.ability;
+  } else if (defender.hasAbility('Bewitching Tail') && attacker.hasStatus('drs')) {
+    dfMods.push(4915);
+    desc.defenderAbility = defender.ability;
+  } else if (defender.hasAbility('Sacred Jewel') && !hitsPhysical && (defender.hasStatus('brn',
+    'drs', 'par', 'frb', 'psn', 'tox', 'dgb'))) {
+    dfMods.push(6144);
     desc.defenderAbility = defender.ability;
   }
   // Pokemon with "-of Ruin" Ability are immune to the opposing "-of Ruin" ability

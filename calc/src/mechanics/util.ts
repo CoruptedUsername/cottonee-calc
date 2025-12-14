@@ -89,7 +89,8 @@ export function computeFinalStats(
   }
 }
 
-export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, side: Side) {
+export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, side: Side,
+  opp?: Pokemon) {
   const weather = field.weather || '';
   const terrain = field.terrain;
   let speed = getModifiedStat(pokemon.rawStats.spe, pokemon.boosts.spe, gen);
@@ -113,6 +114,14 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
     speedMods.push(2048);
   } else if (isQPActive(pokemon, field) && getQPBoostedStat(pokemon, gen) === 'spe') {
     speedMods.push(6144);
+  }
+
+  if (opp) {
+    if (pokemon.hasAbility('Bewitching Tail') && opp.hasStatus('drs')) {
+      speedMods.push(4915);
+    } else if (pokemon.hasAbility('Gravedrum') && opp.hasStatus('brn')) { // Todo: Add Blast support
+      speedMods.push(8192);
+    }
   }
 
   if (!pokemon.hasAbility('Absolute Zero') && weather.includes('Absolute Zero')) {
