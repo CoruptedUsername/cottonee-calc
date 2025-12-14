@@ -123,6 +123,11 @@ export class Side implements State.Side {
     this.isPowerSpot = !!side.isPowerSpot;
     this.isSteelySpirit = !!side.isSteelySpirit;
     this.isSwitching = side.isSwitching;
+    this.isBlastblighted = !!side.isBlastblighted;
+    this.isBubbleblighted = !!side.isBubbleblighted;
+    this.isDefenseDown = !!side.isDefenseDown;
+    this.isStenched = !!side.isStenched;
+    this.isRusted = !!side.isRusted;
   }
 
   clone() {
