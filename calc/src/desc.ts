@@ -54,6 +54,8 @@ export interface RawDesc {
   weather?: Weather;
   isDefenderDynamaxed?: boolean;
   isDefenseDown?: boolean;
+  isCharged?: boolean;
+  isDragonCharged?: boolean;
 }
 
 export function display(
@@ -1189,6 +1191,12 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   output += description.attackerName + ' ';
   if (description.isHelpingHand) {
     output += 'Helping Hand ';
+  }
+  if (description.isCharged) {
+    output += 'Charged ';
+  }
+  if (description.isDragonCharged) {
+    output += 'Dragon Charged ';
   }
   if (description.isFlowerGiftAttacker) {
     output += 'with an ally\'s Flower Gift ';

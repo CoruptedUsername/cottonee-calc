@@ -1315,7 +1315,7 @@ export function calculateBPModsMH(
     desc.alliesFainted = attacker.alliesFainted;
   }
 
-  if (attacker.hasAbility('Frozen Calamity') && attacker.foesFainted) {
+  if (attacker.hasAbility('Frozen Calamity') && attacker.foesFainted && move.hasType('Ice')) {
     const powMod = [4096, 4301, 4506, 4710, 4915, 5120];
     bpMods.push(powMod[Math.min(5, attacker.foesFainted)]);
     desc.attackerAbility = attacker.ability;
@@ -1513,7 +1513,7 @@ export function calculateAtModsMH(
     move.category === 'Physical') {
     atMods.push(8192);
     desc.attackerAbility = attacker.ability;
-  } else if ((field.attackerSide.isDragonCharged && move.hasType('Dragon')) &&
+  } else if (field.attackerSide.isDragonCharged && move.hasType('Dragon') &&
     attacker.hasAbility('Wyversion')) {
     atMods.push(8192);
     desc.attackerAbility = attacker.ability;

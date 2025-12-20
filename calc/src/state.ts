@@ -79,8 +79,8 @@ export namespace State {
     isPowerSpot?: boolean;
     isSteelySpirit?: boolean;
     isSwitching?: 'out' | 'in';
-    isCharged?: boolean,
-    isDragoncharged?: boolean,
+    isCharged?: boolean;
+    isDragoncharged?: boolean;
     isBlastblighted?: boolean;
     isBubbleblighted?: boolean;
     isDefenseDown?: boolean;
