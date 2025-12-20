@@ -23,6 +23,7 @@ export interface RawDesc {
   defenseEVs?: string;
   hits?: number;
   alliesFainted?: number;
+  foesFainted?: number;
   isStellarFirstUse?: boolean;
   isBeadsOfRuin?: boolean;
   isSwordOfRuin?: boolean;
@@ -541,7 +542,11 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
     const effectiveness =
       rockType.effectiveness[defender.types[0]]! *
       (defender.types[1] ? rockType.effectiveness[defender.types[1]]! : 1);
-    damage += Math.floor((effectiveness * defender.maxHP()) / 8);
+    if (defender.hasAbility('Fervent Scales')) {
+      damage += Math.floor((effectiveness * defender.maxHP()) / 16);
+    } else {
+      damage += Math.floor((effectiveness * defender.maxHP()) / 8);
+    }
     texts.push('Stealth Rock');
   }
   if (defenderSide.steelsurge && !defender.hasAbility('Magic Guard', 'Mountaineer')) {
@@ -549,7 +554,11 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
     const effectiveness =
       steelType.effectiveness[defender.types[0]]! *
       (defender.types[1] ? steelType.effectiveness[defender.types[1]]! : 1);
-    damage += Math.floor((effectiveness * defender.maxHP()) / 8);
+    if (defender.hasAbility('Fervent Scales')) {
+      damage += Math.floor((effectiveness * defender.maxHP()) / 16);
+    } else {
+      damage += Math.floor((effectiveness * defender.maxHP()) / 8);
+    }
     texts.push('Steelsurge');
   }
 
@@ -558,24 +567,40 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
       !defender.hasItem('Air Balloon')
   ) {
     if (defenderSide.spikes === 1) {
-      damage += Math.floor(defender.maxHP() / 8);
+      if (defender.hasAbility('Fervent Scales')) {
+        damage += Math.floor((defender.maxHP()) / 16);
+      } else {
+        damage += Math.floor((defender.maxHP()) / 8);
+      }
       if (gen.num === 2) {
         texts.push('Spikes');
       } else {
         texts.push('1 layer of Spikes');
       }
     } else if (defenderSide.spikes === 2) {
-      damage += Math.floor(defender.maxHP() / 6);
+      if (defender.hasAbility('Fervent Scales')) {
+        damage += Math.floor((defender.maxHP()) / 12);
+      } else {
+        damage += Math.floor((defender.maxHP()) / 6);
+      }
       texts.push('2 layers of Spikes');
     } else if (defenderSide.spikes === 3) {
-      damage += Math.floor(defender.maxHP() / 4);
+      if (defender.hasAbility('Fervent Scales')) {
+        damage += Math.floor((defender.maxHP()) / 8);
+      } else {
+        damage += Math.floor((defender.maxHP()) / 4);
+      }
       texts.push('3 layers of Spikes');
     }
   }
 
   if (defenderSide.isBlastblighted) {
     if (!defender.hasAbility('Magic Guard')) {
-      damage += Math.floor(defender.maxHP() / 6);
+      if (defender.hasAbility('Fervent Scales')) {
+        damage += Math.floor((defender.maxHP()) / 12);
+      } else {
+        damage += Math.floor((defender.maxHP()) / 6);
+      }
       texts.push('Blastblight');
     }
   }
@@ -633,7 +658,11 @@ function getEndOfTurn(
         'Sand Veil', 'Tempest Energy', 'Tempest Force') &&
       !defender.hasItem('Safety Goggles')
     ) {
-      damage -= Math.floor(defender.maxHP() / (gen.num === 2 ? 8 : 16));
+      if (defender.hasAbility('Fervent Scales')) {
+        damage -= Math.floor(defender.maxHP() / (gen.num === 2 ? 16 : 32));
+      } else {
+        damage -= Math.floor(defender.maxHP() / (gen.num === 2 ? 8 : 16));
+      }
       texts.push('sandstorm damage');
     }
   } else if (field.hasWeather('Dust Devil')) {
@@ -642,7 +671,11 @@ function getEndOfTurn(
         'Sand Veil', 'Tempest Energy', 'Tempest Force') &&
       !defender.hasItem('Safety Goggles')
     ) {
-      damage -= Math.floor(defender.maxHP() / 16);
+      if (defender.hasAbility('Fervent Scales')) {
+        damage += Math.floor((defender.maxHP()) / 32);
+      } else {
+        damage += Math.floor((defender.maxHP()) / 16);
+      }
       texts.push('Dust Devil damage');
     }
   } else if (field.hasWeather('Absolute Zero')) {
@@ -651,12 +684,20 @@ function getEndOfTurn(
         'Snow Cloak', 'Slush Rush') &&
       !defender.hasItem('Safety Goggles')
     ) {
-      damage -= Math.floor(defender.maxHP() / 16);
+      if (defender.hasAbility('Fervent Scales')) {
+        damage += Math.floor((defender.maxHP()) / 32);
+      } else {
+        damage += Math.floor((defender.maxHP()) / 16);
+      }
       texts.push('Absolute Zero damage');
     }
   } else if (field.hasWeather('Hail', 'Snow', 'Absolute Zero')) {
     if (defender.hasAbility('Ice Body') && !healBlock) {
-      damage += Math.floor(defender.maxHP() / 16);
+      if (defender.hasAbility('Fervent Scales')) {
+        damage += Math.floor((defender.maxHP()) / 32);
+      } else {
+        damage += Math.floor((defender.maxHP()) / 16);
+      }
       texts.push('Ice Body recovery');
     } else if (
       !defender.hasType('Ice') &&
@@ -664,7 +705,11 @@ function getEndOfTurn(
       !defender.hasItem('Safety Goggles') &&
       field.hasWeather('Hail')
     ) {
-      damage -= Math.floor(defender.maxHP() / 16);
+      if (defender.hasAbility('Fervent Scales')) {
+        damage += Math.floor((defender.maxHP()) / 32);
+      } else {
+        damage += Math.floor((defender.maxHP()) / 16);
+      }
       texts.push('hail damage');
     } else if (defender.hasAbility('Snow Seethe') &&
       field.hasWeather('Snow', 'Absolute Zero')) {
@@ -683,12 +728,20 @@ function getEndOfTurn(
         texts.push('Black Sludge recovery');
       }
     } else if (!defender.hasAbility('Magic Guard', 'Klutz')) {
-      damage -= Math.floor(defender.maxHP() / 8);
+      if (defender.hasAbility('Fervent Scales')) {
+        damage += Math.floor((defender.maxHP()) / 16);
+      } else {
+        damage += Math.floor((defender.maxHP()) / 8);
+      }
       texts.push('Black Sludge damage');
     }
   } else if (defender.hasItem('Sticky Barb') && !loseItem &&
     !defender.hasAbility('Magic Guard', 'Klutz')) {
-    damage -= Math.floor(defender.maxHP() / 8);
+    if (defender.hasAbility('Fervent Scales')) {
+      damage += Math.floor((defender.maxHP()) / 16);
+    } else {
+      damage += Math.floor((defender.maxHP()) / 8);
+    }
     texts.push('Sticky Barb damage');
   }
 
@@ -704,7 +757,11 @@ function getEndOfTurn(
   if (field.defenderSide.isSeeded) {
     if (!defender.hasAbility('Magic Guard')) {
       // 1/16 in gen 1, 1/8 in gen 2 onwards
-      damage -= Math.floor(defender.maxHP() / (gen.num >= 2 ? 8 : 16));
+      if (defender.hasAbility('Fervent Scales')) {
+        damage -= Math.floor(defender.maxHP() / (gen.num >= 2 ? 16 : 32));
+      } else {
+        damage -= Math.floor(defender.maxHP() / (gen.num >= 2 ? 8 : 16));
+      }
       texts.push('Leech Seed damage');
     }
   }
@@ -713,7 +770,11 @@ function getEndOfTurn(
     let recovery = Math.floor(attacker.maxHP() / (gen.num >= 2 ? 8 : 16));
     if (defender.hasItem('Big Root')) recovery = Math.trunc(recovery * 5324 / 4096);
     if (attacker.hasAbility('Liquid Ooze')) {
-      damage -= recovery;
+      if (attacker.hasAbility('Fervent Scales')) {
+        damage -= recovery / 2;
+      } else {
+        damage -= recovery;
+      }
       texts.push('Liquid Ooze damage');
     } else if (!healBlock) {
       damage += recovery;
@@ -735,7 +796,11 @@ function getEndOfTurn(
         texts.push('Poison Heal');
       }
     } else if (!defender.hasAbility('Magic Guard')) {
-      damage -= Math.floor(defender.maxHP() / (gen.num === 1 ? 16 : 8));
+      if (defender.hasAbility('Fervent Scales')) {
+        damage -= Math.floor(defender.maxHP() / (gen.num === 1 ? 32 : 16));
+      } else {
+        damage -= Math.floor(defender.maxHP() / (gen.num === 1 ? 16 : 8));
+      }
       texts.push('poison damage');
     }
   } else if (defender.hasStatus('tox')) {
@@ -748,7 +813,7 @@ function getEndOfTurn(
       texts.push('toxic damage');
     }
   } else if (defender.hasStatus('brn')) {
-    if (defender.hasAbility('Heatproof')) {
+    if (defender.hasAbility('Heatproof') || defender.hasAbility('Fervent Scales')) {
       damage -= Math.floor(defender.maxHP() / (gen.num > 6 ? 32 : 16));
       texts.push('reduced burn damage');
     } else if (!defender.hasAbility('Magic Guard')) {
@@ -757,12 +822,20 @@ function getEndOfTurn(
     }
   } else if (defender.hasStatus('dgb')) {
     if (!defender.hasType('Fairy') && !defender.hasAbility('Magic Guard')) {
-      damage -= Math.floor(defender.maxHP() / 16);
+      if (defender.hasAbility('Fervent Scales')) {
+        damage -= Math.floor(defender.maxHP() / 32);
+      } else {
+        damage -= Math.floor(defender.maxHP() / 16);
+      }
       texts.push('dragonblight damage');
     }
   } else if (defender.hasStatus('frb')) {
     if (!defender.hasAbility('Magic Guard')) {
-      damage -= Math.floor(defender.maxHP() / 16);
+      if (defender.hasAbility('Fervent Scales')) {
+        damage -= Math.floor(defender.maxHP() / 32);
+      } else {
+        damage -= Math.floor(defender.maxHP() / 16);
+      }
       texts.push('frostbite damage');
     }
   } else if (
@@ -770,56 +843,100 @@ function getEndOfTurn(
     attacker.hasAbility('Bad Dreams') &&
     !defender.hasAbility('Magic Guard')
   ) {
-    damage -= Math.floor(defender.maxHP() / 8);
+    if (defender.hasAbility('Fervent Scales')) {
+      damage -= Math.floor(defender.maxHP() / 16);
+    } else {
+      damage -= Math.floor(defender.maxHP() / 8);
+    }
     texts.push('Bad Dreams');
   } else if (defender.hasStatus('par') && attacker.hasAbility('Crystalblight')) {
     if (!defender.hasAbility('Magic Guard')) {
-      damage -= Math.floor(defender.maxHP() / 16);
+      if (defender.hasAbility('Fervent Scales')) {
+        damage -= Math.floor(defender.maxHP() / 32);
+      } else {
+        damage -= Math.floor(defender.maxHP() / 16);
+      }
       texts.push('crystalblight damage');
     }
   }
 
   if (!defender.hasAbility('Magic Guard') && TRAPPING.includes(move.name)) {
     if (attacker.hasItem('Binding Band')) {
-      damage -= gen.num > 5 ? Math.floor(defender.maxHP() / 6) : Math.floor(defender.maxHP() / 8);
+      if (defender.hasAbility('Fervent Scales')) {
+        damage -= [1, 2, 3].includes(gen.num) ? Math.floor(defender.maxHP() / 12)
+          : Math.floor(defender.maxHP() / 16);
+      } else {
+        damage -= [1, 2, 3].includes(gen.num) ? Math.floor(defender.maxHP() / 6)
+          : Math.floor(defender.maxHP() / 8);
+      }
       texts.push('trapping damage');
     } else {
-      damage -= gen.num > 5 ? Math.floor(defender.maxHP() / 8) : Math.floor(defender.maxHP() / 16);
+      if (defender.hasAbility('Fervent Scales')) {
+        damage -= [1, 2, 3].includes(gen.num) ? Math.floor(defender.maxHP() / 16)
+          : Math.floor(defender.maxHP() / 32);
+      } else {
+        damage -= [1, 2, 3].includes(gen.num) ? Math.floor(defender.maxHP() / 8)
+          : Math.floor(defender.maxHP() / 16);
+      }
       texts.push('trapping damage');
     }
   }
   if (field.defenderSide.isSaltCured && !defender.hasAbility('Magic Guard')) {
     const isWaterOrSteel = defender.hasType('Water', 'Steel');
-    damage -= Math.floor(defender.maxHP() / (isWaterOrSteel ? 4 : 8));
+    if (defender.hasAbility('Fervent Scales')) {
+      damage -= Math.floor(defender.maxHP() / (isWaterOrSteel ? 8 : 16));
+    } else {
+      damage -= Math.floor(defender.maxHP() / (isWaterOrSteel ? 4 : 8));
+    }
     texts.push('Salt Cure');
   }
   if (!defender.hasType('Fire') && !defender.hasAbility('Magic Guard') &&
       (move.named('Fire Pledge (Grass Pledge Boosted)', 'Grass Pledge (Fire Pledge Boosted)'))) {
-    damage -= Math.floor(defender.maxHP() / 8);
+    if (defender.hasAbility('Fervent Scales')) {
+      damage -= Math.floor(defender.maxHP() / 16);
+    } else {
+      damage -= Math.floor(defender.maxHP() / 8);
+    }
     texts.push('Sea of Fire damage');
   }
 
   if (!defender.hasAbility('Magic Guard') && !defender.hasType('Grass') &&
       (field.defenderSide.vinelash || move.named('G-Max Vine Lash'))) {
-    damage -= Math.floor(defender.maxHP() / 6);
+    if (defender.hasAbility('Fervent Scales')) {
+      damage -= Math.floor(defender.maxHP() / 12);
+    } else {
+      damage -= Math.floor(defender.maxHP() / 6);
+    }
     texts.push('Vine Lash damage');
   }
 
   if (!defender.hasAbility('Magic Guard') && !defender.hasType('Fire') &&
       (field.defenderSide.wildfire || move.named('G-Max Wildfire'))) {
-    damage -= Math.floor(defender.maxHP() / 6);
+    if (defender.hasAbility('Fervent Scales')) {
+      damage -= Math.floor(defender.maxHP() / 12);
+    } else {
+      damage -= Math.floor(defender.maxHP() / 6);
+    }
     texts.push('Wildfire damage');
   }
 
   if (!defender.hasAbility('Magic Guard') && !defender.hasType('Water') &&
       (field.defenderSide.cannonade || move.named('G-Max Cannonade'))) {
-    damage -= Math.floor(defender.maxHP() / 6);
+    if (defender.hasAbility('Fervent Scales')) {
+      damage -= Math.floor(defender.maxHP() / 12);
+    } else {
+      damage -= Math.floor(defender.maxHP() / 6);
+    }
     texts.push('Cannonade damage');
   }
 
   if (!defender.hasAbility('Magic Guard') && !defender.hasType('Rock') &&
       (field.defenderSide.volcalith || move.named('G-Max Volcalith'))) {
-    damage -= Math.floor(defender.maxHP() / 6);
+    if (defender.hasAbility('Fervent Scales')) {
+      damage -= Math.floor(defender.maxHP() / 12);
+    } else {
+      damage -= Math.floor(defender.maxHP() / 6);
+    }
     texts.push('Volcalith damage');
   }
 
@@ -1050,6 +1167,10 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   if (description.alliesFainted) {
     output += Math.min(5, description.alliesFainted) +
       ` ${description.alliesFainted === 1 ? 'ally' : 'allies'} fainted `;
+  }
+  if (description.foesFainted) {
+    output += Math.min(5, description.foesFainted) +
+      ` ${description.foesFainted === 1 ? 'foe' : 'foes'} fainted `;
   }
   if (description.attackerTera) {
     output += `Tera ${description.attackerTera} `;

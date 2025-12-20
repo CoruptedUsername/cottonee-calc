@@ -494,7 +494,7 @@ const SV = SS.concat([
   'Wellspring Mask',
 ]);
 
-const MH = SS.concat([
+const MH = SV.concat([
   'Frost Orb',
 ]);
 

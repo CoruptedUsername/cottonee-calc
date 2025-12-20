@@ -22,7 +22,9 @@ export class Pokemon implements State.Pokemon {
   isDynamaxed?: boolean;
   dynamaxLevel?: number;
   alliesFainted?: number;
+  foesFainted?: number;
   boostedStat?: I.StatIDExceptHP | 'auto';
+  reactiveCore?: string;
   item?: I.ItemName;
   disabledItem?: I.ItemName;
   teraType?: I.TypeName;
@@ -66,7 +68,9 @@ export class Pokemon implements State.Pokemon {
     this.dynamaxLevel = this.isDynamaxed
       ? (options.dynamaxLevel === undefined ? 10 : options.dynamaxLevel) : undefined;
     this.alliesFainted = options.alliesFainted;
+    this.foesFainted = options.foesFainted;
     this.boostedStat = options.boostedStat;
+    this.reactiveCore = options.reactiveCore;
     this.teraType = options.teraType;
     this.item = options.item;
     this.nature = options.nature || ('Serious' as I.NatureName);
@@ -163,7 +167,9 @@ export class Pokemon implements State.Pokemon {
       isDynamaxed: this.isDynamaxed,
       dynamaxLevel: this.dynamaxLevel,
       alliesFainted: this.alliesFainted,
+      foesFainted: this.foesFainted,
       boostedStat: this.boostedStat,
+      reactiveCore: this.reactiveCore,
       item: this.item,
       gender: this.gender,
       nature: this.nature,

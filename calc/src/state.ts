@@ -9,7 +9,9 @@ export namespace State {
     isDynamaxed?: boolean;
     dynamaxLevel?: number;
     alliesFainted?: number;
+    foesFainted?: number;
     boostedStat?: I.StatIDExceptHP | 'auto';
+    reactiveCore?: string;
     item?: I.ItemName;
     gender?: I.GenderName;
     nature?: I.NatureName;

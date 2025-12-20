@@ -1315,6 +1315,13 @@ export function calculateBPModsMH(
     desc.alliesFainted = attacker.alliesFainted;
   }
 
+  if (attacker.hasAbility('Frozen Calamity') && attacker.foesFainted) {
+    const powMod = [4096, 4301, 4506, 4710, 4915, 5120];
+    bpMods.push(powMod[Math.min(5, attacker.foesFainted)]);
+    desc.attackerAbility = attacker.ability;
+    desc.foesFainted = attacker.foesFainted;
+  }
+
   // Items
 
   if (attacker.hasItem(`${move.type} Gem`)) {
@@ -1509,6 +1516,9 @@ export function calculateAtModsMH(
   } else if ((field.attackerSide.isDragonCharged && move.hasType('Dragon')) &&
     attacker.hasAbility('Wyversion')) {
     atMods.push(8192);
+    desc.attackerAbility = attacker.ability;
+  } else if (attacker.hasAbility('Reactive Core') && attacker.reactiveCore === 'warm') {
+    atMods.push(5325);
     desc.attackerAbility = attacker.ability;
   }
 
@@ -1705,6 +1715,9 @@ export function calculateDfModsMH(
   } else if (attacker.hasAbility('Rusted Gale') && !defender.hasType('Steel')) {
     dfMods.push(3072);
     desc.attackerAbility = attacker.ability;
+  } else if (defender.hasAbility('Reactive Core') && defender.reactiveCore === 'cool') {
+    dfMods.push(5325);
+    desc.defenderAbility = defender.ability;
   }
   // Pokemon with "-of Ruin" Ability are immune to the opposing "-of Ruin" ability
   const isSwordOfRuinActive = (attacker.hasAbility('Sword of Ruin') || field.isSwordOfRuin) &&

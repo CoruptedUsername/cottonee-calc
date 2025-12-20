@@ -301,12 +301,31 @@ $(".ability").bind("keyup change", function () {
 		boostedStat.hide();
 	}
 
+	if (ability === "Reactive Core") {
+		$(this).closest(".poke-info").find(".reactiveCore").show();
+	} else {
+		$(this).closest(".poke-info").find(".reactiveCore").val("none");
+		$(this).closest(".poke-info").find(".reactiveCore").hide();
+	}
+
 	if (ability === "Supreme Overlord") {
 		$(this).closest(".poke-info").find(".alliesFainted").show();
 	} else {
 		$(this).closest(".poke-info").find(".alliesFainted").val('0');
 		$(this).closest(".poke-info").find(".alliesFainted").hide();
+	}
 
+	if (ability === "Frozen Calamity") {
+		$(this).closest(".poke-info").find(".foesFainted").show();
+	} else {
+		$(this).closest(".poke-info").find(".foesFainted").val('0');
+		$(this).closest(".poke-info").find(".foesFainted").hide();
+	}
+
+	if (ability === "Relentless") {
+		$(this).closest('.poke-info').find('.metronome').show();
+	} else {
+		$(this).closest('.poke-info').find('.metronome').hide();
 	}
 });
 
@@ -593,7 +612,7 @@ $(".move-selector").change(function () {
 $(".item").change(function () {
 	var itemName = $(this).val();
 	var $metronomeControl = $(this).closest('.poke-info').find('.metronome');
-	if (itemName === "Metronome" || $(this).closest(".poke-info").find(".ability").val() === 'Relentless') {
+	if (itemName === "Metronome") {
 		$metronomeControl.show();
 	} else {
 		$metronomeControl.hide();
@@ -1142,7 +1161,9 @@ function createPokemon(pokeInfo) {
 			evs: evs,
 			isDynamaxed: isDynamaxed,
 			alliesFainted: parseInt(pokeInfo.find(".alliesFainted").val()),
+			foesFainted: parseInt(pokeInfo.find(".foesFainted").val()),
 			boostedStat: pokeInfo.find(".boostedStat").val() || undefined,
+			reactiveCore: pokeInfo.find(".reactiveCore").val() || undefined,
 			teraType: teraType,
 			boosts: boosts,
 			curHP: curHP,

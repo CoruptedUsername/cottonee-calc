@@ -124,7 +124,9 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
   } else if (isQPActive(pokemon, field) && getQPBoostedStat(pokemon, gen) === 'spe') {
     speedMods.push(6144);
   }
-
+  if (side.isCharged && pokemon.hasAbility('Howling Thunder')) {
+    speedMods.push(6144);
+  }
   if (opp && oppSide) {
     if (pokemon.hasAbility('Bewitching Tail') && opp.hasStatus('drs')) {
       speedMods.push(4915);
