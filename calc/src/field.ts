@@ -126,7 +126,7 @@ export class Side implements State.Side {
     this.isSteelySpirit = !!side.isSteelySpirit;
     this.isSwitching = side.isSwitching;
     this.isCharged = !!side.isCharged;
-    this.isDragonCharged = !!side.isDragoncharged;
+    this.isDragonCharged = !!side.isDragonCharged;
     this.isBlastblighted = !!side.isBlastblighted;
     this.isBubbleblighted = !!side.isBubbleblighted;
     this.isDefenseDown = !!side.isDefenseDown;
