@@ -1158,6 +1158,12 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   output = appendIfSet(output, attackerLevel);
   output = appendIfSet(output, description.attackEVs);
   output = appendIfSet(output, description.attackerItem);
+  if (description.isDragonCharged) {
+    output += 'dragon charged';
+  }
+  if (description.isCharged) {
+    output += 'charged';
+  }
   output = appendIfSet(output, description.attackerAbility);
   output = appendIfSet(output, description.rivalry);
   if (description.isBurned) {
@@ -1191,12 +1197,6 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   output += description.attackerName + ' ';
   if (description.isHelpingHand) {
     output += 'Helping Hand ';
-  }
-  if (description.isCharged) {
-    output += 'Charged ';
-  }
-  if (description.isDragonCharged) {
-    output += 'Dragon Charged ';
   }
   if (description.isFlowerGiftAttacker) {
     output += 'with an ally\'s Flower Gift ';

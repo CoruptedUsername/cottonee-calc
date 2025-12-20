@@ -5500,7 +5500,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   },
   'Risen Burst': {
     bp: 60,
-    category: 'Special',
+    category: 'Special', // Todo: Implement category change based on strength
     type: 'Dark',
   },
   'Roughhouse': {

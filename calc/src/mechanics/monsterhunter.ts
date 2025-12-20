@@ -431,6 +431,9 @@ export function calculateMH(
     )
     : 1;
   let typeEffectiveness = type1Effectiveness * type2Effectiveness;
+  if (typeEffectiveness === 0 && attacker.hasAbility('Starving Bite') && move.flags.bite) {
+    typeEffectiveness = Math.max(type1Effectiveness, type2Effectiveness);
+  }
   if (defender.hasAbility('Airbag') && move.category === 'Physical' && typeEffectiveness > 1) {
     typeEffectiveness = 1;
   }
@@ -668,11 +671,11 @@ export function calculateMH(
     attacker.hasStatus('brn') &&
     move.category === 'Physical' &&
     !attacker.hasAbility('Guts') &&
-    !move.named('Facade');
+    !move.named('Facade') && !attacker.hasAbility('Reactive Core');
   desc.isBurned = applyBurn;
   const applyFrostbite =
     attacker.hasStatus('frb') &&
-    move.category === 'Special';
+    move.category === 'Special' && !attacker.hasAbility('Reactive Core');
   desc.isFrostbitten = applyFrostbite;
   const finalMods = calculateFinalModsMH(
     gen,
