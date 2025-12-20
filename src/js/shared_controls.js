@@ -1294,7 +1294,7 @@ function createField() {
 			isPowerSpot: isPowerSpot[i],
 			isSwitching: isSwitchingOut[i] ? 'out' : undefined,
 			isCharged: isCharged[i],
-			isDragoncharged: isDragonCharged[i],
+			isDragonCharged: isDragonCharged[i],
 			isBlastblighted: isBlastblighted[i],
 			isBubbleblighted: isBubbleblighted[i],
 			isDefenseDown: isDefenseDown[i],

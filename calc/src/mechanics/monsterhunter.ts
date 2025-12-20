@@ -1517,6 +1517,7 @@ export function calculateAtModsMH(
     attacker.hasAbility('Wyversion')) {
     atMods.push(8192);
     desc.attackerAbility = attacker.ability;
+    desc.isDragonCharged = true;
   } else if (attacker.hasAbility('Reactive Core') && attacker.reactiveCore === 'warm') {
     atMods.push(5325);
     desc.attackerAbility = attacker.ability;
@@ -1608,6 +1609,7 @@ export function calculateAtModsMH(
   }
   if ((field.attackerSide.isCharged && move.hasType('Electric'))) {
     atMods.push(8192);
+    desc.isCharged = true;
   }
   return atMods;
 }

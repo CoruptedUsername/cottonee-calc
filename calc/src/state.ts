@@ -80,7 +80,7 @@ export namespace State {
     isSteelySpirit?: boolean;
     isSwitching?: 'out' | 'in';
     isCharged?: boolean;
-    isDragoncharged?: boolean;
+    isDragonCharged?: boolean;
     isBlastblighted?: boolean;
     isBubbleblighted?: boolean;
     isDefenseDown?: boolean;
