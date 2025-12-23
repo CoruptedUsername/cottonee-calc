@@ -1155,10 +1155,10 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   output = appendIfSet(output, description.attackEVs);
   output = appendIfSet(output, description.attackerItem);
   if (description.isDragonCharged) {
-    output += 'dragon charged';
+    output += 'dragon charged ';
   }
   if (description.isCharged) {
-    output += 'charged';
+    output += 'charged ';
   }
   output = appendIfSet(output, description.attackerAbility);
   output = appendIfSet(output, description.rivalry);
