@@ -10517,7 +10517,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Dire Miralis': {
     types: ['Fire', 'Water'],
-    bs: {hp: 125, at: 100, df: 103, sa: 120, sd: 126, sp: 51},
+    bs: {hp: 124, at: 97, df: 100, sa: 120, sd: 126, sp: 58},
     weightkg: 0,
     abilities: {0: 'Megiddo\'s Gift'},
   },
