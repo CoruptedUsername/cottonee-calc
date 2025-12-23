@@ -11169,7 +11169,7 @@ const MH: {[name: string]: SpeciesData} = {
     bs: {hp: 88, at: 116, df: 104, sa: 72, sd: 90, sp: 112},
     weightkg: 0,
     abilities: {0: 'Sharpness'},
-    otherFormes: ['Greencuga', 'Nargacuga'],
+    otherFormes: ['Greencuga', 'Lucacuga'],
   },
   'Greencuga': {
     types: ['Grass', 'Steel'],
@@ -11693,7 +11693,7 @@ const MH: {[name: string]: SpeciesData} = {
     bs: {hp: 95, at: 83, df: 100, sa: 110, sd: 145, sp: 75},
     weightkg: 0,
     abilities: {0: 'Toxic Chain'},
-    otherFormes: ['Blackviel Hazak'],
+    otherFormes: ['Blackveil Hazak'],
   },
   'Blackveil Hazak': {
     types: ['Ghost', 'Grass'],
