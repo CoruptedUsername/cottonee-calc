@@ -89,7 +89,6 @@ export function calculateMH(
 
   checkWindRider(attacker, field.attackerSide);
   checkWindRider(defender, field.defenderSide);
-  // Todo: Add Dust Devil
   checkTempestEnergy(attacker, field.attackerSide, field.hasWeather('Sand', 'Dust Devil'));
   checkTempestEnergy(defender, field.defenderSide, field.hasWeather('Sand', 'Dust Devil'));
   checkTempestForce(attacker, field.attackerSide, field.hasWeather('Sand', 'Dust Devil'));
@@ -146,7 +145,7 @@ export function calculateMH(
     move.flags.contact = 0;
   }
 
-  if (move.named('Shell Side Arm') &&
+  if (move.named('Shell Side Arm', 'Risen Burst') &&
     getShellSideArmCategory(attacker, defender) === 'Physical') {
     move.flags.contact = 1;
   }
@@ -181,7 +180,7 @@ export function calculateMH(
     'Marvel Scale', "Mind's Eye", 'Mirror Armor', 'Motor Drive',
     'Multiscale', 'Oblivious', 'Overcoat', 'Own Tempo',
     'Pastel Veil', 'Punk Rock', 'Purifying Salt', 'Queenly Majesty',
-    'Sand Veil', 'Sap Sipper', 'Shell Armor', 'Shield Dust',
+    'Sand Cloak', 'Sap Sipper', 'Shell Armor', 'Shield Dust',
     'Simple', 'Snow Cloak', 'Solid Rock', 'Soundproof',
     'Sticky Hold', 'Storm Drain', 'Sturdy', 'Suction Cups',
     'Sweet Veil', 'Tangled Feet', 'Telepathy', 'Tera Shell',
@@ -334,7 +333,7 @@ export function calculateMH(
   ) {
     move.target = 'allAdjacentFoes';
     type = 'Stellar';
-  } else if (move.named('Brick Break', 'Psychic Fangs')) {
+  } else if (move.named('Brick Break', 'Psychic Fangs', 'Virulent Volley')) {
     field.defenderSide.isReflect = false;
     field.defenderSide.isLightScreen = false;
     field.defenderSide.isAuroraVeil = false;
@@ -408,6 +407,7 @@ export function calculateMH(
       field.defenderSide.isForesight;
   const isRingTarget =
     defender.hasItem('Ring Target') && !defender.hasAbility('Klutz');
+  const isGoggles = defender.hasItem('Safety Goggles') || defender.hasAbility('Overcoat');
   const type1Effectiveness = getMoveEffectiveness(
     gen,
     move,
@@ -416,7 +416,8 @@ export function calculateMH(
     field.isGravity,
     isRingTarget,
     attacker.hasAbility('Perforating'),
-    field.defenderSide.isRusted
+    field.defenderSide.isRusted,
+    isGoggles,
   );
   const type2Effectiveness = defender.types[1]
     ? getMoveEffectiveness(
@@ -427,7 +428,8 @@ export function calculateMH(
       field.isGravity,
       isRingTarget,
       attacker.hasAbility('Perforating'),
-      field.defenderSide.isRusted
+      field.defenderSide.isRusted,
+      isGoggles
     )
     : 1;
   let typeEffectiveness = type1Effectiveness * type2Effectiveness;
@@ -621,7 +623,7 @@ export function calculateMH(
   // #region (Special) Attack
   const attack = calculateAttackMH(gen, attacker, defender, move, field, desc, isCritical);
   const attackStat =
-    move.named('Shell Side Arm') &&
+    move.named('Shell Side Arm', 'Risen Burst') &&
     getShellSideArmCategory(attacker, defender) === 'Physical'
       ? 'atk'
       : move.named('Body Press')
@@ -635,7 +637,8 @@ export function calculateMH(
 
   const defense = calculateDefenseMH(gen, attacker, defender, move, field, desc, isCritical);
   const hitsPhysical = move.overrideDefensiveStat === 'def' || move.category === 'Physical' ||
-    (move.named('Shell Side Arm') && getShellSideArmCategory(attacker, defender) === 'Physical');
+    (move.named('Shell Side Arm', 'Risen Burst') &&
+      getShellSideArmCategory(attacker, defender) === 'Physical');
   const defenseStat = hitsPhysical ? 'def' : 'spd';
 
   // #endregion
@@ -838,6 +841,7 @@ export function calculateBasePowerMH(
     break;
   case 'Bolt Beak':
   case 'Fishious Rend':
+  case 'Bolt Breath':
     basePower = move.bp * (turnOrder !== 'last' ? 2 : 1);
     desc.moveBP = basePower;
     break;
@@ -1172,6 +1176,12 @@ export function calculateBPModsMH(
       bpMods.push(5461);
       desc.moveBP = basePower * (5461 / 4096);
     }
+  } else if (
+    ((move.named('Ancestral Thunder') || move.named('Double Shock')) &&
+          !attacker.hasType('Electric')) ||
+    (move.named('Crimson Dawn') && !attacker.hasType('Fire'))) {
+    bpMods.push(0);
+    desc.moveBP = 0;
   }
 
   if (field.attackerSide.isHelpingHand) {
@@ -1377,7 +1387,7 @@ export function calculateAttackMH(
 ) {
   let attack: number;
   const attackStat =
-    move.named('Shell Side Arm') &&
+    move.named('Shell Side Arm', 'Risen Burst') &&
     getShellSideArmCategory(attacker, defender) === 'Physical'
       ? 'atk'
       : move.named('Body Press')
@@ -1628,7 +1638,7 @@ export function calculateDefenseMH(
 ) {
   let defense: number;
   const hitsPhysical = move.overrideDefensiveStat === 'def' || move.category === 'Physical' ||
-    (move.named('Shell Side Arm') && getShellSideArmCategory(attacker, defender) === 'Physical');
+    (move.named('Shell Side Arm', 'Risen Burst') && getShellSideArmCategory(attacker, defender) === 'Physical');
   const defenseStat = hitsPhysical ? 'def' : 'spd';
   desc.defenseEVs = getStatDescriptionText(gen, defender, defenseStat, defender.nature);
   if (defender.boosts[defenseStat] === 0 ||

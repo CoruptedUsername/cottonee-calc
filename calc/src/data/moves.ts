@@ -41,6 +41,7 @@ export interface MoveData {
   readonly isPulse?: boolean;
   readonly isSlicing?: boolean;
   readonly isWind?: boolean;
+  readonly isPowder?: boolean;
 }
 
 const RBY: {[name: string]: MoveData} = {
@@ -5204,13 +5205,14 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Dark',
     self: {boosts: {spa: -2}},
   },
-  'Ancestral Thunder': { // Todo: Make fail if not electric type
+  'Ancestral Thunder': {
     bp: 130,
     category: 'Special',
     type: 'Electric',
+    makesContact: true,
   },
   'Apex Burst': {
-    bp: 100,
+    bp: 80,
     category: 'Special',
     type: 'Fairy',
   },
@@ -5236,6 +5238,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     type: 'Fire',
     isBite: true,
+    makesContact: true,
   },
   'Blaze Ball': {
     bp: 90,
@@ -5243,7 +5246,10 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Fire',
     isBullet: true,
   },
-  'Bolt Breath': { // Todo: Power doubling on faster
+  'Blazing Torque': {
+    bp: 100,
+  },
+  'Bolt Breath': {
     bp: 70,
     category: 'Special',
     type: 'Electric',
@@ -5259,12 +5265,14 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     type: 'Rock',
     isPunch: true,
+    makesContact: true,
   },
   'Brimstone Blade': {
     bp: 85,
     category: 'Physical',
     type: 'Rock',
     isSlicing: true,
+    makesContact: true,
   },
   'Butterflare': {
     bp: 100,
@@ -5275,6 +5283,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 70,
     category: 'Physical',
     type: 'Flying',
+    makesContact: true,
   },
   'Cloaking Glow': {
     bp: 80,
@@ -5297,21 +5306,24 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Bug',
     isSound: true,
   },
-  'Crimson Dawn': { // Todo: Make fail if not fire type
+  'Crimson Dawn': {
     bp: 130,
     category: 'Physical',
     type: 'Fire',
+    makesContact: true,
   },
   'Cruel Claw': {
     bp: 75,
     category: 'Physical',
     type: 'Dark',
+    makesContact: true,
   },
   'Cutwing Barrage': {
     bp: 90,
     category: 'Physical',
     type: 'Flying',
     isSlicing: true,
+    makesContact: true,
   },
   'Cyclone Rend': {
     bp: 70,
@@ -5328,6 +5340,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     type: 'Dragon',
     isBite: true,
+    makesContact: true,
   },
   'Devour': {
     bp: 0,
@@ -5344,7 +5357,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Status',
     type: 'Dragon',
   },
-  'Dragonator': { // Todo: Make SE against Dragons
+  'Dragonator': {
     bp: 100,
     category: 'Physical',
     type: 'Steel',
@@ -5361,6 +5374,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Normal',
     multihit: 3,
     multiaccuracy: true,
+    makesContact: true,
   },
   'Frenzy Pulse': {
     bp: 100,
@@ -5374,7 +5388,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     type: 'Dark',
   },
-  'Frozen Cleave': { // Todo: Make SE against Water
+  'Frozen Cleave': {
     bp: 70,
     category: 'Physical',
     type: 'Ice',
@@ -5396,6 +5410,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 100,
     category: 'Physical',
     type: 'Fairy',
+    makesContact: true,
   },
   'Harsh Sting': {
     bp: 15,
@@ -5433,11 +5448,13 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 60,
     category: 'Physical',
     type: 'Fire',
+    makesContact: true,
   },
   'Magna Lance': {
     bp: 70,
     category: 'Physical',
     type: 'Fire',
+    makesContact: true,
   },
   'Mental Load': {
     bp: 80,
@@ -5445,10 +5462,16 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Psychic',
     overrideOffensiveStat: 'spd',
   },
+  Moonblast: {
+    bp: 90,
+  },
   'Moss Bomb': {
     bp: 100,
     category: 'Physical',
     type: 'Grass',
+  },
+  'Mud Bomb': {
+    bp: 85,
   },
   'Nether Current': {
     bp: 80,
@@ -5472,10 +5495,11 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     type: 'Poison',
   },
-  'Powderkeg': { // Todo: Add and implement isPowder tag
+  'Powderkeg': {
     bp: 45,
     category: 'Special',
     type: 'Fire',
+    isPowder: true,
   },
   'Psycho Crush': {
     bp: 95,
@@ -5493,25 +5517,36 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Special',
     type: 'Ground',
   },
-  'Rage Ray': { // Todo: Implement level damage multiplier
+  'Rage Ray': {
     bp: 0,
     category: 'Special',
     type: 'Psychic',
   },
+  'Razor Wind': {
+    bp: 100,
+  },
   'Risen Burst': {
     bp: 60,
-    category: 'Special', // Todo: Implement category change based on strength
+    category: 'Special',
     type: 'Dark',
   },
   'Roughhouse': {
     bp: 90,
     category: 'Physical',
     type: 'Fighting',
+    makesContact: true,
+  },
+  'Ruinous Light': {
+    bp: 140,
+    category: 'Special',
+    type: 'Fairy',
+    recoil: [1, 2],
   },
   'Sedative Spine': {
     bp: 60,
     category: 'Physical',
     type: 'Bug',
+    makesContact: true,
   },
   'Selenite Beam': {
     bp: 90,
@@ -5533,6 +5568,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     type: 'Poison',
     isPunch: true,
+    makesContact: true,
   },
   'Slimy Spit': {
     bp: 50,
@@ -5550,6 +5586,13 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Poison',
     isBullet: true,
   },
+  'Sulfurous Blade': {
+    bp: 85,
+    category: 'Physical',
+    type: 'Poison',
+    isSlicing: true,
+    makesContact: true,
+  },
   'Supremacy Squall': {
     bp: 0,
     category: 'Status',
@@ -5560,12 +5603,14 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 50,
     category: 'Physical',
     type: 'Poison',
+    makesContact: true,
   },
   'Thousand Blades': {
     bp: 95,
     category: 'Physical',
     type: 'Fighting',
     isSlicing: true,
+    makesContact: true,
   },
   'Thunder Rush': {
     bp: 55,
@@ -5573,11 +5618,14 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Electric',
     willCrit: true,
   },
-  'Virulent Volley': { // Todo: Make destroy screens
+  'Virulent Volley': {
     bp: 25,
     category: 'Physical',
     type: 'Poison',
     multihit: [2, 5],
+  },
+  'Wicked Torque': {
+    bp: 100,
   },
   'Wretched Water': {
     bp: 90,
@@ -5586,6 +5634,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   },
 };
 const MH: {[name: string]: MoveData} = extend(true, {}, SV, MH_PATCH);
+delete MH['Light of Ruin'];
 
 export const MOVES = [{}, JS, GSC, ADV, MH, SV, TS, PM, SV, SV, SV];
 
@@ -5673,6 +5722,7 @@ class Move implements I.Move {
     if (data.isPulse) this.flags.pulse = 1;
     if (data.isSlicing) this.flags.slicing = 1;
     if (data.isWind) this.flags.wind = 1;
+    if (data.isPowder) this.flags.powder = 1;
 
     assignWithout(this, data, Move.FLAGS);
 

@@ -173,6 +173,7 @@ export function getMoveEffectiveness(
   isRingTarget?: boolean,
   isPerforated?: boolean,
   isRusted?: boolean,
+  isGoggles?: boolean,
 ) {
   if (isGhostRevealed && type === 'Ghost' && move.hasType('Normal', 'Fighting')) {
     return 1;
@@ -182,8 +183,14 @@ export function getMoveEffectiveness(
     return 1;
   } else if (move.named('Freeze-Dry') && type === 'Water') {
     return 2;
+  } else if (move.named('Frozen Cleave') && type === 'Water') {
+    return 2;
   } else if (move.named('Soul Wind') && type === 'Ghost') {
     return 2;
+  } else if (move.named('Dragonator') && type === 'Dragon') {
+    return 2;
+  } else if (move.flags.powder && (type === 'Grass' || isGoggles)) {
+    return 0;
   } else {
     let effectiveness = gen.types.get(toID(move.type))!.effectiveness[type]!;
     if (effectiveness === 0 && isRingTarget) {
@@ -728,7 +735,7 @@ export function getStatDescriptionText(
 }
 
 export function handleFixedDamageMoves(attacker: Pokemon, move: Move) {
-  if (move.named('Seismic Toss', 'Night Shade')) {
+  if (move.named('Seismic Toss', 'Night Shade', 'Rage Ray')) {
     return attacker.level;
   } else if (move.named('Dragon Rage')) {
     return 40;

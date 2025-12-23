@@ -657,7 +657,7 @@ function getEndOfTurn(
     if (
       !defender.hasType('Rock', 'Ground', 'Steel') &&
       !defender.hasAbility('Dust Devil', 'Magic Guard', 'Overcoat', 'Sand Force', 'Sand Rush',
-        'Sand Veil', 'Tempest Energy', 'Tempest Force') &&
+        'Sand Veil', 'Sand Cloak', 'Tempest Energy', 'Tempest Force') &&
       !defender.hasItem('Safety Goggles')
     ) {
       if (defender.hasAbility('Fervent Scales')) {
@@ -670,7 +670,7 @@ function getEndOfTurn(
   } else if (field.hasWeather('Dust Devil')) {
     if (
       !defender.hasAbility('Dust Devil', 'Magic Guard', 'Overcoat', 'Sand Force', 'Sand Rush',
-        'Sand Veil', 'Tempest Energy', 'Tempest Force') &&
+        'Sand Veil', 'Sand Cloak', 'Tempest Energy', 'Tempest Force') &&
       !defender.hasItem('Safety Goggles')
     ) {
       if (defender.hasAbility('Fervent Scales')) {

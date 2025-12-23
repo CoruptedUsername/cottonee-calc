@@ -418,6 +418,7 @@ const MH = SV.concat([
   'Risen Burst',
   'Rusted Gale',
   'Sacred Jewel',
+  'Sand Cloak',
   'Silver Subsume',
   'Snow Seethe',
   'Solar Core',
@@ -434,7 +435,7 @@ const MH = SV.concat([
   'Vampirism',
   'Wylk Encasing',
   'Wyversion',
-]);
+]).filter(item => item !== 'Sand Veil');
 
 export const ABILITIES = [[], RBY, GSC, ADV, MH, SV, TS, PM, SV, SV, SV];
 
