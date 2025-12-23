@@ -11706,7 +11706,7 @@ const MH: {[name: string]: SpeciesData} = {
     types: ['Dragon', 'Steel'],
     bs: {hp: 95, at: 105, df: 115, sa: 80, sd: 85, sp: 135},
     weightkg: 0,
-    abilities: {0: 'Prism Armor'},
+    abilities: {0: 'Strafe'},
     otherFormes: ['Glowstrax'],
   },
   'Glowstrax': {
