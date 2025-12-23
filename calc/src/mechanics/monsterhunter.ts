@@ -501,9 +501,10 @@ export function calculateMH(
   const turn2typeEffectiveness = typeEffectiveness;
 
   // Tera Shell works only at full HP, but for all hits of multi-hit moves
-  if (defender.hasAbility('Tera Shell') &&
+  if (defender.hasAbility('Tera Shell', 'Direspike Scales') &&
       defender.curHP() === defender.maxHP() &&
-      (!field.defenderSide.isSR && (!field.defenderSide.spikes || defender.hasType('Flying')) ||
+      (!field.defenderSide.isSR && ((!field.defenderSide.spikes &&
+            !field.defenderSide.steelsurge) || defender.hasType('Flying')) ||
       defender.hasItem('Heavy-Duty Boots'))
   ) {
     typeEffectiveness = 0.5;
@@ -1887,7 +1888,7 @@ export function calculateFinalModsMH(
     finalMods.push(8192);
   }
 
-  if (defender.hasAbility('Multiscale', 'Shadow Shield', 'Direspike Scales') &&
+  if (defender.hasAbility('Multiscale', 'Shadow Shield') &&
       defender.curHP() === defender.maxHP() &&
       hitCount === 0 &&
       (!field.defenderSide.isSR && (!field.defenderSide.spikes || defender.hasType('Flying')) ||

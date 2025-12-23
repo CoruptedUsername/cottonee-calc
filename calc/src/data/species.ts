@@ -10454,7 +10454,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Dalamadur': {
     types: ['Dragon', 'Rock'],
-    bs: {hp: 110, at: 100, df: 125, sa: 100, sd: 130, sp: 50},
+    bs: {hp: 110, at: 100, df: 130, sa: 100, sd: 130, sp: 50},
     weightkg: 0,
     abilities: {0: 'Direspike Scales'},
     otherFormes: ['Shahmadur'],
@@ -10631,23 +10631,23 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Fatalis': {
     types: ['Dragon'],
-    bs: {hp: 100, at: 110, df: 100, sa: 120, sd: 105, sp: 90},
+    bs: {hp: 100, at: 100, df: 110, sa: 115, sd: 110, sp: 90},
     weightkg: 0,
-    abilities: {0: 'Desolate Land'},
+    abilities: {0: 'Regenerator'},
     otherFormes: ['Fatalis-Crimson', 'Fatalis-White'],
   },
   'Fatalis-Crimson': {
     types: ['Dragon', 'Fire'],
-    bs: {hp: 100, at: 130, df: 115, sa: 100, sd: 90, sp: 95},
+    bs: {hp: 100, at: 140, df: 120, sa: 100, sd: 90, sp: 100},
     weightkg: 0,
-    abilities: {0: 'Orichalcum Pulse'},
+    abilities: {0: 'Drought'},
     baseSpecies: 'Fatalis',
   },
   'Fatalis-White': {
     types: ['Dragon', 'Electric'],
-    bs: {hp: 100, at: 90, df: 100, sa: 130, sd: 115, sp: 95},
+    bs: {hp: 100, at: 100, df: 90, sa: 140, sd: 120, sp: 100},
     weightkg: 0,
-    abilities: {0: 'Hadron Engine'},
+    abilities: {0: 'Electric Surge'},
     baseSpecies: 'Fatalis',
   },
   'Gaismagorm': {
