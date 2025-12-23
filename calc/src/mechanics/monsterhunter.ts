@@ -333,7 +333,7 @@ export function calculateMH(
   ) {
     move.target = 'allAdjacentFoes';
     type = 'Stellar';
-  } else if (move.named('Brick Break', 'Psychic Fangs', 'Virulent Volley')) {
+  } else if (move.named('Brick Break', 'Dual Chop', 'Psychic Fangs', 'Virulent Volley')) {
     field.defenderSide.isReflect = false;
     field.defenderSide.isLightScreen = false;
     field.defenderSide.isAuroraVeil = false;
@@ -514,7 +514,8 @@ export function calculateMH(
       (move.hasType('Grass') && defender.hasAbility('Sap Sipper')) ||
       (move.hasType('Fire') && defender.hasAbility('Flash Fire', 'Well-Baked Body', 'Heatsink',
         'Incandescent', 'Oilmucus')) ||
-      (move.hasType('Water') && defender.hasAbility('Dry Skin', 'Storm Drain', 'Water Absorb')) ||
+      (move.hasType('Water') && defender.hasAbility('Dry Skin', 'Storm Drain', 'Water Absorb',
+        'Water Compaction')) ||
       (move.hasType('Electric') &&
         defender.hasAbility('Lightning Rod', 'Motor Drive', 'Volt Absorb')) ||
       (move.hasType('Ground') &&
@@ -874,6 +875,7 @@ export function calculateBasePowerMH(
     break;
   case 'Hex':
   case 'Infernal Parade':
+  case 'Bitter Malice':
     // Hex deals double damage to Pokemon with Comatose (ih8ih8sn0w)
     basePower = move.bp * (defender.status || defender.hasAbility('Comatose') ? 2 : 1);
     desc.moveBP = basePower;
@@ -1119,7 +1121,7 @@ export function calculateBPModsMH(
     resistedKnockOffDamage = true;
   }
 
-  if ((move.named('Facade') && attacker.hasStatus('brn', 'par', 'psn', 'tox')) ||
+  if ((move.named('Facade') && attacker.hasStatus('brn', 'par', 'psn', 'tox', 'drs', 'frb')) ||
     (move.named('Brine') && defender.curHP() <= defender.maxHP() / 2) ||
     (move.named('Venoshock') && defender.hasStatus('psn', 'tox')) ||
     (move.named('Lash Out') && (countBoosts(gen, attacker.boosts) < 0))
@@ -1290,11 +1292,15 @@ export function calculateBPModsMH(
     bpMods.push(4915);
   }
 
-  if ((attacker.hasAbility('Reckless') && (move.recoil || move.hasCrashDamage)) ||
-      (attacker.hasAbility('Iron Fist') && move.flags.punch)
-  ) {
+  if ((attacker.hasAbility('Reckless') && (move.recoil || move.hasCrashDamage))) {
     bpMods.push(4915);
     desc.attackerAbility = attacker.ability;
+  }
+
+  if (attacker.hasAbility('Iron Fist') && move.flags.punch) {
+    bpMods.push(5325);
+    desc.attackerAbility = attacker.ability;
+    move.flags.contact = 0;
   }
 
   if (gen.num <= 8 && defender.hasAbility('Heatproof') && move.hasType('Fire')) {
@@ -1731,6 +1737,9 @@ export function calculateDfModsMH(
     dfMods.push(3072);
     desc.attackerAbility = attacker.ability;
   } else if (defender.hasAbility('Reactive Core') && defender.reactiveCore === 'cool') {
+    dfMods.push(5325);
+    desc.defenderAbility = defender.ability;
+  } else if (defender.hasAbility('Sand Veil') && field.hasWeather('Sand', 'Dust Devil')) {
     dfMods.push(5325);
     desc.defenderAbility = defender.ability;
   }

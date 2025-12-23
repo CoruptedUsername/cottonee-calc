@@ -125,7 +125,7 @@ export function getRecovery(
 
   const ignoresShellBell =
     gen.num === 3 && move.named('Doom Desire', 'Future Sight');
-  if ((attacker.hasItem('Shell Bell') || attacker.hasAbility('Predator'))&& !ignoresShellBell) {
+  if ((attacker.hasItem('Shell Bell') || attacker.hasAbility('Predator')) && !ignoresShellBell) {
     for (let i = 0; i < minD.length; i++) {
       recovery[0] += minD[i] > 0 ? Math.max(Math.round(minD[i] / 8), 1) : 0;
       recovery[1] += maxD[i] > 0 ? Math.max(Math.round(maxD[i] / 8), 1) : 0;
@@ -647,7 +647,7 @@ function getEndOfTurn(
       damage += Math.floor(defender.maxHP() / 8);
       texts.push('Dry Skin recovery');
     } else if (defender.hasAbility('Rain Dish')) {
-      damage += Math.floor(defender.maxHP() / 16);
+      damage += Math.floor(defender.maxHP() / (gen.num === 4 ? 8 : 16));
       texts.push('Rain Dish recovery');
     } else if (defender.hasAbility('Oilmucus')) {
       damage -= Math.floor(defender.maxHP() / 8);
@@ -695,11 +695,7 @@ function getEndOfTurn(
     }
   } else if (field.hasWeather('Hail', 'Snow', 'Absolute Zero')) {
     if (defender.hasAbility('Ice Body') && !healBlock) {
-      if (defender.hasAbility('Fervent Scales')) {
-        damage += Math.floor((defender.maxHP()) / 32);
-      } else {
-        damage += Math.floor((defender.maxHP()) / 16);
-      }
+      damage += Math.floor((defender.maxHP()) / (gen.num === 4 ? 8 : 16));
       texts.push('Ice Body recovery');
     } else if (
       !defender.hasType('Ice') &&

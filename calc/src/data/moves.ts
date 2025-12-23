@@ -5233,6 +5233,12 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Water',
     drain: [1, 2],
   },
+  'Bitter Blade': {
+    bp: 80,
+  },
+  'Bitter Malice': {
+    bp: 60,
+  },
   'Blast Bite': {
     bp: 75,
     category: 'Physical',
@@ -5285,6 +5291,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Flying',
     makesContact: true,
   },
+  'Chip Away': {
+    bp: 90,
+  },
   'Cloaking Glow': {
     bp: 80,
     category: 'Special',
@@ -5318,6 +5327,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Dark',
     makesContact: true,
   },
+  'Crush Claw': {
+    bp: 85,
+  },
   'Cutwing Barrage': {
     bp: 90,
     category: 'Physical',
@@ -5346,6 +5358,12 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 0,
     category: 'Status',
     type: 'Normal',
+  },
+  'Double Hit': {
+    bp: 50,
+  },
+  'Double Kick': {
+    bp: 40,
   },
   'Dracophage': {
     bp: 0,
@@ -5376,6 +5394,12 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     multiaccuracy: true,
     makesContact: true,
   },
+  'Fire Fang': {
+    bp: 70,
+  },
+  'Force Palm': {
+    bp: 80,
+  },
   'Frenzy Pulse': {
     bp: 100,
     category: 'Special',
@@ -5400,6 +5424,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Ice',
     isWind: true,
   },
+  'Glaciate': {
+    bp: 80,
+  },
   'Glide Bomb': {
     bp: 25,
     category: 'Physical',
@@ -5423,6 +5450,10 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Fire',
     overrideDefensiveStat: 'spd',
   },
+  'Head Charge': {
+    bp: 150,
+    recoil: [1, 2],
+  },
   'Hellfire Rifle': {
     bp: 90,
     category: 'Physical',
@@ -5433,6 +5464,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 120,
     category: 'Special',
     type: 'Fire',
+  },
+  'Ice Fang': {
+    bp: 70,
   },
   'Ignition Flare': {
     bp: 120,
@@ -5455,6 +5489,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     type: 'Fire',
     makesContact: true,
+  },
+  'Mega Punch': {
+    bp: 90,
   },
   'Mental Load': {
     bp: 80,
@@ -5484,6 +5521,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Flying',
     isSlicing: true,
   },
+  'Parabolic Charge': {
+    bp: 75,
+  },
   'Perfume Pulse': {
     bp: 80,
     category: 'Special',
@@ -5494,6 +5534,12 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 120,
     category: 'Physical',
     type: 'Poison',
+  },
+  'Poison Fang': {
+    bp: 70,
+  },
+  'Poison Tail': {
+    bp: 100,
   },
   'Powderkeg': {
     bp: 45,
@@ -5548,6 +5594,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Bug',
     makesContact: true,
   },
+  'Seed Bomb': {
+    bp: 85,
+  },
   'Selenite Beam': {
     bp: 90,
     category: 'Special',
@@ -5557,6 +5606,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 100,
     category: 'Special',
     type: 'Ice',
+  },
+  'Shadow Claw': {
+    bp: 85,
   },
   'Shroom Shield': {
     bp: 0,
@@ -5580,11 +5632,26 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     type: 'Ice',
   },
+  'Spin Out': {
+    bp: 110,
+  },
+  'Steamroller': {
+    bp: 95,
+  },
+  'Steel Wing': {
+    bp: 80,
+  },
   'Stink Bomb': {
     bp: 90,
     category: 'Special',
     type: 'Poison',
     isBullet: true,
+  },
+  'Stomp': {
+    bp: 80,
+  },
+  'Submission': {
+    bp: 100,
   },
   'Sulfurous Blade': {
     bp: 85,
@@ -5605,6 +5672,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Poison',
     makesContact: true,
   },
+  'Take Down': {
+    bp: 100,
+  },
   'Thousand Blades': {
     bp: 95,
     category: 'Physical',
@@ -5612,11 +5682,20 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     isSlicing: true,
     makesContact: true,
   },
+  'Thunder Fang': {
+    bp: 70,
+  },
   'Thunder Rush': {
     bp: 55,
     category: 'Physical',
     type: 'Electric',
     willCrit: true,
+  },
+  'Trop Kick': {
+    bp: 90,
+  },
+  'Twineedle': {
+    bp: 45,
   },
   'Virulent Volley': {
     bp: 25,
@@ -5625,6 +5704,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     multihit: [2, 5],
   },
   'Wicked Torque': {
+    bp: 100,
+  },
+  'Wild Charge': {
     bp: 100,
   },
   'Wretched Water': {
