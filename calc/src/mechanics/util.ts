@@ -136,6 +136,16 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
     }
   }
 
+  if (pokemon.hasAbility('Misty Step') && isGrounded(pokemon, field) && field.hasTerrain('Misty')) {
+    speedMods.push(8192);
+  }
+
+  if (opp) {
+    if (pokemon.hasAbility('Demon Parade') && opp.hasStatus('brn')) {
+      speedMods.push(8192);
+    }
+  }
+
   if (!pokemon.hasAbility('Absolute Zero') && weather.includes('Absolute Zero')) {
     speedMods.push(3072);
   }
@@ -276,6 +286,26 @@ export function checkIntimidate(gen: Generation, source: Pokemon, target: Pokemo
     }
     if (target.hasAbility('Competitive')) {
       target.boosts.spa = Math.min(6, target.boosts.spa + 2);
+    }
+  }
+}
+
+export function checkSurprise(gen: Generation, source: Pokemon, target: Pokemon) {
+  const blocked =
+    target.hasAbility('Clear Body', 'White Smoke', 'Hyper Cutter', 'Full Metal Body') ||
+    // More abilities now block Intimidate in Gen 8+ (DaWoblefet, Cloudy Mistral)
+    (target.hasAbility('Inner Focus', 'Own Tempo', 'Oblivious', 'Scrappy')) ||
+    target.hasItem('Clear Amulet');
+  if (source.hasAbility('Surprise') && source.abilityOn && !blocked) {
+    if (target.hasAbility('Contrary', 'Competitive')) {
+      target.boosts.atk = Math.min(6, target.boosts.spa + 1);
+    } else if (target.hasAbility('Simple')) {
+      target.boosts.atk = Math.max(-6, target.boosts.spa - 2);
+    } else {
+      target.boosts.atk = Math.max(-6, target.boosts.spa - 1);
+    }
+    if (target.hasAbility('Defiant')) {
+      target.boosts.spa = Math.min(6, target.boosts.atk + 2);
     }
   }
 }

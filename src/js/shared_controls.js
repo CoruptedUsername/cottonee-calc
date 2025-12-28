@@ -284,7 +284,7 @@ $(".ability").bind("keyup change", function () {
 		$(this).closest(".poke-info").find(moveSelector).find(".move-hits").val(moveHits);
 	}
 
-	var TOGGLE_ABILITIES = ['First Flight', 'Flash Fire', 'Intimidate', 'Minus', 'Plus', 'Slow Start', 'Unburden', 'Stakeout', 'Teraform Zero'];
+	var TOGGLE_ABILITIES = ['First Flight', 'Flash Fire', 'Intimidate', 'Minus', 'Plus', 'Slow Start', 'Unburden', 'Stakeout', 'Teraform Zero', 'Wicked Power'];
 
 	if (TOGGLE_ABILITIES.indexOf(ability) >= 0) {
 		$(this).closest(".poke-info").find(".abilityToggle").show();
@@ -293,7 +293,7 @@ $(".ability").bind("keyup change", function () {
 	}
 	var boostedStat = $(this).closest(".poke-info").find(".boostedStat");
 
-	if (ability === "Protosynthesis" || ability === "Quark Drive" || ability === "Protopyre") {
+	if (ability === "Protosynthesis" || ability === "Quark Drive" || ability === "Protopyre" || ability === "Cactus Drive") {
 		boostedStat.show();
 		autosetQP($(this).closest(".poke-info"));
 	} else {
@@ -322,7 +322,7 @@ $(".ability").bind("keyup change", function () {
 		$(this).closest(".poke-info").find(".foesFainted").hide();
 	}
 
-	if (ability === "Relentless") {
+	if (ability === "Relentless" || ability === "Pristine Beat") {
 		$(this).closest('.poke-info').find('.metronome').show();
 	} else {
 		$(this).closest('.poke-info').find('.metronome').hide();
@@ -341,7 +341,8 @@ function autosetQP(pokemon) {
 		if (
 			(item === "Booster Energy") ||
 			((ability === "Protosynthesis" || ability === "Protopyre") && currentWeather === "Sun") ||
-			(ability === "Quark Drive" && currentTerrain === "Electric")
+			(ability === "Quark Drive" && currentTerrain === "Electric") ||
+			(ability === "Cactus Drive" && currentTerrain === "Grassy")
 		) {
 			pokemon.find(".boostedStat").val("auto");
 		} else {
@@ -353,6 +354,7 @@ function autosetQP(pokemon) {
 $("#p1 .ability").bind("keyup change", function () {
 	autosetWeather($(this).val(), 0);
 	autosetTerrain($(this).val(), 0);
+	autosetGravity($(this).val(), 0);
 	autosetQP($(this).closest(".poke-info"));
 });
 
@@ -469,6 +471,16 @@ function autosetTerrain(ability, i) {
 			$("input:checkbox[name='terrain'][value='" + newTerrain + "']").prop("checked", true);
 		}
 		break;
+	}
+}
+
+function autosetGravity(ability, i) {
+	switch (ability) {
+	case "Heavy Stone":
+		$("#gravity").prop("checked", true);
+		break;
+	default:
+		$("#gravity").prop("checked", false);
 	}
 }
 

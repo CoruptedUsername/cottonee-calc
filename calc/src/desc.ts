@@ -24,6 +24,7 @@ export interface RawDesc {
   hits?: number;
   alliesFainted?: number;
   foesFainted?: number;
+  foeBoosts?: number;
   isStellarFirstUse?: boolean;
   isBeadsOfRuin?: boolean;
   isSwordOfRuin?: boolean;
@@ -785,6 +786,11 @@ function getEndOfTurn(
       damage += Math.floor(defender.maxHP() / 16);
       texts.push('Grassy Terrain recovery');
     }
+  } else if (field.hasTerrain('Psychic') && defender.hasAbility('Delusion')) {
+    if (isGrounded(defender, field) && !healBlock) {
+      damage += Math.floor(defender.maxHP() / 8);
+      texts.push('Delusion recovery');
+    }
   }
 
   if (defender.hasStatus('psn')) {
@@ -1175,6 +1181,9 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   if (description.foesFainted) {
     output += Math.min(5, description.foesFainted) +
       ` ${description.foesFainted === 1 ? 'foe' : 'foes'} fainted `;
+  }
+  if (description.foeBoosts) {
+    output += description.foeBoosts + ` foe ${description.foeBoosts === 1 ? 'boost' : 'boosts'} `;
   }
   if (description.attackerTera) {
     output += `Tera ${description.attackerTera} `;

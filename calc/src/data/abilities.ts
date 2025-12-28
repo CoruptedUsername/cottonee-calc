@@ -437,7 +437,55 @@ const MH = SV.concat([
   'Wyversion',
 ]).filter(item => item !== 'Sand Veil');
 
-export const ABILITIES = [[], RBY, GSC, ADV, MH, SV, TS, PM, SV, SV, SV];
+// Touhoumons
+const TH = SV.concat([
+  '100 Medicines',
+  'Anemic',
+  'Black and White',
+  'Black Smoke',
+  'Bloodsucker',
+  'Brain of the Moon',
+  'Cactus Drive',
+  'Curse Gathering',
+  'Cut Deep',
+  'Dango Influence',
+  'Dark Border',
+  'Delusion',
+  'Demon Parade',
+  'Devil\'s Recitation',
+  'Dexterity',
+  'Dragon Eater',
+  'Echo',
+  'Fool\'s Gold',
+  'Four Seasons',
+  'Grow Bigger',
+  'Hakkero',
+  'Heal by Desire',
+  'Heavy Stone',
+  'Illusory Backing',
+  'Jealous',
+  'Lunatic Torch',
+  'Maid\'s Trick',
+  'Marching Orders',
+  'Misty Step',
+  'Netherworld\'s Spring',
+  'Night Song',
+  'Pristine Beat',
+  'Property',
+  'Recollection',
+  'Summon Nyuudou',
+  'Surprise',
+  'Sword of Hisou',
+  'Undefined Defense',
+  'Vampirism',
+  'Void',
+  'Watery Grave',
+  'Were-Hakutaku',
+  'Wicked Power',
+  'Winter Hearth',
+]);
+
+export const ABILITIES = [[], RBY, GSC, TH, MH, SV, TS, PM, SV, SV, SV];
 
 export class Abilities implements I.Abilities {
   private readonly gen: I.GenerationNum;

@@ -5718,7 +5718,116 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
 const MH: {[name: string]: MoveData} = extend(true, {}, SV, MH_PATCH);
 delete MH['Light of Ruin'];
 
-export const MOVES = [{}, JS, GSC, ADV, MH, SV, TS, PM, SV, SV, SV];
+// Touhoumons
+const TH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
+  'Body Swap': {
+    bp: 0,
+    category: 'Status',
+    type: 'Normal',
+  },
+  'Cloud Fist': {
+    bp: 100,
+    category: 'Physical',
+    type: 'Flying',
+    makesContact: true,
+    isPunch: true,
+    isWind: true,
+  },
+  'Dancing Blow': {
+    bp: 80,
+    category: 'Physical',
+    type: 'Fighting',
+    makesContact: true,
+    secondaries: true,
+  },
+  'Dream Seal': {
+    bp: 70,
+    category: 'Special',
+    type: 'Flying',
+  },
+  'Excavate': { // Todo: Implement double power if hazards
+    bp: 55,
+    category: 'Physical',
+    type: 'Rock',
+  },
+  'Forbidden Barrage': {
+    bp: 110,
+    category: 'Special',
+    type: 'Dark',
+    isBullet: true,
+    secondaries: true,
+    target: 'allAdjacentFoes',
+  },
+  'Iron Chomp': {
+    bp: 80,
+    category: 'Physical',
+    type: 'Steel',
+    makesContact: true,
+    isBite: true,
+    secondaries: true,
+  },
+  'Lunatic Bullet': {
+    bp: 40,
+    category: 'Special',
+    type: 'Psychic',
+    isBullet: true,
+  },
+  'Missile': {
+    bp: 90,
+    category: 'Physical',
+    type: 'Steel',
+    isBullet: true,
+    secondaries: true,
+  },
+  'Nerve Poison': {
+    bp: 80,
+    category: 'Special',
+    type: 'Poison',
+    secondaries: true,
+    target: 'allAdjacentFoes',
+  },
+  'Sculpted Armor': {
+    bp: 0,
+    category: 'Status',
+    type: 'Ground',
+  },
+  'Shikigami Rush': {
+    bp: 70,
+    category: 'Special',
+    type: 'Psychic',
+    makesContact: true,
+  },
+  'Silver Dagger': { // Todo: Implement Bolt Beak
+    bp: 65,
+    category: 'Physical',
+    type: 'Steel',
+    makesContact: true,
+    isSlicing: true,
+  },
+  'Stone Stacking': {
+    bp: 140,
+    category: 'Special',
+    type: 'Ghost',
+    target: 'allAdjacentFoes',
+  },
+  'Super Scope 3D': { // Todo: Implement Triple Axel
+    bp: 20,
+    category: 'Physical',
+    type: 'Water',
+    isBullet: true,
+    multihit: 3,
+    multiaccuracy: true,
+  },
+  'Water Plates': {
+    bp: 50,
+    category: 'Physical',
+    type: 'Water',
+    multihit: 2,
+  },
+};
+const TH: {[name: string]: MoveData} = extend(true, {}, SV, TH_PATCH);
+
+export const MOVES = [{}, JS, GSC, TH, MH, SV, TS, PM, SV, SV, SV];
 
 export class Moves implements I.Moves {
   private readonly gen: I.GenerationNum;

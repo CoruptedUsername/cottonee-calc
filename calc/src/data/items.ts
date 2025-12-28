@@ -498,6 +498,11 @@ const MH = SV.concat([
   'Frost Orb',
 ]);
 
+const TH = SV.concat([
+  'Jeweled Pagoda',
+  'Summer Backdoor',
+]);
+
 const BERRIES: {[berry: string]: {t: I.TypeName; p: number}} = {
   'Aguav Berry': {t: 'Dragon', p: 80},
   'Apicot Berry': {t: 'Ground', p: 100},
@@ -578,7 +583,7 @@ const BERRIES: {[berry: string]: {t: I.TypeName; p: number}} = {
   'Yache Berry': {t: 'Ice', p: 80},
 };
 
-export const ITEMS = [[], RBY, GSC, ADV, MH, SV, SV, SV, SV, SV, SV];
+export const ITEMS = [[], RBY, GSC, TH, MH, SV, SV, SV, SV, SV, SV];
 
 export class Items implements I.Items {
   private readonly gen: I.GenerationNum;

@@ -12,12 +12,13 @@ import {calculateSMSSSV} from './mechanics/gen789';
 import {calculateTS} from './mechanics/tiersovereign';
 import {calculatePM} from './mechanics/paleomons';
 import {calculateMH} from './mechanics/monsterhunter';
+import {calculateTH} from './mechanics/touhoumons';
 
 const MECHANICS = [
   () => {},
   calculateRBYGSC,
   calculateRBYGSC,
-  calculateADV,
+  calculateTH,
   calculateMH,
   calculateSMSSSV,
   calculateTS,
