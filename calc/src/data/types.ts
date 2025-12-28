@@ -431,7 +431,7 @@ const SV: TypeChart = extend(true, {}, SS, {
   },
 });
 
-export const TYPE_CHART = [{}, RBY, GSC, ADV, SV, SV, SV, SV, SV, SV, SV];
+export const TYPE_CHART = [{}, RBY, GSC, SV, SV, SV, SV, SV, SV, SV, SV];
 
 export class Types implements I.Types {
   private readonly gen: I.GenerationNum;
