@@ -391,5 +391,5 @@ var SETDEX_ADV = {
 	},
 	"Zanmu Nippaku": {
 		"Touhou Swords Dance": {"level":100,"ability":"Void","item":"Leftovers","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Wicked Blow","Earthquake","Flame Charge","Swords Dance"]}
-	},
+	}
 };
