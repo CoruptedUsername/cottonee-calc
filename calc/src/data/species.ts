@@ -14602,7 +14602,7 @@ const BCC: {[name: string]: SpeciesData} = {
   },
 };
 
-export const SPECIES = [{}, JS, GSC_DUMMY, ADV_DUMMY, MH, SBS, TS, PM, DNU, BCA, BCC];
+export const SPECIES = [{}, JS, GSC_DUMMY, TH, MH, SBS, TS, PM, DNU, BCA, BCC];
 
 export class Species implements I.Species {
   private readonly gen: I.GenerationNum;
