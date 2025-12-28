@@ -319,14 +319,14 @@ export function checkSurprise(gen: Generation, source: Pokemon, target: Pokemon)
     target.hasItem('Clear Amulet') || target.hasType('Psychic');
   if (source.hasAbility('Surprise') && source.abilityOn && !blocked) {
     if (target.hasAbility('Contrary', 'Competitive')) {
-      target.boosts.atk = Math.min(6, target.boosts.spa + 1);
+      target.boosts.spa = Math.min(6, target.boosts.spa + 1);
     } else if (target.hasAbility('Simple')) {
-      target.boosts.atk = Math.max(-6, target.boosts.spa - 2);
+      target.boosts.spa = Math.max(-6, target.boosts.spa - 2);
     } else {
-      target.boosts.atk = Math.max(-6, target.boosts.spa - 1);
+      target.boosts.spa = Math.max(-6, target.boosts.spa - 1);
     }
     if (target.hasAbility('Defiant')) {
-      target.boosts.spa = Math.min(6, target.boosts.atk + 2);
+      target.boosts.atk = Math.min(6, target.boosts.atk + 2);
     }
   }
 }
