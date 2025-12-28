@@ -811,8 +811,11 @@ export function calculateBasePowerTH(
     break;
   case 'Bolt Beak':
   case 'Fishious Rend':
-  case 'Silver Dagger':
     basePower = move.bp * (turnOrder !== 'last' ? 2 : 1);
+    desc.moveBP = basePower;
+    break;
+  case 'Silver Dagger':
+    basePower = move.bp * (turnOrder !== 'last' ? 1.5 : 1);
     desc.moveBP = basePower;
     break;
   case 'Pursuit':
