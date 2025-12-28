@@ -540,7 +540,8 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
   if (defender.hasItem('Heavy-Duty Boots')) {
     return {damage, texts};
   }
-  if (defenderSide.isSR && !defender.hasAbility('Magic Guard', 'Mountaineer', 'Plow')) {
+  if (defenderSide.isSR && !defender.hasAbility('Magic Guard', 'Mountaineer', 'Plow',
+    'Dexterity')) {
     const rockType = gen.types.get('rock' as ID)!;
     const effectiveness =
       rockType.effectiveness[defender.types[0]]! *
@@ -566,7 +567,7 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
   }
 
   if (!defender.hasType('Flying') &&
-      !defender.hasAbility('Magic Guard', 'Levitate', 'Plow') &&
+      !defender.hasAbility('Magic Guard', 'Levitate', 'Plow', 'Dexterity') &&
       !defender.hasItem('Air Balloon')
   ) {
     if (defenderSide.spikes === 1) {

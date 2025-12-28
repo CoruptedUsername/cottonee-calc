@@ -252,6 +252,27 @@ export function checkForecast(pokemon: Pokemon, weather?: Weather) {
   }
 }
 
+export function checkFourSeasons(pokemon: Pokemon, weather?: Weather) {
+  if (pokemon.hasAbility('Four Seasons') && pokemon.named('Okina Matara')) {
+    switch (weather) {
+    case 'Sun':
+      pokemon.types = ['Fire', 'Dark'];
+      break;
+    case 'Rain':
+      pokemon.types = ['Water', 'Dark'];
+      break;
+    case 'Snow':
+      pokemon.types = ['Rock', 'Dark'];
+      break;
+    case 'Sand':
+      pokemon.types = ['Rock', 'Dark'];
+      break;
+    default:
+      pokemon.types = ['Normal', 'Dark'];
+    }
+  }
+}
+
 export function checkItem(pokemon: Pokemon, magicRoomActive?: boolean, isStenched?: boolean) {
   // Pokemon with Klutz still get their speed dropped in generation 4
   if (pokemon.gen.num === 4 && pokemon.hasItem('Iron Ball')) return;
@@ -295,7 +316,7 @@ export function checkSurprise(gen: Generation, source: Pokemon, target: Pokemon)
     target.hasAbility('Clear Body', 'White Smoke', 'Hyper Cutter', 'Full Metal Body') ||
     // More abilities now block Intimidate in Gen 8+ (DaWoblefet, Cloudy Mistral)
     (target.hasAbility('Inner Focus', 'Own Tempo', 'Oblivious', 'Scrappy')) ||
-    target.hasItem('Clear Amulet');
+    target.hasItem('Clear Amulet') || target.hasType('Psychic');
   if (source.hasAbility('Surprise') && source.abilityOn && !blocked) {
     if (target.hasAbility('Contrary', 'Competitive')) {
       target.boosts.atk = Math.min(6, target.boosts.spa + 1);

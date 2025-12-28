@@ -21,6 +21,7 @@ import {
   checkDownload,
   checkEmbody,
   checkForecast,
+  checkFourSeasons,
   checkInfiltrator,
   checkIntimidate,
   checkSurprise,
@@ -65,6 +66,8 @@ export function calculateTH(
   checkTeraformZero(defender, field);
   checkForecast(attacker, field.weather);
   checkForecast(defender, field.weather);
+  checkFourSeasons(attacker, field.weather);
+  checkFourSeasons(defender, field.weather);
   checkItem(attacker, field.isMagicRoom);
   checkItem(defender, field.isMagicRoom);
   checkWonderRoom(attacker, field.isWonderRoom);
@@ -808,6 +811,7 @@ export function calculateBasePowerTH(
     break;
   case 'Bolt Beak':
   case 'Fishious Rend':
+  case 'Silver Dagger':
     basePower = move.bp * (turnOrder !== 'last' ? 2 : 1);
     desc.moveBP = basePower;
     break;
@@ -974,6 +978,7 @@ export function calculateBasePowerTH(
     break;
   // Triple Axel's damage increases after each consecutive hit (20, 40, 60)
   case 'Triple Axel':
+  case 'Super Scope 3D':
     basePower = hit * 20;
     desc.moveBP = move.hits === 2 ? 60 : move.hits === 3 ? 120 : 20;
     break;
@@ -1086,6 +1091,12 @@ export function calculateBPModsTH(
     desc.attackerAbility = attacker.ability;
   }
 
+  if (attacker.named('Nazrin', 'Shou Toramaru') && attacker.hasItem('Jeweled Pagoda') &&
+    move.hasType('Fairy')) {
+    bpMods.push(6144);
+    desc.attackerItem = attacker.item;
+  }
+
   // Resist knock off damage if your item was already knocked off
   if (!resistedKnockOffDamage && hit > 1 && !defender.hasAbility('Sticky Hold')) {
     resistedKnockOffDamage = true;
@@ -1143,6 +1154,11 @@ export function calculateBPModsTH(
       bpMods.push(5461);
       desc.moveBP = basePower * (5461 / 4096);
     }
+  }
+
+  if (move.named('Excavate') && (field.attackerSide.isSR || field.attackerSide.spikes)) {
+    bpMods.push(8192);
+    desc.moveBP = basePower * (8192 / 4096);
   }
 
   if (field.attackerSide.isHelpingHand) {
@@ -1735,6 +1751,11 @@ function calculateBaseDamageTH(
     }
   }
 
+  // if (!field.hasWeather() && attacker.hasAbility('Lunatic Torch') && field.hasTerrain('Psychic') &&
+  //   move.hasType('Fire')) {
+  //   baseDamage = pokeRound(OF32(baseDamage * 6144) / 4096);
+  // }
+
   if (isCritical) {
     baseDamage = Math.floor(OF32(baseDamage * 1.5));
     desc.isCritical = isCritical;
@@ -1837,14 +1858,19 @@ export function calculateFinalModsTH(
   } else if (attacker.hasItem('Life Orb')) {
     finalMods.push(5324);
     desc.attackerItem = attacker.item;
-  } else if (attacker.hasItem('Metronome') && move.timesUsedWithMetronome! >= 1) {
+  } else if ((attacker.hasItem('Metronome') || attacker.hasAbility('Pristine Beat')) &&
+    move.timesUsedWithMetronome! >= 1) {
     const timesUsedWithMetronome = Math.floor(move.timesUsedWithMetronome!);
     if (timesUsedWithMetronome <= 4) {
       finalMods.push(4096 + timesUsedWithMetronome * 819);
     } else {
       finalMods.push(8192);
     }
-    desc.attackerItem = attacker.item;
+    if (attacker.hasAbility('Pristine Beat')) {
+      desc.attackerAbility = attacker.ability;
+    } else {
+      desc.attackerItem = attacker.item;
+    }
   }
 
   if (move.hasType(getBerryResistType(defender.item)) &&
