@@ -485,7 +485,14 @@ const TH = SV.concat([
   'Winter Hearth',
 ]);
 
-export const ABILITIES = [[], RBY, GSC, TH, MH, SV, TS, PM, SV, SV, SV];
+// Best Wishes
+const BWYB = BW.concat([
+  'Gale Wings',
+  'Fur Coat',
+  'Sharpness',
+]);
+
+export const ABILITIES = [[], RBY, BWYB, TH, MH, SV, TS, PM, SV, SV, SV];
 
 export class Abilities implements I.Abilities {
   private readonly gen: I.GenerationNum;
