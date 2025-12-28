@@ -284,7 +284,7 @@ $(".ability").bind("keyup change", function () {
 		$(this).closest(".poke-info").find(moveSelector).find(".move-hits").val(moveHits);
 	}
 
-	var TOGGLE_ABILITIES = ['First Flight', 'Flash Fire', 'Intimidate', 'Minus', 'Plus', 'Slow Start', 'Unburden', 'Stakeout', 'Teraform Zero', 'Wicked Power'];
+	var TOGGLE_ABILITIES = ['First Flight', 'Flash Fire', 'Intimidate', 'Minus', 'Plus', 'Slow Start', 'Surprise', 'Unburden', 'Stakeout', 'Teraform Zero', 'Wicked Power'];
 
 	if (TOGGLE_ABILITIES.indexOf(ability) >= 0) {
 		$(this).closest(".poke-info").find(".abilityToggle").show();
