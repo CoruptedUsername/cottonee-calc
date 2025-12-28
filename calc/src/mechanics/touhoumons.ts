@@ -1751,8 +1751,8 @@ function calculateBaseDamageTH(
     }
   }
 
-  // if (!field.hasWeather() && attacker.hasAbility('Lunatic Torch') && field.hasTerrain('Psychic') &&
-  //   move.hasType('Fire')) {
+  // if (!field.hasWeather() && attacker.hasAbility('Lunatic Torch') &&
+  // field.hasTerrain('Psychic') && move.hasType('Fire')) {
   //   baseDamage = pokeRound(OF32(baseDamage * 6144) / 4096);
   // }
 

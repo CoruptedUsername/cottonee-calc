@@ -5745,7 +5745,7 @@ const TH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Special',
     type: 'Flying',
   },
-  'Excavate': { // Todo: Implement double power if hazards
+  'Excavate': {
     bp: 55,
     category: 'Physical',
     type: 'Rock',
@@ -5797,7 +5797,7 @@ const TH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Psychic',
     makesContact: true,
   },
-  'Silver Dagger': { // Todo: Implement Bolt Beak
+  'Silver Dagger': {
     bp: 65,
     category: 'Physical',
     type: 'Steel',
@@ -5810,7 +5810,7 @@ const TH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Ghost',
     target: 'allAdjacentFoes',
   },
-  'Super Scope 3D': { // Todo: Implement Triple Axel
+  'Super Scope 3D': {
     bp: 20,
     category: 'Physical',
     type: 'Water',
