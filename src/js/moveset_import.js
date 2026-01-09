@@ -208,6 +208,15 @@ function addToDex(poke) {
 		if (GEN1RANDOMBATTLE[poke.name] == undefined) GEN1RANDOMBATTLE[poke.name] = {};
 	} else {
 		if (SETDEX_BCC[poke.name] == undefined) SETDEX_BCC[poke.name] = {};
+		if (SETDEX_BCA[poke.name] == undefined) SETDEX_BCA[poke.name] = {};
+		if (SETDEX_DNU[poke.name] == undefined) SETDEX_DNU[poke.name] = {};
+		if (SETDEX_PM[poke.name] == undefined) SETDEX_PM[poke.name] = {};
+		if (SETDEX_TS[poke.name] == undefined) SETDEX_TS[poke.name] = {};
+		if (SETDEX_SBS[poke.name] == undefined) SETDEX_SBS[poke.name] = {};
+		if (SETDEX_MH[poke.name] == undefined) SETDEX_MH[poke.name] = {};
+		if (SETDEX_TH[poke.name] == undefined) SETDEX_TH[poke.name] = {};
+		if (SETDEX_BWYB[poke.name] == undefined) SETDEX_BWYB[poke.name] = {};
+		if (SETDEX_JS[poke.name] == undefined) SETDEX_JS[poke.name] = {};
 		if (SETDEX_SV[poke.name] == undefined) SETDEX_SV[poke.name] = {};
 		if (SETDEX_SS[poke.name] == undefined) SETDEX_SS[poke.name] = {};
 		if (SETDEX_SM[poke.name] == undefined) SETDEX_SM[poke.name] = {};
@@ -255,6 +264,24 @@ function updateDex(customsets) {
 		for (var moveset in customsets[pokemon]) {
 			if (!SETDEX_BCC[pokemon]) SETDEX_BCC[pokemon] = {};
 			SETDEX_BCC[pokemon][moveset] = customsets[pokemon][moveset];
+			if (!SETDEX_BCA[pokemon]) SETDEX_BCA[pokemon] = {};
+			SETDEX_BCA[pokemon][moveset] = customsets[pokemon][moveset];
+			if (!SETDEX_DNU[pokemon]) SETDEX_DNU[pokemon] = {};
+			SETDEX_DNU[pokemon][moveset] = customsets[pokemon][moveset];
+			if (!SETDEX_PM[pokemon]) SETDEX_PM[pokemon] = {};
+			SETDEX_PM[pokemon][moveset] = customsets[pokemon][moveset];
+			if (!SETDEX_TS[pokemon]) SETDEX_TS[pokemon] = {};
+			SETDEX_TS[pokemon][moveset] = customsets[pokemon][moveset];
+			if (!SETDEX_SBS[pokemon]) SETDEX_SBS[pokemon] = {};
+			SETDEX_SBS[pokemon][moveset] = customsets[pokemon][moveset];
+			if (!SETDEX_MH[pokemon]) SETDEX_MH[pokemon] = {};
+			SETDEX_MH[pokemon][moveset] = customsets[pokemon][moveset];
+			if (!SETDEX_TH[pokemon]) SETDEX_TH[pokemon] = {};
+			SETDEX_TH[pokemon][moveset] = customsets[pokemon][moveset];
+			if (!SETDEX_BWYB[pokemon]) SETDEX_BWYB[pokemon] = {};
+			SETDEX_BWYB[pokemon][moveset] = customsets[pokemon][moveset];
+			if (!SETDEX_JS[pokemon]) SETDEX_JS[pokemon] = {};
+			SETDEX_JS[pokemon][moveset] = customsets[pokemon][moveset];
 			if (!SETDEX_SV[pokemon]) SETDEX_SV[pokemon] = {};
 			SETDEX_SV[pokemon][moveset] = customsets[pokemon][moveset];
 			if (!SETDEX_SS[pokemon]) SETDEX_SS[pokemon] = {};

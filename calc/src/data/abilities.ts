@@ -490,9 +490,11 @@ const BWYB = BW.concat([
   'Gale Wings',
   'Fur Coat',
   'Sharpness',
+  'Slush Rush',
 ]);
 
-export const ABILITIES = [[], RBY, BWYB, TH, MH, SV, TS, PM, SV, SV, SV];
+export const ABILITIES = [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, RBY, BWYB, TH, MH, SV, TS, PM,
+  SV, SV, SV];
 
 export class Abilities implements I.Abilities {
   private readonly gen: I.GenerationNum;

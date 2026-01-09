@@ -10,10 +10,19 @@ const XY: StatID[] = GSC;
 const SM: StatID[] = GSC;
 const SS: StatID[] = GSC;
 const SV: StatID[] = GSC;
+const JS: Array<StatID | 'spc'> = RBY;
+const BWYB: StatID[] = GSC;
+const TH: StatID[] = GSC;
+const MH: StatID[] = GSC;
+const SBS: StatID[] = GSC;
+const TS: StatID[] = GSC;
+const PM: StatID[] = GSC;
+const DNU: StatID[] = GSC;
+const BCA: StatID[] = GSC;
 const BCC: StatID[] = GSC;
 
 export const STATS: Array<Array<StatID | 'spc'> | StatID[]> =
-  [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, BCC];
+  [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, JS, BWYB, TH, MH, SBS, TS, PM, DNU, BCA, BCC];
 
 type HPTypeName = Exclude<TypeName, 'Normal' | 'Fairy' | 'Stellar' | '???'>;
 
@@ -117,8 +126,8 @@ export const Stats = new (class {
     level: number,
     nature?: string
   ) {
-    if (gen.num < 1 || gen.num > 10) throw new Error(`Invalid generation ${gen.num}`);
-    if (gen.num < 3) return this.calcStatRBY(stat, base, iv, level);
+    if (gen.num < 1) throw new Error(`Invalid generation ${gen.num}`);
+    if (gen.num < 3 || gen.num === 10) return this.calcStatRBY(stat, base, iv, level);
     return this.calcStatADV(gen.natures, stat, base, iv, ev, level, nature);
   }
 

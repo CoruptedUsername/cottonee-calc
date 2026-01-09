@@ -416,7 +416,7 @@ export function calculateMH(
     field.isGravity,
     isRingTarget,
     attacker.hasAbility('Perforating'),
-    field.defenderSide.isRusted,
+    field.isRuststorm,
     isGoggles,
   );
   const type2Effectiveness = defender.types[1]
@@ -428,7 +428,7 @@ export function calculateMH(
       field.isGravity,
       isRingTarget,
       attacker.hasAbility('Perforating'),
-      field.defenderSide.isRusted,
+      field.isRuststorm,
       isGoggles
     )
     : 1;
@@ -449,7 +449,7 @@ export function calculateMH(
       field.isGravity,
       isRingTarget,
       attacker.hasAbility('Perforating'),
-      field.defenderSide.isRusted
+      field.isRuststorm,
     );
   }
 
@@ -1066,7 +1066,7 @@ export function calculateBasePowerMH(
     attacker.teraType && move.type === attacker.teraType &&
     attacker.hasType(attacker.teraType) && move.hits === 1 && !move.multiaccuracy &&
     move.priority <= 0 && move.bp > 0 && !move.named('Dragon Energy', 'Eruption', 'Water Spout') &&
-    basePower < 60 && gen.num >= 9
+    basePower < 60
   ) {
     basePower = 60;
     desc.moveBP = 60;
@@ -1163,7 +1163,7 @@ export function calculateBPModsMH(
       field.isGravity,
       isRingTarget,
       attacker.hasAbility('Perforating'),
-      field.defenderSide.isRusted
+      field.isRuststorm,
     );
     const type2Effectiveness = types[1] ? getMoveEffectiveness(
       gen,
@@ -1173,7 +1173,7 @@ export function calculateBPModsMH(
       field.isGravity,
       isRingTarget,
       attacker.hasAbility('Perforating'),
-      field.defenderSide.isRusted
+      field.isRuststorm,
     ) : 1;
     if (type1Effectiveness * type2Effectiveness >= 2) {
       bpMods.push(5461);
@@ -1194,7 +1194,7 @@ export function calculateBPModsMH(
 
   // Field effects
 
-  const terrainMultiplier = gen.num > 7 ? 5325 : 6144;
+  const terrainMultiplier = 5325;
   if (isGrounded(attacker, field)) {
     if ((field.hasTerrain('Electric') && move.hasType('Electric')) ||
         (field.hasTerrain('Grassy') && move.hasType('Grass')) ||
@@ -1304,10 +1304,7 @@ export function calculateBPModsMH(
     move.flags.contact = 0;
   }
 
-  if (gen.num <= 8 && defender.hasAbility('Heatproof') && move.hasType('Fire')) {
-    bpMods.push(2048);
-    desc.defenderAbility = defender.ability;
-  } else if (defender.hasAbility('Dry Skin') && move.hasType('Fire')) {
+  if (defender.hasAbility('Dry Skin') && move.hasType('Fire')) {
     bpMods.push(5120);
     desc.defenderAbility = defender.ability;
   } else if (defender.hasAbility('Oilmucus') && move.hasType('Water')) {
@@ -1499,7 +1496,7 @@ export function calculateAtModsMH(
     atMods.push(5374);
     desc.attackerAbility = attacker.ability;
   } else if (attacker.hasAbility('Transistor') && move.hasType('Electric')) {
-    atMods.push(gen.num >= 9 ? 5325 : 6144);
+    atMods.push(5325);
     desc.attackerAbility = attacker.ability;
   } else if (attacker.hasAbility('Stakeout') && attacker.abilityOn) {
     atMods.push(8192);
@@ -1568,7 +1565,7 @@ export function calculateAtModsMH(
     desc.defenderAbility = defender.ability;
   }
 
-  if (gen.num >= 9 && defender.hasAbility('Heatproof') && move.hasType('Fire')) {
+  if (defender.hasAbility('Heatproof') && move.hasType('Fire')) {
     atMods.push(2048);
     desc.defenderAbility = defender.ability;
   }
@@ -1734,7 +1731,7 @@ export function calculateDfModsMH(
     'drs', 'par', 'frb', 'psn', 'tox', 'dgb'))) {
     dfMods.push(6144);
     desc.defenderAbility = defender.ability;
-  } else if (attacker.hasAbility('Rusted Gale') && !defender.hasType('Steel')) {
+  } else if (field.isRuststorm && !defender.hasType('Steel')) {
     dfMods.push(3072);
     desc.attackerAbility = attacker.ability;
   } else if (defender.hasAbility('Reactive Core') && defender.reactiveCore === 'cool') {

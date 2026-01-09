@@ -45,6 +45,7 @@ export namespace State {
     isMagicRoom?: boolean;
     isWonderRoom?: boolean;
     isGravity?: boolean;
+    isRuststorm?: boolean;
     isAuraBreak?: boolean;
     isFairyAura?: boolean;
     isDarkAura?: boolean;
@@ -85,6 +86,5 @@ export namespace State {
     isBubbleblighted?: boolean;
     isDefenseDown?: boolean;
     isStenched?: boolean;
-    isRusted?: boolean;
   }
 }

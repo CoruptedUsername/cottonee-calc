@@ -1017,7 +1017,7 @@ export function calculateBasePowerTS(
     attacker.teraType && move.type === attacker.teraType &&
     attacker.hasType(attacker.teraType) && move.hits === 1 && !move.multiaccuracy &&
     move.priority <= 0 && move.bp > 0 && !move.named('Dragon Energy', 'Eruption', 'Water Spout') &&
-    basePower < 60 && gen.num >= 9
+    basePower < 60
   ) {
     basePower = 60;
     desc.moveBP = 60;
@@ -1134,7 +1134,7 @@ export function calculateBPModsTS(
 
   // Field effects
 
-  const terrainMultiplier = gen.num > 7 ? 5325 : 6144;
+  const terrainMultiplier = 5325;
   if (isGrounded(attacker, field)) {
     if ((field.hasTerrain('Electric') && move.hasType('Electric')) ||
       (field.hasTerrain('Grassy') && move.hasType('Grass')) ||
@@ -1240,10 +1240,7 @@ export function calculateBPModsTS(
     desc.attackerAbility = attacker.ability;
   }
 
-  if (gen.num <= 8 && defender.hasAbility('Heatproof') && move.hasType('Fire')) {
-    bpMods.push(2048);
-    desc.defenderAbility = defender.ability;
-  } else if (defender.hasAbility('Dry Skin') && move.hasType('Fire')) {
+  if (defender.hasAbility('Dry Skin') && move.hasType('Fire')) {
     bpMods.push(5120);
     desc.defenderAbility = defender.ability;
   }
@@ -1397,7 +1394,7 @@ export function calculateAtModsTS(
     atMods.push(6144);
     desc.attackerAbility = attacker.ability;
   } else if (attacker.hasAbility('Transistor') && move.hasType('Electric')) {
-    atMods.push(gen.num >= 9 ? 5325 : 6144);
+    atMods.push(5325);
     desc.attackerAbility = attacker.ability;
   } else if (attacker.hasAbility('Stakeout') && attacker.abilityOn) {
     atMods.push(8192);
@@ -1435,7 +1432,7 @@ export function calculateAtModsTS(
     desc.defenderAbility = defender.ability;
   }
 
-  if (gen.num >= 9 && defender.hasAbility('Heatproof') && move.hasType('Fire')) {
+  if (defender.hasAbility('Heatproof') && move.hasType('Fire')) {
     atMods.push(2048);
     desc.defenderAbility = defender.ability;
   }

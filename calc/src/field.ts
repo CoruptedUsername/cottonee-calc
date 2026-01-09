@@ -8,6 +8,7 @@ export class Field implements State.Field {
   isMagicRoom: boolean;
   isWonderRoom: boolean;
   isGravity: boolean;
+  isRuststorm: boolean;
   isAuraBreak?: boolean;
   isFairyAura?: boolean;
   isDarkAura?: boolean;
@@ -25,6 +26,7 @@ export class Field implements State.Field {
     this.isMagicRoom = !!field.isMagicRoom;
     this.isWonderRoom = !!field.isWonderRoom;
     this.isGravity = !!field.isGravity;
+    this.isRuststorm = !!field.isRuststorm;
     this.isAuraBreak = field.isAuraBreak || false;
     this.isFairyAura = field.isFairyAura || false;
     this.isDarkAura = field.isDarkAura || false;
@@ -58,6 +60,7 @@ export class Field implements State.Field {
       isMagicRoom: this.isMagicRoom,
       isWonderRoom: this.isWonderRoom,
       isGravity: this.isGravity,
+      isRuststorm: this.isRuststorm,
       attackerSide: this.attackerSide,
       defenderSide: this.defenderSide,
       isAuraBreak: this.isAuraBreak,
@@ -100,7 +103,6 @@ export class Side implements State.Side {
   isBubbleblighted?: boolean;
   isDefenseDown?: boolean;
   isStenched?: boolean;
-  isRusted?: boolean;
 
   constructor(side: State.Side = {}) {
     this.spikes = side.spikes || 0;
@@ -131,7 +133,6 @@ export class Side implements State.Side {
     this.isBubbleblighted = !!side.isBubbleblighted;
     this.isDefenseDown = !!side.isDefenseDown;
     this.isStenched = !!side.isStenched;
-    this.isRusted = !!side.isRusted;
   }
 
   clone() {

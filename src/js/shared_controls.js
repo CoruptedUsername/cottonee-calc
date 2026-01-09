@@ -37,7 +37,7 @@ function endsWith(string, target) {
 
 var LEGACY_STATS_RBY = ["hp", "at", "df", "sl", "sp"];
 var LEGACY_STATS_GSC = ["hp", "at", "df", "sa", "sd", "sp"];
-var LEGACY_STATS = [[], LEGACY_STATS_RBY, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC];
+var LEGACY_STATS = [[], LEGACY_STATS_RBY, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC];
 var HIDDEN_POWER_REGEX = /Hidden Power (\w*)/;
 
 var CALC_STATUS = {
@@ -355,6 +355,7 @@ $("#p1 .ability").bind("keyup change", function () {
 	autosetWeather($(this).val(), 0);
 	autosetTerrain($(this).val(), 0);
 	autosetGravity($(this).val(), 0);
+	autosetRuststorm($(this).val(), 0);
 	autosetQP($(this).closest(".poke-info"));
 });
 
@@ -481,6 +482,16 @@ function autosetGravity(ability, i) {
 		break;
 	default:
 		$("#gravity").prop("checked", false);
+	}
+}
+
+function autosetRuststorm(ability, i) {
+	switch (ability) {
+	case "Rusted Gale":
+		$("#ruststorm").prop("checked", true);
+		break;
+	default:
+		$("#ruststorm").prop("checked", false);
 	}
 }
 
@@ -653,7 +664,7 @@ $(".item").change(function () {
 });
 
 function smogonAnalysis(pokemonName) {
-	var generation = ["rb", "gs", "rs", "dp", "bw", "xy", "sm", "ss", "sv"][gen - 1];
+	var generation = ["rb", "gs", "rs", "dp", "bw", "xy", "sm", "ss", "sv", "js", "bwyb", "th", "mh", "sbs", "ts", "pm", "dnu", "bca", "bcc"][gen - 1];
 	return "https://smogon.com/dex/" + generation + "/pokemon/" + pokemonName.toLowerCase() + "/";
 }
 
@@ -1241,6 +1252,7 @@ function createField() {
 	var isMagicRoom = $("#magicroom").prop("checked");
 	var isWonderRoom = $("#wonderroom").prop("checked");
 	var isGravity = $("#gravity").prop("checked");
+	var isRuststorm = $("#ruststorm").prop("checked");
 	var isSR = [$("#srL").prop("checked"), $("#srR").prop("checked")];
 	var weather;
 	var spikes;
@@ -1270,7 +1282,6 @@ function createField() {
 	var isBubbleblighted = [$("#bubbleblightL").prop("checked"), $("#bubbleblightR").prop("checked")];
 	var isDefenseDown = [$("#defenseDownL").prop("checked"), $("#defenseDownR").prop("checked")];
 	var isStenched = [$("#stenchL").prop("checked"), $("#stenchR").prop("checked")];
-	var isRusted = [$("#rustedL").prop("checked"), $("#rustedR").prop("checked")];
 	var isTailwind = [$("#tailwindL").prop("checked"), $("#tailwindR").prop("checked")];
 	var isFlowerGift = [$("#flowerGiftL").prop("checked"), $("#flowerGiftR").prop("checked")];
 	var isSteelySpirit = [$("#steelySpiritL").prop("checked"), $("#steelySpiritR").prop("checked")];
@@ -1311,7 +1322,6 @@ function createField() {
 			isBubbleblighted: isBubbleblighted[i],
 			isDefenseDown: isDefenseDown[i],
 			isStenched: isStenched[i],
-			isRusted: isRusted[i],
 		});
 	};
 	return new calc.Field({
@@ -1325,6 +1335,7 @@ function createField() {
 		isMagicRoom: isMagicRoom,
 		isWonderRoom: isWonderRoom,
 		isGravity: isGravity,
+		isRuststorm: isRuststorm,
 		attackerSide: createSide(0),
 		defenderSide: createSide(1)
 	});
@@ -1393,7 +1404,16 @@ var GENERATION = {
 	'7': 7, 'sm': 7, 'usm': 7, 'usum': 7,
 	'8': 8, 'ss': 8,
 	'9': 9, 'sv': 9,
-	'10': 10, 'bcc': 10,
+	'10': 10, 'js': 10,
+	'11': 11, 'bwyb': 11,
+	'12': 12, 'th': 12,
+	'13': 13, 'mh': 13,
+	'14': 14, 'sbs': 14,
+	'15': 15, 'ts': 15,
+	'16': 16, 'pm': 16,
+	'17': 17, 'dnu': 17,
+	'18': 18, 'bca': 18,
+	'19': 19, 'bcc': 19,
 };
 
 var SETDEX = [
@@ -1407,6 +1427,15 @@ var SETDEX = [
 	typeof SETDEX_SM === 'undefined' ? {} : SETDEX_SM,
 	typeof SETDEX_SS === 'undefined' ? {} : SETDEX_SS,
 	typeof SETDEX_SV === 'undefined' ? {} : SETDEX_SV,
+	typeof SETDEX_JS === 'undefined' ? {} : SETDEX_JS,
+	typeof SETDEX_BWYB === 'undefined' ? {} : SETDEX_BWYB,
+	typeof SETDEX_TH === 'undefined' ? {} : SETDEX_TH,
+	typeof SETDEX_MH === 'undefined' ? {} : SETDEX_MH,
+	typeof SETDEX_SBS === 'undefined' ? {} : SETDEX_SBS,
+	typeof SETDEX_TS === 'undefined' ? {} : SETDEX_TS,
+	typeof SETDEX_PM === 'undefined' ? {} : SETDEX_PM,
+	typeof SETDEX_DNU === 'undefined' ? {} : SETDEX_DNU,
+	typeof SETDEX_BCA === 'undefined' ? {} : SETDEX_BCA,
 	typeof SETDEX_BCC === 'undefined' ? {} : SETDEX_BCC,
 ];
 
@@ -1483,13 +1512,24 @@ var RANDDEX = [
 	typeof GEN7RANDOMBATTLE === 'undefined' ? {} : GEN7RANDOMBATTLE,
 	GEN8RANDSETS,
 	GEN9RANDSETS,
+	GEN9RANDSETS,
+	GEN9RANDSETS,
+	GEN9RANDSETS,
+	GEN9RANDSETS,
+	GEN9RANDSETS,
+	GEN9RANDSETS,
+	GEN9RANDSETS,
+	GEN9RANDSETS,
+	GEN9RANDSETS,
+	GEN9RANDSETS,
 	{},
 ];
 var gen, genWasChanged, notation, pokedex, setdex, randdex, typeChart, moves, abilities, items, calcHP, calcStat, GENERATION;
 
 $(".gen").change(function () {
 	/*eslint-disable */
-	gen = ~~$(this).val() || 9;
+	gen = ~~$(this).val() || 19;
+	console.log(gen);
 	GENERATION = calc.Generations.get(gen);
 	if (gen === 4) { // Monster Hunter Statuses
 		statusType = '.status2';
@@ -1497,7 +1537,7 @@ $(".gen").change(function () {
 		statusType = '.status';
 	}
 	var params = new URLSearchParams(window.location.search);
-	if (gen === 9) {
+	if (gen === 19) {
 		params.delete('gen');
 		params = '' + params;
 		if (window.history && window.history.replaceState) {
@@ -1604,8 +1644,6 @@ function clearField() {
 	$("#defenseDownR").prop("checked", false);
 	$("#stenchL").prop("checked", false);
 	$("#stenchR").prop("checked", false);
-	$("#rustedL").prop("checked", false);
-	$("#rustedR").prop("checked", false);
 	$("#tailwindL").prop("checked", false);
 	$("#tailwindR").prop("checked", false);
 	$("#friendGuardL").prop("checked", false);
@@ -1893,7 +1931,7 @@ function loadCustomList(id) {
 
 $(document).ready(function () {
 	var params = new URLSearchParams(window.location.search);
-	var g = GENERATION[params.get('gen')] || 9;
+	var g = GENERATION[params.get('gen')] || 19;
 	$("#gen" + g).prop("checked", true);
 	$("#gen" + g).change();
 	$("#percentage").prop("checked", true);

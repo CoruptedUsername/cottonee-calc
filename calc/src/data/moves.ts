@@ -5457,7 +5457,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Hellfire Rifle': {
     bp: 90,
     category: 'Physical',
-    type: 'Poison',
+    type: 'Ghost',
     isPulse: true,
   },
   'Hellflare': {
@@ -5827,7 +5827,78 @@ const TH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
 };
 const TH: {[name: string]: MoveData} = extend(true, {}, SV, TH_PATCH);
 
-export const MOVES = [{}, JS, GSC, TH, MH, SV, TS, PM, SV, SV, SV];
+// Best Wishes
+const BWYB_PATCH: {[name: string]: DeepPartial<MoveData>} = {
+  'Frost Breath': {
+    bp: 50,
+  },
+  'Incinerate': {
+    bp: 60,
+  },
+  'Mighty Cleave': {
+    bp: 65,
+    type: 'Rock',
+    category: 'Physical',
+    isSlicing: true,
+  },
+  'Night Daze': {
+    bp: 80,
+  },
+  'Outrage': {
+    bp: 100,
+  },
+  'Parabolic Charge': {
+    bp: 65,
+    type: 'Electric',
+    drain: [3, 4],
+    target: 'allAdjacent',
+    category: 'Special',
+  },
+  'Relic Song': {
+    bp: 60,
+    priority: 1,
+  },
+  'Solar Blade': {
+    bp: 80,
+    type: 'Grass',
+    makesContact: true,
+    category: 'Physical',
+    zp: 190,
+  },
+  'Spark': {
+    bp: 70,
+  },
+  'Spit Up': {
+    bp: 50,
+  },
+  'Storm Throw': {
+    bp: 50,
+  },
+  'Tachyon Cutter': {
+    bp: 50,
+    type: 'Steel',
+    category: 'Special',
+    multihit: 2,
+    isSlicing: true,
+  },
+  'Tidy Up': {
+    bp: 0,
+    category: 'Status',
+    type: 'Normal',
+  },
+  'Upper Hand': {
+    bp: 65,
+    type: 'Fighting',
+    category: 'Physical',
+    makesContact: true,
+    secondaries: true,
+    priority: 3,
+  },
+};
+const BWYB: {[name: string]: MoveData} = extend(true, {}, BW, BWYB_PATCH);
+
+export const MOVES = [{}, RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, JS, BWYB, TH, MH,
+  SV, TS, PM, SV, SV, SV];
 
 export class Moves implements I.Moves {
   private readonly gen: I.GenerationNum;

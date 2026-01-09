@@ -35,7 +35,7 @@ export function isGrounded(pokemon: Pokemon, field: Field) {
 }
 
 export function getModifiedStat(stat: number, mod: number, gen?: Generation) {
-  if (gen && gen.num < 3) {
+  if (gen && (gen.num < 3 || gen.num === 10)) {
     if (mod >= 0) {
       const pastGenBoostTable = [1, 1.5, 2, 2.5, 3, 3.5, 4];
       stat = Math.floor(stat * pastGenBoostTable[mod]);
@@ -116,7 +116,11 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
       (pokemon.hasAbility('Slush Rush') && ['Hail', 'Snow', 'Absolute Zero'].includes(weather)) ||
       (pokemon.hasAbility('Surge Surfer') && terrain === 'Electric')
   ) {
-    speedMods.push(8192);
+    if (gen.num === 11) {
+      speedMods.push(6144);
+    } else {
+      speedMods.push(8192);
+    }
   } else if (pokemon.hasAbility('Quick Feet') && pokemon.status) {
     speedMods.push(6144);
   } else if (pokemon.hasAbility('Slow Start') && pokemon.abilityOn) {
@@ -167,10 +171,11 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
 
   speed = OF32(pokeRound((speed * chainMods(speedMods, 410, 131172)) / 4096));
   if (pokemon.hasStatus('par') && !pokemon.hasAbility('Quick Feet')) {
-    speed = Math.floor(OF32(speed * (gen.num < 7 ? 25 : 50)) / 100);
+    speed = Math.floor(OF32(speed * ((gen.num < 7 || gen.num === 10 || gen.num === 11) ? 25 : 50))
+      / 100);
   }
 
-  speed = Math.min(gen.num <= 2 ? 999 : 10000, speed);
+  speed = Math.min((gen.num <= 2 || gen.num === 10) ? 999 : 10000, speed);
   return Math.max(0, speed);
 }
 
@@ -182,7 +187,7 @@ export function getMoveEffectiveness(
   isGravity?: boolean,
   isRingTarget?: boolean,
   isPerforated?: boolean,
-  isRusted?: boolean,
+  isRuststorm?: boolean,
   isGoggles?: boolean,
 ) {
   if (isGhostRevealed && type === 'Ghost' && move.hasType('Normal', 'Fighting')) {
@@ -210,7 +215,7 @@ export function getMoveEffectiveness(
       // Can only do this because flying has no other interactions
       effectiveness *= gen.types.get('flying' as ID)!.effectiveness[type]!;
     }
-    if (isRusted && type === 'Steel' && effectiveness < 1) {
+    if (isRuststorm && type === 'Steel' && effectiveness < 1) {
       effectiveness = 1;
     }
     return effectiveness;
@@ -295,7 +300,8 @@ export function checkIntimidate(gen: Generation, source: Pokemon, target: Pokemo
   const blocked =
     target.hasAbility('Clear Body', 'White Smoke', 'Hyper Cutter', 'Full Metal Body') ||
     // More abilities now block Intimidate in Gen 8+ (DaWoblefet, Cloudy Mistral)
-    (gen.num >= 8 && target.hasAbility('Inner Focus', 'Own Tempo', 'Oblivious', 'Scrappy')) ||
+    ((gen.num >= 8 && gen.num !== 10) && target.hasAbility('Inner Focus', 'Own Tempo', 'Oblivious',
+      'Scrappy')) ||
     target.hasItem('Clear Amulet');
   if (source.hasAbility('Intimidate') && source.abilityOn && !blocked) {
     if (target.hasAbility('Contrary', 'Defiant', 'Guard Dog')) {
@@ -382,7 +388,7 @@ export function checkAggravation(source: Pokemon) {
 }
 
 export function checkEmbody(source: Pokemon, gen: Generation) {
-  if (gen.num < 9) return;
+  if (gen.num < 9 || gen.num === 10) return;
   switch (source.ability) {
   case 'Embody Aspect (Cornerstone)':
     source.boosts.def = Math.min(6, source.boosts.def + 1);
@@ -755,7 +761,7 @@ export function getStellarStabMod(pokemon: Pokemon, move: Move, stabMod = 1, tur
 export function countBoosts(gen: Generation, boosts: StatsTable) {
   let sum = 0;
 
-  const STATS: StatID[] = gen.num === 1
+  const STATS: StatID[] = gen.num === 1 || gen.num === 10
     ? ['atk', 'def', 'spa', 'spe']
     : ['atk', 'def', 'spa', 'spd', 'spe'];
 

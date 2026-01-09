@@ -57,6 +57,7 @@ export interface RawDesc {
   isDefenseDown?: boolean;
   isCharged?: boolean;
   isDragonCharged?: boolean;
+  isBestWishesFrozen?: boolean;
 }
 
 export function display(
@@ -125,11 +126,23 @@ export function getRecovery(
   let text = '';
 
   const ignoresShellBell =
-    gen.num === 3 && move.named('Doom Desire', 'Future Sight');
+    [3].includes(gen.num) && move.named('Doom Desire', 'Future Sight');
   if ((attacker.hasItem('Shell Bell') || attacker.hasAbility('Predator')) && !ignoresShellBell) {
     for (let i = 0; i < minD.length; i++) {
       recovery[0] += minD[i] > 0 ? Math.max(Math.round(minD[i] / 8), 1) : 0;
       recovery[1] += maxD[i] > 0 ? Math.max(Math.round(maxD[i] / 8), 1) : 0;
+    }
+    // This is incorrect if the opponent heals during your damage
+    // Ex: Sitrus Berry procs in the middle of multi-hit move
+    const maxHealing = Math.round(defender.curHP() / 8);
+    recovery[0] = Math.min(recovery[0], maxHealing);
+    recovery[1] = Math.min(recovery[1], maxHealing);
+  }
+
+  if ([11].includes(gen.num) && attacker.hasItem('Bug Gem') && move.hasType('Bug')) {
+    for (let i = 0; i < minD.length; i++) {
+      recovery[0] += minD[i] > 0 ? Math.max(Math.round(minD[i] / 4), 1) : 0;
+      recovery[1] += maxD[i] > 0 ? Math.max(Math.round(maxD[i] / 4), 1) : 0;
     }
     // This is incorrect if the opponent heals during your damage
     // Ex: Sitrus Berry procs in the middle of multi-hit move
@@ -231,10 +244,11 @@ export function getRecoil(
     recoil = [minRecoilDamage, maxRecoilDamage];
     text = `${minRecoilDamage} - ${maxRecoilDamage}${notation} recoil damage`;
   } else if (move.hasCrashDamage) {
-    const genMultiplier = gen.num === 2 ? 12.5 : gen.num >= 3 ? 50 : 1;
+    const genMultiplier = [2].includes(gen.num) ? 12.5
+      : ([1, 10].includes(gen.num)) ? 1 : 50;
 
     let minRecoilDamage, maxRecoilDamage;
-    if (damageOverflow && gen.num !== 2) {
+    if (damageOverflow && ![2].includes(gen.num)) {
       minRecoilDamage =
         toDisplay(notation, defender.curHP() * genMultiplier, attacker.maxHP(), 100);
       maxRecoilDamage =
@@ -250,13 +264,13 @@ export function getRecoil(
 
     recoil = [minRecoilDamage, maxRecoilDamage];
     switch (gen.num) {
-    case 1:
+    case 1: case 10:
       recoil = toDisplay(notation, 1, attacker.maxHP());
       text = '1hp damage on miss';
       break;
     case 2: case 3: case 4:
       if (defender.hasType('Ghost')) {
-        if (gen.num === 4) {
+        if ([4].includes(gen.num)) {
           const gen4CrashDamage = Math.floor(((defender.maxHP() * 0.5) / attacker.maxHP()) * 100);
           recoil = notation === '%' ? gen4CrashDamage : Math.floor((gen4CrashDamage / 100) * 48);
           text = `${gen4CrashDamage}% crash damage`;
@@ -277,7 +291,7 @@ export function getRecoil(
     text = '25% struggle damage';
     // Struggle recoil is actually rounded down in Gen 4 per DaWoblefet's research, but until we
     // return recoil damage as exact HP the best we can do is add some more text to this effect
-    if (gen.num === 4) text += ' (rounded down)';
+    if ([4].includes(gen.num)) text += ' (rounded down)';
   } else if (move.mindBlownRecoil) {
     recoil = notation === '%' ? 24 : 50;
     text = '50% recoil damage';
@@ -576,7 +590,7 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
       } else {
         damage += Math.floor((defender.maxHP()) / 8);
       }
-      if (gen.num === 2) {
+      if ([2].includes(gen.num)) {
         texts.push('Spikes');
       } else {
         texts.push('1 layer of Spikes');
@@ -649,7 +663,7 @@ function getEndOfTurn(
       damage += Math.floor(defender.maxHP() / 8);
       texts.push('Dry Skin recovery');
     } else if (defender.hasAbility('Rain Dish')) {
-      damage += Math.floor(defender.maxHP() / (gen.num === 4 ? 8 : 16));
+      damage += Math.floor(defender.maxHP() / ([4].includes(gen.num) ? 8 : 16));
       texts.push('Rain Dish recovery');
     } else if (defender.hasAbility('Oilmucus')) {
       damage -= Math.floor(defender.maxHP() / 8);
@@ -663,9 +677,9 @@ function getEndOfTurn(
       !defender.hasItem('Safety Goggles')
     ) {
       if (defender.hasAbility('Fervent Scales')) {
-        damage -= Math.floor(defender.maxHP() / (gen.num === 2 ? 16 : 32));
+        damage -= Math.floor(defender.maxHP() / ([2].includes(gen.num) ? 16 : 32));
       } else {
-        damage -= Math.floor(defender.maxHP() / (gen.num === 2 ? 8 : 16));
+        damage -= Math.floor(defender.maxHP() / ([2].includes(gen.num) ? 8 : 16));
       }
       texts.push('sandstorm damage');
     }
@@ -697,7 +711,7 @@ function getEndOfTurn(
     }
   } else if (field.hasWeather('Hail', 'Snow', 'Absolute Zero')) {
     if (defender.hasAbility('Ice Body') && !healBlock) {
-      damage += Math.floor((defender.maxHP()) / (gen.num === 4 ? 8 : 16));
+      damage += Math.floor((defender.maxHP()) / ([4].includes(gen.num) ? 8 : 16));
       texts.push('Ice Body recovery');
     } else if (
       !defender.hasType('Ice') &&
@@ -758,16 +772,16 @@ function getEndOfTurn(
     if (!defender.hasAbility('Magic Guard')) {
       // 1/16 in gen 1, 1/8 in gen 2 onwards
       if (defender.hasAbility('Fervent Scales')) {
-        damage -= Math.floor(defender.maxHP() / (gen.num >= 2 ? 16 : 32));
+        damage -= Math.floor(defender.maxHP() / (![1, 10].includes(gen.num) ? 16 : 32));
       } else {
-        damage -= Math.floor(defender.maxHP() / (gen.num >= 2 ? 8 : 16));
+        damage -= Math.floor(defender.maxHP() / (![1, 10].includes(gen.num) ? 8 : 16));
       }
       texts.push('Leech Seed damage');
     }
   }
 
   if (field.attackerSide.isSeeded && !attacker.hasAbility('Magic Guard')) {
-    let recovery = Math.floor(attacker.maxHP() / (gen.num >= 2 ? 8 : 16));
+    let recovery = Math.floor(attacker.maxHP() / (![1, 10].includes(gen.num) ? 8 : 16));
     if (defender.hasItem('Big Root')) recovery = Math.trunc(recovery * 5324 / 4096);
     if (attacker.hasAbility('Liquid Ooze')) {
       if (attacker.hasAbility('Fervent Scales')) {
@@ -802,9 +816,9 @@ function getEndOfTurn(
       }
     } else if (!defender.hasAbility('Magic Guard')) {
       if (defender.hasAbility('Fervent Scales')) {
-        damage -= Math.floor(defender.maxHP() / (gen.num === 1 ? 32 : 16));
+        damage -= Math.floor(defender.maxHP() / ([1, 10].includes(gen.num) ? 32 : 16));
       } else {
-        damage -= Math.floor(defender.maxHP() / (gen.num === 1 ? 16 : 8));
+        damage -= Math.floor(defender.maxHP() / ([1, 10].includes(gen.num) ? 16 : 8));
       }
       texts.push('poison damage');
     }
@@ -819,10 +833,10 @@ function getEndOfTurn(
     }
   } else if (defender.hasStatus('brn')) {
     if (defender.hasAbility('Heatproof') || defender.hasAbility('Fervent Scales')) {
-      damage -= Math.floor(defender.maxHP() / (gen.num > 6 ? 32 : 16));
+      damage -= Math.floor(defender.maxHP() / (![2, 3, 4, 5, 6, 11].includes(gen.num) ? 32 : 16));
       texts.push('reduced burn damage');
     } else if (!defender.hasAbility('Magic Guard')) {
-      damage -= Math.floor(defender.maxHP() / (gen.num === 1 || gen.num > 6 ? 16 : 8));
+      damage -= Math.floor(defender.maxHP() / (![2, 3, 4, 5, 6, 11].includes(gen.num) ? 16 : 8));
       texts.push('burn damage');
     }
   } else if (defender.hasStatus('dgb')) {
@@ -842,6 +856,15 @@ function getEndOfTurn(
         damage -= Math.floor(defender.maxHP() / 16);
       }
       texts.push('frostbite damage');
+    }
+  } else if (defender.hasStatus('frz') && [11].includes(gen.num)) {
+    if (!defender.hasAbility('Magic Guard')) {
+      if (field.hasWeather('Snow')) {
+        damage -= Math.floor(defender.maxHP() / 8);
+      } else {
+        damage -= Math.floor(defender.maxHP() / 16);
+      }
+      texts.push('freeze damage');
     }
   } else if (
     (defender.hasStatus('slp') || defender.hasAbility('Comatose')) &&
@@ -868,19 +891,19 @@ function getEndOfTurn(
   if (!defender.hasAbility('Magic Guard') && TRAPPING.includes(move.name)) {
     if (attacker.hasItem('Binding Band')) {
       if (defender.hasAbility('Fervent Scales')) {
-        damage -= [1, 2, 3].includes(gen.num) ? Math.floor(defender.maxHP() / 12)
+        damage -= [1, 2, 3, 10].includes(gen.num) ? Math.floor(defender.maxHP() / 12)
           : Math.floor(defender.maxHP() / 16);
       } else {
-        damage -= [1, 2, 3].includes(gen.num) ? Math.floor(defender.maxHP() / 6)
+        damage -= [1, 2, 3, 10].includes(gen.num) ? Math.floor(defender.maxHP() / 6)
           : Math.floor(defender.maxHP() / 8);
       }
       texts.push('trapping damage');
     } else {
       if (defender.hasAbility('Fervent Scales')) {
-        damage -= [1, 2, 3].includes(gen.num) ? Math.floor(defender.maxHP() / 16)
+        damage -= [1, 2, 3, 10].includes(gen.num) ? Math.floor(defender.maxHP() / 16)
           : Math.floor(defender.maxHP() / 32);
       } else {
-        damage -= [1, 2, 3].includes(gen.num) ? Math.floor(defender.maxHP() / 8)
+        damage -= [1, 2, 3, 10].includes(gen.num) ? Math.floor(defender.maxHP() / 8)
           : Math.floor(defender.maxHP() / 16);
       }
       texts.push('trapping damage');
@@ -1044,7 +1067,7 @@ function predictTotal(
 function squashMultihit(gen: Generation, d: number[], hits: number, err = true) {
   if (d.length === 1) {
     return [d[0] * hits];
-  } else if (gen.num === 1) {
+  } else if ([1, 10].includes(gen.num)) {
     const r = [];
     for (let i = 0; i < d.length; i++) {
       r[i] = d[i] * hits;
@@ -1245,6 +1268,9 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   }
   output = appendIfSet(output, description.defenderItem);
   output = appendIfSet(output, description.defenderAbility);
+  if (description.isBestWishesFrozen) {
+    output += 'Frozen ';
+  }
   if (description.isTabletsOfRuin) {
     output += 'Tablets of Ruin ';
   }

@@ -13,19 +13,29 @@ import {calculateTS} from './mechanics/tiersovereign';
 import {calculatePM} from './mechanics/paleomons';
 import {calculateMH} from './mechanics/monsterhunter';
 import {calculateTH} from './mechanics/touhoumons';
+import {calculateBWFYB} from './mechanics/bestwishes';
 
 const MECHANICS = [
   () => {},
   calculateRBYGSC,
   calculateRBYGSC,
-  calculateTH,
-  calculateMH,
-  calculateSMSSSV,
-  calculateTS,
-  calculatePM,
-  calculateSMSSSV,
+  calculateADV,
+  calculateDPP,
+  calculateBWXY,
+  calculateBWXY,
   calculateSMSSSV,
   calculateSMSSSV,
+  calculateSMSSSV,
+  calculateRBYGSC, // Jumpstarted
+  calculateBWFYB, // Best Wishes
+  calculateTH, // Touhoumons
+  calculateMH, // Monster Hunter
+  calculateSMSSSV, // Six by Six
+  calculateTS, // Tier Sovereign
+  calculatePM, // Paleomons
+  calculateSMSSSV, // DNU
+  calculateSMSSSV, // BC A
+  calculateSMSSSV, // BC C
 ];
 
 export function calculate(
