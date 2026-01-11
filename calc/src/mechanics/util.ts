@@ -131,6 +131,8 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
     speedMods.push(2048);
   } else if (isQPActive(pokemon, field) && getQPBoostedStat(pokemon, gen) === 'spe') {
     speedMods.push(6144);
+  } else if (pokemon.hasAbility('Quickstart') && pokemon.abilityOn) {
+    speedMods.push(8192);
   }
   if (side.isCharged && pokemon.hasAbility('Howling Thunder')) {
     speedMods.push(6144);

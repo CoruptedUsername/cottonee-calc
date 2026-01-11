@@ -1440,6 +1440,10 @@ export function calculateAtModsFEVGC(
   } else if (attacker.hasAbility('Pestilence') && defender.hasType('Bug')) {
     atMods.push(3072);
     desc.attackerAbility = attacker.ability;
+  } else if (attacker.hasAbility('Quickstart') && attacker.abilityOn &&
+    move.category === 'Physical') {
+    atMods.push(8192);
+    desc.attackerAbility = attacker.ability;
   }
 
   if (

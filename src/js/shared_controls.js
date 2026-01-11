@@ -310,6 +310,7 @@ $(".ability").bind("keyup change", function () {
 		'Obliterate',
 		'Plus',
 		'Pyrotechnic',
+		'Quickstart',
 		'Sea Monster',
 		'Slow Start',
 		'Smelting',
