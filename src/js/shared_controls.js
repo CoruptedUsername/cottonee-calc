@@ -305,6 +305,7 @@ $(".ability").bind("keyup change", function () {
 		'Incorporate',
 		'Inflame',
 		'Intimidate',
+		'Litnitwit',
 		'Migrate',
 		'Minus',
 		'Obliterate',
@@ -330,7 +331,7 @@ $(".ability").bind("keyup change", function () {
 	}
 	var boostedStat = $(this).closest(".poke-info").find(".boostedStat");
 
-	if (ability === "Protosynthesis" || ability === "Quark Drive" || ability === "Protopyre" || ability === "Cactus Drive") {
+	if (['Air Drive', 'Cactus Drive', 'Heavy Drive', 'Jade Drive', 'Jelly-Filled Drive', 'Magic Drive', 'Phantom Drive', 'Protoavian', 'Protolithos', 'Protoneuron', 'Protopyre', 'Protorefraction', 'Protosynthesis', 'Prototoxin', 'Quark Drive', 'Wind Drive'].includes(ability)) {
 		boostedStat.show();
 		autosetQP($(this).closest(".poke-info"));
 	} else {
@@ -373,13 +374,17 @@ function autosetQP(pokemon) {
 	var item = pokemon.find(".item").val();
 	var ability = pokemon.find(".ability").val();
 	var boostedStat = pokemon.find(".boostedStat").val();
+	var status = pokemon.find(statusType).val();
+	var tailwind = pokemon.find(".tailwind").val();
 
 	if (!boostedStat || boostedStat === "auto") {
 		if (
 			(item === "Booster Energy") ||
-			((ability === "Protosynthesis" || ability === "Protopyre") && currentWeather === "Sun") ||
-			(ability === "Quark Drive" && currentTerrain === "Electric") ||
-			(ability === "Cactus Drive" && currentTerrain === "Grassy")
+			(['Protoavian', 'Protolithos', 'Protoneuron', 'Protopyre', 'Protorefraction', 'Protosynthesis', 'Prototoxin'].includes(ability) && currentWeather === "Sun") ||
+			(['Air Drive', 'Heavy Drive', 'Jade Drive', 'Jelly-Filled Drive', 'Magic Drive', 'Phantom Drive', 'Quark Drive', 'Wind Drive'].includes(ability) && currentTerrain === "Electric") ||
+			(ability === "Cactus Drive" && currentTerrain === "Grassy") ||
+			(ability === "Prototoxin" && ["Poisoned", "Badly Poisoned"].includes(status)) ||
+			(ability === "Wind Drive" && tailwind)
 		) {
 			pokemon.find(".boostedStat").val("auto");
 		} else {

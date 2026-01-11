@@ -109,10 +109,10 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
   // Pledge swamp would get applied here when implemented
   // speedMods.push(1024);
 
-  if ((pokemon.hasAbility('Berry Diet', 'Berry Feast', 'Germinate', 'Unburden') &&
+  if ((pokemon.hasAbility('Berry Diet', 'Berry Feast', 'Germinate', 'Off-Scale', 'Unburden') &&
       pokemon.abilityOn) ||
       (pokemon.hasAbility('Chlorophyll', 'Fast Venom', 'Growing Grass', 'Quick Delivery',
-        'Speed Demon', 'Sun Bathe', 'Sunlit Flight') && weather.includes('Sun')) ||
+        'Speed Demon', 'Summer Heat', 'Sun Bathe', 'Sunlit Flight') && weather.includes('Sun')) ||
       (pokemon.hasAbility('Sand Rush', 'Tundra Rush') &&
         ['Sand', 'Dust Devil'].includes(weather)) ||
       (pokemon.hasAbility('Hydrophilic', 'Swift Swim') && weather.includes('Rain')) ||
@@ -160,7 +160,7 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
     speedMods.push(3072);
   }
 
-  if (!(pokemon.hasAbility('Berry Diet', 'Berry Feast', 'Germinate', 'Unburden') &&
+  if (!(pokemon.hasAbility('Berry Diet', 'Berry Feast', 'Germinate', 'Off-Scale', 'Unburden') &&
     pokemon.abilityOn)) {
     // Unburden active implies item no longer present
     if (pokemon.hasItem('Choice Scarf')) {
@@ -307,12 +307,12 @@ export function checkWonderRoom(pokemon: Pokemon, wonderRoomActive?: boolean) {
 export function checkIntimidate(gen: Generation, source: Pokemon, target: Pokemon) {
   const blocked =
     target.hasAbility('Clear Body', 'Eliminate', 'Full Metal Body', 'Hunger Fate', 'Hyper Cutter',
-      'Obsidian Body', 'Rustle Rage', 'Smoke Absorb', 'White Smoke') ||
+      'Obsidian Body', 'Protolithos', 'Rustle Rage', 'Smoke Absorb', 'White Smoke') ||
     // More abilities now block Intimidate in Gen 8+ (DaWoblefet, Cloudy Mistral)
     ((gen.num >= 8 && gen.num !== 10) && target.hasAbility('Inner Focus', 'Own Tempo', 'Oblivious',
       'Prideful', 'Scrappy')) ||
     target.hasItem('Clear Amulet');
-  if (source.hasAbility('Dominate', 'Eliminate', 'Incorporate',  'Inflame', 'Intimidate',
+  if (source.hasAbility('Dominate', 'Eliminate', 'Incorporate', 'Inflame', 'Intimidate',
     'Migrate', 'Obliterate', 'Sea Monster', 'Underestimate') && source.abilityOn && !blocked) {
     if (target.hasAbility('Combative', 'Contrary', 'Defiant', 'Guard Dog')) {
       target.boosts.atk = Math.min(6, target.boosts.atk + 1);
@@ -321,7 +321,7 @@ export function checkIntimidate(gen: Generation, source: Pokemon, target: Pokemo
     } else {
       target.boosts.atk = Math.max(-6, target.boosts.atk - 1);
     }
-    if (target.hasAbility('Competitive', 'Goo-Getter', 'Neutral Match')) {
+    if (target.hasAbility('Competitive', 'Goo-Getter', 'Neutral Match', 'Polarity')) {
       target.boosts.spa = Math.min(6, target.boosts.spa + 2);
     }
   }
@@ -335,7 +335,8 @@ export function checkSurprise(gen: Generation, source: Pokemon, target: Pokemon)
     (target.hasAbility('Inner Focus', 'Own Tempo', 'Oblivious', 'Prideful', 'Scrappy')) ||
     target.hasItem('Clear Amulet') || target.hasType('Psychic');
   if (source.hasAbility('Surprise') && source.abilityOn && !blocked) {
-    if (target.hasAbility('Contrary', 'Competitive', 'Goo-Getter', 'Neutral Match', 'Unfiltered')) {
+    if (target.hasAbility('Contrary', 'Competitive', 'Goo-Getter', 'Neutral Match', 'Unfiltered',
+      'Polarity')) {
       target.boosts.spa = Math.min(6, target.boosts.spa + 1);
     } else if (target.hasAbility('Simple')) {
       target.boosts.spa = Math.max(-6, target.boosts.spa - 2);
@@ -380,8 +381,14 @@ export function checkWindRider(source: Pokemon, attackingSide: Side) {
   }
 }
 
+export function checkWindEnergy(source: Pokemon, attackingSide: Side) {
+  if (source.hasAbility('Wind Energy') && attackingSide.isTailwind) {
+    source.boosts.spa = Math.min(6, source.boosts.spa + 1);
+  }
+}
+
 export function checkTempestEnergy(source: Pokemon, attackingSide: Side, isSandy: boolean) {
-  if (source.hasAbility('Tempest Energy') && (attackingSide.isTailwind || isSandy)) {
+  if (source.hasAbility('Tempest Energy', 'Wind Energy') && (attackingSide.isTailwind || isSandy)) {
     source.boosts.spa = Math.min(6, source.boosts.spa + 1);
   }
 }
@@ -700,7 +707,7 @@ export function getShellSideArmCategory(source: Pokemon, target: Pokemon): MoveC
 
 export function getWeight(pokemon: Pokemon, desc: RawDesc, role: 'defender' | 'attacker') {
   let weightHG = pokemon.weightkg * 10;
-  const abilityFactor = pokemon.hasAbility('Heavy Metal') ? 2
+  const abilityFactor = pokemon.hasAbility('Heavy Drive', 'Heavy Metal') ? 2
     : pokemon.hasAbility('Light Metal') ? 0.5
     : 1;
   if (abilityFactor !== 1) {

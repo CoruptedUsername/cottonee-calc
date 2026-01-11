@@ -822,6 +822,11 @@ function getEndOfTurn(
         damage += Math.floor(defender.maxHP() / 8);
         texts.push('Poison Heal');
       }
+    } else if (defender.hasAbility('Prototoxin')) {
+      if (!healBlock) {
+        damage += Math.floor(defender.maxHP() / 8);
+        texts.push('Prototoxin Heal');
+      }
     } else if (!defender.hasAbility('Magic Guard', 'Magic Sticks')) {
       if (defender.hasAbility('Fervent Scales')) {
         damage -= Math.floor(defender.maxHP() / ([1, 10].includes(gen.num) ? 32 : 16));
@@ -835,6 +840,11 @@ function getEndOfTurn(
       if (!healBlock) {
         damage += Math.floor(defender.maxHP() / 8);
         texts.push('Poison Heal');
+      }
+    } else if (defender.hasAbility('Prototoxin')) {
+      if (!healBlock) {
+        damage += Math.floor(defender.maxHP() / 8);
+        texts.push('Prototoxin Heal');
       }
     } else if (!defender.hasAbility('Magic Guard', 'Magic Sticks')) {
       texts.push('toxic damage');

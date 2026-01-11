@@ -29,6 +29,7 @@ import {
   checkSeedBoost,
   checkTeraformZero,
   checkWindRider,
+  checkWindEnergy,
   checkWonderRoom,
   computeFinalStats,
   countBoosts,
@@ -86,6 +87,8 @@ export function calculateFEVGC(
 
   checkWindRider(attacker, field.attackerSide);
   checkWindRider(defender, field.defenderSide);
+  checkWindEnergy(attacker, field.attackerSide);
+  checkWindEnergy(defender, field.defenderSide);
 
   if (move.named('Meteor Beam', 'Electro Shot')) {
     attacker.boosts.spa +=
@@ -481,22 +484,23 @@ export function calculateFEVGC(
   if ((defender.hasAbility('Wonder Guard') && typeEffectiveness <= 1) ||
       (move.hasType('Grass') && defender.hasAbility('Forbidden Garden', 'Mind Align',
         'Sap Sipper')) ||
-      (move.hasType('Fire') && defender.hasAbility('Flash Fire', 'Pyrotechnic',
+      (move.hasType('Fire') && defender.hasAbility('Flash Fire', 'Litnitwit', 'Pyrotechnic',
         'Smelting', 'Sturdy Fire', 'Well-Baked Body')) ||
       (move.hasType('Water') && defender.hasAbility('Clumping Up', 'Dive Goggles', 'Dry Skin',
         'Hydrophilic', 'Own Tides', 'Smoke Absorb', 'Storm Drain', 'Water Absorb')) ||
       (move.hasType('Electric') &&
         defender.hasAbility('Electric Dust', 'Lightning Rod', 'Motor Drive', 'Respark',
-          'Shock Horror', 'Volt Absorb')) ||
+          'Shock Horror', 'Volt Absorb', 'Wind Energy')) ||
       (move.hasType('Ground') &&
         !field.isGravity && !move.named('Thousand Arrows') &&
-        !defender.hasItem('Iron Ball') && defender.hasAbility('Levitate', 'Sunlit Flight')) ||
+        !defender.hasItem('Iron Ball') &&
+        defender.hasAbility('Air Drive', 'Levitate', 'Sunlit Flight')) ||
       (move.flags.bullet && defender.hasAbility('Bulletproof', 'Lithoproof', 'Sandproof')) ||
       (move.flags.sound && !move.named('Clangorous Soul') && defender.hasAbility('Soundproof')) ||
       (move.priority > 0 && defender.hasAbility('Queenly Majesty', 'Knight\'s Eye', 'Dazzling',
         'Armor Tail')) ||
       (move.hasType('Ground') && defender.hasAbility('Earth Eater')) ||
-      (move.flags.wind && defender.hasAbility('Sirocco', 'Wind Rider')) ||
+      (move.flags.wind && defender.hasAbility('Sirocco', 'Wind Energy', 'Wind Rider')) ||
       (move.flags.slicing && defender.hasAbility('Heatblade'))
   ) {
     desc.defenderAbility = defender.ability;
@@ -1397,18 +1401,19 @@ export function calculateAtModsFEVGC(
     (attacker.hasAbility('Careless', 'Guts', 'Migrate') && attacker.status &&
       move.category === 'Physical') ||
     (attacker.curHP() <= attacker.maxHP() / 3 &&
-      ((attacker.hasAbility('Kelp Power', 'Overbloom', 'Overgrow') && move.hasType('Grass')) ||
-       (attacker.hasAbility('Blaze', 'Blazing Passion', 'Down In Flames', 'Inflame') &&
-         move.hasType('Fire')) ||
-       (attacker.hasAbility('Focus Falls', 'Kelp Power', 'Magic Surge', 'Sea Monster', 'Torrent') &&
-         move.hasType('Water')) ||
+      ((attacker.hasAbility('Kelp Power', 'Overbloom', 'Overgrow', 'Poison Ivy') &&
+          move.hasType('Grass')) ||
+       (attacker.hasAbility('Blaze', 'Blazing Passion', 'Boiling Spot', 'Down In Flames',
+         'Inflame') && move.hasType('Fire')) ||
+       (attacker.hasAbility('Boiling Spot', 'Focus Falls', 'Kelp Power', 'Magic Surge',
+         'Sea Monster', 'Torrent') && move.hasType('Water')) ||
        (attacker.hasAbility('Swarm') && move.hasType('Bug')))) ||
     (move.category === 'Special' && attacker.abilityOn && attacker.hasAbility('Plus', 'Minus'))
   ) {
     atMods.push(6144);
     desc.attackerAbility = attacker.ability;
-  } else if (attacker.hasAbility('Eerie Flames', 'Flash Fire', 'Pyrotechnic', 'Smelting',
-    'Sturdy Fire') && attacker.abilityOn && move.hasType('Fire')) {
+  } else if (attacker.hasAbility('Eerie Flames', 'Flash Fire', 'Litnitwit', 'Pyrotechnic',
+    'Smelting', 'Sturdy Fire') && attacker.abilityOn && move.hasType('Fire')) {
     atMods.push(6144);
     desc.attackerAbility = attacker.ability;
   } else if (attacker.hasAbility('Germinate') && attacker.abilityOn && move.hasType('Grass')) {
@@ -1456,6 +1461,11 @@ export function calculateAtModsFEVGC(
     desc.isFlowerGiftAttacker = true;
   }
 
+  if (field.attackerSide.isCharged && move.hasType('Electric')) {
+    atMods.push(8192);
+    desc.isCharged = true;
+  }
+
   if (
     field.attackerSide.isSteelySpirit &&
     move.hasType('Steel')
@@ -1472,7 +1482,7 @@ export function calculateAtModsFEVGC(
     desc.defenderAbility = defender.ability;
   }
 
-  if (defender.hasAbility('Heatproof') && move.hasType('Fire')) {
+  if (defender.hasAbility('Heatproof', 'Summer Heat') && move.hasType('Fire')) {
     atMods.push(2048);
     desc.defenderAbility = defender.ability;
   }
@@ -1493,7 +1503,7 @@ export function calculateAtModsFEVGC(
     atMods.push(3072);
   }
 
-  if (isQPActive(attacker, field)) {
+  if (isQPActive(attacker, field) && !defender.hasAbility('Protodyschronometria')) {
     if (
       (move.category === 'Physical' && getQPBoostedStat(attacker) === 'atk') ||
       (move.category === 'Special' && getQPBoostedStat(attacker) === 'spa')
@@ -1552,7 +1562,7 @@ export function calculateDefenseFEVGC(
       (isCritical && defender.boosts[defenseStat] > 0) ||
       move.ignoreDefensive) {
     defense = defender.rawStats[defenseStat];
-  } else if (attacker.hasAbility('Recollect', 'Unaware')) {
+  } else if (attacker.hasAbility('Litnitwit', 'Recollect', 'Unaware')) {
     defense = defender.rawStats[defenseStat];
     desc.attackerAbility = attacker.ability;
   } else {
@@ -1645,7 +1655,7 @@ export function calculateDfModsFEVGC(
     dfMods.push(3072);
   }
 
-  if (isQPActive(defender, field)) {
+  if (isQPActive(defender, field) && !attacker.hasAbility('Protodyschronometria')) {
     if (
       (hitsPhysical && getQPBoostedStat(defender) === 'def') ||
       (!hitsPhysical && getQPBoostedStat(defender) === 'spd')
@@ -1756,7 +1766,8 @@ export function calculateFinalModsFEVGC(
   if (attacker.hasAbility('Move Mastery', 'Neuroforce') && typeEffectiveness > 1) {
     finalMods.push(5120);
     desc.attackerAbility = attacker.ability;
-  } else if (attacker.hasAbility('Desert Shot', 'Sniper', 'Telescopic Sight') && isCritical) {
+  } else if (attacker.hasAbility('Desert Shot', 'Juicy Aim', 'Sniper', 'Telescopic Sight') &&
+    isCritical) {
     finalMods.push(6144);
     desc.attackerAbility = attacker.ability;
   } else if (attacker.hasAbility('Dive Goggles', 'Move Mastery', 'Tinted Lens') &&
@@ -1779,7 +1790,8 @@ export function calculateFinalModsFEVGC(
     desc.defenderAbility = defender.ability;
   }
 
-  if (defender.hasAbility('Fluffy') && move.flags.contact && !attacker.hasAbility('Long Reach')) {
+  if (defender.hasAbility('Fluffy') && move.flags.contact &&
+    !attacker.hasAbility('Long Reach', 'Phantom Drive')) {
     finalMods.push(2048);
     desc.defenderAbility = defender.ability;
   } else if (
@@ -1825,8 +1837,8 @@ export function calculateFinalModsFEVGC(
   if (move.hasType(getBerryResistType(defender.item)) &&
       (typeEffectiveness > 1 || move.hasType('Normal')) &&
       hitCount === 0 &&
-      !attacker.hasAbility('Freaky Eyes', 'Forbidden Garden', 'Shock Horror', 'Unnerve',
-        'Unsettling', 'As One (Glastrier)', 'As One (Spectrier)')) {
+      !attacker.hasAbility('Freaky Eyes', 'Forbidden Garden', 'Juicy Aim', 'Shock Horror',
+        'Unnerve', 'Unsettling', 'As One (Glastrier)', 'As One (Spectrier)')) {
     if (defender.hasAbility('Ripen')) {
       finalMods.push(1024);
     } else {
