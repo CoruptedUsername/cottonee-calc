@@ -16426,7 +16426,7 @@ const FEVGC: {[name: string]: SpeciesData} = {
   },
   'Meta-Lu': {
     types: ['Ground', 'Steel'],
-    bs: {hp: 134, at: 122, df: 127, sa: 75, sd: 85, sp: 57},
+    bs: {hp: 117, at: 122, df: 127, sa: 75, sd: 85, sp: 57},
     weightkg: 0,
     abilities: {0: 'Automaton of Ruin'},
   },

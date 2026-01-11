@@ -98,6 +98,7 @@ export interface MoveFlags {
   slicing?: 1 | 0;
   wind?: 1| 0;
   powder?: 1| 0;
+  dance?: 1| 0;
 }
 
 export interface SelfOrSecondaryEffect {

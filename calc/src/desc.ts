@@ -582,7 +582,8 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
   }
 
   if (!defender.hasType('Flying') &&
-      !defender.hasAbility('Magic Guard', 'Magic Sticks', 'Levitate', 'Plow', 'Dexterity') &&
+      !defender.hasAbility('Magic Guard', 'Magic Sticks', 'Levitate', 'Plow', 'Sunlit Flight',
+        'Dexterity') &&
       !defender.hasItem('Air Balloon')
   ) {
     if (defenderSide.spikes === 1) {
@@ -675,7 +676,8 @@ function getEndOfTurn(
       !defender.hasType('Rock', 'Ground', 'Steel') &&
       !defender.hasAbility('Desert Shot', 'Dust Devil', 'Leaf Coat', 'Magic Guard', 'Magic Sticks',
         'Oasis Lunch', 'Overcoat', 'Sand Force', 'Sand Rush', 'Sand Veil', 'Sand Cloak',
-        'Tempest Energy', 'Tempest Force') && !defender.hasItem('Safety Goggles')
+        'Tempest Energy', 'Tempest Force', 'Tundra Rush', 'Tundra Veil') &&
+      !defender.hasItem('Safety Goggles')
     ) {
       if (defender.hasAbility('Fervent Scales')) {
         damage -= Math.floor(defender.maxHP() / ([2].includes(gen.num) ? 16 : 32));
@@ -688,7 +690,8 @@ function getEndOfTurn(
     if (
       !defender.hasAbility('Desert Shot', 'Dust Devil', 'Leaf Coat', 'Magic Guard', 'Magic Sticks',
         'Oasis Lunch', 'Overcoat', 'Sand Force', 'Sand Rush', 'Sand Veil', 'Sand Cloak',
-        'Tempest Energy', 'Tempest Force') && !defender.hasItem('Safety Goggles')
+        'Tempest Energy', 'Tempest Force', 'Tundra Rush', 'Tundra Veil') &&
+      !defender.hasItem('Safety Goggles')
     ) {
       if (defender.hasAbility('Fervent Scales')) {
         damage += Math.floor((defender.maxHP()) / 32);
@@ -700,8 +703,8 @@ function getEndOfTurn(
   } else if (field.hasWeather('Absolute Zero')) {
     if (
       !defender.hasAbility('Absolute Zero', 'Cryowarning', 'Ice Body', 'Ice Breaker', 'Leaf Coat',
-        'Magic Guard', 'Magic Sticks', 'Overcoat', 'Snow Cloak', 'Slush Rush') &&
-      !defender.hasItem('Safety Goggles')
+        'Magic Guard', 'Magic Sticks', 'Overcoat', 'Snow Cloak', 'Slush Rush', 'Tundra Rush',
+        'Tundra Veil') && !defender.hasItem('Safety Goggles')
     ) {
       if (defender.hasAbility('Fervent Scales')) {
         damage += Math.floor((defender.maxHP()) / 32);
@@ -719,7 +722,8 @@ function getEndOfTurn(
       texts.push('Cryowarning recovery');
     } else if (
       !defender.hasType('Ice') &&
-      !defender.hasAbility('Magic Guard', 'Magic Sticks', 'Leaf Coat', 'Overcoat', 'Snow Cloak') &&
+      !defender.hasAbility('Magic Guard', 'Magic Sticks', 'Leaf Coat', 'Overcoat', 'Snow Cloak',
+        'Tundra Rush', 'Tundra Veil') &&
       !defender.hasItem('Safety Goggles') &&
       field.hasWeather('Hail')
     ) {

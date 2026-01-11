@@ -64,8 +64,8 @@ export function calculateFEVGC(
   checkTeraformZero(defender, field);
   checkForecast(attacker, field.weather);
   checkForecast(defender, field.weather);
-  checkItem(attacker, field.isMagicRoom);
-  checkItem(defender, field.isMagicRoom);
+  checkItem(attacker, field.isMagicRoom, false, defender.hasAbility('Item Lockdown'));
+  checkItem(defender, field.isMagicRoom, false, attacker.hasAbility('Item Lockdown'));
   checkWonderRoom(attacker, field.isWonderRoom);
   checkWonderRoom(defender, field.isWonderRoom);
   checkSeedBoost(attacker, field);
@@ -231,7 +231,8 @@ export function calculateFEVGC(
 
   // Merciless does not ignore Shell Armor, damage dealt to a poisoned Pokemon with Shell Armor
   // will not be a critical hit (UltiMario)
-  const isCritical = !defender.hasAbility('Battle Armor', 'Hyperfocus', 'Shell Armor') &&
+  const isCritical = !defender.hasAbility('Armor Surge', 'Battle Armor', 'Daft Shield',
+    'Hyperfocus', 'Shell Armor') &&
     (move.isCrit || (attacker.hasAbility('Merciless') && defender.hasStatus('psn', 'tox'))) &&
     move.timesUsed === 1;
 
@@ -478,18 +479,19 @@ export function calculateFEVGC(
   }
 
   if ((defender.hasAbility('Wonder Guard') && typeEffectiveness <= 1) ||
-      (move.hasType('Grass') && defender.hasAbility('Sap Sipper')) ||
+      (move.hasType('Grass') && defender.hasAbility('Forbidden Garden', 'Mind Align',
+        'Sap Sipper')) ||
       (move.hasType('Fire') && defender.hasAbility('Flash Fire', 'Pyrotechnic',
         'Smelting', 'Sturdy Fire', 'Well-Baked Body')) ||
       (move.hasType('Water') && defender.hasAbility('Clumping Up', 'Dive Goggles', 'Dry Skin',
-        'Hydrophilic', 'Own Tides', 'Storm Drain', 'Water Absorb')) ||
+        'Hydrophilic', 'Own Tides', 'Smoke Absorb', 'Storm Drain', 'Water Absorb')) ||
       (move.hasType('Electric') &&
         defender.hasAbility('Electric Dust', 'Lightning Rod', 'Motor Drive', 'Respark',
           'Shock Horror', 'Volt Absorb')) ||
       (move.hasType('Ground') &&
         !field.isGravity && !move.named('Thousand Arrows') &&
-        !defender.hasItem('Iron Ball') && defender.hasAbility('Levitate')) ||
-      (move.flags.bullet && defender.hasAbility('Bulletproof', 'Lithoproof')) ||
+        !defender.hasItem('Iron Ball') && defender.hasAbility('Levitate', 'Sunlit Flight')) ||
+      (move.flags.bullet && defender.hasAbility('Bulletproof', 'Lithoproof', 'Sandproof')) ||
       (move.flags.sound && !move.named('Clangorous Soul') && defender.hasAbility('Soundproof')) ||
       (move.priority > 0 && defender.hasAbility('Queenly Majesty', 'Knight\'s Eye', 'Dazzling',
         'Armor Tail')) ||
@@ -1167,7 +1169,7 @@ export function calculateBPModsFEVGC(
       attacker.hasStatus('brn') && move.category === 'Special') ||
     (attacker.hasAbility('Toxic Boost') &&
       attacker.hasStatus('psn', 'tox') && move.category === 'Physical') ||
-    (attacker.hasAbility('Mega Launcher') && move.flags.pulse) ||
+    (attacker.hasAbility('Hydrostatic Pressure', 'Mega Launcher') && move.flags.pulse) ||
     (attacker.hasAbility('Strong Jaw') && move.flags.bite) ||
     (attacker.hasAbility('Steely Spirit') && move.hasType('Steel')) ||
     (attacker.hasAbility('Blade Edge', 'Heatblade', 'Sharpness') && move.flags.slicing)
@@ -1203,12 +1205,17 @@ export function calculateBPModsFEVGC(
       (move.secondaries || move.named('Order Up')) && !move.isMax) ||
     (attacker.hasAbility('Sand Force') &&
       field.hasWeather('Sand') && move.hasType('Rock', 'Ground', 'Steel')) ||
-    (attacker.hasAbility('Analytic') &&
+    (attacker.hasAbility('Analytic', 'Surgeon Eye') &&
       (turnOrder !== 'first' || field.defenderSide.isSwitching === 'out')) ||
     (attacker.hasAbility('Obliterate', 'Tough Claws') && move.flags.contact) ||
     (attacker.hasAbility('Punk Rock') && move.flags.sound)
   ) {
     bpMods.push(5325);
+    desc.attackerAbility = attacker.ability;
+  }
+
+  if (attacker.hasAbility('Tuff Claws') && move.flags.contact) {
+    bpMods.push(4915);
     desc.attackerAbility = attacker.ability;
   }
 
@@ -1334,7 +1341,7 @@ export function calculateAttackFEVGC(
   if (attackSource.boosts[attackStat] === 0 ||
       (isCritical && attackSource.boosts[attackStat] < 0)) {
     attack = attackSource.rawStats[attackStat];
-  } else if (defender.hasAbility('Recollect', 'Unaware')) {
+  } else if (defender.hasAbility('Daft Shield', 'Recollect', 'Unaware')) {
     attack = attackSource.rawStats[attackStat];
     desc.defenderAbility = defender.ability;
   } else {
@@ -1393,7 +1400,7 @@ export function calculateAtModsFEVGC(
       ((attacker.hasAbility('Kelp Power', 'Overbloom', 'Overgrow') && move.hasType('Grass')) ||
        (attacker.hasAbility('Blaze', 'Blazing Passion', 'Down In Flames', 'Inflame') &&
          move.hasType('Fire')) ||
-       (attacker.hasAbility('Kelp Power', 'Magic Surge', 'Sea Monster', 'Torrent') &&
+       (attacker.hasAbility('Focus Falls', 'Kelp Power', 'Magic Surge', 'Sea Monster', 'Torrent') &&
          move.hasType('Water')) ||
        (attacker.hasAbility('Swarm') && move.hasType('Bug')))) ||
     (move.category === 'Special' && attacker.abilityOn && attacker.hasAbility('Plus', 'Minus'))
@@ -1404,7 +1411,11 @@ export function calculateAtModsFEVGC(
     'Sturdy Fire') && attacker.abilityOn && move.hasType('Fire')) {
     atMods.push(6144);
     desc.attackerAbility = attacker.ability;
+  } else if (attacker.hasAbility('Germinate') && attacker.abilityOn && move.hasType('Grass')) {
+    atMods.push(6144);
+    desc.attackerAbility = attacker.ability;
   } else if (
+    (attacker.hasAbility('Slow Bugs') && move.hasType('Bug')) ||
     (attacker.hasAbility('Steelworker') && move.hasType('Steel')) ||
     (attacker.hasAbility('Dragon\'s Maw') && move.hasType('Dragon')) ||
     (attacker.hasAbility('Rocky Payload') && move.hasType('Rock'))
@@ -1609,6 +1620,9 @@ export function calculateDfModsFEVGC(
   } else if (defender.hasAbility('Fur Coat') && hitsPhysical) {
     dfMods.push(8192);
     desc.defenderAbility = defender.ability;
+  } else if (defender.hasAbility('Parroting') && (move.flags.dance || move.flags.sound)) {
+    dfMods.push(8192);
+    desc.defenderAbility = defender.ability;
   }
   // Pokemon with "-of Ruin" Ability are immune to the opposing "-of Ruin" ability
   const isSwordOfRuinActive = (attacker.hasAbility('Sword of Ruin') || field.isSwordOfRuin) &&
@@ -1735,13 +1749,14 @@ export function calculateFinalModsFEVGC(
     desc.isAuroraVeil = true;
   }
 
-  if (attacker.hasAbility('Neuroforce') && typeEffectiveness > 1) {
+  if (attacker.hasAbility('Move Mastery', 'Neuroforce') && typeEffectiveness > 1) {
     finalMods.push(5120);
     desc.attackerAbility = attacker.ability;
-  } else if (attacker.hasAbility('Desert Shot', 'Sniper') && isCritical) {
+  } else if (attacker.hasAbility('Desert Shot', 'Sniper', 'Telescopic Sight') && isCritical) {
     finalMods.push(6144);
     desc.attackerAbility = attacker.ability;
-  } else if (attacker.hasAbility('Dive Goggles', 'Tinted Lens') && typeEffectiveness < 1) {
+  } else if (attacker.hasAbility('Dive Goggles', 'Move Mastery', 'Tinted Lens') &&
+    typeEffectiveness < 1) {
     finalMods.push(8192);
     desc.attackerAbility = attacker.ability;
   }
@@ -1806,8 +1821,8 @@ export function calculateFinalModsFEVGC(
   if (move.hasType(getBerryResistType(defender.item)) &&
       (typeEffectiveness > 1 || move.hasType('Normal')) &&
       hitCount === 0 &&
-      !attacker.hasAbility('Freaky Eyes', 'Shock Horror', 'Unnerve', 'Unsettling',
-        'As One (Glastrier)', 'As One (Spectrier)')) {
+      !attacker.hasAbility('Freaky Eyes', 'Forbidden Garden', 'Shock Horror', 'Unnerve',
+        'Unsettling', 'As One (Glastrier)', 'As One (Spectrier)')) {
     if (defender.hasAbility('Ripen')) {
       finalMods.push(1024);
     } else {

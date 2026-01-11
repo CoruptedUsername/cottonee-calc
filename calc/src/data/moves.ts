@@ -42,6 +42,7 @@ export interface MoveData {
   readonly isSlicing?: boolean;
   readonly isWind?: boolean;
   readonly isPowder?: boolean;
+  readonly isDance?: boolean;
 }
 
 const RBY: {[name: string]: MoveData} = {
@@ -5897,6 +5898,46 @@ const BWYB_PATCH: {[name: string]: DeepPartial<MoveData>} = {
 };
 const BWYB: {[name: string]: MoveData} = extend(true, {}, BW, BWYB_PATCH);
 
+// FEVGC
+const FEVGC_PATCH: {[name: string]: DeepPartial<MoveData>} = {
+  'Aqua Step': {
+    isDance: true,
+  },
+  'Clangorous Soul': {
+    isDance: true,
+  },
+  'Dragon Dance': {
+    isDance: true,
+  },
+  'Feather Dance': {
+    isDance: true,
+  },
+  'Fiery Dance': {
+    isDance: true,
+  },
+  'Lunar Dance': {
+    isDance: true,
+  },
+  'Petal Dance': {
+    isDance: true,
+  },
+  'Quiver Dance': {
+    isDance: true,
+  },
+  'Revelation Dance': {
+    isDance: true,
+  },
+  'Swords Dance': {
+    isDance: true,
+  },
+  'Teeter Dance': {
+    isDance: true,
+  },
+  'Victory Dance': {
+    isDance: true,
+  },
+};
+
 export const MOVES = [{}, RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, JS, BWYB, TH, MH,
   SV, TS, PM, SV, SV, SV, SV]; // NewGenChange
 
@@ -5985,6 +6026,7 @@ class Move implements I.Move {
     if (data.isSlicing) this.flags.slicing = 1;
     if (data.isWind) this.flags.wind = 1;
     if (data.isPowder) this.flags.powder = 1;
+    if (data.isDance) this.flags.dance = 1;
 
     assignWithout(this, data, Move.FLAGS);
 

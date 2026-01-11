@@ -300,6 +300,9 @@ $(".ability").bind("keyup change", function () {
 		'Eliminate',
 		'First Flight',
 		'Flash Fire',
+		'Germinate',
+		'Hunger Fate',
+		'Incorporate',
 		'Inflame',
 		'Intimidate',
 		'Migrate',
@@ -415,6 +418,7 @@ function autosetWeather(ability, i) {
 	switch (ability) {
 	case "Drought":
 	case "Orichalcum Pulse":
+	case "Solar Radiation":
 		lastAutoWeather[i] = "Sun";
 		$("#sun").prop("checked", true);
 		break;
@@ -423,6 +427,7 @@ function autosetWeather(ability, i) {
 		lastAutoWeather[i] = "Rain";
 		$("#rain").prop("checked", true);
 		break;
+	case "Sandproof":
 	case "Sand Stream":
 		lastAutoWeather[i] = "Sand";
 		$("#sand").prop("checked", true);
@@ -498,6 +503,7 @@ function autosetTerrain(ability, i) {
 		lastAutoTerrain[i] = "Misty";
 		$("#misty").prop("checked", true);
 		break;
+	case "Armor Surge":
 	case "Psychic Surge":
 		lastAutoTerrain[i] = "Psychic";
 		$("#psychic").prop("checked", true);

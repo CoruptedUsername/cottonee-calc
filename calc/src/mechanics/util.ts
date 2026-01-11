@@ -109,11 +109,15 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
   // Pledge swamp would get applied here when implemented
   // speedMods.push(1024);
 
-  if ((pokemon.hasAbility('Berry Diet', 'Berry Feast', 'Unburden') && pokemon.abilityOn) ||
-      (pokemon.hasAbility('Chlorophyll', 'Speed Demon', 'Sun Bathe') && weather.includes('Sun')) ||
-      (pokemon.hasAbility('Sand Rush') && ['Sand', 'Dust Devil'].includes(weather)) ||
+  if ((pokemon.hasAbility('Berry Diet', 'Berry Feast', 'Germinate', 'Unburden') &&
+      pokemon.abilityOn) ||
+      (pokemon.hasAbility('Chlorophyll', 'Fast Venom', 'Growing Grass', 'Quick Delivery',
+        'Speed Demon', 'Sun Bathe', 'Sunlit Flight') && weather.includes('Sun')) ||
+      (pokemon.hasAbility('Sand Rush', 'Tundra Rush') &&
+        ['Sand', 'Dust Devil'].includes(weather)) ||
       (pokemon.hasAbility('Hydrophilic', 'Swift Swim') && weather.includes('Rain')) ||
-      (pokemon.hasAbility('Slush Rush') && ['Hail', 'Snow', 'Absolute Zero'].includes(weather)) ||
+      (pokemon.hasAbility('Slush Rush', 'Tundra Rush') &&
+        ['Hail', 'Snow', 'Absolute Zero'].includes(weather)) ||
       (pokemon.hasAbility('Surge Surfer') && terrain === 'Electric')
   ) {
     if (gen.num === 11) {
@@ -154,7 +158,8 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
     speedMods.push(3072);
   }
 
-  if (!(pokemon.hasAbility('Berry Diet', 'Berry Feast', 'Unburden') && pokemon.abilityOn)) {
+  if (!(pokemon.hasAbility('Berry Diet', 'Berry Feast', 'Germinate', 'Unburden') &&
+    pokemon.abilityOn)) {
     // Unburden active implies item no longer present
     if (pokemon.hasItem('Choice Scarf')) {
       speedMods.push(6144);
@@ -278,12 +283,13 @@ export function checkFourSeasons(pokemon: Pokemon, weather?: Weather) {
   }
 }
 
-export function checkItem(pokemon: Pokemon, magicRoomActive?: boolean, isStenched?: boolean) {
+export function checkItem(pokemon: Pokemon, magicRoomActive?: boolean, isStenched?: boolean,
+  isLockedDown?: boolean) {
   // Pokemon with Klutz still get their speed dropped in generation 4
   if (pokemon.gen.num === 4 && pokemon.hasItem('Iron Ball')) return;
   if (
     pokemon.hasAbility('Klutz') && !EV_ITEMS.includes(pokemon.item!) ||
-    magicRoomActive || isStenched
+    magicRoomActive || isStenched || isLockedDown
   ) {
     pokemon.disabledItem = pokemon.item;
     pokemon.item = '' as ItemName;
@@ -298,14 +304,14 @@ export function checkWonderRoom(pokemon: Pokemon, wonderRoomActive?: boolean) {
 
 export function checkIntimidate(gen: Generation, source: Pokemon, target: Pokemon) {
   const blocked =
-    target.hasAbility('Clear Body', 'Eliminate', 'Full Metal Body', 'Hyper Cutter',
-      'Obsidian Body', 'Rustle Rage', 'White Smoke') ||
+    target.hasAbility('Clear Body', 'Eliminate', 'Full Metal Body', 'Hunger Fate', 'Hyper Cutter',
+      'Obsidian Body', 'Rustle Rage', 'Smoke Absorb', 'White Smoke') ||
     // More abilities now block Intimidate in Gen 8+ (DaWoblefet, Cloudy Mistral)
     ((gen.num >= 8 && gen.num !== 10) && target.hasAbility('Inner Focus', 'Own Tempo', 'Oblivious',
       'Prideful', 'Scrappy')) ||
     target.hasItem('Clear Amulet');
-  if (source.hasAbility('Dominate', 'Eliminate', 'Inflame', 'Intimidate', 'Migrate', 'Obliterate',
-    'Sea Monster', 'Underestimate') && source.abilityOn && !blocked) {
+  if (source.hasAbility('Dominate', 'Eliminate', 'Incorporate',  'Inflame', 'Intimidate',
+    'Migrate', 'Obliterate', 'Sea Monster', 'Underestimate') && source.abilityOn && !blocked) {
     if (target.hasAbility('Combative', 'Contrary', 'Defiant', 'Guard Dog')) {
       target.boosts.atk = Math.min(6, target.boosts.atk + 1);
     } else if (target.hasAbility('Simple')) {
@@ -321,7 +327,8 @@ export function checkIntimidate(gen: Generation, source: Pokemon, target: Pokemo
 
 export function checkSurprise(gen: Generation, source: Pokemon, target: Pokemon) {
   const blocked =
-    target.hasAbility('Clear Body', 'White Smoke', 'Hyper Cutter', 'Full Metal Body') ||
+    target.hasAbility('Clear Body', 'Smoke Absorb', 'White Smoke', 'Hyper Cutter',
+      'Full Metal Body') ||
     // More abilities now block Intimidate in Gen 8+ (DaWoblefet, Cloudy Mistral)
     (target.hasAbility('Inner Focus', 'Own Tempo', 'Oblivious', 'Prideful', 'Scrappy')) ||
     target.hasItem('Clear Amulet') || target.hasType('Psychic');
@@ -408,7 +415,7 @@ export function checkEmbody(source: Pokemon, gen: Generation) {
 }
 
 export function checkInfiltrator(pokemon: Pokemon, affectedSide: Side) {
-  if (pokemon.hasAbility('Infiltrator', 'Sly Slime')) {
+  if (pokemon.hasAbility('Deep Toxin', 'Infiltrator', 'Sly Slime')) {
     affectedSide.isReflect = false;
     affectedSide.isLightScreen = false;
     affectedSide.isAuroraVeil = false;
@@ -502,7 +509,7 @@ export function checkMultihitBoost(
     field.weather = 'Sand';
   }
 
-  if (defender.hasAbility('Stamina')) {
+  if (defender.hasAbility('Healthy Lunch', 'Stamina')) {
     if (attacker.hasAbility('Unaware')) {
       desc.attackerAbility = attacker.ability;
     } else {
