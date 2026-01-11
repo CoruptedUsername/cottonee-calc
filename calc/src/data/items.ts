@@ -588,7 +588,7 @@ const BERRIES: {[berry: string]: {t: I.TypeName; p: number}} = {
 };
 
 export const ITEMS = [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, RBY, BWYB, TH, MH, SV, SV, SV,
-  SV, SV, SV];
+  SV, SV, SV, SV]; // NewGenChange
 
 export class Items implements I.Items {
   private readonly gen: I.GenerationNum;

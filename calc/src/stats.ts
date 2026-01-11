@@ -20,9 +20,11 @@ const PM: StatID[] = GSC;
 const DNU: StatID[] = GSC;
 const BCA: StatID[] = GSC;
 const BCC: StatID[] = GSC;
+const FEVGC: StatID[] = GSC;
 
 export const STATS: Array<Array<StatID | 'spc'> | StatID[]> =
-  [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, JS, BWYB, TH, MH, SBS, TS, PM, DNU, BCA, BCC];
+  [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, JS, BWYB, TH, MH, SBS, TS, PM, DNU,
+    BCA, BCC, FEVGC]; // NewGenChange
 
 type HPTypeName = Exclude<TypeName, 'Normal' | 'Fairy' | 'Stellar' | '???'>;
 

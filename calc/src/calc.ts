@@ -14,6 +14,7 @@ import {calculatePM} from './mechanics/paleomons';
 import {calculateMH} from './mechanics/monsterhunter';
 import {calculateTH} from './mechanics/touhoumons';
 import {calculateBWFYB} from './mechanics/bestwishes';
+import {calculateFEVGC} from './mechanics/fevgc';
 
 const MECHANICS = [
   () => {},
@@ -36,7 +37,8 @@ const MECHANICS = [
   calculateSMSSSV, // DNU
   calculateSMSSSV, // BC A
   calculateSMSSSV, // BC C
-];
+  calculateFEVGC, // FE VGC
+]; // NewGenChange
 
 export function calculate(
   gen: Generation,

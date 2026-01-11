@@ -330,7 +330,7 @@ export function getKOChance(
   const hazards = getHazards(gen, defender, field.defenderSide);
   const eot = getEndOfTurn(gen, attacker, defender, move, field);
   const toxicCounter =
-    defender.hasStatus('tox') && !defender.hasAbility('Magic Guard', 'Poison Heal')
+    defender.hasStatus('tox') && !defender.hasAbility('Magic Guard', 'Magic Sticks', 'Poison Heal')
       ? defender.toxicCounter : 0;
 
   // multi-hit moves have too many possibilities for brute-forcing to work, so reduce it
@@ -554,8 +554,8 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
   if (defender.hasItem('Heavy-Duty Boots')) {
     return {damage, texts};
   }
-  if (defenderSide.isSR && !defender.hasAbility('Magic Guard', 'Mountaineer', 'Plow',
-    'Dexterity')) {
+  if (defenderSide.isSR && !defender.hasAbility('Magic Guard', 'Magic Sticks', 'Mountaineer',
+    'Plow', 'Dexterity')) {
     const rockType = gen.types.get('rock' as ID)!;
     const effectiveness =
       rockType.effectiveness[defender.types[0]]! *
@@ -567,7 +567,8 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
     }
     texts.push('Stealth Rock');
   }
-  if (defenderSide.steelsurge && !defender.hasAbility('Magic Guard', 'Mountaineer')) {
+  if (defenderSide.steelsurge && !defender.hasAbility('Magic Guard', 'Magic Sticks',
+    'Mountaineer')) {
     const steelType = gen.types.get('steel' as ID)!;
     const effectiveness =
       steelType.effectiveness[defender.types[0]]! *
@@ -581,7 +582,7 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
   }
 
   if (!defender.hasType('Flying') &&
-      !defender.hasAbility('Magic Guard', 'Levitate', 'Plow', 'Dexterity') &&
+      !defender.hasAbility('Magic Guard', 'Magic Sticks', 'Levitate', 'Plow', 'Dexterity') &&
       !defender.hasItem('Air Balloon')
   ) {
     if (defenderSide.spikes === 1) {
@@ -613,7 +614,7 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
   }
 
   if (defenderSide.isBlastblighted) {
-    if (!defender.hasAbility('Magic Guard')) {
+    if (!defender.hasAbility('Magic Guard', 'Magic Sticks')) {
       if (defender.hasAbility('Fervent Scales')) {
         damage += Math.floor((defender.maxHP()) / 12);
       } else {
@@ -672,9 +673,9 @@ function getEndOfTurn(
   } else if (field.hasWeather('Sand')) {
     if (
       !defender.hasType('Rock', 'Ground', 'Steel') &&
-      !defender.hasAbility('Dust Devil', 'Magic Guard', 'Overcoat', 'Sand Force', 'Sand Rush',
-        'Sand Veil', 'Sand Cloak', 'Tempest Energy', 'Tempest Force') &&
-      !defender.hasItem('Safety Goggles')
+      !defender.hasAbility('Desert Shot', 'Dust Devil', 'Leaf Coat', 'Magic Guard', 'Magic Sticks',
+        'Oasis Lunch', 'Overcoat', 'Sand Force', 'Sand Rush', 'Sand Veil', 'Sand Cloak',
+        'Tempest Energy', 'Tempest Force') && !defender.hasItem('Safety Goggles')
     ) {
       if (defender.hasAbility('Fervent Scales')) {
         damage -= Math.floor(defender.maxHP() / ([2].includes(gen.num) ? 16 : 32));
@@ -685,9 +686,9 @@ function getEndOfTurn(
     }
   } else if (field.hasWeather('Dust Devil')) {
     if (
-      !defender.hasAbility('Dust Devil', 'Magic Guard', 'Overcoat', 'Sand Force', 'Sand Rush',
-        'Sand Veil', 'Sand Cloak', 'Tempest Energy', 'Tempest Force') &&
-      !defender.hasItem('Safety Goggles')
+      !defender.hasAbility('Desert Shot', 'Dust Devil', 'Leaf Coat', 'Magic Guard', 'Magic Sticks',
+        'Oasis Lunch', 'Overcoat', 'Sand Force', 'Sand Rush', 'Sand Veil', 'Sand Cloak',
+        'Tempest Energy', 'Tempest Force') && !defender.hasItem('Safety Goggles')
     ) {
       if (defender.hasAbility('Fervent Scales')) {
         damage += Math.floor((defender.maxHP()) / 32);
@@ -698,8 +699,8 @@ function getEndOfTurn(
     }
   } else if (field.hasWeather('Absolute Zero')) {
     if (
-      !defender.hasAbility('Absolute Zero', 'Ice Body', 'Ice Breaker', 'Magic Guard', 'Overcoat',
-        'Snow Cloak', 'Slush Rush') &&
+      !defender.hasAbility('Absolute Zero', 'Cryowarning', 'Ice Body', 'Ice Breaker', 'Leaf Coat',
+        'Magic Guard', 'Magic Sticks', 'Overcoat', 'Snow Cloak', 'Slush Rush') &&
       !defender.hasItem('Safety Goggles')
     ) {
       if (defender.hasAbility('Fervent Scales')) {
@@ -713,9 +714,12 @@ function getEndOfTurn(
     if (defender.hasAbility('Ice Body') && !healBlock) {
       damage += Math.floor((defender.maxHP()) / ([4].includes(gen.num) ? 8 : 16));
       texts.push('Ice Body recovery');
+    } else if (defender.hasAbility('Cryowarning') && !healBlock) {
+      damage += Math.floor((defender.maxHP()) / ([4].includes(gen.num) ? 8 : 16));
+      texts.push('Cryowarning recovery');
     } else if (
       !defender.hasType('Ice') &&
-      !defender.hasAbility('Magic Guard', 'Overcoat', 'Snow Cloak') &&
+      !defender.hasAbility('Magic Guard', 'Magic Sticks', 'Leaf Coat', 'Overcoat', 'Snow Cloak') &&
       !defender.hasItem('Safety Goggles') &&
       field.hasWeather('Hail')
     ) {
@@ -741,7 +745,7 @@ function getEndOfTurn(
         damage += Math.floor(defender.maxHP() / 16);
         texts.push('Black Sludge recovery');
       }
-    } else if (!defender.hasAbility('Magic Guard', 'Klutz')) {
+    } else if (!defender.hasAbility('Magic Guard', 'Magic Sticks', 'Klutz')) {
       if (defender.hasAbility('Fervent Scales')) {
         damage += Math.floor((defender.maxHP()) / 16);
       } else {
@@ -750,7 +754,7 @@ function getEndOfTurn(
       texts.push('Black Sludge damage');
     }
   } else if (defender.hasItem('Sticky Barb') && !loseItem &&
-    !defender.hasAbility('Magic Guard', 'Klutz')) {
+    !defender.hasAbility('Magic Guard', 'Magic Sticks', 'Klutz')) {
     if (defender.hasAbility('Fervent Scales')) {
       damage += Math.floor((defender.maxHP()) / 16);
     } else {
@@ -769,7 +773,7 @@ function getEndOfTurn(
   }
 
   if (field.defenderSide.isSeeded) {
-    if (!defender.hasAbility('Magic Guard')) {
+    if (!defender.hasAbility('Magic Guard', 'Magic Sticks')) {
       // 1/16 in gen 1, 1/8 in gen 2 onwards
       if (defender.hasAbility('Fervent Scales')) {
         damage -= Math.floor(defender.maxHP() / (![1, 10].includes(gen.num) ? 16 : 32));
@@ -780,7 +784,7 @@ function getEndOfTurn(
     }
   }
 
-  if (field.attackerSide.isSeeded && !attacker.hasAbility('Magic Guard')) {
+  if (field.attackerSide.isSeeded && !attacker.hasAbility('Magic Guard', 'Magic Sticks')) {
     let recovery = Math.floor(attacker.maxHP() / (![1, 10].includes(gen.num) ? 8 : 16));
     if (defender.hasItem('Big Root')) recovery = Math.trunc(recovery * 5324 / 4096);
     if (attacker.hasAbility('Liquid Ooze')) {
@@ -814,7 +818,7 @@ function getEndOfTurn(
         damage += Math.floor(defender.maxHP() / 8);
         texts.push('Poison Heal');
       }
-    } else if (!defender.hasAbility('Magic Guard')) {
+    } else if (!defender.hasAbility('Magic Guard', 'Magic Sticks')) {
       if (defender.hasAbility('Fervent Scales')) {
         damage -= Math.floor(defender.maxHP() / ([1, 10].includes(gen.num) ? 32 : 16));
       } else {
@@ -828,19 +832,19 @@ function getEndOfTurn(
         damage += Math.floor(defender.maxHP() / 8);
         texts.push('Poison Heal');
       }
-    } else if (!defender.hasAbility('Magic Guard')) {
+    } else if (!defender.hasAbility('Magic Guard', 'Magic Sticks')) {
       texts.push('toxic damage');
     }
   } else if (defender.hasStatus('brn')) {
     if (defender.hasAbility('Heatproof') || defender.hasAbility('Fervent Scales')) {
       damage -= Math.floor(defender.maxHP() / (![2, 3, 4, 5, 6, 11].includes(gen.num) ? 32 : 16));
       texts.push('reduced burn damage');
-    } else if (!defender.hasAbility('Magic Guard')) {
+    } else if (!defender.hasAbility('Magic Guard', 'Magic Sticks')) {
       damage -= Math.floor(defender.maxHP() / (![2, 3, 4, 5, 6, 11].includes(gen.num) ? 16 : 8));
       texts.push('burn damage');
     }
   } else if (defender.hasStatus('dgb')) {
-    if (!defender.hasType('Fairy') && !defender.hasAbility('Magic Guard')) {
+    if (!defender.hasType('Fairy') && !defender.hasAbility('Magic Guard', 'Magic Sticks')) {
       if (defender.hasAbility('Fervent Scales')) {
         damage -= Math.floor(defender.maxHP() / 32);
       } else {
@@ -849,7 +853,7 @@ function getEndOfTurn(
       texts.push('dragonblight damage');
     }
   } else if (defender.hasStatus('frb')) {
-    if (!defender.hasAbility('Magic Guard')) {
+    if (!defender.hasAbility('Magic Guard', 'Magic Sticks')) {
       if (defender.hasAbility('Fervent Scales')) {
         damage -= Math.floor(defender.maxHP() / 32);
       } else {
@@ -858,7 +862,7 @@ function getEndOfTurn(
       texts.push('frostbite damage');
     }
   } else if (defender.hasStatus('frz') && [11].includes(gen.num)) {
-    if (!defender.hasAbility('Magic Guard')) {
+    if (!defender.hasAbility('Magic Guard', 'Magic Sticks')) {
       if (field.hasWeather('Snow')) {
         damage -= Math.floor(defender.maxHP() / 8);
       } else {
@@ -869,7 +873,7 @@ function getEndOfTurn(
   } else if (
     (defender.hasStatus('slp') || defender.hasAbility('Comatose')) &&
     attacker.hasAbility('Bad Dreams') &&
-    !defender.hasAbility('Magic Guard')
+    !defender.hasAbility('Magic Guard', 'Magic Sticks')
   ) {
     if (defender.hasAbility('Fervent Scales')) {
       damage -= Math.floor(defender.maxHP() / 16);
@@ -878,7 +882,7 @@ function getEndOfTurn(
     }
     texts.push('Bad Dreams');
   } else if (defender.hasStatus('par') && attacker.hasAbility('Crystalblight')) {
-    if (!defender.hasAbility('Magic Guard')) {
+    if (!defender.hasAbility('Magic Guard', 'Magic Sticks')) {
       if (defender.hasAbility('Fervent Scales')) {
         damage -= Math.floor(defender.maxHP() / 32);
       } else {
@@ -888,7 +892,7 @@ function getEndOfTurn(
     }
   }
 
-  if (!defender.hasAbility('Magic Guard') && TRAPPING.includes(move.name)) {
+  if (!defender.hasAbility('Magic Guard', 'Magic Sticks') && TRAPPING.includes(move.name)) {
     if (attacker.hasItem('Binding Band')) {
       if (defender.hasAbility('Fervent Scales')) {
         damage -= [1, 2, 3, 10].includes(gen.num) ? Math.floor(defender.maxHP() / 12)
@@ -909,7 +913,7 @@ function getEndOfTurn(
       texts.push('trapping damage');
     }
   }
-  if (field.defenderSide.isSaltCured && !defender.hasAbility('Magic Guard')) {
+  if (field.defenderSide.isSaltCured && !defender.hasAbility('Magic Guard', 'Magic Sticks')) {
     const isWaterOrSteel = defender.hasType('Water', 'Steel');
     if (defender.hasAbility('Fervent Scales')) {
       damage -= Math.floor(defender.maxHP() / (isWaterOrSteel ? 8 : 16));
@@ -918,7 +922,7 @@ function getEndOfTurn(
     }
     texts.push('Salt Cure');
   }
-  if (!defender.hasType('Fire') && !defender.hasAbility('Magic Guard') &&
+  if (!defender.hasType('Fire') && !defender.hasAbility('Magic Guard', 'Magic Sticks') &&
       (move.named('Fire Pledge (Grass Pledge Boosted)', 'Grass Pledge (Fire Pledge Boosted)'))) {
     if (defender.hasAbility('Fervent Scales')) {
       damage -= Math.floor(defender.maxHP() / 16);
@@ -928,7 +932,7 @@ function getEndOfTurn(
     texts.push('Sea of Fire damage');
   }
 
-  if (!defender.hasAbility('Magic Guard') && !defender.hasType('Grass') &&
+  if (!defender.hasAbility('Magic Guard', 'Magic Sticks') && !defender.hasType('Grass') &&
       (field.defenderSide.vinelash || move.named('G-Max Vine Lash'))) {
     if (defender.hasAbility('Fervent Scales')) {
       damage -= Math.floor(defender.maxHP() / 12);
@@ -938,7 +942,7 @@ function getEndOfTurn(
     texts.push('Vine Lash damage');
   }
 
-  if (!defender.hasAbility('Magic Guard') && !defender.hasType('Fire') &&
+  if (!defender.hasAbility('Magic Guard', 'Magic Sticks') && !defender.hasType('Fire') &&
       (field.defenderSide.wildfire || move.named('G-Max Wildfire'))) {
     if (defender.hasAbility('Fervent Scales')) {
       damage -= Math.floor(defender.maxHP() / 12);
@@ -948,7 +952,7 @@ function getEndOfTurn(
     texts.push('Wildfire damage');
   }
 
-  if (!defender.hasAbility('Magic Guard') && !defender.hasType('Water') &&
+  if (!defender.hasAbility('Magic Guard', 'Magic Sticks') && !defender.hasType('Water') &&
       (field.defenderSide.cannonade || move.named('G-Max Cannonade'))) {
     if (defender.hasAbility('Fervent Scales')) {
       damage -= Math.floor(defender.maxHP() / 12);
@@ -958,7 +962,7 @@ function getEndOfTurn(
     texts.push('Cannonade damage');
   }
 
-  if (!defender.hasAbility('Magic Guard') && !defender.hasType('Rock') &&
+  if (!defender.hasAbility('Magic Guard', 'Magic Sticks') && !defender.hasType('Rock') &&
       (field.defenderSide.volcalith || move.named('G-Max Volcalith'))) {
     if (defender.hasAbility('Fervent Scales')) {
       damage -= Math.floor(defender.maxHP() / 12);

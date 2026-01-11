@@ -37,7 +37,7 @@ function endsWith(string, target) {
 
 var LEGACY_STATS_RBY = ["hp", "at", "df", "sl", "sp"];
 var LEGACY_STATS_GSC = ["hp", "at", "df", "sa", "sd", "sp"];
-var LEGACY_STATS = [[], LEGACY_STATS_RBY, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC];
+var LEGACY_STATS = [[], LEGACY_STATS_RBY, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC]; // NewGenChange
 var HIDDEN_POWER_REGEX = /Hidden Power (\w*)/;
 
 var CALC_STATUS = {
@@ -200,6 +200,14 @@ function getForcedTeraType(pokemonName) {
 		return "Water";
 	} else if (startsWith(pokemonName, "Terapagos")) {
 		return "Stellar";
+	} else if (startsWith(pokemonName, "Ogereena-Cornerstone")) {
+		return "Rock";
+	} else if (startsWith(pokemonName, "Ogereena-Hearthflame")) {
+		return "Fire";
+	} else if (pokemonName === "Ogereena" || startsWith(pokemonName, "Ogereena-Teal")) {
+		return "Grass";
+	} else if (startsWith(pokemonName, "Ogereena-Wellspring")) {
+		return "Water";
 	}
 	return null;
 }
@@ -284,7 +292,32 @@ $(".ability").bind("keyup change", function () {
 		$(this).closest(".poke-info").find(moveSelector).find(".move-hits").val(moveHits);
 	}
 
-	var TOGGLE_ABILITIES = ['First Flight', 'Flash Fire', 'Intimidate', 'Minus', 'Plus', 'Slow Start', 'Surprise', 'Unburden', 'Stakeout', 'Teraform Zero', 'Wicked Power'];
+	var TOGGLE_ABILITIES = [
+		'Berry Diet',
+		'Berry Feast',
+		'Dominate',
+		'Eerie Flames',
+		'Eliminate',
+		'First Flight',
+		'Flash Fire',
+		'Inflame',
+		'Intimidate',
+		'Migrate',
+		'Minus',
+		'Obliterate',
+		'Plus',
+		'Pyrotechnic',
+		'Sea Monster',
+		'Slow Start',
+		'Smelting',
+		'Sturdy Fire',
+		'Surprise',
+		'Stakeout',
+		'Teraform Zero',
+		'Unburden',
+		'Underestimate',
+		'Wicked Power',
+	];
 
 	if (TOGGLE_ABILITIES.indexOf(ability) >= 0) {
 		$(this).closest(".poke-info").find(".abilityToggle").show();
@@ -386,6 +419,7 @@ function autosetWeather(ability, i) {
 		$("#sun").prop("checked", true);
 		break;
 	case "Drizzle":
+	case "Stormy Sight":
 		lastAutoWeather[i] = "Rain";
 		$("#rain").prop("checked", true);
 		break;
@@ -393,6 +427,7 @@ function autosetWeather(ability, i) {
 		lastAutoWeather[i] = "Sand";
 		$("#sand").prop("checked", true);
 		break;
+	case "Cryowarning":
 	case "Snow Warning":
 		if (gen >= 9) {
 			lastAutoWeather[i] = "Snow";
@@ -450,6 +485,7 @@ function autosetTerrain(ability, i) {
 	switch (ability) {
 	case "Electric Surge":
 	case "Hadron Engine":
+	case "Jolt Spores":
 		lastAutoTerrain[i] = "Electric";
 		$("#electric").prop("checked", true);
 		break;
@@ -457,6 +493,7 @@ function autosetTerrain(ability, i) {
 		lastAutoTerrain[i] = "Grassy";
 		$("#grassy").prop("checked", true);
 		break;
+	case "Magic Surge":
 	case "Misty Surge":
 		lastAutoTerrain[i] = "Misty";
 		$("#misty").prop("checked", true);
@@ -663,8 +700,8 @@ $(".item").change(function () {
 	autosetQP($(this).closest(".poke-info"));
 });
 
-function smogonAnalysis(pokemonName) {
-	var generation = ["rb", "gs", "rs", "dp", "bw", "xy", "sm", "ss", "sv", "js", "bwyb", "th", "mh", "sbs", "ts", "pm", "dnu", "bca", "bcc"][gen - 1];
+function smogonAnalysis(pokemonName) { // NewGenChange
+	var generation = ["rb", "gs", "rs", "dp", "bw", "xy", "sm", "ss", "sv", "js", "bwyb", "th", "mh", "sbs", "ts", "pm", "dnu", "bca", "bcc", "fevgc"][gen - 1];
 	return "https://smogon.com/dex/" + generation + "/pokemon/" + pokemonName.toLowerCase() + "/";
 }
 
@@ -678,7 +715,7 @@ $(".set-selector").change(function () {
 		var pokeObj = $(this).closest(".poke-info");
 		var isAutoTera =
 		(startsWith(pokemonName, "Ogerpon") && endsWith(pokemonName, "Tera")) ||
-		pokemonName === 'Terapagos-Stellar';
+		pokemonName === 'Terapagos-Stellar' || (startsWith(pokemonName, "Ogereena") && endsWith(pokemonName, "Tera"));
 		if (stickyMoves.getSelectedSide() === pokeObj.prop("id")) {
 			stickyMoves.clearStickyMove();
 		}
@@ -808,7 +845,8 @@ $(".set-selector").change(function () {
 			}
 			pokeObj.find(".nature").val("Hardy");
 			setSelectValueIfValid(abilityObj, pokemon.abilities[0], "");
-			if (startsWith(pokemonName, "Ogerpon-") && !startsWith(pokemonName, "Ogerpon-Teal")) {
+			if ((startsWith(pokemonName, "Ogerpon-") && !startsWith(pokemonName, "Ogerpon-Teal")) ||
+				(startsWith(pokemonName, "Ogereena-") && !startsWith(pokemonName, "Ogereena-Teal"))) {
 				itemObj.val(pokemonName.split("-")[1] + " Mask");
 			} else {
 				itemObj.val("");
@@ -957,6 +995,21 @@ $(".teraToggle").change(function () {
 		var newForme = curForme === "Ogerpon-Teal-Tera" ? "Ogerpon" : curForme.slice(0, -5);
 		forme.val(newForme);
 		container.find(".ability").val(pokedex[newForme].abilities[0]);
+	} else if (startsWith(curForme, "Ogereena")) {
+		if (
+			curForme !== "Ogerpon" && !endsWith(curForme, "Tera") &&
+			container.find(".item").val() !== curForme.split("-")[1] + " Mask"
+		) return;
+		if (this.checked) {
+			var newForme = curForme === "Ogereena" ? "Ogereena-Teal-Tera" : curForme + "-Tera";
+			forme.val(newForme);
+			container.find(".ability").val("Embody Aspect (" + newForme.split("-")[1] + ")");
+			return;
+		}
+		if (!endsWith(curForme, "Tera")) return;
+		var newForme = curForme === "Ogereena-Teal-Tera" ? "Ogereena" : curForme.slice(0, -5);
+		forme.val(newForme);
+		container.find(".ability").val(pokedex[newForme].abilities[0]);
 	} else if (startsWith(curForme, "Terapagos")) {
 		if (this.checked) {
 			var newForme = "Terapagos-Stellar";
@@ -1000,7 +1053,7 @@ $(".forme").change(function () {
 		baseStat.keyup();
 	}
 	if (
-		(startsWith($(this).val(), "Ogerpon") && endsWith($(this).val(), "Tera")) || $(this).val() === "Terapagos-Stellar"
+		(startsWith($(this).val(), "Ogerpon") && endsWith($(this).val(), "Tera")) || $(this).val() === "Terapagos-Stellar" || (startsWith($(this).val(), "Ogereena") && endsWith($(this).val(), "Tera"))
 	) {
 		$(this).parent().siblings().find(".teraToggle").prop("checked", true);
 	}
@@ -1026,7 +1079,7 @@ $(".forme").change(function () {
 		$(this).parent().siblings().find(".teraType").val(forcedTeraType);
 	}
 	container.find(".ability").keyup();
-	if (startsWith($(this).val(), "Ogerpon-") && !startsWith($(this).val(), "Ogerpon-Teal")) {
+	if (startsWith($(this).val(), "Ogerpon-") && !startsWith($(this).val(), "Ogerpon-Teal") || startsWith($(this).val(), "Ogereena-") && !startsWith($(this).val(), "Ogereena-Teal")) {
 		container.find(".item").val($(this).val().split("-")[1] + " Mask").keyup();
 	} else {
 		container.find(".item").prop("disabled", false);
@@ -1414,7 +1467,8 @@ var GENERATION = {
 	'17': 17, 'dnu': 17,
 	'18': 18, 'bca': 18,
 	'19': 19, 'bcc': 19,
-};
+	'20': 20, 'fevgc': 20,
+}; // NewGenChange
 
 var SETDEX = [
 	{},
@@ -1437,7 +1491,8 @@ var SETDEX = [
 	typeof SETDEX_DNU === 'undefined' ? {} : SETDEX_DNU,
 	typeof SETDEX_BCA === 'undefined' ? {} : SETDEX_BCA,
 	typeof SETDEX_BCC === 'undefined' ? {} : SETDEX_BCC,
-];
+	typeof SETDEX_FEVGC === 'undefined' ? {} : SETDEX_FEVGC,
+]; // NewGenChange
 
 /*
  * Converts an object that has the hierarchy Format -> Pokemon -> Sets

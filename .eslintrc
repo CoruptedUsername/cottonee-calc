@@ -8,7 +8,7 @@
         "jquery": true,
         "browser": true
     },
-    "globals": {
+    "globals": { // NewGenChange
         "calc": false,
         "gen": false,
         "mode": false,
@@ -23,6 +23,7 @@
         "lastAutoStatus": false,
         "startsWith": false,
         "notation": true,
+		  "SETDEX_FEVGC": false,
 		  "SETDEX_BCC": false,
 		  "SETDEX_BCA": false,
 		  "SETDEX_DNU": false,
