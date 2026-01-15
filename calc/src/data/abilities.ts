@@ -632,6 +632,7 @@ const FEVGC = [
   'Prototoxin',
   'Pyrotechnic',
   'Quick Delivery',
+  'Quickstart',
   'Recollect',
   'Respark',
   'Restless Speed',
