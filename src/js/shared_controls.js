@@ -281,7 +281,7 @@ $(".ability").bind("keyup change", function () {
 		var move = moves[moveName] || moves['(No Move)'];
 		if (move.multiaccuracy) {
 			moveHits = move.multihit;
-		} else if (ability === 'Skill Link') {
+		} else if (['Skill Link', 'Toxic Links'].includes(ability)) {
 			moveHits = 5;
 		} else if ($(this).closest(".poke-info").find(".item").val() === 'Loaded Dice') {
 			moveHits = 4;
@@ -293,11 +293,13 @@ $(".ability").bind("keyup change", function () {
 	}
 
 	var TOGGLE_ABILITIES = [
+		'Aerial Force',
 		'Berry Diet',
 		'Berry Feast',
 		'Dominate',
 		'Eerie Flames',
 		'Eliminate',
+		'Feeding Frenzy',
 		'First Flight',
 		'Flash Fire',
 		'Germinate',
@@ -306,8 +308,10 @@ $(".ability").bind("keyup change", function () {
 		'Inflame',
 		'Intimidate',
 		'Litnitwit',
+		'Malfunction',
 		'Migrate',
 		'Minus',
+		'Negative Awareness',
 		'Obliterate',
 		'Plus',
 		'Pyrotechnic',
@@ -321,6 +325,7 @@ $(".ability").bind("keyup change", function () {
 		'Teraform Zero',
 		'Unburden',
 		'Underestimate',
+		'Venom Glare',
 		'Wicked Power',
 	];
 
@@ -331,7 +336,7 @@ $(".ability").bind("keyup change", function () {
 	}
 	var boostedStat = $(this).closest(".poke-info").find(".boostedStat");
 
-	if (['Air Drive', 'Cactus Drive', 'Heavy Drive', 'Jade Drive', 'Jelly-Filled Drive', 'Magic Drive', 'Phantom Drive', 'Protoavian', 'Protolithos', 'Protoneuron', 'Protopyre', 'Protorefraction', 'Protosynthesis', 'Prototoxin', 'Quark Drive', 'Wind Drive'].includes(ability)) {
+	if (['Air Drive', 'Cactus Drive', 'Heavy Drive', 'Jade Drive', 'Jelly-Filled Drive', 'Magic Drive', 'Phantom Drive', 'Protoavian', 'Protolithos', 'Protoneuron', 'Protopyre', 'Protorefraction', 'Protosynthesis', 'Prototoxin', 'Quark Drive', 'Toxic Drive', 'Wind Drive'].includes(ability)) {
 		boostedStat.show();
 		autosetQP($(this).closest(".poke-info"));
 	} else {
@@ -381,7 +386,7 @@ function autosetQP(pokemon) {
 		if (
 			(item === "Booster Energy") ||
 			(['Protoavian', 'Protolithos', 'Protoneuron', 'Protopyre', 'Protorefraction', 'Protosynthesis', 'Prototoxin'].includes(ability) && currentWeather === "Sun") ||
-			(['Air Drive', 'Heavy Drive', 'Jade Drive', 'Jelly-Filled Drive', 'Magic Drive', 'Phantom Drive', 'Quark Drive', 'Wind Drive'].includes(ability) && currentTerrain === "Electric") ||
+			(['Air Drive', 'Heavy Drive', 'Jade Drive', 'Jelly-Filled Drive', 'Magic Drive', 'Phantom Drive', 'Quark Drive', 'Toxic Drive', 'Wind Drive'].includes(ability) && currentTerrain === "Electric") ||
 			(ability === "Cactus Drive" && currentTerrain === "Grassy") ||
 			(ability === "Prototoxin" && ["Poisoned", "Badly Poisoned"].includes(status)) ||
 			(ability === "Wind Drive" && tailwind)
@@ -658,7 +663,7 @@ $(".move-selector").change(function () {
 		var moveHits = 3;
 		if (move.multiaccuracy) {
 			moveHits = move.multihit;
-		} else if (pokemon.find('.ability').val() === 'Skill Link') {
+		} else if (['Skill Link', 'Toxic Links'].includes(pokemon.find('.ability').val())) {
 			moveHits = 5;
 		} else if (pokemon.find(".item").val() === 'Loaded Dice') {
 			moveHits = 4;
@@ -698,7 +703,7 @@ $(".item").change(function () {
 		var move = moves[moveName] || moves['(No Move)'];
 		if (move.multiaccuracy) {
 			moveHits = move.multihit;
-		} else if ($(this).closest(".poke-info").find(".ability").val() === 'Skill Link') {
+		} else if (['Skill Link', 'Toxic Links'].includes($(this).closest(".poke-info").find(".ability").val())) {
 			moveHits = 5;
 		} else if ($(this).closest(".poke-info").find(".item").val() === 'Loaded Dice') {
 			moveHits = 4;
@@ -1314,6 +1319,10 @@ function createField() {
 	var isTabletsOfRuin = $("#tablets").prop("checked");
 	var isSwordOfRuin = $("#sword").prop("checked");
 	var isVesselOfRuin = $("#vessel").prop("checked");
+	var isAutomatonOfRuin = $("#automaton").prop("checked");
+	var isDogOfRuin = $("#dog").prop("checked");
+	var isLoveOfRuin = $("#love").prop("checked");
+	var isPoultryOfRuin = $("#poultry").prop("checked");
 	var isMagicRoom = $("#magicroom").prop("checked");
 	var isWonderRoom = $("#wonderroom").prop("checked");
 	var isGravity = $("#gravity").prop("checked");
@@ -1396,6 +1405,10 @@ function createField() {
 		isTabletsOfRuin: isTabletsOfRuin,
 		isSwordOfRuin: isSwordOfRuin,
 		isVesselOfRuin: isVesselOfRuin,
+		isAutomatonOfRuin: isAutomatonOfRuin,
+		isDogOfRuin: isDogOfRuin,
+		isLoveOfRuin: isLoveOfRuin,
+		isPoultryOfRuin: isPoultryOfRuin,
 		weather: weather,
 		isMagicRoom: isMagicRoom,
 		isWonderRoom: isWonderRoom,
@@ -1596,7 +1609,6 @@ var gen, genWasChanged, notation, pokedex, setdex, randdex, typeChart, moves, ab
 $(".gen").change(function () {
 	/*eslint-disable */
 	gen = ~~$(this).val() || 19;
-	console.log(gen);
 	GENERATION = calc.Generations.get(gen);
 	if (gen === 4) { // Monster Hunter Statuses
 		statusType = '.status2';
@@ -1631,6 +1643,17 @@ $(".gen").change(function () {
 	items = calc.ITEMS[gen];
 	abilities = calc.ABILITIES[gen];
 	clearField();
+	if (gen === 20) {
+		$("#default-level-50").prop("checked", true);
+		$("#default-level-50").change();
+		$("#doubles-format").prop("checked", true);
+		$("#doubles-format").change();
+	} else {
+		$("#default-level-100").prop("checked", true);
+		$("#default-level-100").change();
+		$("#singles-format").prop("checked", true);
+		$("#singles-format").change();
+	}
 	$("#importedSets").prop("checked", false);
 	loadDefaultLists();
 	$(".gen-specific.g" + gen).show();

@@ -65,8 +65,12 @@ export function calculateFEVGC(
   checkTeraformZero(defender, field);
   checkForecast(attacker, field.weather);
   checkForecast(defender, field.weather);
-  checkItem(attacker, field.isMagicRoom, false, defender.hasAbility('Item Lockdown'));
-  checkItem(defender, field.isMagicRoom, false, attacker.hasAbility('Item Lockdown'));
+  checkItem(attacker, field.isMagicRoom, false,
+    ((defender.hasAbility('Malfunction') && defender.abilityOn) ||
+      defender.hasAbility('Item Lockdown')));
+  checkItem(defender, field.isMagicRoom, false,
+    ((attacker.hasAbility('Malfunction') && attacker.abilityOn) ||
+      attacker.hasAbility('Item Lockdown')));
   checkWonderRoom(attacker, field.isWonderRoom);
   checkWonderRoom(defender, field.isWonderRoom);
   checkSeedBoost(attacker, field);
@@ -183,7 +187,7 @@ export function calculateFEVGC(
   );
 
   const attackerIgnoresAbility = attacker.hasAbility('Breaking Character', 'Bubble Burster',
-    'Mold Breaker', 'Root Snap', 'Teravolt', 'Turboblaze');
+    'Mold Breaker', 'Root Snap', 'Tectonic Power', 'Teravolt', 'Turboblaze');
   const moveIgnoresAbility = move.named(
     'G-Max Drum Solo',
     'G-Max Fire Ball',
@@ -338,6 +342,7 @@ export function calculateFEVGC(
   let isGalvanize = false;
   let isLiquidVoice = false;
   let isNormalize = false;
+  let isExcavate = false;
   const noTypeChange = move.named(
     'Revelation Dance',
     'Judgment',
@@ -364,8 +369,10 @@ export function calculateFEVGC(
       type = 'Ice';
     } else if ((isNormalize = attacker.hasAbility('Normalize'))) { // Boosts any type
       type = 'Normal';
+    } else if ((isExcavate = attacker.hasAbility('Excavate'))) { // Boosts any type
+      type = 'Ground';
     }
-    if (isGalvanize || isPixilate || isRefrigerate || isAerilate || isNormalize) {
+    if (isGalvanize || isPixilate || isRefrigerate || isAerilate || isNormalize || isExcavate) {
       desc.attackerAbility = attacker.ability;
       hasAteAbilityTypeChange = true;
     } else if (isLiquidVoice) {
@@ -487,18 +494,20 @@ export function calculateFEVGC(
       (move.hasType('Fire') && defender.hasAbility('Flash Fire', 'Litnitwit', 'Pyrotechnic',
         'Smelting', 'Sturdy Fire', 'Well-Baked Body')) ||
       (move.hasType('Water') && defender.hasAbility('Clumping Up', 'Dive Goggles', 'Dry Skin',
-        'Hydrophilic', 'Own Tides', 'Smoke Absorb', 'Storm Drain', 'Water Absorb')) ||
+        'Hydrophilic', 'Own Tides', 'Skincare', 'Smoke Absorb', 'Storm Drain', 'Water Absorb')) ||
       (move.hasType('Electric') &&
         defender.hasAbility('Electric Dust', 'Lightning Rod', 'Motor Drive', 'Respark',
-          'Shock Horror', 'Volt Absorb', 'Wind Energy')) ||
+          'Shock Horror', 'Slapstick', 'Volt Absorb', 'Wind Energy')) ||
       (move.hasType('Ground') &&
         !field.isGravity && !move.named('Thousand Arrows') &&
         !defender.hasItem('Iron Ball') &&
-        defender.hasAbility('Air Drive', 'Levitate', 'Sunlit Flight')) ||
+        defender.hasAbility('Aerial Force', 'Air Drive', 'Fight and Flight', 'Levitate',
+          'Sunlit Flight')) ||
       (move.flags.bullet && defender.hasAbility('Bulletproof', 'Lithoproof', 'Sandproof')) ||
-      (move.flags.sound && !move.named('Clangorous Soul') && defender.hasAbility('Soundproof')) ||
+      (move.flags.sound && !move.named('Clangorous Soul') && defender.hasAbility('Soundproof',
+        'Humourless')) ||
       (move.priority > 0 && defender.hasAbility('Queenly Majesty', 'Knight\'s Eye', 'Dazzling',
-        'Armor Tail')) ||
+        'Armor Tail', 'Humourless', 'Royal Guard')) ||
       (move.hasType('Ground') && defender.hasAbility('Earth Eater')) ||
       (move.flags.wind && defender.hasAbility('Sirocco', 'Wind Energy', 'Wind Rider')) ||
       (move.flags.slicing && defender.hasAbility('Heatblade'))
@@ -715,7 +724,8 @@ export function calculateFEVGC(
       // Check if lost -ate ability. Typing stays the same, only boost is lost
       // Cannot be regained during multihit move and no Normal moves with stat drawbacks
       hasAteAbilityTypeChange = hasAteAbilityTypeChange &&
-        attacker.hasAbility('Aerilate', 'Galvanize', 'Pixilate', 'Refrigerate', 'Normalize');
+        attacker.hasAbility('Aerilate', 'Excavate', 'Galvanize', 'Pixilate', 'Refrigerate',
+          'Normalize');
 
       if (move.timesUsed! > 1) {
         // Adaptability does not change between hits of a multihit, only between turns
@@ -1168,15 +1178,17 @@ export function calculateBPModsFEVGC(
   // Abilities
 
   // Use BasePower after moves with custom BP to determine if Technician should boost
-  if ((attacker.hasAbility('Pyrotechnic', 'Technician', 'Toxicologist') && basePower <= 60) ||
+  if ((attacker.hasAbility('Hydrotechnic', 'Pyrotechnic', 'Technician', 'Toxicologist') &&
+      basePower <= 60) ||
     (attacker.hasAbility('Flare Boost') &&
       attacker.hasStatus('brn') && move.category === 'Special') ||
     (attacker.hasAbility('Toxic Boost') &&
       attacker.hasStatus('psn', 'tox') && move.category === 'Physical') ||
     (attacker.hasAbility('Hydrostatic Pressure', 'Mega Launcher') && move.flags.pulse) ||
-    (attacker.hasAbility('Strong Jaw') && move.flags.bite) ||
+    (attacker.hasAbility('Frostbite', 'Strong Jaw') && move.flags.bite) ||
     (attacker.hasAbility('Steely Spirit') && move.hasType('Steel')) ||
-    (attacker.hasAbility('Blade Edge', 'Heatblade', 'Sharpness') && move.flags.slicing)
+    (attacker.hasAbility('Blade Edge', 'Heatblade', 'Sharpness', 'Sharpshooter') &&
+      move.flags.slicing)
   ) {
     bpMods.push(6144);
     desc.attackerAbility = attacker.ability;
@@ -1205,9 +1217,10 @@ export function calculateBPModsFEVGC(
 
   // Sheer Force does not power up max moves or remove the effects (SadisticMystic)
   if (
-    (attacker.hasAbility('Sheer Force', 'Sirocco', 'Strong Armor') &&
+    (attacker.hasAbility('Brute Bird', 'Dino Force', 'Frostbite', 'Polar Power', 'Sheer Force',
+      'Sirocco', 'Strong Armor') &&
       (move.secondaries || move.named('Order Up')) && !move.isMax) ||
-    (attacker.hasAbility('Sand Force') &&
+    (attacker.hasAbility('Sand Force', 'Tectonic Power') &&
       field.hasWeather('Sand') && move.hasType('Rock', 'Ground', 'Steel')) ||
     (attacker.hasAbility('Analytic', 'Surgeon Eye') &&
       (turnOrder !== 'first' || field.defenderSide.isSwitching === 'out')) ||
@@ -1404,16 +1417,16 @@ export function calculateAtModsFEVGC(
       ((attacker.hasAbility('Kelp Power', 'Overbloom', 'Overgrow', 'Poison Ivy') &&
           move.hasType('Grass')) ||
        (attacker.hasAbility('Blaze', 'Blazing Passion', 'Boiling Spot', 'Down In Flames',
-         'Inflame') && move.hasType('Fire')) ||
+         'Inflame', 'Poultry Of Ruin') && move.hasType('Fire')) ||
        (attacker.hasAbility('Boiling Spot', 'Focus Falls', 'Kelp Power', 'Magic Surge',
-         'Sea Monster', 'Torrent') && move.hasType('Water')) ||
-       (attacker.hasAbility('Swarm') && move.hasType('Bug')))) ||
+         'Marine Menace', 'Sea Monster', 'Torrent') && move.hasType('Water')) ||
+       (attacker.hasAbility('Swarm', 'Wet Bugs') && move.hasType('Bug')))) ||
     (move.category === 'Special' && attacker.abilityOn && attacker.hasAbility('Plus', 'Minus'))
   ) {
     atMods.push(6144);
     desc.attackerAbility = attacker.ability;
-  } else if (attacker.hasAbility('Eerie Flames', 'Flash Fire', 'Litnitwit', 'Pyrotechnic',
-    'Smelting', 'Sturdy Fire') && attacker.abilityOn && move.hasType('Fire')) {
+  } else if (attacker.hasAbility('Eerie Flames', 'Feeding Frenzy', 'Flash Fire', 'Litnitwit',
+    'Pyrotechnic', 'Smelting', 'Sturdy Fire') && attacker.abilityOn && move.hasType('Fire')) {
     atMods.push(6144);
     desc.attackerAbility = attacker.ability;
   } else if (attacker.hasAbility('Germinate') && attacker.abilityOn && move.hasType('Grass')) {
@@ -1423,14 +1436,14 @@ export function calculateAtModsFEVGC(
     (attacker.hasAbility('Slow Bugs') && move.hasType('Bug')) ||
     (attacker.hasAbility('Steelworker') && move.hasType('Steel')) ||
     (attacker.hasAbility('Dragon\'s Maw') && move.hasType('Dragon')) ||
-    (attacker.hasAbility('Rocky Payload') && move.hasType('Rock'))
+    (attacker.hasAbility('Rocky Payload', 'Soulstone') && move.hasType('Rock'))
   ) {
     atMods.push(6144);
     desc.attackerAbility = attacker.ability;
   } else if (attacker.hasAbility('Transistor') && move.hasType('Electric')) {
     atMods.push(5325);
     desc.attackerAbility = attacker.ability;
-  } else if (attacker.hasAbility('Stakeout') && attacker.abilityOn) {
+  } else if (attacker.hasAbility('Aerial Force', 'Stakeout') && attacker.abilityOn) {
     atMods.push(8192);
     desc.attackerAbility = attacker.ability;
   } else if (
@@ -1448,6 +1461,11 @@ export function calculateAtModsFEVGC(
   } else if (attacker.hasAbility('Quickstart') && attacker.abilityOn &&
     move.category === 'Physical') {
     atMods.push(8192);
+    desc.attackerAbility = attacker.ability;
+  } else if (attacker.hasAbility('Brilliant Bugs', 'Negative Awareness') &&
+    (attacker.curHP() <= attacker.maxHP() / 3 ||
+    attacker.abilityOn && move.category === 'Special')) {
+    atMods.push(6144);
     desc.attackerAbility = attacker.ability;
   }
 
@@ -1474,7 +1492,8 @@ export function calculateAtModsFEVGC(
     desc.isSteelySpiritAttacker = true;
   }
 
-  if ((defender.hasAbility('Thick Fat', 'Thick Pressure') && move.hasType('Fire', 'Ice')) ||
+  if ((defender.hasAbility('Glacier', 'Thick Fat', 'Thick Pressure') &&
+      move.hasType('Fire', 'Ice')) ||
       (defender.hasAbility('Bubble Burster', 'Water Bubble') && move.hasType('Fire')) ||
      (defender.hasAbility('Purifying Salt') && move.hasType('Ghost')) ||
     (defender.hasAbility('Saltwater Sauna') && move.hasType('Ghost', 'Fire', 'Water'))) {
@@ -1482,23 +1501,24 @@ export function calculateAtModsFEVGC(
     desc.defenderAbility = defender.ability;
   }
 
-  if (defender.hasAbility('Heatproof', 'Summer Heat') && move.hasType('Fire')) {
+  if (defender.hasAbility('Heatproof', 'Somnoproof', 'Summer Heat') && move.hasType('Fire')) {
     atMods.push(2048);
     desc.defenderAbility = defender.ability;
   }
   // Pokemon with "-of Ruin" Ability are immune to the opposing "-of Ruin" ability
-  const isTabletsOfRuinActive = (defender.hasAbility('Tablets of Ruin') || field.isTabletsOfRuin) &&
-    !attacker.hasAbility('Tablets of Ruin');
-  const isVesselOfRuinActive = (defender.hasAbility('Vessel of Ruin') || field.isVesselOfRuin) &&
-    !attacker.hasAbility('Vessel of Ruin');
+  const isLoveOfRuinActive = (defender.hasAbility('Love of Ruin') || field.isLoveOfRuin) &&
+    !attacker.hasAbility('Love of Ruin');
+  const isAutomatonOfRuinActive = (defender.hasAbility('Automaton of Ruin') ||
+      field.isAutomatonOfRuin) &&
+    !attacker.hasAbility('Automaton of Ruin');
   if (
-    (isTabletsOfRuinActive && move.category === 'Physical') ||
-    (isVesselOfRuinActive && move.category === 'Special')
+    (isLoveOfRuinActive && move.category === 'Physical') ||
+    (isAutomatonOfRuinActive && move.category === 'Special')
   ) {
-    if (defender.hasAbility('Tablets of Ruin') || defender.hasAbility('Vessel of Ruin')) {
+    if (defender.hasAbility('Automaton of Ruin', 'Love of Ruin')) {
       desc.defenderAbility = defender.ability;
     } else {
-      desc[move.category === 'Special' ? 'isVesselOfRuin' : 'isTabletsOfRuin'] = true;
+      desc[move.category === 'Special' ? 'isAutomatonOfRuin' : 'isLoveOfRuin'] = true;
     }
     atMods.push(3072);
   }
@@ -1605,7 +1625,7 @@ export function calculateDfModsFEVGC(
   hitsPhysical = false
 ) {
   const dfMods = [];
-  if (defender.hasAbility('Marvel Scale') && defender.status && hitsPhysical) {
+  if (defender.hasAbility('Marvel Scale', 'Synchscale') && defender.status && hitsPhysical) {
     dfMods.push(6144);
     desc.defenderAbility = defender.ability;
   } else if (
@@ -1639,18 +1659,18 @@ export function calculateDfModsFEVGC(
     desc.defenderAbility = defender.ability;
   }
   // Pokemon with "-of Ruin" Ability are immune to the opposing "-of Ruin" ability
-  const isSwordOfRuinActive = (attacker.hasAbility('Sword of Ruin') || field.isSwordOfRuin) &&
-    !defender.hasAbility('Sword of Ruin');
-  const isBeadsOfRuinActive = (attacker.hasAbility('Beads of Ruin') || field.isBeadsOfRuin) &&
-    !defender.hasAbility('Beads of Ruin');
+  const isDogOfRuinActive = (attacker.hasAbility('Dog of Ruin') || field.isDogOfRuin) &&
+    !defender.hasAbility('Dog of Ruin');
+  const isPoultryOfRuinActive = (attacker.hasAbility('Poultry of Ruin') || field.isPoultryOfRuin) &&
+    !defender.hasAbility('Poultry of Ruin');
   if (
-    (isSwordOfRuinActive && hitsPhysical) ||
-    (isBeadsOfRuinActive && !hitsPhysical)
+    (isDogOfRuinActive && hitsPhysical) ||
+    (isPoultryOfRuinActive && !hitsPhysical)
   ) {
-    if (attacker.hasAbility('Sword of Ruin') || attacker.hasAbility('Beads of Ruin')) {
+    if (attacker.hasAbility('Dog of Ruin', 'Poultry of Ruin')) {
       desc.attackerAbility = attacker.ability;
     } else {
-      desc[hitsPhysical ? 'isSwordOfRuin' : 'isBeadsOfRuin'] = true;
+      desc[hitsPhysical ? 'isDogOfRuin' : 'isPoultryOfRuin'] = true;
     }
     dfMods.push(3072);
   }
@@ -1770,7 +1790,7 @@ export function calculateFinalModsFEVGC(
     isCritical) {
     finalMods.push(6144);
     desc.attackerAbility = attacker.ability;
-  } else if (attacker.hasAbility('Dive Goggles', 'Move Mastery', 'Tinted Lens') &&
+  } else if (attacker.hasAbility('Dive Goggles', 'Move Mastery', 'Tinted Lens', 'Tinted Veil') &&
     typeEffectiveness < 1) {
     finalMods.push(8192);
     desc.attackerAbility = attacker.ability;
@@ -1790,7 +1810,7 @@ export function calculateFinalModsFEVGC(
     desc.defenderAbility = defender.ability;
   }
 
-  if (defender.hasAbility('Fluffy') && move.flags.contact &&
+  if (defender.hasAbility('Fluffy', 'Grim Plumage') && move.flags.contact &&
     !attacker.hasAbility('Long Reach', 'Phantom Drive')) {
     finalMods.push(2048);
     desc.defenderAbility = defender.ability;

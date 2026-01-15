@@ -30,6 +30,10 @@ export interface RawDesc {
   isSwordOfRuin?: boolean;
   isTabletsOfRuin?: boolean;
   isVesselOfRuin?: boolean;
+  isAutomatonOfRuin?: boolean;
+  isDogOfRuin?: boolean;
+  isLoveOfRuin?: boolean;
+  isPoultryOfRuin?: boolean;
   isAuroraVeil?: boolean;
   isFlowerGiftAttacker?: boolean;
   isFlowerGiftDefender?: boolean;
@@ -220,7 +224,7 @@ export function getRecoil(
         notation, Math.min(max, defender.curHP()) * mod, attacker.maxHP(), 100
       );
     }
-    if (!attacker.hasAbility('Rock Head')) {
+    if (!attacker.hasAbility('Pea Brain', 'Rock Head')) {
       recoil = [minRecoilDamage, maxRecoilDamage];
       text = `${minRecoilDamage} - ${maxRecoilDamage}${notation} recoil damage`;
     }
@@ -664,7 +668,7 @@ function getEndOfTurn(
     if (defender.hasAbility('Dry Skin')) {
       damage += Math.floor(defender.maxHP() / 8);
       texts.push('Dry Skin recovery');
-    } else if (defender.hasAbility('Rain Dish')) {
+    } else if (defender.hasAbility('Healthy Drink', 'Rain Dish')) {
       damage += Math.floor(defender.maxHP() / ([4].includes(gen.num) ? 8 : 16));
       texts.push('Rain Dish recovery');
     } else if (defender.hasAbility('Oilmucus')) {
@@ -674,9 +678,10 @@ function getEndOfTurn(
   } else if (field.hasWeather('Sand')) {
     if (
       !defender.hasType('Rock', 'Ground', 'Steel') &&
-      !defender.hasAbility('Desert Shot', 'Dust Devil', 'Leaf Coat', 'Magic Guard', 'Magic Sticks',
-        'Oasis Lunch', 'Overcoat', 'Sand Force', 'Sand Rush', 'Sand Veil', 'Sand Cloak',
-        'Tempest Energy', 'Tempest Force', 'Tundra Rush', 'Tundra Veil') &&
+      !defender.hasAbility('Desert Shot', 'Dust Devil', 'Leaf Coat', 'Love of Ruin', 'Magic Guard',
+        'Magic Sticks', 'Oasis Lunch', 'Overcoat', 'Sand Force', 'Sand Rush', 'Sand Veil',
+        'Sand Cloak', 'Sharpshooter', 'Soulstone', 'Tectonic Power', 'Tempest Energy',
+        'Tempest Force', 'Tundra Rush', 'Tundra Veil') &&
       !defender.hasItem('Safety Goggles')
     ) {
       if (defender.hasAbility('Fervent Scales')) {
@@ -688,9 +693,10 @@ function getEndOfTurn(
     }
   } else if (field.hasWeather('Dust Devil')) {
     if (
-      !defender.hasAbility('Desert Shot', 'Dust Devil', 'Leaf Coat', 'Magic Guard', 'Magic Sticks',
-        'Oasis Lunch', 'Overcoat', 'Sand Force', 'Sand Rush', 'Sand Veil', 'Sand Cloak',
-        'Tempest Energy', 'Tempest Force', 'Tundra Rush', 'Tundra Veil') &&
+      !defender.hasAbility('Desert Shot', 'Dust Devil', 'Leaf Coat', 'Love of Ruin', 'Magic Guard',
+        'Magic Sticks', 'Oasis Lunch', 'Overcoat', 'Sand Force', 'Sand Rush', 'Sand Veil',
+        'Sand Cloak', 'Sharpshooter', 'Soulstone', 'Tectonic Power', 'Tempest Energy',
+        'Tempest Force', 'Tundra Rush', 'Tundra Veil') &&
       !defender.hasItem('Safety Goggles')
     ) {
       if (defender.hasAbility('Fervent Scales')) {
@@ -702,9 +708,10 @@ function getEndOfTurn(
     }
   } else if (field.hasWeather('Absolute Zero')) {
     if (
-      !defender.hasAbility('Absolute Zero', 'Cryowarning', 'Ice Body', 'Ice Breaker', 'Leaf Coat',
-        'Magic Guard', 'Magic Sticks', 'Overcoat', 'Snow Cloak', 'Slush Rush', 'Tundra Rush',
-        'Tundra Veil') && !defender.hasItem('Safety Goggles')
+      !defender.hasAbility('Abominable', 'Absolute Zero', 'Cryowarning', 'Ice Body', 'Ice Breaker',
+        'Leaf Coat', 'Love of Ruin', 'Magic Guard', 'Magic Sticks', 'Overcoat', 'Polar Power',
+        'Snow Cloak', 'Slush Rush', 'Tundra Rush', 'Tundra Veil') &&
+      !defender.hasItem('Safety Goggles')
     ) {
       if (defender.hasAbility('Fervent Scales')) {
         damage += Math.floor((defender.maxHP()) / 32);
@@ -720,9 +727,13 @@ function getEndOfTurn(
     } else if (defender.hasAbility('Cryowarning') && !healBlock) {
       damage += Math.floor((defender.maxHP()) / ([4].includes(gen.num) ? 8 : 16));
       texts.push('Cryowarning recovery');
+    } else if (defender.hasAbility('Abominable') && !healBlock) {
+      damage += Math.floor((defender.maxHP()) / ([4].includes(gen.num) ? 8 : 16));
+      texts.push('Abominable recovery');
     } else if (
       !defender.hasType('Ice') &&
-      !defender.hasAbility('Magic Guard', 'Magic Sticks', 'Leaf Coat', 'Overcoat', 'Snow Cloak',
+      !defender.hasAbility('Magic Guard', 'Magic Sticks', 'Leaf Coat', 'Love of Ruin', 'Overcoat',
+        'Snow Cloak',
         'Tundra Rush', 'Tundra Veil') &&
       !defender.hasItem('Safety Goggles') &&
       field.hasWeather('Hail')
@@ -1241,6 +1252,14 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   if (description.isSwordOfRuin) {
     output += 'Sword of Ruin ';
   }
+
+  if (description.isPoultryOfRuin) {
+    output += 'Poultry of Ruin ';
+  }
+  if (description.isDogOfRuin) {
+    output += 'Dog of Ruin ';
+  }
+
   output += description.attackerName + ' ';
   if (description.isHelpingHand) {
     output += 'Helping Hand ';
@@ -1294,6 +1313,12 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   }
   if (description.isVesselOfRuin) {
     output += 'Vessel of Ruin ';
+  }
+  if (description.isLoveOfRuin) {
+    output += 'Love of Ruin ';
+  }
+  if (description.isAutomatonOfRuin) {
+    output += 'Automaton of Ruin ';
   }
   if (description.isProtected) {
     output += 'protected ';

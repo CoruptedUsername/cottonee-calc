@@ -16,6 +16,10 @@ export class Field implements State.Field {
   isSwordOfRuin?: boolean;
   isTabletsOfRuin?: boolean;
   isVesselOfRuin?: boolean;
+  isAutomatonOfRuin?: boolean;
+  isDogOfRuin?: boolean;
+  isLoveOfRuin?: boolean;
+  isPoultryOfRuin?: boolean;
   attackerSide: Side;
   defenderSide: Side;
 
@@ -34,6 +38,10 @@ export class Field implements State.Field {
     this.isSwordOfRuin = field.isSwordOfRuin || false;
     this.isTabletsOfRuin = field.isTabletsOfRuin || false;
     this.isVesselOfRuin = field.isVesselOfRuin || false;
+    this.isAutomatonOfRuin = field.isAutomatonOfRuin || false;
+    this.isDogOfRuin = field.isDogOfRuin || false;
+    this.isLoveOfRuin = field.isLoveOfRuin || false;
+    this.isPoultryOfRuin = field.isPoultryOfRuin || false;
 
     this.attackerSide = new Side(field.attackerSide || {});
     this.defenderSide = new Side(field.defenderSide || {});
@@ -70,6 +78,10 @@ export class Field implements State.Field {
       isSwordOfRuin: this.isSwordOfRuin,
       isTabletsOfRuin: this.isTabletsOfRuin,
       isVesselOfRuin: this.isVesselOfRuin,
+      isAutomatonOfRuin: this.isAutomatonOfRuin,
+      isDogOfRuin: this.isDogOfRuin,
+      isLoveOfRuin: this.isLoveOfRuin,
+      isPoultryOfRuin: this.isPoultryOfRuin,
     });
   }
 }

@@ -53,6 +53,10 @@ export namespace State {
     isSwordOfRuin?: boolean;
     isTabletsOfRuin?: boolean;
     isVesselOfRuin?: boolean;
+    isAutomatonOfRuin?: boolean;
+    isDogOfRuin?: boolean;
+    isLoveOfRuin?: boolean;
+    isPoultryOfRuin?: boolean;
     attackerSide: Side;
     defenderSide: Side;
   }
