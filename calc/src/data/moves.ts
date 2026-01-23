@@ -5234,6 +5234,11 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Water',
     drain: [1, 2],
   },
+  'Biorelease': {
+    bp: 90,
+    category: 'Special',
+    type: 'Dragon',
+  },
   'Bitter Blade': {
     bp: 80,
   },
@@ -5305,8 +5310,11 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Status',
     type: 'Ice',
   },
+  'Collision Course': {
+    bp: 85,
+  },
   'Convection Nova': {
-    bp: 135,
+    bp: 130,
     category: 'Special',
     type: 'Ice',
   },
@@ -5394,6 +5402,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     multihit: 3,
     multiaccuracy: true,
     makesContact: true,
+  },
+  'Electro Drift': {
+    bp: 85,
   },
   'Fire Fang': {
     bp: 70,

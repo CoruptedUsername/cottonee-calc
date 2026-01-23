@@ -864,12 +864,12 @@ function getEndOfTurn(
     if (defender.hasAbility('Heatproof') || defender.hasAbility('Fervent Scales')) {
       damage -= Math.floor(defender.maxHP() / (![2, 3, 4, 5, 6, 11].includes(gen.num) ? 32 : 16));
       texts.push('reduced burn damage');
-    } else if (!defender.hasAbility('Magic Guard', 'Magic Sticks')) {
+    } else if (!defender.hasAbility('Black Flame', 'Magic Guard', 'Magic Sticks')) {
       damage -= Math.floor(defender.maxHP() / (![2, 3, 4, 5, 6, 11].includes(gen.num) ? 16 : 8));
       texts.push('burn damage');
     }
   } else if (defender.hasStatus('dgb')) {
-    if (!defender.hasType('Fairy') && !defender.hasAbility('Magic Guard', 'Magic Sticks')) {
+    if (!defender.hasType('Fairy') && !defender.hasAbility('Black Flame', 'Magic Guard')) {
       if (defender.hasAbility('Fervent Scales')) {
         damage -= Math.floor(defender.maxHP() / 32);
       } else {

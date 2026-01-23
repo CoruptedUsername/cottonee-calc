@@ -344,6 +344,10 @@ $(".ability").bind("keyup change", function () {
 		boostedStat.hide();
 	}
 
+	if (ability === "Biosynthesis") {
+		autosetBiosynthesis($(this).closest(".poke-info"));
+	}
+
 	if (ability === "Reactive Core") {
 		$(this).closest(".poke-info").find(".reactiveCore").show();
 	} else {
@@ -398,12 +402,38 @@ function autosetQP(pokemon) {
 	}
 }
 
+function autosetBiosynthesis(pokemon) {
+	var currentTerrain = $("input:checkbox[name='terrain']:checked").val() || "No terrain";
+	var ability = pokemon.find(".ability").val();
+
+	if (ability === 'Biosynthesis') {
+		switch (currentTerrain) {
+		case "Grassy":
+			pokemon.find(".type2").val("Grass");
+			break;
+		case "Psychic":
+			pokemon.find(".type2").val("Psychic");
+			break;
+		case "Misty":
+			pokemon.find(".type2").val("Fairy");
+			break;
+		case "Electric":
+			pokemon.find(".type2").val("Electric");
+			break;
+		default:
+			pokemon.find(".type2").val("(none)");
+			break;
+		}
+	}
+}
+
 $("#p1 .ability").bind("keyup change", function () {
 	autosetWeather($(this).val(), 0);
 	autosetTerrain($(this).val(), 0);
 	autosetGravity($(this).val(), 0);
 	autosetRuststorm($(this).val(), 0);
 	autosetQP($(this).closest(".poke-info"));
+	autosetBiosynthesis($(this).closest(".poke-info"));
 });
 
 $("input[name='weather']").change(function () {
@@ -485,6 +515,7 @@ $("input[name='terrain']").change(function () {
 	var allPokemon = $('.poke-info');
 	allPokemon.each(function () {
 		autosetQP($(this));
+		autosetBiosynthesis($(this));
 	});
 });
 

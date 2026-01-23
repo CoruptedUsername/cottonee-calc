@@ -302,6 +302,14 @@ export function calculateMH(
     } else {
       type = attacker.types[0];
     }
+  } else if (move.originalName === 'Biorelease') {
+    if (attacker.types[1]) {
+      type = attacker.types[1];
+    } else if (attacker.teraType) {
+      type = attacker.teraType; // Todo: Ask about this
+    } else {
+      type = 'Dragon';
+    }
   } else if (move.named('Aura Wheel')) {
     if (attacker.named('Morpeko')) {
       type = 'Electric';
@@ -675,8 +683,8 @@ export function calculateMH(
   const applyBurn =
     attacker.hasStatus('brn') &&
     move.category === 'Physical' &&
-    !attacker.hasAbility('Guts') &&
-    !move.named('Facade') && !attacker.hasAbility('Reactive Core');
+    !attacker.hasAbility('Black Flame', 'Guts', 'Reactive Core') &&
+    !move.named('Facade');
   desc.isBurned = applyBurn;
   const applyFrostbite =
     attacker.hasStatus('frb') &&
@@ -1185,6 +1193,9 @@ export function calculateBPModsMH(
     (move.named('Crimson Dawn') && !attacker.hasType('Fire'))) {
     bpMods.push(0);
     desc.moveBP = 0;
+  } else if (move.named('Biorelease') && move.hasType('Fairy')) {
+    bpMods.push(4551);
+    desc.moveBP = 100;
   }
 
   if (field.attackerSide.isHelpingHand) {
@@ -1538,6 +1549,9 @@ export function calculateAtModsMH(
   } else if (attacker.hasAbility('Reactive Core') && attacker.reactiveCore === 'warm') {
     atMods.push(5325);
     desc.attackerAbility = attacker.ability;
+  } else if (attacker.hasAbility('Black Flame') && attacker.hasStatus('brn', 'dgb')) {
+    atMods.push(5325);
+    desc.attackerAbility = attacker.ability;
   }
 
   if (
@@ -1740,7 +1754,11 @@ export function calculateDfModsMH(
   } else if (defender.hasAbility('Sand Veil') && field.hasWeather('Sand', 'Dust Devil')) {
     dfMods.push(5325);
     desc.defenderAbility = defender.ability;
+  } else if (defender.hasAbility('Frozen Calamity') && move.hasType('Ice')) {
+    dfMods.push(8192);
+    desc.defenderAbility = defender.ability;
   }
+
   // Pokemon with "-of Ruin" Ability are immune to the opposing "-of Ruin" ability
   const isSwordOfRuinActive = (attacker.hasAbility('Sword of Ruin') || field.isSwordOfRuin) &&
     !defender.hasAbility('Sword of Ruin');

@@ -12488,7 +12488,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Disufiroa': {
     types: ['Dragon', 'Fire'],
-    bs: {hp: 101, at: 92, df: 90, sa: 130, sd: 105, sp: 107},
+    bs: {hp: 111, at: 85, df: 85, sa: 130, sd: 104, sp: 110},
     weightkg: 0,
     abilities: {0: 'Frozen Calamity'},
     otherFormes: ['Disufiroa-Sol'],
@@ -12596,23 +12596,23 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Fatalis': {
     types: ['Dragon'],
-    bs: {hp: 100, at: 100, df: 110, sa: 115, sd: 110, sp: 90},
+    bs: {hp: 100, at: 110, df: 105, sa: 110, sd: 105, sp: 95},
     weightkg: 0,
-    abilities: {0: 'Regenerator'},
+    abilities: {0: 'Black Flame'},
     otherFormes: ['Fatalis-Crimson', 'Fatalis-White'],
   },
   'Fatalis-Crimson': {
     types: ['Dragon', 'Fire'],
-    bs: {hp: 100, at: 140, df: 120, sa: 100, sd: 90, sp: 100},
+    bs: {hp: 100, at: 135, df: 120, sa: 95, sd: 100, sp: 100},
     weightkg: 0,
-    abilities: {0: 'Drought'},
+    abilities: {0: 'Crimson Demon'},
     baseSpecies: 'Fatalis',
   },
   'Fatalis-White': {
     types: ['Dragon', 'Electric'],
-    bs: {hp: 100, at: 100, df: 90, sa: 140, sd: 120, sp: 100},
+    bs: {hp: 100, at: 95, df: 100, sa: 135, sd: 120, sp: 100},
     weightkg: 0,
-    abilities: {0: 'Electric Surge'},
+    abilities: {0: 'Emperor\'s Roar'},
     baseSpecies: 'Fatalis',
   },
   'Gaismagorm': {
@@ -13078,7 +13078,7 @@ const MH: {[name: string]: SpeciesData} = {
     otherFormes: ['Primozeno'],
   },
   'Primozeno': {
-    types: ['Dragon', 'Fairy'],
+    types: ['Steel', 'Fairy'],
     bs: {hp: 90, at: 130, df: 120, sa: 110, sd: 85, sp: 80},
     weightkg: 0,
     abilities: {0: 'Sword of Ruin'},
@@ -13223,10 +13223,10 @@ const MH: {[name: string]: SpeciesData} = {
     baseSpecies: 'Odogaron',
   },
   'Oltura-Larval': {
-    types: ['Bug', 'Psychic'],
-    bs: {hp: 130, at: 88, df: 112, sa: 88, sd: 100, sp: 45},
+    types: ['Bug', 'Ground'],
+    bs: {hp: 130, at: 100, df: 112, sa: 60, sd: 88, sp: 45},
     weightkg: 0,
-    abilities: {0: 'Arena Trap'},
+    abilities: {0: 'Cry of Ruin'},
     nfe: true,
   },
   'Oltura': {
@@ -13438,10 +13438,10 @@ const MH: {[name: string]: SpeciesData} = {
     nfe: true,
   },
   'Safi\'jiiva': {
-    types: ['Dragon', 'Psychic'],
-    bs: {hp: 100, at: 91, df: 85, sa: 130, sd: 124, sp: 95},
+    types: ['Dragon'],
+    bs: {hp: 108, at: 70, df: 110, sa: 125, sd: 110, sp: 102},
     weightkg: 0,
-    abilities: {0: 'Multiscale'},
+    abilities: {0: 'Biosynthesis'},
   },
   'Seltas': {
     types: ['Bug', 'Flying'],

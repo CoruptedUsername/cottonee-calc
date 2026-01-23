@@ -749,6 +749,9 @@ export function getStabMod(pokemon: Pokemon, move: Move, desc: RawDesc) {
   } else if (pokemon.hasAbility('Risen Burst') && move.type === 'Dark') {
     stabMod += 2048;
     desc.attackerAbility = pokemon.ability;
+  } else if (pokemon.hasAbility('Frozen Calamity') && move.type === 'Ice') {
+    stabMod += 2048;
+    desc.attackerAbility = pokemon.ability;
   }
   const teraType = pokemon.teraType;
   if (teraType === move.type && teraType !== 'Stellar') {
