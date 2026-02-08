@@ -5426,7 +5426,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Frenzy Pulse': {
     bp: 100,
     category: 'Special',
-    type: 'Psychic',
+    type: 'Fairy',
     self: {boosts: {spa: -1}},
     isPulse: true,
   },
