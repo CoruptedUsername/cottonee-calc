@@ -1387,6 +1387,7 @@ function createField() {
 	var isBubbleblighted = [$("#bubbleblightL").prop("checked"), $("#bubbleblightR").prop("checked")];
 	var isDefenseDown = [$("#defenseDownL").prop("checked"), $("#defenseDownR").prop("checked")];
 	var isStenched = [$("#stenchL").prop("checked"), $("#stenchR").prop("checked")];
+	var isBlottedOut = [$("#blotOutL").prop("checked"), $("#blotOutR").prop("checked")];
 	var isTailwind = [$("#tailwindL").prop("checked"), $("#tailwindR").prop("checked")];
 	var isFlowerGift = [$("#flowerGiftL").prop("checked"), $("#flowerGiftR").prop("checked")];
 	var isSteelySpirit = [$("#steelySpiritL").prop("checked"), $("#steelySpiritR").prop("checked")];
@@ -1427,6 +1428,7 @@ function createField() {
 			isBubbleblighted: isBubbleblighted[i],
 			isDefenseDown: isDefenseDown[i],
 			isStenched: isStenched[i],
+			isBlottedOut: isBlottedOut[i],
 		});
 	};
 	return new calc.Field({
@@ -1765,6 +1767,8 @@ function clearField() {
 	$("#defenseDownR").prop("checked", false);
 	$("#stenchL").prop("checked", false);
 	$("#stenchR").prop("checked", false);
+	$("#blotOutL").prop("checked", false);
+	$("#blotOutR").prop("checked", false);
 	$("#tailwindL").prop("checked", false);
 	$("#tailwindR").prop("checked", false);
 	$("#friendGuardL").prop("checked", false);

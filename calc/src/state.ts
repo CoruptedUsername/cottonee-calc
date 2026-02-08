@@ -90,5 +90,6 @@ export namespace State {
     isBubbleblighted?: boolean;
     isDefenseDown?: boolean;
     isStenched?: boolean;
+    isBlottedOut?: boolean;
   }
 }

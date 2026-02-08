@@ -1809,6 +1809,10 @@ export function calculateDfModsMH(
     dfMods.push(2048);
     desc.isDefenseDown = true;
   }
+  if (field.defenderSide.isBlottedOut && move.hasType('Fire')) {
+    dfMods.push(2048);
+    desc.isBlottedOut = true;
+  }
   return dfMods;
 }
 

@@ -115,6 +115,7 @@ export class Side implements State.Side {
   isBubbleblighted?: boolean;
   isDefenseDown?: boolean;
   isStenched?: boolean;
+  isBlottedOut?: boolean;
 
   constructor(side: State.Side = {}) {
     this.spikes = side.spikes || 0;
@@ -145,6 +146,7 @@ export class Side implements State.Side {
     this.isBubbleblighted = !!side.isBubbleblighted;
     this.isDefenseDown = !!side.isDefenseDown;
     this.isStenched = !!side.isStenched;
+    this.isBlottedOut = !!side.isBlottedOut;
   }
 
   clone() {

@@ -61,6 +61,7 @@ export interface RawDesc {
   isDefenseDown?: boolean;
   isCharged?: boolean;
   isDragonCharged?: boolean;
+  isBlottedOut?: boolean;
   isBestWishesFrozen?: boolean;
 }
 
@@ -1319,6 +1320,9 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   }
   if (description.isAutomatonOfRuin) {
     output += 'Automaton of Ruin ';
+  }
+  if (description.isBlottedOut) {
+    output += 'Blotted Out ';
   }
   if (description.isProtected) {
     output += 'protected ';
