@@ -43,6 +43,7 @@ export interface RawDesc {
   isCritical?: boolean;
   isLightScreen?: boolean;
   isBurned?: boolean;
+  isDrowsy?: boolean;
   isFrostbitten?: boolean;
   isProtected?: boolean;
   isReflect?: boolean;
@@ -1326,6 +1327,9 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   }
   if (description.isProtected) {
     output += 'protected ';
+  }
+  if (description.isDrowsy) {
+    output += 'drowsy ';
   }
   if (description.isDefenderDynamaxed) {
     output += 'Dynamax ';

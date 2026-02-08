@@ -12370,7 +12370,7 @@ const MH: {[name: string]: SpeciesData} = {
     bs: {hp: 78, at: 128, df: 72, sa: 128, sd: 72, sp: 128},
     weightkg: 0,
     abilities: {0: 'Neutralizing Gas'},
-    otherFormes: ['Chamelos-Risen'],
+    otherFormes: ['Chameleos-Risen'],
   },
   'Chameleos-Risen': {
     types: ['Dragon', 'Poison'],
@@ -13081,7 +13081,7 @@ const MH: {[name: string]: SpeciesData} = {
     types: ['Steel', 'Fairy'],
     bs: {hp: 90, at: 130, df: 120, sa: 110, sd: 85, sp: 80},
     weightkg: 0,
-    abilities: {0: 'Sword of Ruin'},
+    abilities: {0: 'Duke\'s Bayonet'},
     baseSpecies: 'Malzeno',
   },
   'Mizutsune': {
@@ -13532,21 +13532,21 @@ const MH: {[name: string]: SpeciesData} = {
     bs: {hp: 100, at: 5, df: 10, sa: 60, sd: 225, sp: 50},
     weightkg: 0,
     abilities: {0: 'Shield Dust'},
-    baseSpecies: 'Spiribird',
+    baseSpecies: 'Spiribird-Green',
   },
   'Spiribird-Red': {
     types: ['Dragon', 'Fairy'],
     bs: {hp: 100, at: 5, df: 10, sa: 60, sd: 225, sp: 50},
     weightkg: 0,
     abilities: {0: 'Shield Dust'},
-    baseSpecies: 'Spiribird',
+    baseSpecies: 'Spiribird-Green',
   },
   'Spiribird-Yellow': {
     types: ['Electric', 'Fairy'],
     bs: {hp: 100, at: 5, df: 10, sa: 60, sd: 225, sp: 50},
     weightkg: 0,
     abilities: {0: 'Shield Dust'},
-    baseSpecies: 'Spiribird',
+    baseSpecies: 'Spiribird-Green',
   },
   'Tartaronis': {
     types: ['Ground'],

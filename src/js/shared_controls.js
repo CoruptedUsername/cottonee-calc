@@ -54,7 +54,7 @@ var CALC_STATUS = {
 };
 
 var statusType;
-if (gen === 4) {
+if (gen === 13) {
 	statusType = ".status2";
 } else {
 	statusType = ".status";
@@ -1643,7 +1643,7 @@ $(".gen").change(function () {
 	/*eslint-disable */
 	gen = ~~$(this).val() || 19;
 	GENERATION = calc.Generations.get(gen);
-	if (gen === 4) { // Monster Hunter Statuses
+	if (gen === 13) { // Monster Hunter Statuses
 		statusType = '.status2';
 	} else {
 		statusType = '.status';

@@ -1354,7 +1354,7 @@ export function calculateBPModsMH(
     const powMod = [4096, 4301, 4506, 4710, 4915, 5120];
     bpMods.push(powMod[Math.min(5, attacker.alliesFainted)]);
     desc.attackerAbility = attacker.ability;
-    desc.foesFainted = attacker.foesFainted;
+    desc.alliesFainted = attacker.alliesFainted;
   }
 
   // Items
@@ -1988,6 +1988,7 @@ export function calculateFinalModsMH(
 
   if (defender.hasStatus('drs')) {
     finalMods.push(4915);
+    desc.isDrowsy = true;
   }
 
   return finalMods;
