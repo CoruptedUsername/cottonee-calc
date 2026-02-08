@@ -60,6 +60,13 @@ if (gen === 13) {
 	statusType = ".status";
 }
 
+var gravityType;
+if (gen === 13) {
+	gravityType = "#gravity2";
+} else {
+	gravityType = "#gravity";
+}
+
 function legacyStatToStat(st) {
 	switch (st) {
 	case 'hp':
@@ -563,10 +570,10 @@ function autosetTerrain(ability, i) {
 function autosetGravity(ability, i) {
 	switch (ability) {
 	case "Heavy Stone":
-		$("#gravity").prop("checked", true);
+		$(gravityType).prop("checked", true);
 		break;
 	default:
-		$("#gravity").prop("checked", false);
+		$(gravityType).prop("checked", false);
 	}
 }
 
@@ -1356,7 +1363,7 @@ function createField() {
 	var isPoultryOfRuin = $("#poultry").prop("checked");
 	var isMagicRoom = $("#magicroom").prop("checked");
 	var isWonderRoom = $("#wonderroom").prop("checked");
-	var isGravity = $("#gravity").prop("checked");
+	var isGravity = $(gravityType).prop("checked");
 	var isRuststorm = $("#ruststorm").prop("checked");
 	var isSR = [$("#srL").prop("checked"), $("#srR").prop("checked")];
 	var weather;
@@ -1648,6 +1655,11 @@ $(".gen").change(function () {
 	} else {
 		statusType = '.status';
 	}
+	if (gen === 13) {
+		gravityType = "#gravity2";
+	} else {
+		gravityType = "#gravity";
+	}
 	var params = new URLSearchParams(window.location.search);
 	if (gen === 19) {
 		params.delete('gen');
@@ -1724,7 +1736,7 @@ function clearField() {
 	$("#singles-format").prop("checked", true);
 	$("#clear").prop("checked", true);
 	$("#gscClear").prop("checked", true);
-	$("#gravity").prop("checked", false);
+	$(gravityType).prop("checked", false);
 	$("#srL").prop("checked", false);
 	$("#srR").prop("checked", false);
 	$("#spikesL0").prop("checked", true);
@@ -1911,7 +1923,7 @@ var stickyMoves = (function () {
 
 function isPokeInfoGrounded(pokeInfo) {
 	var teraType = pokeInfo.find(".teraToggle").is(":checked") ? pokeInfo.find(".teraType").val() : undefined;
-	return $("#gravity").prop("checked") || (
+	return $(gravityType).prop("checked") || (
 		  teraType ? teraType !== "Flying" : pokeInfo.find(".type1").val() !== "Flying" &&
         teraType ? teraType !== "Flying" : pokeInfo.find(".type2").val() !== "Flying" &&
         pokeInfo.find(".ability").val() !== "Levitate" &&
