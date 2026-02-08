@@ -5223,6 +5223,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Ice',
     isSound: true,
   },
+  'Astral Barrage': {
+    bp: 110,
+  },
   'Avinia\'s Blessing': {
     bp: 0,
     category: 'Status',
@@ -5261,8 +5264,13 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Blazing Torque': {
     bp: 100,
   },
+  'Blot Out': {
+    bp: 0,
+    category: 'Status',
+    type: 'Fire',
+  },
   'Bolt Breath': {
-    bp: 70,
+    bp: 60,
     category: 'Special',
     type: 'Electric',
   },
@@ -5347,7 +5355,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     makesContact: true,
   },
   'Cyclone Rend': {
-    bp: 70,
+    bp: 60,
     category: 'Special',
     type: 'Water',
   },
@@ -5406,6 +5414,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Electro Drift': {
     bp: 85,
   },
+  'Electro Shot': {
+    bp: 110,
+  },
   'Fire Fang': {
     bp: 70,
   },
@@ -5435,6 +5446,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Special',
     type: 'Ice',
     isWind: true,
+  },
+  'Glacial Lance': {
+    bp: 110,
   },
   'Glaciate': {
     bp: 80,
@@ -5644,6 +5658,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     type: 'Ice',
   },
+  'Spectral Thief': {
+    bp: 70,
+  },
   'Spin Out': {
     bp: 110,
   },
@@ -5688,7 +5705,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 100,
   },
   'Thousand Blades': {
-    bp: 95,
+    bp: 90,
     category: 'Physical',
     type: 'Fighting',
     isSlicing: true,
@@ -5722,7 +5739,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 100,
   },
   'Wretched Water': {
-    bp: 90,
+    bp: 80,
     category: 'Special',
     type: 'Water',
   },

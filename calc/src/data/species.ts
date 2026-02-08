@@ -12702,7 +12702,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Goss Harag': {
     types: ['Fighting', 'Ice'],
-    bs: {hp: 80, at: 126, df: 104, sa: 80, sd: 102, sp: 68},
+    bs: {hp: 80, at: 121, df: 104, sa: 85, sd: 102, sp: 68},
     weightkg: 0,
     abilities: {0: 'Stakeout'},
   },
@@ -12904,7 +12904,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Kirin': {
     types: ['Electric', 'Ghost'],
-    bs: {hp: 92, at: 90, df: 82, sa: 130, sd: 103, sp: 105},
+    bs: {hp: 92, at: 95, df: 82, sa: 125, sd: 103, sp: 105},
     weightkg: 0,
     abilities: {0: 'Grim Neigh'},
     otherFormes: ['Emperor Kirin', 'Oroshirin'],
@@ -12958,7 +12958,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Lagiacrus': {
     types: ['Electric', 'Water'],
-    bs: {hp: 118, at: 100, df: 110, sa: 100, sd: 110, sp: 43},
+    bs: {hp: 118, at: 100, df: 110, sa: 100, sd: 110, sp: 40},
     weightkg: 0,
     abilities: {0: 'Surge Surfer'},
     otherFormes: ['Ivogiacrus', 'Lagiacrus-Abyssal', 'Landgiacrus'],
@@ -13051,9 +13051,9 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Magnamalo-Scorned': {
     types: ['Dark', 'Ghost'],
-    bs: {hp: 105, at: 145, df: 90, sa: 100, sd: 110, sp: 100},
+    bs: {hp: 105, at: 140, df: 100, sa: 105, sd: 110, sp: 90},
     weightkg: 0,
-    abilities: {0: 'Supreme Overlord'},
+    abilities: {0: 'Sinister Grudge'},
     baseSpecies: 'Magnamalo',
   },
   'Malfestio': {

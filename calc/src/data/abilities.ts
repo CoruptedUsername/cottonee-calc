@@ -425,6 +425,7 @@ const MH = SV.concat([
   'Sacred Jewel',
   'Sand Cloak',
   'Silver Subsume',
+  'Sinister Grudge',
   'Snow Seethe',
   'Solar Core',
   'Solar Wrath',

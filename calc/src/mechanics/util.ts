@@ -737,9 +737,6 @@ export function getStabMod(pokemon: Pokemon, move: Move, desc: RawDesc) {
   } else if (pokemon.hasAbility('Protean', 'Libero', 'Escaton') && !pokemon.teraType) {
     stabMod += 2048;
     desc.attackerAbility = pokemon.ability;
-  } else if (pokemon.hasAbility('Incandescent') && move.type === 'Fire') {
-    stabMod += 2048;
-    desc.attackerAbility = pokemon.ability;
   } else if (pokemon.hasAbility('Insect Armor') && move.type === 'Bug') {
     stabMod += 2048;
     desc.attackerAbility = pokemon.ability;

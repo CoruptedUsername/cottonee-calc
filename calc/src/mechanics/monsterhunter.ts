@@ -1239,6 +1239,9 @@ export function calculateBPModsMH(
   ) {
     bpMods.push(6144);
     desc.attackerAbility = attacker.ability;
+  } else if (attacker.hasAbility('Incandescent') && move.hasType('Fire')) {
+    bpMods.push(5325);
+    desc.attackerAbility = attacker.ability;
   }
 
   const aura = `${move.type} Aura`;
@@ -1341,11 +1344,15 @@ export function calculateBPModsMH(
     bpMods.push(powMod[Math.min(5, attacker.alliesFainted)]);
     desc.attackerAbility = attacker.ability;
     desc.alliesFainted = attacker.alliesFainted;
-  }
-
-  if (attacker.hasAbility('Frozen Calamity') && attacker.foesFainted && move.hasType('Ice')) {
+  } else if (attacker.hasAbility('Frozen Calamity') && attacker.foesFainted &&
+    move.hasType('Ice')) {
     const powMod = [4096, 4301, 4506, 4710, 4915, 5120];
     bpMods.push(powMod[Math.min(5, attacker.foesFainted)]);
+    desc.attackerAbility = attacker.ability;
+    desc.foesFainted = attacker.foesFainted;
+  } else if (attacker.hasAbility('Sinister Grudge') && attacker.alliesFainted) {
+    const powMod = [4096, 4301, 4506, 4710, 4915, 5120];
+    bpMods.push(powMod[Math.min(5, attacker.alliesFainted)]);
     desc.attackerAbility = attacker.ability;
     desc.foesFainted = attacker.foesFainted;
   }

@@ -355,7 +355,7 @@ $(".ability").bind("keyup change", function () {
 		$(this).closest(".poke-info").find(".reactiveCore").hide();
 	}
 
-	if (ability === "Supreme Overlord") {
+	if (['Sinister Grudge', 'Supreme Overlord'].includes(ability)) {
 		$(this).closest(".poke-info").find(".alliesFainted").show();
 	} else {
 		$(this).closest(".poke-info").find(".alliesFainted").val('0');
