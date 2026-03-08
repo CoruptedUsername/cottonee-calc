@@ -774,6 +774,9 @@ $(".set-selector").change(function () {
 		if (stickyMoves.getSelectedSide() === pokeObj.prop("id")) {
 			stickyMoves.clearStickyMove();
 		}
+		if (gen === 12) {
+			pokeObj.find(".gender").val("Female");
+		}
 		pokeObj.find(".teraToggle").prop("checked", isAutoTera);
 		pokeObj.find(".max").prop("checked", false);
 		stellarButtonsVisibility(pokeObj, 0);
