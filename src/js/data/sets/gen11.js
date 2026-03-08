@@ -321,5 +321,5 @@ var SETDEX_BWYB = {
 	},
 	"Zorua": {
 		"BWfYB Choice Scarf": {"level":100,"ability":"Imposter","item":"Choice Scarf","nature":"Timid","evs":{"hp":252,"sd":4,"sp":252},"ivs":{"at":0},"moves":["Foul Play","Memento","U-turn","Trick"]}
-	},
+	}
 };
