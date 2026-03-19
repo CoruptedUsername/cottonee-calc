@@ -37,7 +37,7 @@ function endsWith(string, target) {
 
 var LEGACY_STATS_RBY = ["hp", "at", "df", "sl", "sp"];
 var LEGACY_STATS_GSC = ["hp", "at", "df", "sa", "sd", "sp"];
-var LEGACY_STATS = [[], LEGACY_STATS_RBY, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC]; // NewGenChange
+var LEGACY_STATS = [[], LEGACY_STATS_RBY, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC]; // NewGenChange
 var HIDDEN_POWER_REGEX = /Hidden Power (\w*)/;
 
 var CALC_STATUS = {
@@ -756,7 +756,7 @@ $(".item").change(function () {
 });
 
 function smogonAnalysis(pokemonName) { // NewGenChange
-	var generation = ["rb", "gs", "rs", "dp", "bw", "xy", "sm", "ss", "sv", "js", "bwyb", "th", "mh", "sbs", "ts", "pm", "dnu", "bca", "bcc", "fevgc"][gen - 1];
+	var generation = ["rb", "gs", "rs", "dp", "bw", "xy", "sm", "ss", "sv", "js", "bwyb", "th", "mh", "sbs", "ts", "pm", "dnu", "bca", "bcc", "fevgc", "mmm4"][gen - 1];
 	return "https://smogon.com/dex/" + generation + "/pokemon/" + pokemonName.toLowerCase() + "/";
 }
 
@@ -1536,6 +1536,7 @@ var GENERATION = {
 	'18': 18, 'bca': 18,
 	'19': 19, 'bcc': 19,
 	'20': 20, 'fevgc': 20,
+	'21': 21, 'mmm4': 21,
 }; // NewGenChange
 
 var SETDEX = [
@@ -1560,6 +1561,7 @@ var SETDEX = [
 	typeof SETDEX_BCA === 'undefined' ? {} : SETDEX_BCA,
 	typeof SETDEX_BCC === 'undefined' ? {} : SETDEX_BCC,
 	typeof SETDEX_FEVGC === 'undefined' ? {} : SETDEX_FEVGC,
+	typeof SETDEX_MMM4 === 'undefined' ? {} : SETDEX_MMM4,
 ]; // NewGenChange
 
 /*
@@ -1634,6 +1636,8 @@ var RANDDEX = [
 	typeof GEN6RANDOMBATTLE === 'undefined' ? {} : GEN6RANDOMBATTLE,
 	typeof GEN7RANDOMBATTLE === 'undefined' ? {} : GEN7RANDOMBATTLE,
 	GEN8RANDSETS,
+	GEN9RANDSETS,
+	GEN9RANDSETS,
 	GEN9RANDSETS,
 	GEN9RANDSETS,
 	GEN9RANDSETS,

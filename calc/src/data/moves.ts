@@ -5967,7 +5967,7 @@ const FEVGC_PATCH: {[name: string]: DeepPartial<MoveData>} = {
 };
 
 export const MOVES = [{}, RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, JS, BWYB, TH, MH,
-  SV, TS, PM, SV, SV, SV, SV]; // NewGenChange
+  SV, TS, PM, SV, SV, SV, SV, SV]; // NewGenChange
 
 export class Moves implements I.Moves {
   private readonly gen: I.GenerationNum;

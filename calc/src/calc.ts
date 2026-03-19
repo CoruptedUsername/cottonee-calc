@@ -38,6 +38,7 @@ const MECHANICS = [
   calculateSMSSSV, // BC A
   calculateSMSSSV, // BC C
   calculateFEVGC, // FE VGC
+  calculateSMSSSV, // MMM4
 ]; // NewGenChange
 
 export function calculate(

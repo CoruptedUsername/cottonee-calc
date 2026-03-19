@@ -17169,8 +17169,36 @@ const FEVGC: {[name: string]: SpeciesData} = {
   },
 };
 
+// Micrometa Mafia
+const MMM4: {[name: string]: SpeciesData} = {
+  Ampharos: {
+    types: ['Electric', 'Dragon'],
+    bs: {hp: 90, at: 85, df: 95, sa: 140, sd: 100, sp: 50},
+    weightkg: 61.5,
+    abilities: {0: 'Mold Breaker'},
+  },
+  Bronzong: {
+    types: ['Steel', 'Psychic'],
+    bs: {hp: 100, at: 100, df: 100, sa: 100, sd: 100, sp: 100},
+    weightkg: 187,
+    abilities: {0: 'Heatproof'},
+  },
+  Golisopod: {
+    types: ['Bug', 'Water'],
+    bs: {hp: 75, at: 125, df: 140, sa: 60, sd: 90, sp: 60},
+    weightkg: 108,
+    abilities: {0: 'Skill Link'},
+  },
+  Lilligant: {
+    types: ['Grass', 'Fire'],
+    bs: {hp: 80, at: 60, df: 75, sa: 105, sd: 105, sp: 105},
+    weightkg: 16.3,
+    abilities: {0: 'Dancer'},
+  },
+};
+
 export const SPECIES = [{}, RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, JS, BWFYB, TH, MH, SBS, TS, PM,
-  DNU, BCA, BCC, FEVGC]; // NewGenChange
+  DNU, BCA, BCC, FEVGC, MMM4]; // NewGenChange
 
 export class Species implements I.Species {
   private readonly gen: I.GenerationNum;

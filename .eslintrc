@@ -23,6 +23,7 @@
         "lastAutoStatus": false,
         "startsWith": false,
         "notation": true,
+		  "SETDEX_MMM4": false,
 		  "SETDEX_FEVGC": false,
 		  "SETDEX_BCC": false,
 		  "SETDEX_BCA": false,

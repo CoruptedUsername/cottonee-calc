@@ -708,7 +708,7 @@ const FEVGC = [
 ];
 
 export const ABILITIES = [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, RBY, BWYB, TH, MH, SV, TS, PM,
-  SV, SV, SV, FEVGC]; // NewGenChange
+  SV, SV, SV, FEVGC, SV]; // NewGenChange
 
 export class Abilities implements I.Abilities {
   private readonly gen: I.GenerationNum;
