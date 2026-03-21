@@ -17183,6 +17183,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     weightkg: 187,
     abilities: {0: 'Heatproof'},
   },
+  Fezandipiti: {
+    types: ['Poison', 'Flying'],
+    bs: {hp: 68, at: 91, df: 82, sa: 70, sd: 125, sp: 99},
+    weightkg: 30.1,
+    abilities: {0: 'Toxic Chain'},
+  },
   Golisopod: {
     types: ['Bug', 'Water'],
     bs: {hp: 75, at: 125, df: 140, sa: 60, sd: 90, sp: 60},
@@ -17194,6 +17200,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     bs: {hp: 80, at: 60, df: 75, sa: 105, sd: 105, sp: 105},
     weightkg: 16.3,
     abilities: {0: 'Dancer'},
+  },
+  Lunatone: {
+    types: ['Dark', 'Fairy'],
+    bs: {hp: 65, at: 45, df: 50, sa: 100, sd: 130, sp: 110},
+    weightkg: 168,
+    abilities: {0: 'Soundproof'},
   },
 };
 
