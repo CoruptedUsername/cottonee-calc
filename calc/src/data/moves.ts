@@ -5774,6 +5774,12 @@ const TH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Special',
     type: 'Flying',
   },
+  'Dust Upheaval': {
+    bp: 70,
+    category: 'Physical',
+    type: 'Ground',
+    secondaries: true,
+  },
   'Excavate': {
     bp: 55,
     category: 'Physical',
@@ -5786,6 +5792,21 @@ const TH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     isBullet: true,
     secondaries: true,
     target: 'allAdjacentFoes',
+  },
+  'Invoke Amaterasu': {
+    bp: 0,
+    category: 'Status',
+    type: 'Fire',
+  },
+  'Invoke Honoikazuchi': {
+    bp: 0,
+    category: 'Status',
+    type: 'Electric',
+  },
+  'Invoke Ishikori-Dome': {
+    bp: 0,
+    category: 'Status',
+    type: 'Ice',
   },
   'Iron Chomp': {
     bp: 80,

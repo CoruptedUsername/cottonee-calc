@@ -11307,6 +11307,13 @@ const TH: {[name: string]: SpeciesData} = {
     abilities: {0: 'Analytic'},
     gender: 'F',
   },
+  'Ariya Iwanaga': {
+    types: ['Rock'],
+    bs: {hp: 130, at: 117, df: 86, sa: 130, sd: 86, sp: 46},
+    weightkg: 0,
+    abilities: {0: 'Immovable'},
+    gender: 'F',
+  },
   'Aunn Komano': {
     types: ['Rock', 'Fairy'],
     bs: {hp: 80, at: 115, df: 72, sa: 60, sd: 110, sp: 65},
@@ -11347,6 +11354,13 @@ const TH: {[name: string]: SpeciesData} = {
     bs: {hp: 95, at: 70, df: 90, sa: 110, sd: 110, sp: 85},
     weightkg: 0,
     abilities: {0: 'Property'},
+    gender: 'F',
+  },
+  'Chimi Houjuu': {
+    types: ['Grass', 'Dark'],
+    bs: {hp: 68, at: 92, df: 64, sa: 100, sd: 100, sp: 120},
+    weightkg: 0,
+    abilities: {0: 'Magic Guard'},
     gender: 'F',
   },
   'Chiyari Tenkajin': {
@@ -11773,6 +11787,13 @@ const TH: {[name: string]: SpeciesData} = {
     abilities: {0: 'Night Song'},
     gender: 'F',
   },
+  'Nareko Michigami': {
+    types: ['Ground', 'Psychic'],
+    bs: {hp: 86, at: 68, df: 83, sa: 103, sd: 130, sp: 73},
+    weightkg: 0,
+    abilities: {0: 'Sand Force'},
+    gender: 'F',
+  },
   'Narumi Yatadera': {
     types: ['Ice', 'Rock'],
     bs: {hp: 70, at: 65, df: 70, sa: 120, sd: 70, sp: 100},
@@ -11792,6 +11813,13 @@ const TH: {[name: string]: SpeciesData} = {
     bs: {hp: 71, at: 110, df: 105, sa: 64, sd: 70, sp: 75},
     weightkg: 0,
     abilities: {0: 'Cut Deep'},
+    gender: 'F',
+  },
+  'Nina Watari': {
+    types: ['Water', 'Electric'],
+    bs: {hp: 75, at: 64, df: 150, sa: 99, sd: 70, sp: 82},
+    weightkg: 0,
+    abilities: {0: 'Surge Surfer'},
     gender: 'F',
   },
   'Nitori Kawashiro': {
@@ -11914,13 +11942,13 @@ const TH: {[name: string]: SpeciesData} = {
   },
   'Rumia': {
     types: ['Dark'],
-    bs: {hp: 75, at: 108, df: 116, sa: 60, sd: 95, sp: 82},
+    bs: {hp: 75, at: 108, df: 116, sa: 60, sd: 95, sp: 78},
     weightkg: 0,
     abilities: {0: 'Levitate'},
     gender: 'F',
   },
   'Sagume Kishin': {
-    types: ['Normal', 'Flying'],
+    types: ['Poison', 'Flying'],
     bs: {hp: 90, at: 90, df: 69, sa: 90, sd: 125, sp: 81},
     weightkg: 0,
     abilities: {0: 'Contrary'},
@@ -12005,7 +12033,7 @@ const TH: {[name: string]: SpeciesData} = {
   },
   'Shion Yorigami': {
     types: ['Poison', 'Ghost'],
-    bs: {hp: 100, at: 77, df: 60, sa: 130, sd: 88, sp: 75},
+    bs: {hp: 100, at: 60, df: 77, sa: 130, sd: 88, sp: 75},
     weightkg: 0,
     abilities: {0: 'Cursed Body'},
     gender: 'F',
@@ -12019,7 +12047,7 @@ const TH: {[name: string]: SpeciesData} = {
   },
   'Shou Toramaru': {
     types: ['Fairy', 'Electric'],
-    bs: {hp: 100, at: 100, df: 61, sa: 110, sd: 79, sp: 95},
+    bs: {hp: 100, at: 110, df: 61, sa: 110, sd: 79, sp: 95},
     weightkg: 0,
     abilities: {0: 'Pressure'},
     gender: 'F',
@@ -12096,7 +12124,7 @@ const TH: {[name: string]: SpeciesData} = {
   },
   'Toyosatomimi no Miko': {
     types: ['Fighting', 'Fairy'],
-    bs: {hp: 80, at: 110, df: 55, sa: 126, sd: 112, sp: 92},
+    bs: {hp: 80, at: 110, df: 55, sa: 126, sd: 112, sp: 102},
     weightkg: 0,
     abilities: {0: 'Telepathy'},
     gender: 'F',
@@ -12106,6 +12134,13 @@ const TH: {[name: string]: SpeciesData} = {
     bs: {hp: 81, at: 75, df: 42, sa: 104, sd: 70, sp: 118},
     weightkg: 0,
     abilities: {0: 'Technician'},
+    gender: 'F',
+  },
+  'Ubame Chirizuka': {
+    types: ['Ground'],
+    bs: {hp: 72, at: 110, df: 103, sa: 95, sd: 70, sp: 110},
+    weightkg: 0,
+    abilities: {0: 'Sand Force'},
     gender: 'F',
   },
   'Urumi Ushizaki': {
@@ -12134,6 +12169,20 @@ const TH: {[name: string]: SpeciesData} = {
     bs: {hp: 85, at: 105, df: 75, sa: 95, sd: 80, sp: 55},
     weightkg: 0,
     abilities: {0: 'Swift Swim'},
+    gender: 'F',
+  },
+  'Watatsuki no Toyohime': {
+    types: ['Water'],
+    bs: {hp: 100, at: 100, df: 100, sa: 100, sd: 100, sp: 100},
+    weightkg: 0,
+    abilities: {0: 'Water Veil'},
+    gender: 'F',
+  },
+  'Watatsuki no Yorihime': {
+    types: ['Fighting'],
+    bs: {hp: 100, at: 130, df: 89, sa: 96, sd: 79, sp: 106},
+    weightkg: 0,
+    abilities: {0: 'Inner Focus'},
     gender: 'F',
   },
   'Wriggle Nightbug': {
@@ -12178,6 +12227,13 @@ const TH: {[name: string]: SpeciesData} = {
     abilities: {0: 'Bulletproof'},
     gender: 'F',
   },
+  'Yuiman Asama': {
+    types: ['Ghost'],
+    bs: {hp: 85, at: 130, df: 100, sa: 65, sd: 65, sp: 100},
+    weightkg: 0,
+    abilities: {0: 'Delusion'},
+    gender: 'F',
+  },
   'Yukari Yakumo': {
     types: ['Psychic', 'Dark'],
     bs: {hp: 100, at: 80, df: 100, sa: 140, sd: 100, sp: 80},
@@ -12187,7 +12243,7 @@ const TH: {[name: string]: SpeciesData} = {
   },
   'Yuugi Hoshiguma': {
     types: ['Fighting', 'Rock'],
-    bs: {hp: 70, at: 132, df: 81, sa: 93, sd: 70, sp: 74},
+    bs: {hp: 90, at: 132, df: 81, sa: 93, sd: 70, sp: 74},
     weightkg: 0,
     abilities: {0: 'Sand Stream'},
     gender: 'F',
@@ -12208,7 +12264,7 @@ const TH: {[name: string]: SpeciesData} = {
   },
   'Yuyuko Saigyouji': {
     types: ['Ghost', 'Fairy'],
-    bs: {hp: 115, at: 91, df: 73, sa: 96, sd: 85, sp: 60},
+    bs: {hp: 115, at: 91, df: 73, sa: 96, sd: 95, sp: 60},
     weightkg: 0,
     abilities: {0: 'Gluttony'},
     gender: 'F',
