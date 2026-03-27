@@ -5130,6 +5130,7 @@ const PM_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 80,
     type: 'Grass',
     category: 'Special',
+    isSound: true,
   },
   'Draconic Rend': {
     bp: 75,
