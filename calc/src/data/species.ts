@@ -15705,7 +15705,7 @@ const BCA: {[name: string]: SpeciesData} = {
 const BCC: {[name: string]: SpeciesData} = {
   Armie: {
     types: ['Psychic', 'Water'],
-    bs: {hp: 90, at: 100, df: 120, sa: 30, sd: 70, sp: 30},
+    bs: {hp: 95, at: 105, df: 120, sa: 30, sd: 70, sp: 30},
     weightkg: 80,
     abilities: {0: 'Iron Fist'},
   },
@@ -15729,7 +15729,7 @@ const BCC: {[name: string]: SpeciesData} = {
   },
   Combustoad: {
     types: ['Fire', 'Ground'],
-    bs: {hp: 70, at: 95, df: 70, sa: 63, sd: 70, sp: 98},
+    bs: {hp: 70, at: 95, df: 70, sa: 63, sd: 70, sp: 108},
     weightkg: 2,
     abilities: {0: 'Neutralizing Gas'},
   },
@@ -15741,7 +15741,7 @@ const BCC: {[name: string]: SpeciesData} = {
   },
   Goodjur: {
     types: ['Psychic', 'Fighting'],
-    bs: {hp: 70, at: 25, df: 60, sa: 120, sd: 70, sp: 90},
+    bs: {hp: 75, at: 25, df: 70, sa: 135, sd: 70, sp: 90},
     weightkg: 42.5,
     abilities: {0: 'Natural Cure'},
   },
@@ -15753,7 +15753,7 @@ const BCC: {[name: string]: SpeciesData} = {
   },
   Hearthind: {
     types: ['Fire', 'Fighting'],
-    bs: {hp: 81, at: 98, df: 78, sa: 20, sd: 66, sp: 122},
+    bs: {hp: 81, at: 98, df: 93, sa: 20, sd: 66, sp: 122},
     weightkg: 11.3,
     abilities: {0: 'Grassy Surge'},
   },
@@ -15821,7 +15821,7 @@ const BCC: {[name: string]: SpeciesData} = {
     types: ['Dark', 'Fighting'],
     bs: {hp: 85, at: 30, df: 95, sa: 110, sd: 85, sp: 95},
     weightkg: 75,
-    abilities: {0: 'Shadow Shield'},
+    abilities: {0: 'Magic Bounce'},
   },
   Oreamoss: {
     types: ['Grass', 'Rock'],
@@ -15933,7 +15933,7 @@ const BCC: {[name: string]: SpeciesData} = {
   },
   Tiaratron: {
     types: ['Electric', 'Fairy'],
-    bs: {hp: 85, at: 100, df: 100, sa: 50, sd: 60, sp: 55},
+    bs: {hp: 85, at: 100, df: 100, sa: 50, sd: 70, sp: 75},
     weightkg: 100,
     abilities: {0: 'Galvanize'},
   },
@@ -15957,7 +15957,7 @@ const BCC: {[name: string]: SpeciesData} = {
   },
   Urslag: {
     types: ['Ground', 'Steel'],
-    bs: {hp: 90, at: 30, df: 115, sa: 109, sd: 95, sp: 74},
+    bs: {hp: 90, at: 30, df: 115, sa: 99, sd: 95, sp: 74},
     weightkg: 723,
     abilities: {0: 'Flash Fire'},
   },
