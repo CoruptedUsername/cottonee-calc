@@ -17263,6 +17263,18 @@ const MMM4: {[name: string]: SpeciesData} = {
     weightkg: 168,
     abilities: {0: 'Soundproof'},
   },
+  Skiddo: {
+    types: ['Grass', 'Ground'],
+    bs: {hp: 86, at: 105, df: 88, sa: 62, sd: 117, sp: 82},
+    weightkg: 31,
+    abilities: {0: 'Sap Sipper'},
+  },
+  Wyrdeer: {
+    types: ['Normal', 'Ghost'],
+    bs: {hp: 110, at: 90, df: 75, sa: 90, sd: 75, sp: 85},
+    weightkg: 95.1,
+    abilities: {0: 'Intimidate'},
+  },
 };
 
 export const SPECIES = [{}, RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, JS, BWFYB, TH, MH, SBS, TS, PM,
