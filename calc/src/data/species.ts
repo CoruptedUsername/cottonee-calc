@@ -17227,6 +17227,12 @@ const FEVGC: {[name: string]: SpeciesData} = {
 
 // Micrometa Mafia
 const MMM4: {[name: string]: SpeciesData} = {
+  Altaria: {
+    types: ['Dragon', 'Fairy'],
+    bs: {hp: 85, at: 80, df: 105, sa: 120, sd: 115, sp: 40},
+    weightkg: 20.6,
+    abilities: {0: 'Cloud Nine'},
+  },
   Ampharos: {
     types: ['Electric', 'Dragon'],
     bs: {hp: 90, at: 85, df: 95, sa: 140, sd: 100, sp: 50},
@@ -17262,6 +17268,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     bs: {hp: 65, at: 45, df: 50, sa: 100, sd: 130, sp: 110},
     weightkg: 168,
     abilities: {0: 'Soundproof'},
+  },
+  Onix: {
+    types: ['Rock', 'Dark'],
+    bs: {hp: 65, at: 75, df: 120, sa: 60, sd: 65, sp: 130},
+    weightkg: 210.0,
+    abilities: {0: 'Armor Tail'},
   },
   Skiddo: {
     types: ['Grass', 'Ground'],
