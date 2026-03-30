@@ -14357,6 +14357,12 @@ const PM: {[name: string]: SpeciesData} = {
     weightkg: 287,
     abilities: {0: 'Sand Rush'},
   },
+  'Drednaw-Abyss': {
+    types: ['Water', 'Steel'],
+    bs: {hp: 90, at: 60, df: 74, sa: 90, sd: 112, sp: 25},
+    weightkg: 115.5,
+    abilities: {0: 'Heatproof'},
+  },
   Eleffigy: {
     types: ['Psychic', 'Fighting'],
     bs: {hp: 105, at: 121, df: 111, sa: 53, sd: 67, sp: 87},
@@ -14370,6 +14376,12 @@ const PM: {[name: string]: SpeciesData} = {
     weightkg: 320,
     abilities: {0: 'Zen Mode'},
     otherFormes: ['Eleffigy'],
+  },
+  'Espathra-Copper': {
+    types: ['Psychic', 'Steel'],
+    bs: {hp: 95, at: 53, df: 70, sa: 70, sd: 80, sp: 113},
+    weightkg: 90,
+    abilities: {0: 'Frisk'},
   },
   Goldoco: {
     types: ['Steel'],
@@ -14488,6 +14500,12 @@ const PM: {[name: string]: SpeciesData} = {
     bs: {hp: 117, at: 130, df: 75, sa: 60, sd: 60, sp: 93},
     weightkg: 102.5,
     abilities: {0: 'Mold Breaker'},
+  },
+  'Rhyperior-Generator': {
+    types: ['Electric', 'Dragon'],
+    bs: {hp: 115, at: 125, df: 115, sa: 60, sd: 80, sp: 45},
+    weightkg: 282.8,
+    abilities: {0: 'Motor Drive'},
   },
   'Salazzle-Ancient': {
     types: ['Ice', 'Dark'],
