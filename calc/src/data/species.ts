@@ -17263,6 +17263,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     weightkg: 187,
     abilities: {0: 'Heatproof'},
   },
+  Falinks: {
+    types: ['Fighting', 'Steel'],
+    bs: {hp: 95, at: 100, df: 100, sa: 70, sd: 60, sp: 75},
+    weightkg: 62,
+    abilities: {0: 'Battle Armor'},
+  },
   Fezandipiti: {
     types: ['Poison', 'Flying'],
     bs: {hp: 68, at: 91, df: 82, sa: 70, sd: 125, sp: 99},
@@ -17298,6 +17304,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     bs: {hp: 86, at: 105, df: 88, sa: 62, sd: 117, sp: 82},
     weightkg: 31,
     abilities: {0: 'Sap Sipper'},
+  },
+  Sneasler: {
+    types: ['Fighting', 'Poison'],
+    bs: {hp: 80, at: 105, df: 70, sa: 50, sd: 80, sp: 115},
+    weightkg: 43,
+    abilities: {0: 'Poison Touch'},
   },
   Wyrdeer: {
     types: ['Normal', 'Ghost'],
