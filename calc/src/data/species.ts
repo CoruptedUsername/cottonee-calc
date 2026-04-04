@@ -17281,6 +17281,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     weightkg: 108,
     abilities: {0: 'Skill Link'},
   },
+  Golurk: {
+    types: ['Ground', 'Ghost'],
+    bs: {hp: 89, at: 130, df: 100, sa: 55, sd: 80, sp: 55},
+    weightkg: 330,
+    abilities: {0: 'Electric Surge'},
+  },
   Lilligant: {
     types: ['Grass', 'Fire'],
     bs: {hp: 80, at: 60, df: 75, sa: 105, sd: 105, sp: 105},
@@ -17292,6 +17298,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     bs: {hp: 65, at: 45, df: 50, sa: 100, sd: 130, sp: 110},
     weightkg: 168,
     abilities: {0: 'Soundproof'},
+  },
+  Luxray: {
+    types: ['Electric', 'Dark'],
+    bs: {hp: 80, at: 100, df: 79, sa: 95, sd: 79, sp: 85},
+    weightkg: 92.6,
+    abilities: {0: 'Rivalry'},
   },
   Onix: {
     types: ['Rock', 'Dark'],
