@@ -17311,6 +17311,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     weightkg: 210.0,
     abilities: {0: 'Armor Tail'},
   },
+  'Sirfetch\'d': {
+    types: ['Fighting', 'Flying'],
+    bs: {hp: 72, at: 80, df: 120, sa: 78, sd: 87, sp: 65},
+    weightkg: 117,
+    abilities: {0: 'Scrappy'},
+  },
   Skiddo: {
     types: ['Grass', 'Ground'],
     bs: {hp: 86, at: 105, df: 88, sa: 62, sd: 117, sp: 82},
@@ -17322,6 +17328,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     bs: {hp: 80, at: 105, df: 70, sa: 50, sd: 80, sp: 115},
     weightkg: 43,
     abilities: {0: 'Poison Touch'},
+  },
+  Swampert: {
+    types: ['Water', 'Ground'],
+    bs: {hp: 100, at: 110, df: 100, sa: 80, sd: 90, sp: 55},
+    weightkg: 81.9,
+    abilities: {0: 'Damp'},
   },
   Wyrdeer: {
     types: ['Normal', 'Ghost'],
