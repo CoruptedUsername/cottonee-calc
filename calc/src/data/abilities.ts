@@ -366,6 +366,7 @@ const MH = SV.concat([
   'Blind Rage',
   'Butterfly Star',
   'Centrifuge',
+  'Consumption',
   'Corrosive Claws',
   'Corrupted Poison',
   'Crimson Demon',
@@ -386,6 +387,7 @@ const MH = SV.concat([
   'Empress Throne',
   'Escaton',
   'Fervent Scales',
+  'Flicker',
   'Foolproof',
   'Frostnip',
   'Frozen Calamity',
@@ -393,6 +395,7 @@ const MH = SV.concat([
   'Generalist',
   'Gravedrum',
   'Heatsink',
+  'Honey Gather',
   'Howling Thunder',
   'Ice Breaker',
   'Ice-Armor',
@@ -424,11 +427,13 @@ const MH = SV.concat([
   'Rusted Gale',
   'Sacred Jewel',
   'Sand Cloak',
+  'Scorching',
   'Silver Subsume',
   'Sinister Grudge',
   'Snow Seethe',
   'Solar Core',
   'Solar Wrath',
+  'Soothing Song',
   'Spongy',
   'Starving Bite',
   'Stealth Silver',
@@ -439,6 +444,7 @@ const MH = SV.concat([
   'Thunderstorm',
   'Twilight Dust',
   'Vampirism',
+  'White Gale',
   'Wylk Encasing',
   'Wyversion',
 ]).filter(item => item !== 'Sand Veil');
@@ -710,8 +716,12 @@ const FEVGC = [
   'Wind Energy',
 ];
 
+const IF = SV.concat([
+  'Test',
+]);
+
 export const ABILITIES = [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, RBY, BWYB, TH, MH, SV, TS, PM,
-  SV, SV, SV, FEVGC, SV]; // NewGenChange
+  SV, SV, SV, FEVGC, SV, IF]; // NewGenChange
 
 export class Abilities implements I.Abilities {
   private readonly gen: I.GenerationNum;

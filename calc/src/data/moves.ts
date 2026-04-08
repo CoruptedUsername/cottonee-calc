@@ -5207,6 +5207,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Dark',
     self: {boosts: {spa: -2}},
   },
+  'Air Slash': {
+    bp: 85,
+  },
   'Ancestral Thunder': {
     bp: 130,
     category: 'Special',
@@ -5287,6 +5290,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Rock',
     isPunch: true,
     makesContact: true,
+  },
+  'Brick Break': {
+    bp: 80,
   },
   'Brimstone Blade': {
     bp: 85,
@@ -5442,8 +5448,11 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Ice',
     isSlicing: true,
   },
-  'Glacial Gale': {
+  'Flying Press': {
     bp: 85,
+  },
+  'Glacial Gale': {
+    bp: 90,
     category: 'Special',
     type: 'Ice',
     isWind: true,
@@ -5471,7 +5480,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     type: 'Bug',
   },
-  'Heatbeam': {
+  'Heat Beam': {
     bp: 100,
     category: 'Physical',
     type: 'Fire',
@@ -5495,6 +5504,10 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Ice Fang': {
     bp: 70,
   },
+  'Icicle Crash': {
+    bp: 90,
+    secondaries: undefined,
+  },
   'Ignition Flare': {
     bp: 120,
     category: 'Special',
@@ -5517,6 +5530,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Fire',
     makesContact: true,
   },
+  'Magnet Bomb': {
+    bp: 70,
+  },
   'Mega Punch': {
     bp: 90,
   },
@@ -5525,6 +5541,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Special',
     type: 'Psychic',
     overrideOffensiveStat: 'spd',
+  },
+  'Metal Claw': {
+    bp: 80,
   },
   Moonblast: {
     bp: 90,
@@ -5541,6 +5560,10 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 80,
     category: 'Special',
     type: 'Water',
+  },
+  'Ominous Wind': {
+    bp: 90,
+    secondaries: undefined,
   },
   'Oxide Airstrike': {
     bp: 75,
@@ -5625,7 +5648,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 85,
   },
   'Selenite Beam': {
-    bp: 90,
+    bp: 80,
     category: 'Special',
     type: 'Fairy',
   },
@@ -5987,9 +6010,20 @@ const FEVGC_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     isDance: true,
   },
 };
+const FEVGC: {[name: string]: MoveData} = extend(true, {}, SV, FEVGC_PATCH);
+
+// Iron Fist
+const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
+  'Temp': {
+    type: 'Water',
+    bp: 80,
+    category: 'Special',
+  },
+};
+const IF: {[name: string]: MoveData} = extend(true, {}, SV, IF_PATCH);
 
 export const MOVES = [{}, RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, JS, BWYB, TH, MH,
-  SV, TS, PM, SV, SV, SV, SV, SV]; // NewGenChange
+  SV, TS, PM, SV, SV, SV, FEVGC, SV, IF]; // NewGenChange
 
 export class Moves implements I.Moves {
   private readonly gen: I.GenerationNum;

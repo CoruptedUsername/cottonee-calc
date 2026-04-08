@@ -1,7 +1,7 @@
 export interface As<T> {__brand: T}
 export type ID = (string & As<'ID'>) | (string & { __isID: true }) | '';
 export type GenerationNum = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
-17 | 18 | 19 | 20 | 21; // NewGenChange
+17 | 18 | 19 | 20 | 21 | 22; // NewGenChange
 export type GenderName = 'M' | 'F' | 'N';
 export type StatID = 'hp' | StatIDExceptHP;
 export type StatIDExceptHP = 'atk' | 'def' | 'spa' | 'spd' | 'spe';
@@ -146,7 +146,8 @@ export interface Species {
 
 export interface Specie extends Data<SpeciesName> {
   readonly kind: 'Species';
-  readonly types: [TypeName] | [TypeName, TypeName];
+  readonly types: [TypeName] | [TypeName, TypeName] | [TypeName, TypeName, TypeName] |
+  [TypeName, TypeName, TypeName, TypeName];
   readonly baseStats: Readonly<StatsTable>;
   readonly weightkg: number;
   readonly nfe?: boolean;

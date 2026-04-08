@@ -12337,6 +12337,14 @@ const MH: {[name: string]: SpeciesData} = {
     bs: {hp: 80, at: 70, df: 110, sa: 100, sd: 150, sp: 70},
     weightkg: 0,
     abilities: {0: 'Rocky Payload'},
+    otherFormes: ['Akura Vashimu-Z'],
+  },
+  'Akura Vashimu-Z': {
+    types: ['Bug', 'Fairy'],
+    bs: {hp: 80, at: 75, df: 125, sa: 100, sd: 200, sp: 70},
+    weightkg: 0,
+    abilities: {0: 'Crystalblight'},
+    baseSpecies: 'Akura Vashimu',
   },
   'Alatreon': {
     types: ['Dragon'],
@@ -12407,7 +12415,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Arzuros-Redhelm': {
     types: ['Normal'],
-    bs: {hp: 86, at: 128, df: 144, sa: 100, sd: 88, sp: 104},
+    bs: {hp: 86, at: 135, df: 140, sa: 80, sd: 90, sp: 100},
     weightkg: 0,
     abilities: {0: 'Tough Claws'},
     baseSpecies: 'Arzuros',
@@ -12421,7 +12429,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Astalos-Boltreaver': {
     types: ['Bug', 'Electric'],
-    bs: {hp: 50, at: 114, df: 84, sa: 140, sd: 117, sp: 145},
+    bs: {hp: 50, at: 112, df: 84, sa: 135, sd: 112, sp: 145},
     weightkg: 0,
     abilities: {0: 'Quark Drive'},
     baseSpecies: 'Astalos',
@@ -12453,7 +12461,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Barioth-Frostfang': {
     types: ['Flying', 'Ice'],
-    bs: {hp: 92, at: 128, df: 90, sa: 125, sd: 110, sp: 105},
+    bs: {hp: 92, at: 128, df: 85, sa: 125, sd: 90, sp: 110},
     weightkg: 0,
     abilities: {0: 'Fur Coat'},
     baseSpecies: 'Barioth',
@@ -12480,7 +12488,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Bazelgeuse-Seething': {
     types: ['Dark', 'Fire'],
-    bs: {hp: 102, at: 138, df: 86, sa: 102, sd: 102, sp: 120},
+    bs: {hp: 102, at: 139, df: 86, sa: 81, sd: 105, sp: 120},
     weightkg: 0,
     abilities: {0: 'Anger Shell'},
     baseSpecies: 'Bazelgeuse',
@@ -12520,7 +12528,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Brachydios-Raging': {
     types: ['Fighting', 'Poison'],
-    bs: {hp: 92, at: 135, df: 117, sa: 102, sd: 102, sp: 102},
+    bs: {hp: 92, at: 135, df: 110, sa: 90, sd: 104, sp: 105},
     weightkg: 0,
     abilities: {0: 'Raging Rebel'},
     baseSpecies: 'Brachydios',
@@ -12560,7 +12568,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Chameleos-Risen': {
     types: ['Dragon', 'Poison'],
-    bs: {hp: 78, at: 136, df: 82, sa: 136, sd: 82, sp: 136},
+    bs: {hp: 78, at: 136, df: 78, sa: 136, sd: 78, sp: 136},
     weightkg: 0,
     abilities: {0: 'Risen Burst'},
     baseSpecies: 'Chamelos',
@@ -12598,7 +12606,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Stonefist Daimyo': {
     types: ['Fighting', 'Water'],
-    bs: {hp: 80, at: 120, df: 160, sa: 120, sd: 115, sp: 55},
+    bs: {hp: 80, at: 120, df: 160, sa: 100, sd: 117, sp: 55},
     weightkg: 0,
     abilities: {0: 'Magic Bounce'},
     baseSpecies: 'Daimyo Hermitaur',
@@ -12626,7 +12634,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Deviljho-Savage': {
     types: ['Dark', 'Fighting'],
-    bs: {hp: 105, at: 140, df: 115, sa: 120, sd: 75, sp: 95},
+    bs: {hp: 105, at: 140, df: 115, sa: 110, sd: 70, sp: 95},
     weightkg: 0,
     abilities: {0: 'Mad Dragon'},
     baseSpecies: 'Deviljho',
@@ -12654,7 +12662,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Diablos-Massacre': {
     types: ['Dark', 'Ground'],
-    bs: {hp: 112, at: 140, df: 133, sa: 50, sd: 85, sp: 130},
+    bs: {hp: 112, at: 140, df: 105, sa: 73, sd: 80, sp: 130},
     weightkg: 0,
     abilities: {0: 'Aggravation'},
     baseSpecies: 'Diablos',
@@ -12688,7 +12696,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Dodogama': {
     types: ['Rock'],
-    bs: {hp: 111, at: 89, df: 96, sa: 76, sd: 95, sp: 53},
+    bs: {hp: 111, at: 89, df: 101, sa: 66, sd: 100, sp: 53},
     weightkg: 0,
     abilities: {0: 'Cheek Pouch'},
   },
@@ -12708,7 +12716,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Doshaguma': {
     types: ['Fighting'],
-    bs: {hp: 110, at: 105, df: 105, sa: 75, sd: 90, sp: 65},
+    bs: {hp: 110, at: 125, df: 105, sa: 55, sd: 90, sp: 65},
     weightkg: 0,
     abilities: {0: 'Aggravation'},
   },
@@ -12816,7 +12824,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Gammoth-Elderfrost': {
     types: ['Ground', 'Ice'],
-    bs: {hp: 108, at: 130, df: 155, sa: 82, sd: 125, sp: 50},
+    bs: {hp: 108, at: 130, df: 155, sa: 75, sd: 110, sp: 60},
     weightkg: 0,
     abilities: {0: 'Icebreaker'},
     baseSpecies: 'Gammoth',
@@ -12869,7 +12877,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Hellblade Glavenus': {
     types: ['Fire', 'Steel'],
-    bs: {hp: 99, at: 135, df: 115, sa: 95, sd: 100, sp: 106},
+    bs: {hp: 99, at: 135, df: 115, sa: 80, sd: 104, sp: 106},
     weightkg: 0,
     abilities: {0: 'Sharpness'},
     baseSpecies: 'Glavenus',
@@ -12993,7 +13001,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Harudomerugu-Z': {
     types: ['Psychic', 'Steel'],
-    bs: {hp: 90, at: 130, df: 130, sa: 90, sd: 100, sp: 110},
+    bs: {hp: 90, at: 125, df: 130, sa: 90, sd: 100, sp: 110},
     weightkg: 0,
     abilities: {0: 'Stealth Silver'},
     baseSpecies: 'Harudomerugu',
@@ -13025,7 +13033,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Inagami-Z': {
     types: ['Fighting', 'Grass'],
-    bs: {hp: 100, at: 126, df: 122, sa: 82, sd: 112, sp: 108},
+    bs: {hp: 100, at: 126, df: 122, sa: 76, sd: 113, sp: 108},
     weightkg: 0,
     abilities: {0: 'Bewitching Tail'},
     baseSpecies: 'Inagami',
@@ -13073,7 +13081,14 @@ const MH: {[name: string]: SpeciesData} = {
     bs: {hp: 105, at: 67, df: 72, sa: 113, sd: 109, sp: 60},
     weightkg: 0,
     abilities: {0: 'Electric Surge'},
-    otherFormes: ['Redzu'],
+    otherFormes: ['Khezu-Z', 'Redzu'],
+  },
+  'Khezu-Z': {
+    types: ['Electric'],
+    bs: {hp: 105, at: 110, df: 100, sa: 140, sd: 110, sp: 80},
+    weightkg: 0,
+    abilities: {0: 'No Guard'},
+    baseSpecies: 'Khezu',
   },
   'Redzu': {
     types: ['Electric'],
@@ -13097,7 +13112,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Emperor Kirin': {
     types: ['Electric', 'Ghost'],
-    bs: {hp: 92, at: 95, df: 91, sa: 135, sd: 112, sp: 125},
+    bs: {hp: 92, at: 90, df: 90, sa: 130, sd: 108, sp: 125},
     weightkg: 0,
     abilities: {0: 'Teravolt'},
     baseSpecies: 'Kirin',
@@ -13130,7 +13145,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Kushala-Risen': {
     types: ['Flying', 'Steel'],
-    bs: {hp: 95, at: 85, df: 105, sa: 135, sd: 120, sp: 110},
+    bs: {hp: 95, at: 80, df: 103, sa: 135, sd: 119, sp: 110},
     weightkg: 0,
     abilities: {0: 'Risen Burst'},
     baseSpecies: 'Kushala Daora',
@@ -13158,7 +13173,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Lagiacrus-Abyssal': {
     types: ['Dark', 'Water'],
-    bs: {hp: 118, at: 106, df: 130, sa: 106, sd: 130, sp: 60},
+    bs: {hp: 118, at: 111, df: 121, sa: 111, sd: 121, sp: 50},
     weightkg: 0,
     abilities: {0: 'Riptide'},
     baseSpecies: 'Lagiacrus',
@@ -13179,7 +13194,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Lagombi-Snowbaron': {
     types: ['Ice', 'Normal'],
-    bs: {hp: 88, at: 148, df: 101, sa: 68, sd: 95, sp: 150},
+    bs: {hp: 88, at: 148, df: 101, sa: 60, sd: 84, sp: 150},
     weightkg: 0,
     abilities: {0: 'Skill Link'},
     baseSpecies: 'Lagombi',
@@ -13209,6 +13224,14 @@ const MH: {[name: string]: SpeciesData} = {
     bs: {hp: 126, at: 114, df: 95, sa: 70, sd: 60, sp: 75},
     weightkg: 0,
     abilities: {0: 'Blaze'},
+    otherFormes: ['Redsioth'],
+  },
+  'Redsioth': {
+    types: ['Fire'],
+    bs: {hp: 114, at: 126, df: 70, sa: 60, sd: 75, sp: 95},
+    weightkg: 0,
+    abilities: {0: 'Scorching'},
+    baseSpecies: 'Lavasioth',
   },
   'Legiana': {
     types: ['Flying', 'Ice'],
@@ -13237,7 +13260,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Magnamalo-Scorned': {
     types: ['Dark', 'Ghost'],
-    bs: {hp: 105, at: 140, df: 100, sa: 105, sd: 110, sp: 90},
+    bs: {hp: 105, at: 140, df: 100, sa: 88, sd: 110, sp: 94},
     weightkg: 0,
     abilities: {0: 'Sinister Grudge'},
     baseSpecies: 'Magnamalo',
@@ -13251,7 +13274,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Malfestio-Nightcloak': {
     types: ['Flying', 'Ghost'],
-    bs: {hp: 108, at: 94, df: 110, sa: 120, sd: 150, sp: 68},
+    bs: {hp: 108, at: 74, df: 110, sa: 122, sd: 150, sp: 68},
     weightkg: 0,
     abilities: {0: 'Twilight Dust'},
     baseSpecies: 'Malfestio',
@@ -13279,7 +13302,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Mizutsune-Soulseer': {
     types: ['Fairy', 'Water'],
-    bs: {hp: 88, at: 100, df: 90, sa: 140, sd: 109, sp: 123},
+    bs: {hp: 88, at: 93, df: 95, sa: 131, sd: 109, sp: 123},
     weightkg: 0,
     abilities: {0: 'Ignite'},
     baseSpecies: 'Mizutsune',
@@ -13317,10 +13340,17 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Nargacuga': {
     types: ['Flying', 'Steel'],
-    bs: {hp: 88, at: 116, df: 104, sa: 72, sd: 90, sp: 112},
+    bs: {hp: 88, at: 110, df: 104, sa: 78, sd: 90, sp: 112},
     weightkg: 0,
     abilities: {0: 'Sharpness'},
-    otherFormes: ['Greencuga', 'Lucacuga'],
+    otherFormes: ['Blinkacuga', 'Greencuga', 'Lucacuga', 'Nargacuga-Silverwind'],
+  },
+  'Blinkacuga': {
+    types: ['Normal', 'Ghost'],
+    bs: {hp: 95, at: 90, df: 88, sa: 114, sd: 88, sp: 130},
+    weightkg: 0,
+    abilities: {0: 'Flicker'},
+    baseSpecies: 'Nargacuga',
   },
   'Greencuga': {
     types: ['Grass', 'Steel'],
@@ -13336,6 +13366,13 @@ const MH: {[name: string]: SpeciesData} = {
     abilities: {0: 'Clear Body'},
     baseSpecies: 'Nargacuga',
   },
+  'Nargacuga-Silverwind': {
+    types: ['Flying', 'Steel'],
+    bs: {hp: 88, at: 125, df: 111, sa: 80, sd: 108, sp: 125},
+    weightkg: 0,
+    abilities: {0: 'White Gale'},
+    baseSpecies: 'Nargacuga',
+  },
   'Narwa': {
     types: ['Dragon', 'Electric'],
     bs: {hp: 105, at: 100, df: 87, sa: 122, sd: 92, sp: 112},
@@ -13345,7 +13382,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Narwa-Allmother': {
     types: ['Electric', 'Flying'],
-    bs: {hp: 105, at: 105, df: 92, sa: 150, sd: 108, sp: 90},
+    bs: {hp: 105, at: 105, df: 87, sa: 150, sd: 100, sp: 102},
     weightkg: 0,
     abilities: {0: 'Thunderstorm'},
     baseSpecies: 'Narwa',
@@ -13390,7 +13427,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Odibatorasu': {
     types: ['Rock'],
-    bs: {hp: 105, at: 70, df: 120, sa: 130, sd: 120, sp: 55},
+    bs: {hp: 105, at: 100, df: 110, sa: 130, sd: 100, sp: 55},
     weightkg: 0,
     abilities: {0: 'Mega Launcher'},
   },
@@ -13433,6 +13470,12 @@ const MH: {[name: string]: SpeciesData} = {
     weightkg: 0,
     abilities: {0: 'Prankster'},
   },
+  'Pariapuira': {
+    types: ['Water', 'Poison'],
+    bs: {hp: 130, at: 112, df: 83, sa: 75, sd: 100, sp: 70},
+    weightkg: 0,
+    abilities: {0: 'Consumption'},
+  },
   'Paolumu': {
     types: ['Flying', 'Normal'],
     bs: {hp: 102, at: 105, df: 107, sa: 60, sd: 103, sp: 80},
@@ -13463,10 +13506,16 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Plesioth-Z': {
     types: ['Water'],
-    bs: {hp: 85, at: 105, df: 101, sa: 124, sd: 160, sp: 75},
+    bs: {hp: 85, at: 100, df: 94, sa: 128, sd: 160, sp: 73},
     weightkg: 0,
     abilities: {0: 'Gooey'},
     baseSpecies: 'Plesioth-Z',
+  },
+  'Poborubarumu': {
+    types: ['Normal'],
+    bs: {hp: 121, at: 96, df: 84, sa: 105, sd: 132, sp: 37},
+    weightkg: 0,
+    abilities: {0: 'Soundproof'},
   },
   'Pokaradon': {
     types: ['Ice', 'Water'],
@@ -13515,7 +13564,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Rajang-Furious': {
     types: ['Electric', 'Fighting'],
-    bs: {hp: 75, at: 150, df: 91, sa: 137, sd: 91, sp: 106},
+    bs: {hp: 75, at: 150, df: 97, sa: 110, sd: 97, sp: 106},
     weightkg: 0,
     abilities: {0: 'Gorilla Tactics'},
     baseSpecies: 'Rajang',
@@ -13550,7 +13599,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Rathalos-Dreadking': {
     types: ['Fire', 'Flying'],
-    bs: {hp: 75, at: 135, df: 95, sa: 145, sd: 70, sp: 130},
+    bs: {hp: 75, at: 136, df: 80, sa: 136, sd: 80, sp: 130},
     weightkg: 0,
     abilities: {0: 'Turboblaze'},
     baseSpecies: 'Rathalos',
@@ -13585,7 +13634,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Rathian-Dreadqueen': {
     types: ['Flying', 'Poison'],
-    bs: {hp: 110, at: 100, df: 140, sa: 80, sd: 140, sp: 80},
+    bs: {hp: 110, at: 101, df: 133, sa: 80, sd: 133, sp: 80},
     weightkg: 0,
     abilities: {0: 'Toxic Chain'},
     baseSpecies: 'Rathian',
@@ -13616,6 +13665,20 @@ const MH: {[name: string]: SpeciesData} = {
     abilities: {0: 'Liquid Ooze'},
     baseSpecies: 'Royal Ludroth',
   },
+  'Rukodiora': {
+    types: ['Dragon', 'Steel'],
+    bs: {hp: 98, at: 120, df: 88, sa: 88, sd: 118, sp: 98},
+    weightkg: 0,
+    abilities: {0: 'Solid Rock'},
+    otherFormes: ['Rebidiora'],
+  },
+  'Rebidiora': {
+    types: ['Dragon', 'Electric'],
+    bs: {hp: 98, at: 88, df: 98, sa: 120, sd: 118, sp: 118},
+    weightkg: 0,
+    abilities: {0: 'Lightning Rod'},
+    baseSpecies: 'Rukodiora',
+  },
   'Xeno\'jiiva': {
     types: ['Dragon', 'Psychic'],
     bs: {hp: 74, at: 105, df: 70, sa: 125, sd: 100, sp: 116},
@@ -13643,7 +13706,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Seregios': {
     types: ['Fighting', 'Flying'],
-    bs: {hp: 90, at: 127, df: 99, sa: 64, sd: 92, sp: 112},
+    bs: {hp: 90, at: 122, df: 99, sa: 64, sd: 97, sp: 112},
     weightkg: 0,
     abilities: {0: 'Weak Armor'},
   },
@@ -13663,7 +13726,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Shagaru-Risen': {
     types: ['Dragon', 'Fairy'],
-    bs: {hp: 100, at: 74, df: 100, sa: 150, sd: 123, sp: 103},
+    bs: {hp: 100, at: 74, df: 96, sa: 150, sd: 121, sp: 103},
     weightkg: 0,
     abilities: {0: 'Risen Burst'},
     baseSpecies: 'Shagaru Magala',
@@ -13757,7 +13820,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Teostra-Risen': {
     types: ['Dragon', 'Fire'],
-    bs: {hp: 85, at: 145, df: 130, sa: 110, sd: 80, sp: 100},
+    bs: {hp: 85, at: 145, df: 130, sa: 108, sd: 74, sp: 100},
     weightkg: 0,
     abilities: {0: 'Risen Burst'},
     baseSpecies: 'Teostra',
@@ -13790,7 +13853,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Tigrex-Grimclaw': {
     types: ['Fighting', 'Normal'],
-    bs: {hp: 94, at: 145, df: 120, sa: 108, sd: 108, sp: 75},
+    bs: {hp: 94, at: 140, df: 115, sa: 108, sd: 84, sp: 95},
     weightkg: 0,
     abilities: {0: 'Tough Claws'},
     baseSpecies: 'Tigrex',
@@ -13828,14 +13891,14 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Uragaan-Crystalbeard': {
     types: ['Fairy', 'Ground'],
-    bs: {hp: 97, at: 122, df: 132, sa: 68, sd: 143, sp: 88},
+    bs: {hp: 97, at: 122, df: 125, sa: 46, sd: 135, sp: 108},
     weightkg: 0,
     abilities: {0: 'Serene Grace'},
     baseSpecies: 'Uragaan',
   },
   'Uth Duna': {
     types: ['Fairy', 'Water'],
-    bs: {hp: 155, at: 100, df: 105, sa: 60, sd: 85, sp: 75},
+    bs: {hp: 125, at: 105, df: 105, sa: 80, sd: 90, sp: 75},
     weightkg: 0,
     abilities: {0: 'Rain Dish'},
   },
@@ -13858,13 +13921,20 @@ const MH: {[name: string]: SpeciesData} = {
     bs: {hp: 95, at: 105, df: 115, sa: 80, sd: 85, sp: 135},
     weightkg: 0,
     abilities: {0: 'Strafe'},
-    otherFormes: ['Glowstrax'],
+    otherFormes: ['Glowstrax', 'Glowstrax-Risen'],
   },
   'Glowstrax': {
     types: ['Dragon'],
     bs: {hp: 95, at: 85, df: 80, sa: 115, sd: 105, sp: 135},
     weightkg: 0,
     abilities: {0: 'Overload'},
+    baseSpecies: 'Valstrax',
+  },
+  'Glowstrax-Risen': {
+    types: ['Dragon', 'Dark'],
+    bs: {hp: 95, at: 101, df: 75, sa: 125, sd: 95, sp: 153},
+    weightkg: 0,
+    abilities: {0: 'Risen Burst'},
     baseSpecies: 'Valstrax',
   },
   'Velkhana': {
@@ -13918,7 +13988,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Yian Garuga-Deadeye': {
     types: ['Fighting', 'Poison'],
-    bs: {hp: 74, at: 140, df: 86, sa: 122, sd: 96, sp: 132},
+    bs: {hp: 74, at: 130, df: 96, sa: 106, sd: 96, sp: 132},
     weightkg: 0,
     abilities: {0: 'Mind\'s Eye'},
     baseSpecies: 'Yian Garuga',
@@ -13981,7 +14051,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Zinogre-Thunderlord': {
     types: ['Electric'],
-    bs: {hp: 73, at: 133, df: 82, sa: 144, sd: 97, sp: 121},
+    bs: {hp: 73, at: 136, df: 85, sa: 136, sd: 85, sp: 121},
     weightkg: 0,
     abilities: {0: 'Galvanize'},
     baseSpecies: 'Zinogre',
@@ -17343,8 +17413,18 @@ const MMM4: {[name: string]: SpeciesData} = {
   },
 };
 
+// Iron Fist
+const IF: {[name: string]: SpeciesData} = {
+  'Melmetal': {
+    types: ['Steel'],
+    bs: {hp: 135, at: 143, df: 143, sa: 80, sd: 65, sp: 34},
+    weightkg: 0,
+    abilities: {0: 'Iron Fist'},
+  },
+};
+
 export const SPECIES = [{}, RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, JS, BWFYB, TH, MH, SBS, TS, PM,
-  DNU, BCA, BCC, FEVGC, MMM4]; // NewGenChange
+  DNU, BCA, BCC, FEVGC, MMM4, IF]; // NewGenChange
 
 export class Species implements I.Species {
   private readonly gen: I.GenerationNum;
@@ -17368,7 +17448,8 @@ class Specie implements I.Specie {
   readonly kind: 'Species';
   readonly id: I.ID;
   readonly name: I.SpeciesName;
-  readonly types!: [I.TypeName] | [I.TypeName, I.TypeName];
+  readonly types!: [I.TypeName] | [I.TypeName, I.TypeName] | [I.TypeName, I.TypeName, I.TypeName] |
+  [I.TypeName, I.TypeName, I.TypeName, I.TypeName];
   readonly baseStats: Readonly<I.StatsTable>;
   readonly weightkg!: number; // weight
   readonly nfe?: boolean;

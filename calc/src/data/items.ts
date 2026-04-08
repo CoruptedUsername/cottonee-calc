@@ -496,6 +496,7 @@ const SV = SS.concat([
 
 const MH = SV.concat([
   'Frost Orb',
+  'Honey',
 ]);
 
 const TH = SV.concat([
@@ -505,6 +506,10 @@ const TH = SV.concat([
 
 const BWYB = BW.concat([
   'Snowball',
+]);
+
+const IF = SV.concat([
+  'Test',
 ]);
 
 const BERRIES: {[berry: string]: {t: I.TypeName; p: number}} = {
@@ -588,7 +593,7 @@ const BERRIES: {[berry: string]: {t: I.TypeName; p: number}} = {
 };
 
 export const ITEMS = [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, RBY, BWYB, TH, MH, SV, SV, SV,
-  SV, SV, SV, SV, SV]; // NewGenChange
+  SV, SV, SV, SV, SV, IF]; // NewGenChange
 
 export class Items implements I.Items {
   private readonly gen: I.GenerationNum;

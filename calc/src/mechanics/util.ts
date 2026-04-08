@@ -212,6 +212,8 @@ export function getMoveEffectiveness(
     return 2;
   } else if (move.named('Dragonator') && type === 'Dragon') {
     return 2;
+  } else if (move.named('Magnet Bomb') && type === 'Steel' && gen.num === 13) {
+    return 2;
   } else if (move.flags.powder && (type === 'Grass' || isGoggles)) {
     return 0;
   } else {
@@ -743,9 +745,6 @@ export function getStabMod(pokemon: Pokemon, move: Move, desc: RawDesc) {
   } else if (pokemon.hasAbility('Mad Dragon') && move.type === 'Dragon') {
     stabMod += 2048;
     desc.attackerAbility = pokemon.ability;
-  } else if (pokemon.hasAbility('Risen Burst') && move.type === 'Dark') {
-    stabMod += 2048;
-    desc.attackerAbility = pokemon.ability;
   } else if (pokemon.hasAbility('Frozen Calamity') && move.type === 'Ice') {
     stabMod += 2048;
     desc.attackerAbility = pokemon.ability;
@@ -760,7 +759,7 @@ export function getStabMod(pokemon: Pokemon, move: Move, desc: RawDesc) {
     desc.attackerAbility = pokemon.ability;
   }
   if (stabMod === 4096 && pokemon.hasAbility('Generalist')) {
-    stabMod = 5325;
+    stabMod = 4915;
     desc.attackerAbility = pokemon.ability;
   } else if (pokemon.hasStatus('dgb') && !pokemon.hasOriginalType('Fairy')) {
     stabMod = 4096;
