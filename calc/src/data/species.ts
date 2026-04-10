@@ -17357,6 +17357,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     weightkg: 330,
     abilities: {0: 'Electric Surge'},
   },
+  Koffing: {
+    types: ['Ice', 'Ghost'],
+    bs: {hp: 70, at: 95, df: 95, sa: 90, sd: 85, sp: 120},
+    weightkg: 1.0,
+    abilities: {0: 'Misty Surge'},
+  },
   Lilligant: {
     types: ['Grass', 'Fire'],
     bs: {hp: 80, at: 60, df: 75, sa: 105, sd: 105, sp: 105},
@@ -17392,6 +17398,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     bs: {hp: 86, at: 105, df: 88, sa: 62, sd: 117, sp: 82},
     weightkg: 31,
     abilities: {0: 'Sap Sipper'},
+  },
+  Sneasel: {
+    types: ['Rock', 'Ice'],
+    bs: {hp: 65, at: 105, df: 65, sa: 45, sd: 110, sp: 120},
+    weightkg: 28,
+    abilities: {0: 'Refrigerate'},
   },
   Sneasler: {
     types: ['Fighting', 'Poison'],
