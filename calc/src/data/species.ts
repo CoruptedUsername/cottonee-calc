@@ -17357,6 +17357,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     weightkg: 330,
     abilities: {0: 'Electric Surge'},
   },
+  Kecleon: {
+    types: ['Normal', 'Poison'],
+    bs: {hp: 60, at: 100, df: 60, sa: 95, sd: 175, sp: 70},
+    weightkg: 22,
+    abilities: {0: 'Poison Touch'},
+  },
   Koffing: {
     types: ['Ice', 'Ghost'],
     bs: {hp: 70, at: 95, df: 95, sa: 90, sd: 85, sp: 120},
@@ -17377,7 +17383,7 @@ const MMM4: {[name: string]: SpeciesData} = {
   },
   Luxray: {
     types: ['Electric', 'Dark'],
-    bs: {hp: 80, at: 100, df: 79, sa: 95, sd: 79, sp: 85},
+    bs: {hp: 80, at: 90, df: 79, sa: 95, sd: 79, sp: 85},
     weightkg: 92.6,
     abilities: {0: 'Rivalry'},
   },
@@ -17416,6 +17422,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     bs: {hp: 100, at: 110, df: 100, sa: 80, sd: 90, sp: 55},
     weightkg: 81.9,
     abilities: {0: 'Damp'},
+  },
+  Wigglytuff: {
+    types: ['Normal', 'Fairy'],
+    bs: {hp: 150, at: 75, df: 94, sa: 90, sd: 22, sp: 45},
+    weightkg: 12,
+    abilities: {0: 'Cute Charm'},
   },
   Wyrdeer: {
     types: ['Normal', 'Ghost'],
