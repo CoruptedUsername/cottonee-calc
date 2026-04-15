@@ -17333,6 +17333,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     weightkg: 187,
     abilities: {0: 'Heatproof'},
   },
+  Exeggutor: {
+    types: ['Grass'],
+    bs: {hp: 95, at: 85, df: 115, sa: 115, sd: 85, sp: 55},
+    weightkg: 120,
+    abilities: {0: 'Chlorophyll'},
+  },
   Falinks: {
     types: ['Fighting', 'Steel'],
     bs: {hp: 95, at: 100, df: 100, sa: 70, sd: 60, sp: 75},
@@ -17392,6 +17398,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     bs: {hp: 65, at: 75, df: 120, sa: 60, sd: 65, sp: 130},
     weightkg: 210.0,
     abilities: {0: 'Armor Tail'},
+  },
+  Revavroom: {
+    types: ['Fire'],
+    bs: {hp: 80, at: 119, df: 90, sa: 108, sd: 67, sp: 90},
+    weightkg: 120,
+    abilities: {0: 'Flame Body'},
   },
   'Sirfetch\'d': {
     types: ['Fighting', 'Flying'],
