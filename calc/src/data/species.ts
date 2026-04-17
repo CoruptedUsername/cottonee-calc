@@ -13470,7 +13470,7 @@ const MH: {[name: string]: SpeciesData} = {
     weightkg: 0,
     abilities: {0: 'Prankster'},
   },
-  'Pariapuira': {
+  'Pariapuria': {
     types: ['Water', 'Poison'],
     bs: {hp: 130, at: 112, df: 83, sa: 75, sd: 100, sp: 70},
     weightkg: 0,
@@ -17392,6 +17392,18 @@ const MMM4: {[name: string]: SpeciesData} = {
     bs: {hp: 80, at: 90, df: 79, sa: 95, sd: 79, sp: 85},
     weightkg: 92.6,
     abilities: {0: 'Rivalry'},
+  },
+  Milotic: {
+    types: ['Water', 'Poison'],
+    bs: {hp: 85, at: 60, df: 69, sa: 100, sd: 105, sp: 71},
+    weightkg: 162,
+    abilities: {0: 'Cute Charm'},
+  },
+  Nidoqueen: {
+    types: ['Poison', 'Ground'],
+    bs: {hp: 90, at: 92, df: 97, sa: 87, sd: 85, sp: 76},
+    weightkg: 60,
+    abilities: {0: 'Poison Point'},
   },
   Onix: {
     types: ['Rock', 'Dark'],
