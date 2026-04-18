@@ -404,6 +404,7 @@ const MH = SV.concat([
   'Insect Armor',
   'Item Bag',
   'Mad Dragon',
+  'Magnetic',
   'Megiddo\'s Gift',
   'Mighty Wall',
   'Mucus Veil',

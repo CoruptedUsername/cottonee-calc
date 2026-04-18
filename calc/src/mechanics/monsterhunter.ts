@@ -535,6 +535,7 @@ export function calculateMH(
         !field.isGravity && !move.named('Thousand Arrows') &&
         !defender.hasItem('Iron Ball') && defender.hasAbility('Levitate')) ||
       (move.hasType('Dragon') && defender.hasAbility('Dragon Eater')) ||
+      (move.hasType('Steel') && defender.hasAbility('Magnetic')) ||
       (move.flags.bullet && defender.hasAbility('Bulletproof')) ||
       (move.flags.sound && !move.named('Clangorous Soul') && defender.hasAbility('Soundproof')) ||
       (move.flags.slicing && defender.hasAbility('Dense Cortex')) ||

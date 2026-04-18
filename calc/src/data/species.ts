@@ -13138,7 +13138,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Kushala Daora': {
     types: ['Flying', 'Steel'],
-    bs: {hp: 95, at: 80, df: 103, sa: 119, sd: 120, sp: 88},
+    bs: {hp: 95, at: 100, df: 93, sa: 114, sd: 110, sp: 88},
     weightkg: 0,
     abilities: {0: 'Bulletproof'},
     otherFormes: ['Kushala-Risen', 'Rushala Daora'],
@@ -13918,7 +13918,7 @@ const MH: {[name: string]: SpeciesData} = {
   },
   'Valstrax': {
     types: ['Dragon', 'Steel'],
-    bs: {hp: 95, at: 105, df: 115, sa: 80, sd: 85, sp: 135},
+    bs: {hp: 95, at: 95, df: 105, sa: 100, sd: 85, sp: 135},
     weightkg: 0,
     abilities: {0: 'Strafe'},
     otherFormes: ['Glowstrax', 'Glowstrax-Risen'],

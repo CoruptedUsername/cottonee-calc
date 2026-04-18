@@ -5221,6 +5221,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Special',
     type: 'Fairy',
   },
+  'Apple Acid': {
+    bp: 90,
+  },
   'Arctic Shriek': {
     bp: 100,
     category: 'Special',
@@ -5234,6 +5237,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 0,
     category: 'Status',
     type: 'Ice',
+  },
+  'Beak Blast': {
+    bp: 120,
   },
   'Bewitched Bubble': {
     bp: 75,
@@ -5350,9 +5356,11 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     type: 'Dark',
     makesContact: true,
+    isSlicing: true,
   },
   'Crush Claw': {
     bp: 85,
+    isSlicing: true,
   },
   'Cutwing Barrage': {
     bp: 90,
@@ -5398,6 +5406,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 0,
     category: 'Status',
     type: 'Dragon',
+  },
+  'Dragon Claw': {
+    isSlicing: true,
   },
   'Dragonator': {
     bp: 100,
@@ -5449,7 +5460,10 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     isSlicing: true,
   },
   'Flying Press': {
-    bp: 85,
+    bp: 100,
+  },
+  'Gigaton Hammer': {
+    bp: 150,
   },
   'Glacial Gale': {
     bp: 90,
@@ -5474,6 +5488,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     type: 'Fairy',
     makesContact: true,
+  },
+  'Growth': {
+    type: 'Grass',
   },
   'Harsh Sting': {
     bp: 15,
@@ -5518,6 +5535,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Special',
     type: 'Dragon',
   },
+  'Infernal Parade': {
+    bp: 65,
+  },
   'Magma Surge': {
     bp: 60,
     category: 'Physical',
@@ -5544,6 +5564,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   },
   'Metal Claw': {
     bp: 80,
+    isSlicing: true,
   },
   Moonblast: {
     bp: 90,
@@ -5602,6 +5623,9 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Special',
     type: 'Psychic',
   },
+  'Psyshield Bash': {
+    bp: 90,
+  },
   'Pyrotoxic Gale': {
     bp: 100,
     category: 'Special',
@@ -5659,6 +5683,7 @@ const MH_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   },
   'Shadow Claw': {
     bp: 85,
+    isSlicing: true,
   },
   'Shroom Shield': {
     bp: 0,
