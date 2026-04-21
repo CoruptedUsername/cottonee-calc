@@ -1782,6 +1782,9 @@ export function calculateDfModsMH(
   } else if (defender.hasAbility('Frozen Calamity') && move.hasType('Ice')) {
     dfMods.push(8192);
     desc.defenderAbility = defender.ability;
+  } else if (defender.hasAbility('Shell Armor')) {
+    dfMods.push(4915);
+    desc.defenderAbility = defender.ability;
   }
 
   // Pokemon with "-of Ruin" Ability are immune to the opposing "-of Ruin" ability
