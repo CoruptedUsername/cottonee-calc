@@ -858,6 +858,7 @@ export function calculateBasePowerMH(
   case 'Bolt Beak':
   case 'Fishious Rend':
   case 'Bolt Breath':
+  case 'Cyclone Rend':
     basePower = move.bp * (turnOrder !== 'last' ? 2 : 1);
     desc.moveBP = basePower;
     break;
@@ -924,7 +925,8 @@ export function calculateBasePowerMH(
     break;
   case 'Wake-Up Slap':
     // Wake-Up Slap deals double damage to Pokemon with Comatose (ih8ih8sn0w)
-    basePower = move.bp * (defender.hasStatus('slp') || defender.hasAbility('Comatose') ? 2 : 1);
+    basePower = move.bp * (defender.hasStatus('slp', 'drs') ||
+    defender.hasAbility('Comatose') ? 2 : 1);
     desc.moveBP = basePower;
     break;
   case 'Smelling Salts':
