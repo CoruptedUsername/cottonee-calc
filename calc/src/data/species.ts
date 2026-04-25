@@ -17333,6 +17333,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     weightkg: 187,
     abilities: {0: 'Heatproof'},
   },
+  Castform: {
+    types: ['Ice'],
+    bs: {hp: 60, at: 60, df: 100, sa: 80, sd: 160, sp: 80},
+    weightkg: 0.8,
+    abilities: ['Drizzle'],
+  },
   Exeggutor: {
     types: ['Grass'],
     bs: {hp: 95, at: 85, df: 115, sa: 115, sd: 85, sp: 55},
@@ -17362,6 +17368,24 @@ const MMM4: {[name: string]: SpeciesData} = {
     bs: {hp: 89, at: 130, df: 100, sa: 55, sd: 80, sp: 55},
     weightkg: 330,
     abilities: {0: 'Electric Surge'},
+  },
+  'Goodra-Hisui': {
+    types: ['Steel', 'Dragon'],
+    bs: {hp: 78, at: 105, df: 84, sa: 68, sd: 127, sp: 63},
+    weightkg: 334.1,
+    abilities: {0: 'Shell Armor'},
+  },
+  Honchkrow: {
+    types: ['Dark', 'Flying'],
+    bs: {hp: 100, at: 112, df: 62, sa: 85, sd: 62, sp: 91},
+    weightkg: 27.3,
+    abilities: {0: 'Insomnia'},
+  },
+  'Iron Boulder': {
+    types: ['Rock', 'Psychic'],
+    bs: {hp: 90, at: 105, df: 80, sa: 68, sd: 105, sp: 114},
+    weightkg: 162.5,
+    abilities: {0: 'Sand Force'},
   },
   Kecleon: {
     types: ['Normal', 'Poison'],
@@ -17417,6 +17441,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     weightkg: 120,
     abilities: {0: 'Flame Body'},
   },
+  Sigilyph: {
+    types: ['Psychic', 'Flying'],
+    bs: {hp: 82, at: 50, df: 93, sa: 100, sd: 75, sp: 95},
+    weightkg: 14,
+    abilities: {0: 'Dancer'},
+  },
   'Sirfetch\'d': {
     types: ['Fighting', 'Flying'],
     bs: {hp: 72, at: 80, df: 120, sa: 78, sd: 87, sp: 65},
@@ -17446,6 +17476,12 @@ const MMM4: {[name: string]: SpeciesData} = {
     bs: {hp: 100, at: 110, df: 100, sa: 80, sd: 90, sp: 55},
     weightkg: 81.9,
     abilities: {0: 'Damp'},
+  },
+  Volbeat: {
+    types: ['Bug', 'Fire'],
+    bs: {hp: 82, at: 102, df: 103, sa: 51, sd: 88, sp: 68},
+    weightkg: 17.7,
+    abilities: {0: 'Flame Body'},
   },
   Wigglytuff: {
     types: ['Normal', 'Fairy'],
