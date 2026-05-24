@@ -245,7 +245,7 @@ export function calculateBWFYB(
 
   if ((defender.hasAbility('Wonder Guard') && typeEffectiveness <= 1) ||
       (move.hasType('Grass') && defender.hasAbility('Sap Sipper')) ||
-      (move.hasType('Fire') && defender.hasAbility('Flash Fire')) ||
+      (move.hasType('Fire') && defender.hasAbility('Flash Fire', 'Magma Armor')) ||
       (move.hasType('Water') && defender.hasAbility('Dry Skin', 'Storm Drain', 'Water Absorb')) ||
       (move.hasType('Electric') &&
         defender.hasAbility('Lightning Rod', 'Motor Drive', 'Volt Absorb')) ||
@@ -666,6 +666,15 @@ export function calculateBPModsBWFYB(
   } else if (defender.hasAbility('Dry Skin') && move.hasType('Fire')) {
     bpMods.push(5120);
     desc.defenderAbility = defender.ability;
+  } else if (defender.hasAbility('Magma Armor') && move.hasType('Water')) {
+    bpMods.push(5120);
+    desc.defenderAbility = defender.ability;
+  } else if (defender.hasAbility('Overcoat') && ((field.hasWeather('Snow', 'Sand') &&
+    move.category === 'Special') || (field.hasWeather('Sun', 'Rain') &&
+    move.category === 'Physical'))) {
+    bpMods.push(3072);
+    desc.defenderAbility = defender.ability;
+    desc.weather = field.weather;
   }
 
   if (attacker.hasAbility('Sheer Force') && move.secondaries) {

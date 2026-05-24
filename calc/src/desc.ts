@@ -665,6 +665,9 @@ function getEndOfTurn(
     } else if (defender.hasAbility('Oilmucus')) {
       damage += Math.floor(defender.maxHP() / 8);
       texts.push('Oilmucus Recovery');
+    } else if (defender.hasAbility('Magma Armor') && gen.num === 11) {
+      damage += Math.floor(defender.maxHP() / 8);
+      texts.push('Magma Armor Recovery');
     }
   } else if (field.hasWeather('Rain', 'Heavy Rain') && !healBlock) {
     if (defender.hasAbility('Dry Skin')) {
@@ -676,6 +679,9 @@ function getEndOfTurn(
     } else if (defender.hasAbility('Oilmucus')) {
       damage -= Math.floor(defender.maxHP() / 8);
       texts.push('Oilmucus damage');
+    } else if (defender.hasAbility('Magma Armor') && gen.num === 11) {
+      damage -= Math.floor(defender.maxHP() / 8);
+      texts.push('Magma Armor damage');
     }
   } else if (field.hasWeather('Sand')) {
     if (

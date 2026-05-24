@@ -10162,7 +10162,7 @@ const BWFYB: {[name: string]: SpeciesData} = {
   },
   Audino: {
     types: ['Normal'],
-    bs: {hp: 103, at: 60, df: 76, sa: 60, sd: 106, sp: 40},
+    bs: {hp: 113, at: 60, df: 76, sa: 60, sd: 116, sp: 30},
     weightkg: 31,
     abilities: {0: 'Healer'},
   },
@@ -10181,21 +10181,21 @@ const BWFYB: {[name: string]: SpeciesData} = {
   },
   Basculin: {
     types: ['Water'],
-    bs: {hp: 70, at: 92, df: 65, sa: 80, sd: 55, sp: 98},
+    bs: {hp: 80, at: 92, df: 75, sa: 80, sd: 65, sp: 98},
     weightkg: 18,
     abilities: {0: 'Drizzle'},
     otherFormes: ['Basculin-Blue-Striped'],
   },
   'Basculin-Blue-Striped': {
     types: ['Water'],
-    bs: {hp: 70, at: 92, df: 65, sa: 80, sd: 55, sp: 98},
+    bs: {hp: 80, at: 92, df: 75, sa: 80, sd: 65, sp: 98},
     weightkg: 18,
     abilities: {0: 'Drizzle'},
     baseSpecies: 'Basculin',
   },
   Beartic: {
-    types: ['Ice'],
-    bs: {hp: 95, at: 130, df: 80, sa: 70, sd: 80, sp: 50},
+    types: ['Ice', 'Fighting'],
+    bs: {hp: 95, at: 130, df: 80, sa: 70, sd: 80, sp: 70},
     weightkg: 260,
     abilities: {0: 'Slush Rush'},
   },
@@ -10359,7 +10359,7 @@ const BWFYB: {[name: string]: SpeciesData} = {
   },
   Druddigon: {
     types: ['Dragon', 'Ground'],
-    bs: {hp: 77, at: 120, df: 90, sa: 60, sd: 90, sp: 48},
+    bs: {hp: 87, at: 120, df: 90, sa: 60, sd: 90, sp: 48},
     weightkg: 139,
     abilities: {0: 'Rough Skin'},
   },
@@ -10418,12 +10418,12 @@ const BWFYB: {[name: string]: SpeciesData} = {
   },
   Emolga: {
     types: ['Electric', 'Flying'],
-    bs: {hp: 55, at: 55, df: 70, sa: 55, sd: 87, sp: 103},
+    bs: {hp: 55, at: 55, df: 70, sa: 55, sd: 87, sp: 104},
     weightkg: 5,
     abilities: {0: 'Static'},
   },
   Escavalier: {
-    types: ['Bug', 'Steel'],
+    types: ['Bug', 'Ghost'],
     bs: {hp: 70, at: 135, df: 105, sa: 60, sd: 105, sp: 20},
     weightkg: 33,
     abilities: {0: 'Swarm'},
@@ -10482,7 +10482,7 @@ const BWFYB: {[name: string]: SpeciesData} = {
   },
   Genesect: {
     types: ['Bug', 'Steel'],
-    bs: {hp: 91, at: 90, df: 106, sa: 130, sd: 106, sp: 77},
+    bs: {hp: 71, at: 90, df: 106, sa: 130, sd: 106, sp: 77},
     weightkg: 82.5,
     abilities: {0: 'Download'},
     gender: 'N',
@@ -10490,7 +10490,7 @@ const BWFYB: {[name: string]: SpeciesData} = {
   },
   'Genesect-Burn': {
     types: ['Bug', 'Steel'],
-    bs: {hp: 91, at: 90, df: 106, sa: 130, sd: 106, sp: 77},
+    bs: {hp: 71, at: 90, df: 106, sa: 130, sd: 106, sp: 77},
     weightkg: 82.5,
     abilities: {0: 'Download'},
     gender: 'N',
@@ -10498,7 +10498,7 @@ const BWFYB: {[name: string]: SpeciesData} = {
   },
   'Genesect-Chill': {
     types: ['Bug', 'Steel'],
-    bs: {hp: 91, at: 90, df: 106, sa: 130, sd: 106, sp: 77},
+    bs: {hp: 71, at: 90, df: 106, sa: 130, sd: 106, sp: 77},
     weightkg: 82.5,
     abilities: {0: 'Download'},
     gender: 'N',
@@ -10506,7 +10506,7 @@ const BWFYB: {[name: string]: SpeciesData} = {
   },
   'Genesect-Douse': {
     types: ['Bug', 'Steel'],
-    bs: {hp: 91, at: 90, df: 106, sa: 130, sd: 106, sp: 77},
+    bs: {hp: 71, at: 90, df: 106, sa: 130, sd: 106, sp: 77},
     weightkg: 82.5,
     abilities: {0: 'Download'},
     gender: 'N',
@@ -10514,7 +10514,7 @@ const BWFYB: {[name: string]: SpeciesData} = {
   },
   'Genesect-Shock': {
     types: ['Bug', 'Steel'],
-    bs: {hp: 91, at: 90, df: 106, sa: 130, sd: 106, sp: 77},
+    bs: {hp: 71, at: 90, df: 106, sa: 130, sd: 106, sp: 77},
     weightkg: 82.5,
     abilities: {0: 'Download'},
     gender: 'N',
@@ -10731,7 +10731,7 @@ const BWFYB: {[name: string]: SpeciesData} = {
   },
   Lilligant: {
     types: ['Grass'],
-    bs: {hp: 70, at: 60, df: 75, sa: 110, sd: 75, sp: 90},
+    bs: {hp: 80, at: 65, df: 75, sa: 115, sd: 75, sp: 90},
     weightkg: 16.3,
     abilities: {0: 'Chlorophyll'},
   },
@@ -10929,7 +10929,7 @@ const BWFYB: {[name: string]: SpeciesData} = {
   },
   Samurott: {
     types: ['Water'],
-    bs: {hp: 95, at: 100, df: 85, sa: 108, sd: 70, sp: 70},
+    bs: {hp: 90, at: 100, df: 80, sa: 108, sd: 65, sp: 85},
     weightkg: 94.6,
     abilities: {0: 'Torrent'},
   },
@@ -10942,7 +10942,7 @@ const BWFYB: {[name: string]: SpeciesData} = {
   },
   Sawk: {
     types: ['Fighting'],
-    bs: {hp: 80, at: 135, df: 75, sa: 30, sd: 75, sp: 85},
+    bs: {hp: 80, at: 135, df: 75, sa: 30, sd: 75, sp: 90},
     weightkg: 51,
     abilities: {0: 'Sturdy'},
   },
@@ -10960,7 +10960,7 @@ const BWFYB: {[name: string]: SpeciesData} = {
   },
   Scrafty: {
     types: ['Dark', 'Fighting'],
-    bs: {hp: 65, at: 90, df: 115, sa: 45, sd: 115, sp: 58},
+    bs: {hp: 65, at: 90, df: 121, sa: 45, sd: 121, sp: 58},
     weightkg: 30,
     abilities: {0: 'Shed Skin'},
   },
@@ -11013,25 +11013,25 @@ const BWFYB: {[name: string]: SpeciesData} = {
   },
   Sigilyph: {
     types: ['Psychic', 'Flying'],
-    bs: {hp: 72, at: 58, df: 80, sa: 103, sd: 80, sp: 97},
+    bs: {hp: 72, at: 58, df: 80, sa: 103, sd: 80, sp: 102},
     weightkg: 14,
     abilities: {0: 'Wonder Skin'},
   },
   Simipour: {
     types: ['Water'],
-    bs: {hp: 75, at: 104, df: 63, sa: 104, sd: 63, sp: 106},
+    bs: {hp: 76, at: 105, df: 63, sa: 105, sd: 63, sp: 108},
     weightkg: 29,
     abilities: {0: 'Gluttony'},
   },
   Simisage: {
     types: ['Grass'],
-    bs: {hp: 75, at: 104, df: 63, sa: 104, sd: 63, sp: 106},
+    bs: {hp: 76, at: 105, df: 63, sa: 105, sd: 63, sp: 108},
     weightkg: 30.5,
     abilities: {0: 'Gluttony'},
   },
   Simisear: {
     types: ['Fire'],
-    bs: {hp: 75, at: 104, df: 63, sa: 104, sd: 63, sp: 106},
+    bs: {hp: 76, at: 105, df: 63, sa: 105, sd: 63, sp: 108},
     weightkg: 28,
     abilities: {0: 'Gluttony'},
   },
@@ -11089,14 +11089,14 @@ const BWFYB: {[name: string]: SpeciesData} = {
   },
   Terrakion: {
     types: ['Rock', 'Fighting'],
-    bs: {hp: 92, at: 119, df: 90, sa: 72, sd: 90, sp: 107},
+    bs: {hp: 92, at: 119, df: 90, sa: 82, sd: 90, sp: 97},
     weightkg: 260,
     abilities: {0: 'Justified'},
     gender: 'N',
   },
   Throh: {
     types: ['Fighting'],
-    bs: {hp: 135, at: 100, df: 85, sa: 30, sd: 85, sp: 45},
+    bs: {hp: 135, at: 105, df: 85, sa: 30, sd: 85, sp: 45},
     weightkg: 55.5,
     abilities: {0: 'Guts'},
   },
@@ -11232,13 +11232,13 @@ const BWFYB: {[name: string]: SpeciesData} = {
   },
   Watchog: {
     types: ['Normal'],
-    bs: {hp: 70, at: 95, df: 79, sa: 60, sd: 79, sp: 77},
+    bs: {hp: 70, at: 110, df: 79, sa: 60, sd: 79, sp: 77},
     weightkg: 27,
     abilities: {0: 'Tinted Lens'},
   },
   Whimsicott: {
-    types: ['Grass'],
-    bs: {hp: 60, at: 67, df: 85, sa: 77, sd: 75, sp: 116},
+    types: ['Grass', 'Psychic'],
+    bs: {hp: 70, at: 67, df: 95, sa: 77, sd: 75, sp: 116},
     weightkg: 6.6,
     abilities: {0: 'Prankster'},
   },
@@ -11278,7 +11278,7 @@ const BWFYB: {[name: string]: SpeciesData} = {
   },
   Zoroark: {
     types: ['Dark', 'Ghost'],
-    bs: {hp: 60, at: 105, df: 60, sa: 120, sd: 60, sp: 105},
+    bs: {hp: 60, at: 105, df: 60, sa: 120, sd: 60, sp: 106},
     weightkg: 81.1,
     abilities: {0: 'Illusion'},
   },
@@ -12590,6 +12590,12 @@ const MH: {[name: string]: SpeciesData} = {
     bs: {hp: 87, at: 83, df: 89, sa: 106, sd: 104, sp: 61},
     weightkg: 0,
     abilities: {0: 'Harvest'},
+  },
+  'Emgalala': {
+    types: ['Grass', 'Poison'],
+    bs: {hp: 87, at: 83, df: 89, sa: 106, sd: 104, sp: 61},
+    weightkg: 0,
+    abilities: {0: 'Neutralizing Gas'},
   },
   'Dah\'ren Mohran': {
     types: ['Ground', 'Rock'],

@@ -5928,8 +5928,22 @@ const TH: {[name: string]: MoveData} = extend(true, {}, SV, TH_PATCH);
 
 // Best Wishes
 const BWYB_PATCH: {[name: string]: DeepPartial<MoveData>} = {
+  'Aurora Beam': {
+    bp: 70,
+  },
   'Frost Breath': {
     bp: 50,
+  },
+  'Ice Spinner': {
+    bp: 80,
+    type: 'Ice',
+    category: 'Physical',
+    makesContact: true,
+  },
+  'Hydro Steam': {
+    bp: 80,
+    type: 'Water',
+    category: 'Special',
   },
   'Incinerate': {
     bp: 60,
@@ -5956,6 +5970,9 @@ const BWYB_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Relic Song': {
     bp: 60,
     priority: 1,
+  },
+  'Shock Wave': {
+    bp: 70,
   },
   'Solar Blade': {
     bp: 80,
