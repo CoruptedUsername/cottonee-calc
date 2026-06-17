@@ -17503,18 +17503,188 @@ const MMM4: {[name: string]: SpeciesData} = {
   },
 };
 
-// Iron Fist
-const IF: {[name: string]: SpeciesData} = {
-  'Melmetal': {
-    types: ['Steel'],
-    bs: {hp: 135, at: 143, df: 143, sa: 80, sd: 65, sp: 34},
-    weightkg: 0,
-    abilities: {0: 'Iron Fist'},
+// Megas Revisited
+const MEGASR_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
+  'Abomasnow-Mega': {
+    types: ['Grass'],
+    abilities: {0: 'Ice Scales'},
+  },
+  'Absol-Mega': {
+    types: ['Dark', 'Fairy'],
+    bs: {hp: 65, at: 130, df: 60, sa: 135, sd: 60, sp: 115},
+    abilities: {0: 'Neuroforce'},
+  },
+  'Aerodactyl-Mega': {
+    bs: {hp: 80, at: 140, df: 65, sa: 85, sd: 100, sp: 145},
+    abilities: {0: 'Nostalgia Trip'},
+  },
+  'Aggron-Mega': {
+    bs: {hp: 70, at: 145, df: 185, sa: 85, sd: 85, sp: 60},
+    abilities: {0: 'Dauntless Shield'},
+  },
+  'Alakazam-Mega': {
+    types: ['Psychic', 'Ice'],
+    bs: {hp: 55, at: 50, df: 75, sa: 155, sd: 125, sp: 140},
+    abilities: {0: 'Magic Guard'},
+  },
+  'Altaria-Mega': {
+    bs: {hp: 75, at: 90, df: 90, sa: 140, sd: 115, sp: 80},
+    abilities: {0: 'Weather Report'},
+  },
+  'Ampharos-Mega': {
+    bs: {hp: 90, at: 95, df: 95, sa: 165, sd: 110, sp: 55},
+    abilities: {0: 'Mega Launcher'},
+  },
+  'Audino-Mega': {
+    types: ['Normal', 'Electric'],
+    bs: {hp: 103, at: 60, df: 120, sa: 110, sd: 97, sp: 55},
+    abilities: {0: 'Regenerator'},
+  },
+  'Banette-Mega': {
+    types: ['Ghost', 'Steel'],
+    bs: {hp: 64, at: 149, df: 75, sa: 83, sd: 83, sp: 101},
+    abilities: {0: 'Pocket Dimension'},
+  },
+  'Beedrill-Mega': {
+    types: ['Bug', 'Rock'],
+    bs: {hp: 65, at: 140, df: 85, sa: 45, sd: 85, sp: 75},
+    abilities: {0: 'Exoskeleton'},
+  },
+  'Blastoise-Mega': {
+    types: ['Water', 'Fairy'],
+    bs: {hp: 79, at: 83, df: 130, sa: 135, sd: 105, sp: 98},
+    abilities: {0: 'Misty Surge'},
+  },
+  'Blaziken-Mega': {
+    bs: {hp: 80, at: 150, df: 80, sa: 120, sd: 90, sp: 110},
+    abilities: {0: 'Regenerator'},
+  },
+  'Camerupt-Mega': {
+    bs: {hp: 70, at: 80, df: 140, sa: 135, sd: 115, sp: 20},
+    abilities: {0: 'Earth Eater'},
+  },
+  'Charizard-Mega-Y': {
+    bs: {hp: 78, at: 94, df: 93, sa: 159, sd: 110, sp: 100},
+    abilities: {0: 'Dragon\'s Gale'},
+  },
+  'Diancie-Mega': {
+    abilities: {0: 'Good as Gold'},
+  },
+  'Gallade-Mega': {
+    bs: {hp: 68, at: 150, df: 100, sa: 75, sd: 127, sp: 98},
+    abilities: {0: 'Sharpness'},
+  },
+  'Garchomp-Mega': {
+    bs: {hp: 108, at: 150, df: 115, sa: 140, sd: 85, sp: 102},
+    abilities: {0: 'Water Absorb'},
+  },
+  'Gardevoir-Mega': {
+    bs: {hp: 68, at: 65, df: 100, sa: 150, sd: 127, sp: 108},
+  },
+  'Gengar-Mega': {
+    bs: {hp: 60, at: 65, df: 105, sa: 155, sd: 105, sp: 110},
+    abilities: {0: 'Neutralizing Gas'},
+  },
+  'Glalie-Mega': {
+    types: ['Ice', 'Steel'],
+    bs: {hp: 80, at: 160, df: 70, sa: 95, sd: 70, sp: 105},
+  },
+  'Gyarados-Mega': {
+    types: ['Water', 'Flying'],
+    bs: {hp: 95, at: 130, df: 109, sa: 85, sd: 130, sp: 91},
+    abilities: {0: 'Aerilate'},
+  },
+  'Heracross-Mega': {
+    bs: {hp: 80, at: 150, df: 150, sa: 40, sd: 110, sp: 70},
+    abilities: {0: 'Iron Barbs'},
+  },
+  'Houndoom-Mega': {
+    abilities: {0: 'Merciless'},
+  },
+  'Kangaskhan-Mega': {
+    types: ['Normal', 'Ground'],
+    bs: {hp: 105, at: 125, df: 105, sa: 50, sd: 105, sp: 100},
+  },
+  'Latias-Mega': {
+    abilities: {0: 'Trace'},
+  },
+  'Latios-Mega': {
+    bs: {hp: 80, at: 140, df: 100, sa: 140, sd: 120, sp: 110},
+    abilities: {0: 'Opportunist'},
+  },
+  'Lucario-Mega': {
+    bs: {hp: 70, at: 125, df: 70, sa: 140, sd: 94, sp: 126},
+    abilities: {0: 'Lightning Rod'},
+  },
+  'Manectric-Mega': {
+    bs: {hp: 70, at: 75, df: 80, sa: 135, sd: 85, sp: 130},
+    abilities: {0: 'Bug Zapper'},
+  },
+  'Mawile-Mega': {
+    bs: {hp: 50, at: 90, df: 125, sa: 70, sd: 95, sp: 50},
+  },
+  'Medicham-Mega': {
+    bs: {hp: 60, at: 60, df: 100, sa: 90, sd: 100, sp: 100},
+    abilities: {0: 'Brain Power'},
+  },
+  'Mewtwo-Mega-X': {
+    types: ['Psychic', 'Poison'],
+    bs: {hp: 106, at: 140, df: 130, sa: 154, sd: 120, sp: 130},
+    abilities: {0: 'Intoxicate'},
+  },
+  'Mewtwo-Mega-Y': {
+    types: ['Psychic', 'Water'],
+    bs: {hp: 106, at: 120, df: 110, sa: 194, sd: 130, sp: 120},
+    abilities: {0: 'Levitate'},
+  },
+  'Pinsir-Mega': {
+    types: ['Bug', 'Ice'],
+    bs: {hp: 65, at: 150, df: 110, sa: 80, sd: 85, sp: 110},
+    abilities: {0: 'Mountaineer'},
+  },
+  'Sableye-Mega': {
+    bs: {hp: 50, at: 95, df: 115, sa: 85, sd: 115, sp: 20},
+  },
+  'Salamence-Mega': {
+    bs: {hp: 95, at: 135, df: 105, sa: 155, sd: 105, sp: 105},
+    abilities: {0: 'Confidence'},
+  },
+  'Sceptile-Mega': {
+    bs: {hp: 70, at: 95, df: 79, sa: 145, sd: 99, sp: 143},
+    abilities: {0: 'Armor Tail'},
+  },
+  'Sharpedo-Mega': {
+    types: ['Water', 'Electric'],
+    bs: {hp: 70, at: 130, df: 55, sa: 145, sd: 55, sp: 105},
+    abilities: {0: 'No Guard'},
+  },
+  'Slowbro-Mega': {
+    bs: {hp: 95, at: 75, df: 150, sa: 120, sd: 120, sp: 30},
+    abilities: {0: 'Shell Ejection'},
+  },
+  'Steelix-Mega': {
+    bs: {hp: 75, at: 135, df: 210, sa: 55, sd: 105, sp: 30},
+    abilities: {0: 'Flash Fire'},
+  },
+  'Swampert-Mega': {
+    types: ['Water', 'Poison'],
+    bs: {hp: 100, at: 145, df: 110, sa: 85, sd: 110, sp: 85},
+    abilities: {0: 'Toxic Chain'},
+  },
+  'Tyranitar-Mega': {
+    types: ['Rock', 'Electric'],
+    bs: {hp: 100, at: 144, df: 120, sa: 110, sd: 144, sp: 82},
+    abilities: {0: 'Electric Surge'},
+  },
+  'Venusaur-Mega': {
+    bs: {hp: 80, at: 82, df: 123, sa: 120, sd: 120, sp: 100},
+    abilities: {0: 'Grassy Surge'},
   },
 };
+const MEGASR: {[name: string]: SpeciesData} = extend(true, {}, XY, MEGASR_PATCH);
 
 export const SPECIES = [{}, RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, JS, BWFYB, TH, MH, SBS, TS, PM,
-  DNU, BCA, BCC, FEVGC, MMM4, IF]; // NewGenChange
+  DNU, BCA, BCC, FEVGC, MMM4, MEGASR]; // NewGenChange
 
 export class Species implements I.Species {
   private readonly gen: I.GenerationNum;

@@ -6054,18 +6054,28 @@ const FEVGC_PATCH: {[name: string]: DeepPartial<MoveData>} = {
 };
 const FEVGC: {[name: string]: MoveData} = extend(true, {}, SV, FEVGC_PATCH);
 
-// Iron Fist
-const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
-  'Temp': {
-    type: 'Water',
-    bp: 80,
-    category: 'Special',
-  },
+// Megas Revisited
+const MEGASR_PATCH: {[name: string]: DeepPartial<MoveData>} = {
+  'Aerial Ace': {isSlicing: true},
+  'Air Cutter': {isSlicing: true},
+  'Air Slash': {isSlicing: true},
+  'Cross Poison': {isSlicing: true},
+  Cut: {isSlicing: true},
+  'Fury Cutter': {isSlicing: true},
+  'Leaf Blade': {isSlicing: true},
+  'Night Slash': {isSlicing: true},
+  'Psycho Cut': {isSlicing: true},
+  'Razor Leaf': {isSlicing: true},
+  'Razor Shell': {isSlicing: true},
+  'Sacred Sword': {isSlicing: true},
+  'Secret Sword': {isSlicing: true},
+  Slash: {isSlicing: true},
+  'X-Scissor': {isSlicing: true},
 };
-const IF: {[name: string]: MoveData} = extend(true, {}, SV, IF_PATCH);
+const MEGASR: {[name: string]: MoveData} = extend(true, {}, XY, XY_PATCH);
 
 export const MOVES = [{}, RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, JS, BWYB, TH, MH,
-  SV, TS, PM, SV, SV, SV, FEVGC, SV, IF]; // NewGenChange
+  SV, TS, PM, SV, SV, SV, FEVGC, SV, MEGASR]; // NewGenChange
 
 export class Moves implements I.Moves {
   private readonly gen: I.GenerationNum;

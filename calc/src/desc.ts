@@ -561,25 +561,30 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
     return {damage, texts};
   }
   if (defenderSide.isSR && !defender.hasAbility('Magic Guard', 'Magic Sticks', 'Mountaineer',
-    'Plow', 'Dexterity')) {
+    'Plow', 'Dexterity', 'Exoskeleton')) {
     const rockType = gen.types.get('rock' as ID)!;
     const effectiveness =
       rockType.effectiveness[defender.types[0]]! *
       (defender.types[1] ? rockType.effectiveness[defender.types[1]]! : 1);
-    if (defender.hasAbility('Fervent Scales')) {
-      damage += Math.floor((effectiveness * defender.maxHP()) / 16);
+    if (defender.hasAbility('Earth Eater') && gen.num === 22) {
+      damage -= Math.floor((effectiveness * defender.maxHP()) / 8);
+      texts.push('Stealth Rock Healing');
     } else {
-      damage += Math.floor((effectiveness * defender.maxHP()) / 8);
+      if (defender.hasAbility('Fervent Scales', 'Dragon\'s Gale')) {
+        damage += Math.floor((effectiveness * defender.maxHP()) / 16);
+      } else {
+        damage += Math.floor((effectiveness * defender.maxHP()) / 8);
+      }
+      texts.push('Stealth Rock');
     }
-    texts.push('Stealth Rock');
   }
   if (defenderSide.steelsurge && !defender.hasAbility('Magic Guard', 'Magic Sticks',
-    'Mountaineer')) {
+    'Mountaineer', 'Exoskeleton')) {
     const steelType = gen.types.get('steel' as ID)!;
     const effectiveness =
       steelType.effectiveness[defender.types[0]]! *
       (defender.types[1] ? steelType.effectiveness[defender.types[1]]! : 1);
-    if (defender.hasAbility('Fervent Scales')) {
+    if (defender.hasAbility('Fervent Scales', 'Dragon\'s Gale')) {
       damage += Math.floor((effectiveness * defender.maxHP()) / 16);
     } else {
       damage += Math.floor((effectiveness * defender.maxHP()) / 8);
@@ -589,34 +594,49 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
 
   if (!defender.hasType('Flying') &&
       !defender.hasAbility('Magic Guard', 'Magic Sticks', 'Levitate', 'Plow', 'Sunlit Flight',
-        'Dexterity') &&
+        'Dexterity', 'Exoskeleton') &&
       !defender.hasItem('Air Balloon')
   ) {
     if (defenderSide.spikes === 1) {
-      if (defender.hasAbility('Fervent Scales')) {
-        damage += Math.floor((defender.maxHP()) / 16);
+      if (defender.hasAbility('Earth Eater') && [22].includes(gen.num)) {
+        damage -= Math.floor((defender.maxHP()) / 8);
+        texts.push('Healing from 1 layer of Spikes');
       } else {
-        damage += Math.floor((defender.maxHP()) / 8);
-      }
-      if ([2].includes(gen.num)) {
-        texts.push('Spikes');
-      } else {
-        texts.push('1 layer of Spikes');
+        if (defender.hasAbility('Fervent Scales', 'Dragon\'s Gale')) {
+          damage += Math.floor((defender.maxHP()) / 16);
+        } else {
+          damage += Math.floor((defender.maxHP()) / 8);
+        }
+        if ([2].includes(gen.num)) {
+          texts.push('Spikes');
+        } else {
+          texts.push('1 layer of Spikes');
+        }
       }
     } else if (defenderSide.spikes === 2) {
-      if (defender.hasAbility('Fervent Scales')) {
-        damage += Math.floor((defender.maxHP()) / 12);
+      if (defender.hasAbility('Earth Eater') && [22].includes(gen.num)) {
+        damage -= Math.floor((defender.maxHP()) / 6);
+        texts.push('Healing from 2 layers of Spikes');
       } else {
-        damage += Math.floor((defender.maxHP()) / 6);
+        if (defender.hasAbility('Fervent Scales', 'Dragon\'s Gale')) {
+          damage += Math.floor((defender.maxHP()) / 12);
+        } else {
+          damage += Math.floor((defender.maxHP()) / 6);
+        }
+        texts.push('2 layers of Spikes');
       }
-      texts.push('2 layers of Spikes');
     } else if (defenderSide.spikes === 3) {
-      if (defender.hasAbility('Fervent Scales')) {
-        damage += Math.floor((defender.maxHP()) / 8);
+      if (defender.hasAbility('Earth Eater') && [22].includes(gen.num)) {
+        damage -= Math.floor((defender.maxHP()) / 4);
+        texts.push('Healing from 3 layers of Spikes');
       } else {
-        damage += Math.floor((defender.maxHP()) / 4);
+        if (defender.hasAbility('Fervent Scales', 'Dragon\'s Gale')) {
+          damage += Math.floor((defender.maxHP()) / 8);
+        } else {
+          damage += Math.floor((defender.maxHP()) / 4);
+        }
+        texts.push('3 layers of Spikes');
       }
-      texts.push('3 layers of Spikes');
     }
   }
 
@@ -744,7 +764,7 @@ function getEndOfTurn(
         'Snow Cloak',
         'Tundra Rush', 'Tundra Veil') &&
       !defender.hasItem('Safety Goggles') &&
-      field.hasWeather('Hail')
+      field.hasWeather('Hail') && !(defender.hasAbility('Ice Scales') && [22].includes(gen.num))
     ) {
       if (defender.hasAbility('Fervent Scales')) {
         damage += Math.floor((defender.maxHP()) / 32);

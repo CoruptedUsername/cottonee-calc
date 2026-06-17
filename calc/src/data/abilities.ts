@@ -717,12 +717,37 @@ const FEVGC = [
   'Wind Energy',
 ];
 
-const IF = SV.concat([
-  'Test',
+const MEGASR = XY.concat([
+  'Armor Tail',
+  'Brain Power',
+  'Bug Zapper',
+  'Confidence',
+  'Dauntless Shield',
+  'Dragon\'s Gale',
+  'Earth Eater',
+  'Electric Surge',
+  'Exoskeleton',
+  'Good as Gold',
+  'Grassy Surge',
+  'Ice Scales',
+  'Intoxicate',
+  'Merciless',
+  'Misty Surge',
+  'Mountaineer',
+  'Neuroforce',
+  'Neutralizing Gas',
+  'Nostalgia Trip',
+  'Opportunist',
+  'Parental Bond',
+  'Pocket Dimension',
+  'Sharpness',
+  'Shell Ejection',
+  'Toxic Chain',
+  'Weather Report',
 ]);
 
 export const ABILITIES = [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, RBY, BWYB, TH, MH, SV, TS, PM,
-  SV, SV, SV, FEVGC, SV, IF]; // NewGenChange
+  SV, SV, SV, FEVGC, SV, MEGASR]; // NewGenChange
 
 export class Abilities implements I.Abilities {
   private readonly gen: I.GenerationNum;

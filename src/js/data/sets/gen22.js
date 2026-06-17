@@ -1,5 +1,5 @@
-var SETDEX_IF = {
-	"Melmetal": {
-		"This has to be here or it crashes": {"level":100,"ability":"Iron Fist","moves":["Double Iron Bash"]}
+var SETDEX_MEGASR = {
+	"Abomasnow": {
+		"Necessary Evil Set": {"level":100,"ability":"Soundproof","moves":["Wood Hammer"]}
 	}
 };

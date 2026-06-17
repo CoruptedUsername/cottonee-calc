@@ -499,6 +499,7 @@ function autosetWeather(ability, i) {
 		$("#heavy-rain").prop("checked", true);
 		break;
 	case "Delta Stream":
+	case "Dragon's Gale":
 		lastAutoWeather[i] = "Strong Winds";
 		$("#strong-winds").prop("checked", true);
 		break;
@@ -756,7 +757,7 @@ $(".item").change(function () {
 });
 
 function smogonAnalysis(pokemonName) { // NewGenChange
-	var generation = ["rb", "gs", "rs", "dp", "bw", "xy", "sm", "ss", "sv", "js", "bwyb", "th", "mh", "sbs", "ts", "pm", "dnu", "bca", "bcc", "fevgc", "mmm4", "if"][gen - 1];
+	var generation = ["rb", "gs", "rs", "dp", "bw", "xy", "sm", "ss", "sv", "js", "bwyb", "th", "mh", "sbs", "ts", "pm", "dnu", "bca", "bcc", "fevgc", "mmm4", "megasr"][gen - 1];
 	return "https://smogon.com/dex/" + generation + "/pokemon/" + pokemonName.toLowerCase() + "/";
 }
 
@@ -1542,7 +1543,7 @@ var GENERATION = {
 	'19': 19, 'bcc': 19,
 	'20': 20, 'fevgc': 20,
 	'21': 21, 'mmm4': 21,
-	'22': 22, 'if': 22,
+	'22': 22, 'megasr': 22,
 }; // NewGenChange
 
 var SETDEX = [
@@ -1568,7 +1569,7 @@ var SETDEX = [
 	typeof SETDEX_BCC === 'undefined' ? {} : SETDEX_BCC,
 	typeof SETDEX_FEVGC === 'undefined' ? {} : SETDEX_FEVGC,
 	typeof SETDEX_MMM4 === 'undefined' ? {} : SETDEX_MMM4,
-	typeof SETDEX_IF === 'undefined' ? {} : SETDEX_IF,
+	typeof SETDEX_MEGASR === 'undefined' ? {} : SETDEX_MEGASR,
 ]; // NewGenChange
 
 /*
