@@ -23,6 +23,8 @@
         "lastAutoStatus": false,
         "startsWith": false,
         "notation": true,
+		  "SETDEX_FESV": false,
+		  "SETDEX_IF": false,
 		  "SETDEX_MEGASR": false,
 		  "SETDEX_MMM4": false,
 		  "SETDEX_FEVGC": false,

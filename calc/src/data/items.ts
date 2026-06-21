@@ -508,7 +508,7 @@ const BWYB = BW.concat([
   'Snowball',
 ]);
 
-const MEGASR = XY.concat([
+const IF = SV.concat([
   'Test',
 ]);
 
@@ -593,7 +593,7 @@ const BERRIES: {[berry: string]: {t: I.TypeName; p: number}} = {
 };
 
 export const ITEMS = [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, RBY, BWYB, TH, MH, SV, SV, SV,
-  SV, SV, SV, SV, SV, MEGASR]; // NewGenChange
+  SV, SV, SV, SV, SV, XY, IF, SV]; // NewGenChange
 
 export class Items implements I.Items {
   private readonly gen: I.GenerationNum;

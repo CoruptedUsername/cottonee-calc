@@ -23,10 +23,12 @@ const BCC: StatID[] = GSC;
 const FEVGC: StatID[] = GSC;
 const MMM4: StatID[] = GSC;
 const MEGASR: StatID[] = GSC;
+const IF: StatID[] = GSC;
+const FESV: StatID[] = GSC;
 
 export const STATS: Array<Array<StatID | 'spc'> | StatID[]> =
   [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, JS, BWYB, TH, MH, SBS, TS, PM, DNU,
-    BCA, BCC, FEVGC, MMM4, MEGASR]; // NewGenChange
+    BCA, BCC, FEVGC, MMM4, MEGASR, IF, FESV]; // NewGenChange
 
 type HPTypeName = Exclude<TypeName, 'Normal' | 'Fairy' | 'Stellar' | '???'>;
 
@@ -52,6 +54,8 @@ const HP: {[type in HPTypeName]: {ivs: Partial<StatsTable>; dvs: Partial<StatsTa
   Rock: {ivs: {def: 30, spd: 30, spe: 30}, dvs: {atk: 13, def: 12}},
   Steel: {ivs: {spd: 30}, dvs: {atk: 13}},
   Water: {ivs: {atk: 30, def: 30, spa: 30}, dvs: {atk: 14, def: 13}},
+  Silly: {ivs: {}, dvs: {}},
+  Lemon: {ivs: {}, dvs: {}},
 };
 
 export const Stats = new (class {

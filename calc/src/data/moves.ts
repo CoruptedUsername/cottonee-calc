@@ -6072,10 +6072,17 @@ const MEGASR_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   Slash: {isSlicing: true},
   'X-Scissor': {isSlicing: true},
 };
-const MEGASR: {[name: string]: MoveData} = extend(true, {}, XY, XY_PATCH);
+const MEGASR: {[name: string]: MoveData} = extend(true, {}, XY, MEGASR_PATCH);
+
+// Iron FIst
+const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
+
+};
+const IF: {[name: string]: MoveData} = extend(true, {}, SV, IF_PATCH);
+
 
 export const MOVES = [{}, RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, JS, BWYB, TH, MH,
-  SV, TS, PM, SV, SV, SV, FEVGC, SV, MEGASR]; // NewGenChange
+  SV, TS, PM, SV, SV, SV, FEVGC, SV, MEGASR, IF, SV]; // NewGenChange
 
 export class Moves implements I.Moves {
   private readonly gen: I.GenerationNum;

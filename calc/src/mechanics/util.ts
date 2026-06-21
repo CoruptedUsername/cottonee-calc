@@ -197,10 +197,11 @@ export function getMoveEffectiveness(
   isPerforated?: boolean,
   isRuststorm?: boolean,
   isGoggles?: boolean,
+  isAirControlled?: boolean,
 ) {
   if (isGhostRevealed && type === 'Ghost' && move.hasType('Normal', 'Fighting')) {
     return 1;
-  } else if (isGravity && type === 'Flying' && move.hasType('Ground')) {
+  } else if ((isAirControlled || isGravity) && type === 'Flying' && move.hasType('Ground')) {
     return 1;
   } else if (isPerforated && type === 'Steel' && move.hasType('Poison')) {
     return 1;

@@ -1,7 +1,7 @@
 export interface As<T> {__brand: T}
 export type ID = (string & As<'ID'>) | (string & { __isID: true }) | '';
 export type GenerationNum = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
-17 | 18 | 19 | 20 | 21 | 22; // NewGenChange
+17 | 18 | 19 | 20 | 21 | 22 | 23 | 24; // NewGenChange
 export type GenderName = 'M' | 'F' | 'N';
 export type StatID = 'hp' | StatIDExceptHP;
 export type StatIDExceptHP = 'atk' | 'def' | 'spa' | 'spd' | 'spe';
@@ -30,7 +30,7 @@ export type NatureName =
 export type TypeName =
   'Normal' | 'Fighting' | 'Flying' | 'Poison' | 'Ground' | 'Rock' | 'Bug' | 'Ghost' | 'Steel' |
   'Fire' | 'Water' | 'Grass' | 'Electric' | 'Psychic' | 'Ice' | 'Dragon' | 'Dark' | 'Fairy' |
-  'Stellar' | '???';
+  'Stellar' | '???' | 'Silly' | 'Lemon';
 
 export type MoveCategory = 'Physical' | 'Special' | 'Status';
 
@@ -155,6 +155,16 @@ export interface Specie extends Data<SpeciesName> {
   readonly otherFormes?: SpeciesName[];
   readonly baseSpecies?: SpeciesName;
   readonly abilities?: {0: AbilityName | ''};
+}
+
+export interface SpeciesFlags {
+  // Iron Fist flags
+  copen?: boolean;
+  fish?: boolean;
+  bird?: boolean;
+  diamondhand?: boolean;
+  trans?: boolean;
+  hoenn?: boolean;
 }
 
 export interface Types {

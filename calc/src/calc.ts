@@ -16,6 +16,8 @@ import {calculateTH} from './mechanics/touhoumons';
 import {calculateBWFYB} from './mechanics/bestwishes';
 import {calculateFEVGC} from './mechanics/fevgc';
 import {calculateMEGASR} from './mechanics/megasrevisited';
+import {calculateIF} from './mechanics/ironfist';
+import {calculateFESV} from './mechanics/fesv';
 
 const MECHANICS = [
   () => {},
@@ -41,6 +43,8 @@ const MECHANICS = [
   calculateFEVGC, // FE VGC
   calculateSMSSSV, // MMM4
   calculateMEGASR, // Megas Revisited
+  calculateIF, // Iron Fist
+  calculateFESV, // FE SV
 ]; // NewGenChange
 
 export function calculate(
