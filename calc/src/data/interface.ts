@@ -12,13 +12,14 @@ export type ItemName = string & As<'ItemName'>;
 export type MoveName = string & As<'MoveName'>;
 export type SpeciesName = string & As<'SpeciesName'>;
 
-export type StatusName = 'slp' | 'psn' | 'brn' | 'frz' | 'par' | 'tox' | 'dgb' | 'drs' | 'frb';
+export type StatusName = 'slp' | 'psn' | 'brn' | 'frz' | 'par' | 'tox' | 'dgb' | 'drs' | 'frb' |
+  'bsb';
 
 export type GameType = 'Singles' | 'Doubles';
-export type Terrain = 'Electric' | 'Grassy' | 'Psychic' | 'Misty';
+export type Terrain = 'Electric' | 'Grassy' | 'Psychic' | 'Misty' | 'Frigid' | 'Fishing';
 export type Weather =
   | 'Sand' | 'Sun' | 'Rain' | 'Hail' | 'Snow' | 'Harsh Sunshine' | 'Heavy Rain' | 'Strong Winds' |
-  'Absolute Zero' | 'Dust Devil';
+  'Absolute Zero' | 'Dust Devil' | 'Acid' | 'Grave';
 
 export type NatureName =
   'Adamant' | 'Bashful' | 'Bold' | 'Brave' | 'Calm' |
@@ -30,7 +31,7 @@ export type NatureName =
 export type TypeName =
   'Normal' | 'Fighting' | 'Flying' | 'Poison' | 'Ground' | 'Rock' | 'Bug' | 'Ghost' | 'Steel' |
   'Fire' | 'Water' | 'Grass' | 'Electric' | 'Psychic' | 'Ice' | 'Dragon' | 'Dark' | 'Fairy' |
-  'Stellar' | '???' | 'Silly' | 'Lemon';
+  'Stellar' | '???' | 'Silly' | 'Lemon' | 'Friend';
 
 export type MoveCategory = 'Physical' | 'Special' | 'Status';
 
@@ -99,6 +100,10 @@ export interface MoveFlags {
   wind?: 1| 0;
   powder?: 1| 0;
   dance?: 1| 0;
+  kick?: 1 | 0;
+  protect?: 1 | 0;
+  disaster?: 1 | 0;
+  fishing?: 1 | 0;
 }
 
 export interface SelfOrSecondaryEffect {

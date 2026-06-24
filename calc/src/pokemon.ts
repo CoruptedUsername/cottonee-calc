@@ -22,6 +22,7 @@ export class Pokemon implements State.Pokemon {
   abilityOn?: boolean;
   isDynamaxed?: boolean;
   dynamaxLevel?: number;
+  isBig?: boolean;
   alliesFainted?: number;
   foesFainted?: number;
   boostedStat?: I.StatIDExceptHP | 'auto';
@@ -68,6 +69,7 @@ export class Pokemon implements State.Pokemon {
     this.isDynamaxed = !!options.isDynamaxed;
     this.dynamaxLevel = this.isDynamaxed
       ? (options.dynamaxLevel === undefined ? 10 : options.dynamaxLevel) : undefined;
+    this.isBig = !!options.isBig;
     this.alliesFainted = options.alliesFainted;
     this.foesFainted = options.foesFainted;
     this.boostedStat = options.boostedStat;
@@ -167,6 +169,7 @@ export class Pokemon implements State.Pokemon {
       abilityOn: this.abilityOn,
       isDynamaxed: this.isDynamaxed,
       dynamaxLevel: this.dynamaxLevel,
+      isBig: this.isBig,
       alliesFainted: this.alliesFainted,
       foesFainted: this.foesFainted,
       boostedStat: this.boostedStat,

@@ -45,6 +45,7 @@ export interface RawDesc {
   isBurned?: boolean;
   isDrowsy?: boolean;
   isFrostbitten?: boolean;
+  isBaseballed?: boolean;
   isProtected?: boolean;
   isReflect?: boolean;
   isBattery?: boolean;
@@ -64,6 +65,11 @@ export interface RawDesc {
   isDragonCharged?: boolean;
   isBlottedOut?: boolean;
   isBestWishesFrozen?: boolean;
+  isAttackerBig?: boolean;
+  isDefenderBig?: boolean;
+  isAttackerSigma?: boolean;
+  isDefenderSigma?: boolean;
+  isSerious?: boolean;
 }
 
 export function display(
@@ -1255,6 +1261,9 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   if (description.isFrostbitten) {
     output += 'frostbitten ';
   }
+  if (description.isBaseballed) {
+    output += 'baseballed ';
+  }
   if (description.alliesFainted) {
     output += Math.min(5, description.alliesFainted) +
       ` ${description.alliesFainted === 1 ? 'ally' : 'allies'} fainted `;
@@ -1265,6 +1274,9 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   }
   if (description.foeBoosts) {
     output += description.foeBoosts + ` foe ${description.foeBoosts === 1 ? 'boost' : 'boosts'} `;
+  }
+  if (description.isAttackerSigma) {
+    output += 'Sigma ';
   }
   if (description.attackerTera) {
     output += `Tera ${description.attackerTera} `;
@@ -1286,6 +1298,10 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   }
   if (description.isDogOfRuin) {
     output += 'Dog of Ruin ';
+  }
+
+  if (description.isAttackerBig) {
+    output += 'Big ';
   }
 
   output += description.attackerName + ' ';
@@ -1357,11 +1373,20 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   if (description.isDrowsy) {
     output += 'drowsy ';
   }
+  if (description.isDefenderSigma) {
+    output += 'Sigma ';
+  }
+  if (description.isSerious) {
+    output += 'Serious ';
+  }
   if (description.isDefenderDynamaxed) {
     output += 'Dynamax ';
   }
   if (description.defenderTera) {
     output += `Tera ${description.defenderTera} `;
+  }
+  if (description.isDefenderBig) {
+    output += 'Big ';
   }
   output += description.defenderName;
   if (description.weather && description.terrain) {

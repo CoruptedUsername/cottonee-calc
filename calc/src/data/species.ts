@@ -17712,6 +17712,7 @@ const IF: {[name: string]: SpeciesData} = {
     bs: {hp: 94, at: 104, df: 74, sa: 104, sd: 74, sp: 114},
     weightkg: 47.0,
     abilities: {0: 'Forewarn'},
+    flags: {'hoenn': true},
   },
   'Anarlvet': {
     types: ['Dark'],
@@ -17784,6 +17785,7 @@ const IF: {[name: string]: SpeciesData} = {
     bs: {hp: 103, at: 113, df: 93, sa: 43, sd: 93, sp: 113},
     weightkg: 312.0,
     abilities: {0: 'Strong Jaw'},
+    flags: {'copen': true},
   },
   'Boogerpon-CLOWNerstone': {
     types: ['Grass', 'Silly'],
@@ -17949,6 +17951,7 @@ const IF: {[name: string]: SpeciesData} = {
     bs: {hp: 65, at: 80, df: 60, sa: 135, sd: 65, sp: 80},
     weightkg: 445.0,
     abilities: {0: 'Crossover'},
+    flags: {'copen': true},
   },
   'Electrode': {
     types: ['Electric'],
@@ -18342,7 +18345,7 @@ const IF: {[name: string]: SpeciesData} = {
     bs: {hp: 76, at: 100, df: 104, sa: 100, sd: 105, sp: 100},
     weightkg: 39.2,
     abilities: {0: 'Lawbender'},
-    flags: {'diamondhand': true},
+    flags: {'diamondhand': true}, // TODO: Look for response on if this is correct
   },
   'Lemon': {
     types: ['Lemon'],

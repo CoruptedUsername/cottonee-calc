@@ -431,6 +431,12 @@ th {
     width: 4em;
 }
 .btn-xsmall {
+	width: 3em;
+}
+.btn-xxsmall {
+	width: 2em;
+}
+.btn-xxxsmall {
     width: 1em;
 }
 .btn-left {

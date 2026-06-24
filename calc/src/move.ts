@@ -219,6 +219,7 @@ export function getZMoveName(moveName: string, moveType: I.TypeName, item?: stri
     if (item === 'Aloraichium Z') return 'Stoked Sparksurfer';
     if (item === 'Pikashunium Z') return '10,000,000 Volt Thunderbolt';
   }
+  if (moveName === 'Triple Arrows' && item === 'Zeldanium Z') return 'Arrows of Light';
   return ZMOVES_TYPING[moveType]!;
 }
 

@@ -56,6 +56,7 @@ const HP: {[type in HPTypeName]: {ivs: Partial<StatsTable>; dvs: Partial<StatsTa
   Water: {ivs: {atk: 30, def: 30, spa: 30}, dvs: {atk: 14, def: 13}},
   Silly: {ivs: {}, dvs: {}},
   Lemon: {ivs: {}, dvs: {}},
+  Friend: {ivs: {}, dvs: {}},
 };
 
 export const Stats = new (class {

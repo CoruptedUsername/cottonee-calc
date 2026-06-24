@@ -269,6 +269,8 @@ export function calculateIF(
       : field.hasTerrain('Grassy') ? 'Grass'
       : field.hasTerrain('Misty') ? 'Fairy'
       : field.hasTerrain('Psychic') ? 'Psychic'
+      : field.hasTerrain('Fishing') ? 'Water'
+      : field.hasTerrain('Frigid') ? 'Ice'
       : 'Normal';
     desc.terrain = field.terrain;
 
@@ -449,6 +451,16 @@ export function calculateIF(
     typeEffectiveness = 1;
   }
 
+  if (defender.nature === 'Serious') {
+    if (move.hasType('Silly')) {
+      desc.isSerious = true;
+      typeEffectiveness *= 0;
+    } else if (move.hasType('Psychic')) {
+      desc.isSerious = true;
+      typeEffectiveness *= 2;
+    }
+  }
+
   if (typeEffectiveness === 0) {
     return result;
   }
@@ -513,6 +525,11 @@ export function calculateIF(
       (move.flags.wind && defender.hasAbility('Wind Rider'))
   ) {
     desc.defenderAbility = defender.ability;
+    return result;
+  }
+
+  if (attacker.hasStatus('bsb') && move.flags.sound) {
+    desc.isBaseballed = true;
     return result;
   }
 
@@ -844,8 +861,14 @@ export function calculateBasePowerIF(
   case 'Low Kick':
   case 'Grass Knot':
     const w = getWeight(defender, desc, 'defender');
-    basePower = w >= 200 ? 120 : w >= 100 ? 100 : w >= 50 ? 80 : w >= 25 ? 60 : w >= 10 ? 40 : 20;
-    desc.moveBP = basePower;
+    if (defender.isBig && !attacker.isBig) {
+      basePower = 120;
+      desc.moveBP = 120;
+      desc.isDefenderBig = true;
+    } else {
+      basePower = w >= 200 ? 120 : w >= 100 ? 100 : w >= 50 ? 80 : w >= 25 ? 60 : w >= 10 ? 40 : 20;
+      desc.moveBP = basePower;
+    }
     break;
   case 'Hex':
   case 'Infernal Parade':
@@ -862,8 +885,13 @@ export function calculateBasePowerIF(
     const wr =
         getWeight(attacker, desc, 'attacker') /
         getWeight(defender, desc, 'defender');
-    basePower = wr >= 5 ? 120 : wr >= 4 ? 100 : wr >= 3 ? 80 : wr >= 2 ? 60 : 40;
-    desc.moveBP = basePower;
+    if (attacker.isBig && !defender.isBig) {
+      basePower = 120;
+      desc.moveBP = 120;
+    } else {
+      basePower = wr >= 5 ? 120 : wr >= 4 ? 100 : wr >= 3 ? 80 : wr >= 2 ? 60 : 40;
+      desc.moveBP = basePower;
+    }
     break;
   case 'Stored Power':
   case 'Power Trip':
@@ -971,6 +999,14 @@ export function calculateBasePowerIF(
         basePower = 90;
         desc.moveName = 'Psychic';
       }
+      break;
+    case 'Fishing':
+      basePower = 90;
+      desc.moveName = 'Fishing Minigame';
+      break;
+    case 'Frigid':
+      basePower = 90;
+      desc.moveName = 'Ice Beam';
       break;
     default:
       basePower = 80;
@@ -1089,6 +1125,17 @@ export function calculateBPModsIF(
     resistedKnockOffDamage = !!item.megaEvolves && defender.name.includes(item.megaEvolves);
   }
 
+  if (attacker.isBig && !defender.isBig) {
+    if (move.named('Aerial Ace', 'Force Palm', 'Fury Attack', 'Nuzzle', 'Peck', 'Struggle Bug',
+      'Vise Grip')) {
+      bpMods.push(8192);
+    } else if (move.named('Stomp', 'Steamroller', 'Body Slam', 'Flying Press', 'Dragon Rush',
+      'Malicious Moonsault', 'Supercell Slam')) {
+      bpMods.push(6144);
+    }
+    desc.isAttackerBig = true;
+  }
+
   // Resist knock off damage if your item was already knocked off
   if (!resistedKnockOffDamage && hit > 1 && !defender.hasAbility('Sticky Hold')) {
     resistedKnockOffDamage = true;
@@ -1175,7 +1222,9 @@ export function calculateBPModsIF(
   if (isGrounded(attacker, field)) {
     if ((field.hasTerrain('Electric') && move.hasType('Electric')) ||
         (field.hasTerrain('Grassy') && move.hasType('Grass')) ||
-        (field.hasTerrain('Psychic') && move.hasType('Psychic'))
+        (field.hasTerrain('Psychic') && move.hasType('Psychic')) ||
+        (field.hasTerrain('Fishing') && move.flags.fishing) ||
+        (field.hasTerrain('Frigid') && move.hasType('Ice'))
     ) {
       bpMods.push(terrainMultiplier);
       desc.terrain = field.terrain;
@@ -1447,6 +1496,21 @@ export function calculateAtModsIF(
     desc.attackerAbility = attacker.ability;
   }
 
+  if (field.attackerSide.isSigma) {
+    atMods.push(5325);
+    desc.isAttackerSigma = true;
+  }
+
+  if (attacker.hasStatus('bsb')) {
+    if (move.flags.sound) {
+      atMods.push(0);
+      desc.isBaseballed = true;
+    } else {
+      atMods.push(3072);
+      desc.isBaseballed = true;
+    }
+  }
+
   if (
     field.attackerSide.isFlowerGift &&
     !attacker.hasAbility('Flower Gift') &&
@@ -1642,6 +1706,11 @@ export function calculateDfModsIF(
     dfMods.push(3072);
   }
 
+  if (field.defenderSide.isSigma && hitsPhysical) {
+    dfMods.push(5325);
+    desc.isDefenderSigma = true;
+  }
+
   if (isQPActive(defender, field)) {
     if (
       (hitsPhysical && getQPBoostedStat(defender) === 'def') ||
@@ -1748,6 +1817,11 @@ export function calculateFinalModsIF(
   if (field.defenderSide.isAuroraVeil && !isCritical) {
     finalMods.push(field.gameType !== 'Singles' ? 2732 : 2048);
     desc.isAuroraVeil = true;
+  }
+
+  if (field.hasTerrain('Frigid') && typeEffectiveness > 1 && !move.hasType('Ice')) {
+    finalMods.push(3072);
+    desc.terrain = 'Frigid';
   }
 
   if (attacker.hasAbility('Neuroforce') && typeEffectiveness > 1) {

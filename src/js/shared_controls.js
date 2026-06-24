@@ -50,12 +50,15 @@ var CALC_STATUS = {
 	'Frozen': 'frz',
 	'Dragonblighted': 'dgb',
 	'Drowsy': 'drs',
-	'Frostbitten': 'frb'
+	'Frostbitten': 'frb',
+	'Baseball': 'bsb'
 };
 
 var statusType;
 if (gen === 13) {
 	statusType = ".status2";
+} else if (gen === 23) {
+	statusType = ".status3";
 } else {
 	statusType = ".status";
 }
@@ -65,6 +68,24 @@ if (gen === 13) {
 	gravityType = "#gravity2";
 } else {
 	gravityType = "#gravity";
+}
+
+var terrainType;
+var terrains = {};
+if (gen === 23) {
+	terrainType = "'terrain2'";
+	terrains.electric = "#electric2";
+	terrains.fishing = "#fishing2";
+	terrains.frigid = "#frigid2";
+	terrains.grassy = "#grassy2";
+	terrains.misty = "#misty2";
+	terrains.psychic = "#psychic2";
+} else {
+	terrainType = "'terrain'";
+	terrains.electric = "#electric";
+	terrains.grassy = "#grassy";
+	terrains.misty = "#misty";
+	terrains.psychic = "#psychic";
 }
 
 function legacyStatToStat(st) {
@@ -385,7 +406,7 @@ $(".ability").bind("keyup change", function () {
 
 function autosetQP(pokemon) {
 	var currentWeather = $("input:radio[name='weather']:checked").val();
-	var currentTerrain = $("input:checkbox[name='terrain']:checked").val() || "No terrain";
+	var currentTerrain = $("input:checkbox[name=" + terrainType + "]:checked").val() || "No terrain";
 
 	var item = pokemon.find(".item").val();
 	var ability = pokemon.find(".ability").val();
@@ -410,7 +431,7 @@ function autosetQP(pokemon) {
 }
 
 function autosetBiosynthesis(pokemon) {
-	var currentTerrain = $("input:checkbox[name='terrain']:checked").val() || "No terrain";
+	var currentTerrain = $("input:checkbox[name=" + terrainType + "]:checked").val() || "No terrain";
 	var ability = pokemon.find(".ability").val();
 
 	if (ability === 'Biosynthesis') {
@@ -519,7 +540,7 @@ function autosetWeather(ability, i) {
 	}
 }
 
-$("input[name='terrain']").change(function () {
+$("input[name=" + terrainType + "]").change(function () {
 	var allPokemon = $('.poke-info');
 	allPokemon.each(function () {
 		autosetQP($(this));
@@ -530,39 +551,39 @@ $("input[name='terrain']").change(function () {
 var lastManualTerrain = "";
 var lastAutoTerrain = ["", ""];
 function autosetTerrain(ability, i) {
-	var currentTerrain = $("input:checkbox[name='terrain']:checked").val() || "No terrain";
+	var currentTerrain = $("input:checkbox[name=" + terrainType + "]:checked").val() || "No terrain";
 	if (lastAutoTerrain.indexOf(currentTerrain) === -1) {
 		lastManualTerrain = currentTerrain;
 		lastAutoTerrain[1 - i] = "";
 	}
 	// terrain input uses checkbox instead of radio, need to uncheck all first
-	$("input:checkbox[name='terrain']:checked").prop("checked", false);
+	$("input:checkbox[name=" + terrainType + "]:checked").prop("checked", false);
 	switch (ability) {
 	case "Electric Surge":
 	case "Hadron Engine":
 	case "Jolt Spores":
 		lastAutoTerrain[i] = "Electric";
-		$("#electric").prop("checked", true);
+		$(terrains.electric).prop("checked", true);
 		break;
 	case "Grassy Surge":
 		lastAutoTerrain[i] = "Grassy";
-		$("#grassy").prop("checked", true);
+		$(terrains.grassy).prop("checked", true);
 		break;
 	case "Magic Surge":
 	case "Misty Surge":
 		lastAutoTerrain[i] = "Misty";
-		$("#misty").prop("checked", true);
+		$(terrains.misty).prop("checked", true);
 		break;
 	case "Armor Surge":
 	case "Psychic Surge":
 		lastAutoTerrain[i] = "Psychic";
-		$("#psychic").prop("checked", true);
+		$(terrains.psychic).prop("checked", true);
 		break;
 	default:
 		lastAutoTerrain[i] = "";
 		var newTerrain = lastAutoTerrain[1 - i] !== "" ? lastAutoTerrain[1 - i] : lastManualTerrain;
 		if ("No terrain" !== newTerrain) {
-			$("input:checkbox[name='terrain'][value='" + newTerrain + "']").prop("checked", true);
+			$("input:checkbox[name=" + terrainType + "][value='" + newTerrain + "']").prop("checked", true);
 		}
 		break;
 	}
@@ -779,6 +800,7 @@ $(".set-selector").change(function () {
 			pokeObj.find(".gender").val("Female");
 		}
 		pokeObj.find(".teraToggle").prop("checked", isAutoTera);
+		pokeObj.find(".bigToggle").prop("checked", false);
 		pokeObj.find(".max").prop("checked", false);
 		stellarButtonsVisibility(pokeObj, 0);
 		pokeObj.find(".boostedStat").val("");
@@ -1275,15 +1297,18 @@ function createPokemon(pokeInfo) {
 		var ability = pokeInfo.find(".ability").val();
 		var item = pokeInfo.find(".item").val();
 		var isDynamaxed = pokeInfo.find(".max").prop("checked");
+		var isBig = pokeInfo.find(".bigToggle").prop("checked");
 		var teraType = pokeInfo.find(".teraToggle").is(":checked") ? pokeInfo.find(".teraType").val() : undefined;
 		var opts = {
 			ability: ability,
 			item: item,
 			isDynamaxed: isDynamaxed,
 			teraType: teraType,
+			isBig: isBig,
 			species: name,
 		};
 		pokeInfo.isDynamaxed = isDynamaxed;
+		pokeInfo.isBig = isBig;
 		calcHP(pokeInfo);
 		var curHP = ~~pokeInfo.find(".current-hp").val();
 		// FIXME the Pokemon constructor expects non-dynamaxed HP
@@ -1300,6 +1325,7 @@ function createPokemon(pokeInfo) {
 			ivs: ivs,
 			evs: evs,
 			isDynamaxed: isDynamaxed,
+			isBig: isBig,
 			alliesFainted: parseInt(pokeInfo.find(".alliesFainted").val()),
 			foesFainted: parseInt(pokeInfo.find(".foesFainted").val()),
 			boostedStat: pokeInfo.find(".boostedStat").val() || undefined,
@@ -1389,7 +1415,7 @@ function createField() {
 	var wildfire = [$("#wildfireL").prop("checked"), $("#wildfireR").prop("checked")];
 	var cannonade = [$("#cannonadeL").prop("checked"), $("#cannonadeR").prop("checked")];
 	var volcalith = [$("#volcalithL").prop("checked"), $("#volcalithR").prop("checked")];
-	var terrain = ($("input:checkbox[name='terrain']:checked").val()) ? $("input:checkbox[name='terrain']:checked").val() : "";
+	var terrain = ($("input:checkbox[name=" + terrainType + "]:checked").val()) ? $("input:checkbox[name=" + terrainType + "]:checked").val() : "";
 	var isReflect = [$("#reflectL").prop("checked"), $("#reflectR").prop("checked")];
 	var isLightScreen = [$("#lightScreenL").prop("checked"), $("#lightScreenR").prop("checked")];
 	var isProtected = [$("#protectL").prop("checked"), $("#protectR").prop("checked")];
@@ -1399,6 +1425,7 @@ function createField() {
 	var isHelpingHand = [$("#helpingHandL").prop("checked"), $("#helpingHandR").prop("checked")];
 	var isCharged = [$("#chargeL").prop("checked"), $("#chargeR").prop("checked")];
 	var isDragonCharged = [$("#dragonChargeL").prop("checked"), $("#dragonChargeR").prop("checked")];
+	var isSigma = [$("#sigmaL").prop("checked"), $("#sigmaR").prop("checked")];
 	var isBlastblighted = [$("#blastblightL").prop("checked"), $("#blastblightR").prop("checked")];
 	var isBubbleblighted = [$("#bubbleblightL").prop("checked"), $("#bubbleblightR").prop("checked")];
 	var isDefenseDown = [$("#defenseDownL").prop("checked"), $("#defenseDownR").prop("checked")];
@@ -1440,6 +1467,7 @@ function createField() {
 			isSwitching: isSwitchingOut[i] ? 'out' : undefined,
 			isCharged: isCharged[i],
 			isDragonCharged: isDragonCharged[i],
+			isSigma: isSigma[i],
 			isBlastblighted: isBlastblighted[i],
 			isBubbleblighted: isBubbleblighted[i],
 			isDefenseDown: isDefenseDown[i],
@@ -1674,6 +1702,8 @@ $(".gen").change(function () {
 	GENERATION = calc.Generations.get(gen);
 	if (gen === 13) { // Monster Hunter Statuses
 		statusType = '.status2';
+	} else if (gen === 23) { // Iron Fist Statuses
+		statusType = '.status3'
 	} else {
 		statusType = '.status';
 	}
@@ -1681,6 +1711,21 @@ $(".gen").change(function () {
 		gravityType = "#gravity2";
 	} else {
 		gravityType = "#gravity";
+	}
+	if (gen === 23) {
+		terrainType = "'terrain2'";
+		terrains.electric = "#electric2";
+		terrains.fishing = "#fishing2";
+		terrains.frigid = "#frigid2";
+		terrains.grassy = "#grassy2";
+		terrains.misty = "#misty2";
+		terrains.psychic = "#psychic2";
+	} else {
+		terrainType = "'terrain'";
+		terrains.electric = "#electric";
+		terrains.grassy = "#grassy";
+		terrains.misty = "#misty";
+		terrains.psychic = "#psychic";
 	}
 	var params = new URLSearchParams(window.location.search);
 	if (gen === 19) {
@@ -1795,6 +1840,8 @@ function clearField() {
 	$("#chargeR").prop("checked", false);
 	$("#dragonChargeL").prop("checked", false);
 	$("#dragonChargeR").prop("checked", false);
+	$("#sigmaL").prop("checked", false);
+	$("#sigmaChargeR").prop("checked", false);
 	$("#blastblightL").prop("checked", false);
 	$("#blastblightR").prop("checked", false);
 	$("#bubbleblightL").prop("checked", false);
@@ -1815,7 +1862,7 @@ function clearField() {
 	$("#batteryR").prop("checked", false);
 	$("#switchingL").prop("checked", false);
 	$("#switchingR").prop("checked", false);
-	$("input:checkbox[name='terrain']").prop("checked", false);
+	$("input:checkbox[name=" + terrainType + "]").prop("checked", false);
 }
 
 function getSetOptions(sets) {
@@ -1969,7 +2016,7 @@ function getTerrainEffects() {
 	case "teraToggle":
 	case "item":
 		var id = $(this).closest(".poke-info").prop("id");
-		var terrainValue = $("input:checkbox[name='terrain']:checked").val();
+		var terrainValue = $("input:checkbox[name=" + terrainType + "]:checked").val();
 		if (terrainValue === "Electric") {
 			$("#" + id).find("[value='Asleep']").prop("disabled", isPokeInfoGrounded($("#" + id)));
 		} else if (terrainValue === "Misty") {
@@ -1978,7 +2025,7 @@ function getTerrainEffects() {
 		break;
 	case "ability":
 		// with autoset, ability change may cause terrain change, need to consider both sides
-		var terrainValue = $("input:checkbox[name='terrain']:checked").val();
+		var terrainValue = $("input:checkbox[name=" + terrainType + "]:checked").val();
 		if (terrainValue === "Electric") {
 			$("#p1").find(statusType).prop("disabled", false);
 			$("#p2").find(statusType).prop("disabled", false);
@@ -1995,7 +2042,7 @@ function getTerrainEffects() {
 		}
 		break;
 	default:
-		$("input:checkbox[name='terrain']").not(this).prop("checked", false);
+		$("input:checkbox[name=" + terrainType + "]").not(this).prop("checked", false);
 		if ($(this).prop("checked") && $(this).val() === "Electric") {
 			// need to enable status because it may be disabled by Misty Terrain before.
 			$("#p1").find(statusType).prop("disabled", false);

@@ -8,6 +8,7 @@ export namespace State {
     abilityOn?: boolean;
     isDynamaxed?: boolean;
     dynamaxLevel?: number;
+    isBig?: boolean;
     alliesFainted?: number;
     foesFainted?: number;
     boostedStat?: I.StatIDExceptHP | 'auto';
@@ -91,5 +92,6 @@ export namespace State {
     isDefenseDown?: boolean;
     isStenched?: boolean;
     isBlottedOut?: boolean;
+    isSigma?: boolean;
   }
 }
