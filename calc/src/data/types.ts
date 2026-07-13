@@ -530,7 +530,7 @@ const IF: TypeChart = extend(true, {}, SV, {
 });
 
 export const TYPE_CHART = [{}, RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, RBY, BW, SV, SV, SV, SV, SV,
-  SV, SV, SV, SV, SV, XY, IF, SV]; // NewGenChange
+  SV, SV, SV, SV, SV, XY, IF, SV, SV]; // NewGenChange
 
 export class Types implements I.Types {
   private readonly gen: I.GenerationNum;

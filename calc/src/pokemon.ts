@@ -38,6 +38,8 @@ export class Pokemon implements State.Pokemon {
   rawStats: I.StatsTable;
   stats: I.StatsTable;
 
+  flags?: I.SpeciesFlags;
+
   originalCurHP: number;
   status: I.StatusName | '';
   toxicCounter: number;
@@ -80,6 +82,7 @@ export class Pokemon implements State.Pokemon {
     this.ivs = Pokemon.withDefault(gen, options.ivs, 31);
     this.evs = Pokemon.withDefault(gen, options.evs, gen.num >= 3 ? 0 : 252);
     this.boosts = Pokemon.withDefault(gen, options.boosts, 0, false);
+    this.flags = this.species.flags;
 
     // Gigantamax 'forms' inherit weight from their base species when not dynamaxed
     // TODO: clean this up with proper Gigantamax support

@@ -1,5 +1,5 @@
 import type * as I from './interface';
-import {toID} from '../util';
+import {extend, toID} from '../util';
 
 const RBY: string[] = [];
 
@@ -509,8 +509,84 @@ const BWYB = BW.concat([
 ]);
 
 const IF = SV.concat([
-  'Test',
+  'Balance Board',
+  'Baseball',
+  'bass.jpg',
+  'BIG ANVILITE',
+  'Big Button Button',
+  'Bob\'s Curse',
+  'bonerockorsomethingidfk',
+  'Box of One Dozen Starving, Crazed Weasels',
+  'Bucket Hat',
+  'Card Crystal',
+  'Comically Large Spoon',
+  'Cornn Berry',
+  'Deez NUts',
+  'Diamond Heart',
+  'Eat-Me Cookie',
+  'Electrodite',
+  'Etigirafarigite',
+  'Everhalium-Z',
+  'Fish Hook',
+  'Fish Rifle',
+  'Fishy Seed',
+  'Fleshvaliantite',
+  'Frigid Seed',
+  'Goofy Plate',
+  'Goomboss Crown',
+  'Hitmontopite',
+  'Impidimpite',
+  'IP Grabber Link',
+  'Iron Fist',
+  'Iron Fist Slate 13',
+  'Iron Will Ribbon',
+  'Jar of Mercury',
+  'Kinglerite',
+  'Kunai',
+  'Lemon Memory',
+  'Lemonganite',
+  'Lemonomics industry connections card',
+  'Lion Gun',
+  'Lunchly',
+  'Many Fishing Tokens',
+  'Moltresite',
+  'Nerve Charm',
+  'Nomel Berry',
+  'Original Item',
+  'Pinch Berries',
+  'Porygonzite',
+  'Princirangite',
+  'Purposefully Mutilated JPG of the Inexplicable Framed photo of Sonic the ' +
+  'Hedgehog and Shadow the Hedgehog',
+  'Shellier Bell',
+  'Shoe',
+  'Shrine of the Silver Monkey',
+  'Shuriken',
+  'Sigma Rice',
+  'Silly Memory',
+  'Sour Plate',
+  'Space Jam DVD',
+  'Spewpanite',
+  'Stellarium Z',
+  'Sulphur Rock',
+  'Tube of One Billion Lemons',
+  'zacian orb',
+  'Zeldanium Z',
 ]);
+
+export const IF_MEGA_STONES: {[species: string]: string} = extend(true, {}, MEGA_STONES, {
+  'BIG ANVILITE': 'BIG ANVIL',
+  Electrodite: 'Electrode',
+  Etigirafarigite: 'Girafarig',
+  Fleshvaliantite: 'Flesh Valiant',
+  Hitmontopite: 'Hitmontop',
+  Impidimpite: 'Impidimp',
+  Kinglerite: 'Kingler',
+  Lemonganite: 'Lemonganium',
+  Moltresite: 'Moltres',
+  Porygonzite: 'Porygon-Z',
+  Spewpanite: 'Spewpa',
+});
 
 const BERRIES: {[berry: string]: {t: I.TypeName; p: number}} = {
   'Aguav Berry': {t: 'Dragon', p: 80},
@@ -593,7 +669,7 @@ const BERRIES: {[berry: string]: {t: I.TypeName; p: number}} = {
 };
 
 export const ITEMS = [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, RBY, BWYB, TH, MH, SV, SV, SV,
-  SV, SV, SV, SV, SV, XY, IF, SV]; // NewGenChange
+  SV, SV, SV, SV, SV, XY, IF, SV, SV]; // NewGenChange
 
 export class Items implements I.Items {
   private readonly gen: I.GenerationNum;

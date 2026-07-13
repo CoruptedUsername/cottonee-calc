@@ -19,6 +19,9 @@ export class Move implements State.Move {
   hits: number;
   timesUsed?: number;
   timesUsedWithMetronome?: number;
+  ppLeft?: number;
+  alliesFainted?: number;
+  numTrumps?: number;
   bp: number;
   type: I.TypeName;
   category: I.MoveCategory;
@@ -110,6 +113,9 @@ export class Move implements State.Move {
         }
       }
       this.timesUsedWithMetronome = options.timesUsedWithMetronome;
+      this.ppLeft = options.ppLeft;
+      this.alliesFainted = options.alliesFainted;
+      this.numTrumps = options.numTrumps;
     }
     this.gen = gen;
     this.name = data.name;
@@ -189,6 +195,9 @@ export class Move implements State.Move {
       hits: this.hits,
       timesUsed: this.timesUsed,
       timesUsedWithMetronome: this.timesUsedWithMetronome,
+      ppLeft: this.ppLeft,
+      alliesFainted: this.alliesFainted,
+      numTrumps: this.numTrumps,
       overrides: this.overrides,
     });
   }

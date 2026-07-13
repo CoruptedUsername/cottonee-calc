@@ -25,10 +25,11 @@ const MMM4: StatID[] = GSC;
 const MEGASR: StatID[] = GSC;
 const IF: StatID[] = GSC;
 const FESV: StatID[] = GSC;
+const BCD: StatID[] = GSC;
 
 export const STATS: Array<Array<StatID | 'spc'> | StatID[]> =
   [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, JS, BWYB, TH, MH, SBS, TS, PM, DNU,
-    BCA, BCC, FEVGC, MMM4, MEGASR, IF, FESV]; // NewGenChange
+    BCA, BCC, FEVGC, MMM4, MEGASR, IF, FESV, BCD]; // NewGenChange
 
 type HPTypeName = Exclude<TypeName, 'Normal' | 'Fairy' | 'Stellar' | '???'>;
 

@@ -37,7 +37,7 @@ function endsWith(string, target) {
 
 var LEGACY_STATS_RBY = ["hp", "at", "df", "sl", "sp"];
 var LEGACY_STATS_GSC = ["hp", "at", "df", "sa", "sd", "sp"];
-var LEGACY_STATS = [[], LEGACY_STATS_RBY, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC]; // NewGenChange
+var LEGACY_STATS = [[], LEGACY_STATS_RBY, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC, LEGACY_STATS_GSC]; // NewGenChange
 var HIDDEN_POWER_REGEX = /Hidden Power (\w*)/;
 
 var CALC_STATUS = {
@@ -86,6 +86,101 @@ if (gen === 23) {
 	terrains.grassy = "#grassy";
 	terrains.misty = "#misty";
 	terrains.psychic = "#psychic";
+}
+
+var snowGens = [9, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24]; // Rain, Sand, Snow, Sun
+var hailGens = [3, 4, 5, 6, 7, 8, 22]; // Hail, Rain, Sand, Sun
+var weatherType;
+var weatherType2;
+var weathers = {
+	clear: "",
+	sun: "",
+	rain: "",
+	sand: "",
+	cold: "",
+	grave: "",
+	acid: "",
+	strongsun: "",
+	strongrain: "",
+	strongwinds: "",
+	strongsand: "",
+	strongcold: "",
+};
+var weatherNames = {
+	clear: "",
+	sun: "",
+	rain: "",
+	sand: "",
+	cold: "",
+	grave: "",
+	acid: "",
+	strongsun: "",
+	strongrain: "",
+	strongwinds: "",
+	strongsand: "",
+	strongcold: "",
+};
+if (gen === 23) {
+	weatherType = "'weather-if'";
+	weatherType2 = "'.weather-if'";
+	weathers.clear = "#clear-if"; weatherNames.clear = "Clear";
+	weathers.sun = "#sun-if"; weatherNames.sun = "Sun";
+	weathers.rain = "#rain-if"; weatherNames.rain = "Rain";
+	weathers.sand = "#sand-if"; weatherNames.sand = "Sand";
+	weathers.cold = "#snow-if"; weatherNames.cold = "Snow";
+	weathers.grave = "#grave-if"; weatherNames.grave = "Grave";
+	weathers.acid = "#acid-if"; weatherNames.acid = "Acid";
+} else if (gen === 14) {
+	weatherType = "'weather-sbs'";
+	weatherType2 = "'.weather-sbs'";
+	weathers.clear = "#clear-sbs"; weatherNames.clear = "Clear";
+	weathers.sun = "#sun-sbs"; weatherNames.sun = "Sun";
+	weathers.rain = "#rain-sbs"; weatherNames.rain = "Rain";
+	weathers.sand = "#sand-sbs"; weatherNames.sand = "Sand";
+	weathers.cold = "#snow-sbs"; weatherNames.cold = "Snow";
+	weathers.strongwinds = "#strong-winds-sbs"; weatherNames.strongwinds = "Strong Winds";
+} else if (gen === 13) {
+	weatherType = "'weather-mh'";
+	weatherType2 = "'.weather-mh'";
+	weathers.clear = "#clear-mh"; weatherNames.clear = "Clear";
+	weathers.sun = "#sun-mh"; weatherNames.sun = "Sun";
+	weathers.rain = "#rain-mh"; weatherNames.rain = "Rain";
+	weathers.sand = "#sand-mh"; weatherNames.sand = "Sand";
+	weathers.cold = "#snow-mh"; weatherNames.cold = "Snow";
+	weathers.strongsun = "#harsh-sunshine-mh"; weatherNames.strongsun = "Harsh Sunshine";
+	weathers.strongrain = "#heavy-rain-mh"; weatherNames.strongrain = "Heavy Rain";
+	weathers.strongwinds = "#strong-winds-mh"; weatherNames.strongwinds = "Strong Winds";
+	weathers.strongsand = "#dust-devil-mh"; weatherNames.strongsand = "Dust Devil";
+	weathers.strongcold = "#absolute-zero-mh"; weatherNames.strongcold = "Absolute Zero";
+} else if (gen in snowGens) {
+	weatherType = "'weather'";
+	weatherType2 = "'.weather'";
+	weathers.clear = "#clear"; weatherNames.clear = "Clear";
+	weathers.sun = "#sun"; weatherNames.sun = "Sun";
+	weathers.rain = "#rain"; weatherNames.rain = "Rain";
+	weathers.sand = "#sand"; weatherNames.sand = "Sand";
+	weathers.cold = "#snow"; weatherNames.cold = "Snow";
+	weathers.strongsun = "#harsh-sunshine"; weatherNames.strongsun = "Harsh Sunshine";
+	weathers.strongrain = "#heavy-rain"; weatherNames.strongsun = "Heavy Rain";
+	weathers.strongwinds = "#strong-winds"; weatherNames.strongsun = "Strong Winds";
+} else if (gen in hailGens) {
+	weatherType = "'weather-hail'";
+	weatherType2 = "'.weather-hail'";
+	weathers.clear = "#clear-hail"; weatherNames.clear = "Clear";
+	weathers.sun = "#sun-hail"; weatherNames.sun = "Sun";
+	weathers.rain = "#rain-hail"; weatherNames.rain = "Rain";
+	weathers.sand = "#sand-hail"; weatherNames.sand = "Sand";
+	weathers.cold = "#hail-hail"; weatherNames.cold = "Hail";
+	weathers.strongsun = "#harsh-sunshine-hail"; weatherNames.strongsun = "Harsh Sunshine";
+	weathers.strongrain = "#heavy-rain-hail"; weatherNames.strongsun = "Heavy Rain";
+	weathers.strongwinds = "#strong-winds-hail"; weatherNames.strongsun = "Strong Winds";
+} else {
+	weatherType = "'weather-nocold'";
+	weatherType2 = "'.weather-nocold'";
+	weathers.clear = "#clear-nocold"; weatherNames.clear = "Clear";
+	weathers.sun = "#sun-nocold"; weatherNames.sun = "Sun";
+	weathers.rain = "#rain-nocold"; weatherNames.rain = "Rain";
+	weathers.sand = "#sand-nocold"; weatherNames.sand = "Sand";
 }
 
 function legacyStatToStat(st) {
@@ -217,7 +312,7 @@ $(".sl .dvs").keyup(function () {
 	calcHP(poke);
 });
 
-function getForcedTeraType(pokemonName) {
+function getForcedTeraType(pokemonName, pokemonAbility) {
 	if (startsWith(pokemonName, "Ogerpon-Cornerstone")) {
 		return "Rock";
 	} else if (startsWith(pokemonName, "Ogerpon-Hearthflame")) {
@@ -236,6 +331,10 @@ function getForcedTeraType(pokemonName) {
 		return "Grass";
 	} else if (startsWith(pokemonName, "Ogereena-Wellspring")) {
 		return "Water";
+	} else if (pokemonAbility === "I Love Fishing") {
+		return "Water";
+	} else if (pokemonAbility === "Racer's Spirit") {
+		return "Steel";
 	}
 	return null;
 }
@@ -299,7 +398,29 @@ $(".percent-hp").keyup(function () {
 });
 
 $(".ability").bind("keyup change", function () {
+	var pokemonName = $(this).closest(".poke-info").find("input.set-selector").val();
 	var ability = $(this).closest(".poke-info").find(".ability").val();
+
+	if (gen === 23) {
+		var forcedTeraType = getForcedTeraType(pokemonName, ability);
+		if (forcedTeraType) {
+			$(this).closest(".poke-info").find(".bigToggle").prev("label").hide();
+			$(this).closest(".poke-info").find(".bigToggle").hide();
+			$(this).closest(".poke-info").find(".bigToggle").prop("checked", false);
+			$(this).closest(".poke-info").find(".teraType").prev("label").show();
+			$(this).closest(".poke-info").find(".teraType").show();
+			$(this).closest(".poke-info").find(".teraType").val(forcedTeraType);
+			$(this).closest(".poke-info").find(".teraToggle").show();
+		} else {
+			$(this).closest(".poke-info").find(".bigToggle").prev("label").show();
+			$(this).closest(".poke-info").find(".bigToggle").show();
+			$(this).closest(".poke-info").find(".teraType").prev("label").hide();
+			$(this).closest(".poke-info").find(".teraType").hide();
+			$(this).closest(".poke-info").find(".teraType").val($(this).closest(".poke-info").find(".type1").val());
+			$(this).closest(".poke-info").find(".teraToggle").hide();
+			$(this).closest(".poke-info").find(".teraToggle").prop("checked", false);
+		}
+	}
 
 	for (var i = 1; i <= 4; i++) {
 		var moveSelector = ".move" + i;
@@ -317,7 +438,6 @@ $(".ability").bind("keyup change", function () {
 		if ($(this).closest(".poke-info").find(statusType).val() === 'Drowsy') {
 			moveHits = 1;
 		}
-		$(this).closest(".poke-info").find(moveSelector).find(".move-hits").val(moveHits);
 	}
 
 	var TOGGLE_ABILITIES = [
@@ -342,12 +462,14 @@ $(".ability").bind("keyup change", function () {
 		'Negative Awareness',
 		'Obliterate',
 		'Plus',
+		'Pristine Dessert',
 		'Pyrotechnic',
 		'Quickstart',
 		'Sea Monster',
 		'Slow Start',
 		'Smelting',
 		'Sturdy Fire',
+		'Supersour Syrup',
 		'Surprise',
 		'Stakeout',
 		'Teraform Zero',
@@ -364,7 +486,7 @@ $(".ability").bind("keyup change", function () {
 	}
 	var boostedStat = $(this).closest(".poke-info").find(".boostedStat");
 
-	if (['Air Drive', 'Ancient Marble', 'Cactus Drive', 'Heavy Drive', 'Jade Drive', 'Jelly-Filled Drive', 'Magic Drive', 'Phantom Drive', 'Protoavian', 'Protolithos', 'Protoneuron', 'Protopyre', 'Protorefraction', 'Protosynthesis', 'Prototoxin', 'Quark Drive', 'Toxic Drive', 'Wind Drive'].includes(ability)) {
+	if (['Air Drive', 'Ancient Marble', 'Cactus Drive', 'Heavy Drive', 'Jade Drive', 'Jelly-Filled Drive', 'Magic Drive', 'Phantom Drive', 'Protoavian', 'Protolithos', 'Protoneuron', 'Protopyre', 'Protorefraction', 'Protosynthesis', 'Prototoxin', 'Quark Drive', 'Toxic Drive', 'Wind Drive', 'Protostasis'].includes(ability)) {
 		boostedStat.show();
 		autosetQP($(this).closest(".poke-info"));
 	} else {
@@ -383,7 +505,7 @@ $(".ability").bind("keyup change", function () {
 		$(this).closest(".poke-info").find(".reactiveCore").hide();
 	}
 
-	if (['Sinister Grudge', 'Supreme Overlord'].includes(ability)) {
+	if (['Sinister Grudge', 'Supreme Overlord', 'Iron Lady'].includes(ability)) {
 		$(this).closest(".poke-info").find(".alliesFainted").show();
 	} else {
 		$(this).closest(".poke-info").find(".alliesFainted").val('0');
@@ -405,7 +527,7 @@ $(".ability").bind("keyup change", function () {
 });
 
 function autosetQP(pokemon) {
-	var currentWeather = $("input:radio[name='weather']:checked").val();
+	var currentWeather = $("input:radio[name=" + weatherType + "]:checked").val();
 	var currentTerrain = $("input:checkbox[name=" + terrainType + "]:checked").val() || "No terrain";
 
 	var item = pokemon.find(".item").val();
@@ -419,6 +541,7 @@ function autosetQP(pokemon) {
 			(item === "Booster Energy") ||
 			(['Ancient Marble', 'Protoavian', 'Protolithos', 'Protoneuron', 'Protopyre', 'Protorefraction', 'Protosynthesis', 'Prototoxin'].includes(ability) && currentWeather === "Sun") ||
 			(['Air Drive', 'Heavy Drive', 'Jade Drive', 'Jelly-Filled Drive', 'Magic Drive', 'Phantom Drive', 'Quark Drive', 'Toxic Drive', 'Wind Drive'].includes(ability) && currentTerrain === "Electric") ||
+			(['Protostasis'].includes(ability) && currentWeather === "Snow") ||
 			(ability === "Cactus Drive" && currentTerrain === "Grassy") ||
 			(ability === "Prototoxin" && ["Poisoned", "Badly Poisoned"].includes(status)) ||
 			(ability === "Wind Drive" && tailwind)
@@ -464,7 +587,7 @@ $("#p1 .ability").bind("keyup change", function () {
 	autosetBiosynthesis($(this).closest(".poke-info"));
 });
 
-$("input[name='weather']").change(function () {
+$("input[name=" + weatherType + "]").change(function () {
 	var allPokemon = $('.poke-info');
 	allPokemon.each(function () {
 		autosetQP($(this));
@@ -479,7 +602,7 @@ function autosetWeather(ability, i) {
 		return;
 	}
 
-	var currentWeather = $("input:radio[name='weather']:checked").val();
+	var currentWeather = $("input:radio[name=" + weatherType + "]:checked").val();
 	if (lastAutoWeather.indexOf(currentWeather) === -1) {
 		lastManualWeather = currentWeather;
 		lastAutoWeather[1 - i] = "";
@@ -488,54 +611,59 @@ function autosetWeather(ability, i) {
 	case "Drought":
 	case "Orichalcum Pulse":
 	case "Solar Radiation":
-		lastAutoWeather[i] = "Sun";
-		$("#sun").prop("checked", true);
+		lastAutoWeather[i] = weatherNames.sun;
+		$(weathers.sun).prop("checked", true);
 		break;
 	case "Drizzle":
 	case "Stormy Sight":
-		lastAutoWeather[i] = "Rain";
-		$("#rain").prop("checked", true);
+	case "Original Sea":
+		lastAutoWeather[i] = weatherNames.rain;
+		$(weathers.rain).prop("checked", true);
 		break;
 	case "Sandproof":
 	case "Sand Stream":
-		lastAutoWeather[i] = "Sand";
-		$("#sand").prop("checked", true);
+		lastAutoWeather[i] = weatherNames.sand;
+		$(weathers.sand).prop("checked", true);
 		break;
 	case "Cryowarning":
 	case "Snow Warning":
-		if (gen >= 9) {
-			lastAutoWeather[i] = "Snow";
-			$("#snow").prop("checked", true);
-		} else {
-			lastAutoWeather[i] = "Hail";
-			$("#hail").prop("checked", true);
-		}
+		lastAutoWeather[i] = weatherNames.cold;
+		$(weathers.cold).prop("checked", true);
 		break;
 	case "Desolate Land":
-		lastAutoWeather[i] = "Harsh Sunshine";
-		$("#harsh-sunshine").prop("checked", true);
+		lastAutoWeather[i] = weatherNames.strongsun;
+		$(weathers.strongsun).prop("checked", true);
 		break;
 	case "Primordial Sea":
-		lastAutoWeather[i] = "Heavy Rain";
-		$("#heavy-rain").prop("checked", true);
+		lastAutoWeather[i] = weatherNames.strongrain;
+		$(weathers.strongrain).prop("checked", true);
 		break;
 	case "Delta Stream":
 	case "Dragon's Gale":
-		lastAutoWeather[i] = "Strong Winds";
-		$("#strong-winds").prop("checked", true);
+		lastAutoWeather[i] = weatherNames.strongwinds;
+		$(weathers.strongwinds).prop("checked", true);
 		break;
 	case "Absolute Zero":
-		lastAutoWeather[i] = "Absolute Zero";
-		$("#absolute-zero").prop("checked", true);
+		lastAutoWeather[i] = weatherNames.strongcold;
+		$(weathers.strongcold).prop("checked", true);
 		break;
 	case "Dust Devil":
-		lastAutoWeather[i] = "Dust Devil";
-		$("#dust-devil").prop("checked", true);
+		lastAutoWeather[i] = weatherNames.strongsand;
+		$(weathers.strongsand).prop("checked", true);
+		break;
+	case "Acidic Drizzle":
+		lastAutoWeather[i] = weatherNames.acid;
+		$(weathers.acid).prop("checked", true);
+		break;
+	case "Macabre Mourner":
+	case "Zombies on Your Lawn":
+		lastAutoWeather[i] = weatherNames.grave;
+		$(weathers.grave).prop("checked", true);
 		break;
 	default:
 		lastAutoWeather[i] = "";
 		var newWeather = lastAutoWeather[1 - i] !== "" ? lastAutoWeather[1 - i] : "";
-		$("input:radio[name='weather'][value='" + newWeather + "']").prop("checked", true);
+		$("input:radio[name=" + weatherType + "][value='" + newWeather + "']").prop("checked", true);
 		break;
 	}
 }
@@ -562,6 +690,7 @@ function autosetTerrain(ability, i) {
 	case "Electric Surge":
 	case "Hadron Engine":
 	case "Jolt Spores":
+	case "Electric Overload":
 		lastAutoTerrain[i] = "Electric";
 		$(terrains.electric).prop("checked", true);
 		break;
@@ -578,6 +707,14 @@ function autosetTerrain(ability, i) {
 	case "Psychic Surge":
 		lastAutoTerrain[i] = "Psychic";
 		$(terrains.psychic).prop("checked", true);
+		break;
+	case "Fishy Surge":
+		lastAutoTerrain[i] = "Fishing";
+		$(terrains.fishing).prop("checked", true);
+		break;
+	case "Frozen Landscape":
+		lastAutoTerrain[i] = "Frigid";
+		$(terrains.frigid).prop("checked", true);
 		break;
 	default:
 		lastAutoTerrain[i] = "";
@@ -743,6 +880,28 @@ $(".move-selector").change(function () {
 		moveGroupObj.children(".move-hits").hide();
 		moveGroupObj.children(".move-times").show();
 	}
+	if (moveName === 'Mald Fist' && gen === 23) {
+		moveGroupObj.children(".pp-counter").val(16);
+		moveGroupObj.children(".pp-counter").show();
+	} else if (moveName === 'Trump Card' && gen === 23) {
+		moveGroupObj.children(".pp-counter").val(5);
+		moveGroupObj.children(".pp-counter").show();
+	} else {
+		moveGroupObj.children(".pp-counter").val(0);
+		moveGroupObj.children(".pp-counter").hide();
+	}
+	if (moveName === 'Necromancy' && gen === 23) {
+		moveGroupObj.children(".moveAlliesFainted").show();
+	} else {
+		moveGroupObj.children(".moveAlliesFainted").val(0);
+		moveGroupObj.children(".moveAlliesFainted").hide();
+	}
+	if (moveName === 'Balatro Blast' && gen === 23) {
+		moveGroupObj.children(".num-trumps").show();
+	} else {
+		moveGroupObj.children(".num-trumps").val(0);
+		moveGroupObj.children(".num-trumps").hide();
+	}
 	moveGroupObj.children(".move-z").prop("checked", false);
 });
 
@@ -778,7 +937,7 @@ $(".item").change(function () {
 });
 
 function smogonAnalysis(pokemonName) { // NewGenChange
-	var generation = ["rb", "gs", "rs", "dp", "bw", "xy", "sm", "ss", "sv", "js", "bwyb", "th", "mh", "sbs", "ts", "pm", "dnu", "bca", "bcc", "fevgc", "mmm4", "megasr", "if", "fesv"][gen - 1];
+	var generation = ["rb", "gs", "rs", "dp", "bw", "xy", "sm", "ss", "sv", "js", "bwyb", "th", "mh", "sbs", "ts", "pm", "dnu", "bca", "bcc", "fevgc", "mmm4", "megasr", "if", "fesv", 'bcd'][gen - 1];
 	return "https://smogon.com/dex/" + generation + "/pokemon/" + pokemonName.toLowerCase() + "/";
 }
 
@@ -858,7 +1017,7 @@ $(".set-selector").change(function () {
 					}
 				}
 			}
-			pokeObj.find(".teraType").val(listTeraTypes[0] || getForcedTeraType(pokemonName) || pokemon.types[0]);
+			pokeObj.find(".teraType").val(listTeraTypes[0] || getForcedTeraType(pokemonName, pokeObj.find(".ability")) || pokemon.types[0]);
 			$(this).closest('.poke-info').find(".extraSetTeraTypes").text(listTeraTypes.join(', '));
 		} else {
 			$(this).closest('.poke-info').find(".ability-pool").hide();
@@ -869,7 +1028,7 @@ $(".set-selector").change(function () {
 		if (regSets || randset) {
 			var set = regSets ? correctHiddenPower(setdex[pokemonName][setName]) : randset;
 			if (regSets) {
-				pokeObj.find(".teraType").val(set.teraType || getForcedTeraType(pokemonName) || pokemon.types[0]);
+				pokeObj.find(".teraType").val(set.teraType || getForcedTeraType(pokemonName, pokeObj.find(".ability")) || pokemon.types[0]);
 			}
 			pokeObj.find(".level").val(set.level === undefined ? 100 : set.level);
 			for (i = 0; i < LEGACY_STATS[gen].length; i++) {
@@ -916,7 +1075,7 @@ $(".set-selector").change(function () {
 				$(this).closest('.poke-info').find(".extraSetMoves").html(formatMovePool(setMoves));
 			}
 		} else {
-			pokeObj.find(".teraType").val(getForcedTeraType(pokemonName) || pokemon.types[0]);
+			pokeObj.find(".teraType").val(getForcedTeraType(pokemonName, pokeObj.find(".ability")) || pokemon.types[0]);
 			pokeObj.find(".level").val(defaultLevel);
 			pokeObj.find(".hp .evs").val(0);
 			pokeObj.find(".hp .ivs").val(31);
@@ -1159,7 +1318,7 @@ $(".forme").change(function () {
 			container.find(".ability").val(chosenSet.abilities[0]);
 		}
 	}
-	var forcedTeraType = getForcedTeraType($(this).val());
+	var forcedTeraType = getForcedTeraType($(this).val(), $(this).parent().find(".ability"));
 	if (forcedTeraType) {
 		$(this).parent().siblings().find(".teraType").val(forcedTeraType);
 	}
@@ -1363,6 +1522,9 @@ function getMoveDetails(moveInfo, opts) {
 	var hits = +moveInfo.find(".move-hits").val();
 	var timesUsed = +moveInfo.find(".move-times").val();
 	var timesUsedWithMetronome = moveInfo.find(".metronome").is(':visible') ? +moveInfo.find(".metronome").val() : 1;
+	var ppLeft = +moveInfo.find(".pp-counter").val();
+	var moveAlliesFainted = +moveInfo.find(".moveAlliesFainted").val();
+	var numTrumps = +moveInfo.find(".num-trumps").val();
 	var overrides = {
 		basePower: +moveInfo.find(".move-bp").val(),
 		type: moveInfo.find(".move-type").val()
@@ -1382,7 +1544,8 @@ function getMoveDetails(moveInfo, opts) {
 	return new calc.Move(gen, moveName, {
 		ability: opts.ability, item: opts.item, useZ: isZMove, species: opts.species, isCrit: isCrit, hits: hits,
 		isStellarFirstUse: isStellarFirstUse, timesUsed: timesUsed, timesUsedWithMetronome: timesUsedWithMetronome,
-		overrides: overrides, useMax: opts.isDynamaxed
+		overrides: overrides, useMax: opts.isDynamaxed, ppLeft: ppLeft, alliesFainted: moveAlliesFainted,
+		numTrumps: numTrumps,
 	});
 }
 
@@ -1397,17 +1560,16 @@ function createField() {
 	var isLoveOfRuin = $("#love").prop("checked");
 	var isPoultryOfRuin = $("#poultry").prop("checked");
 	var isMagicRoom = $("#magicroom").prop("checked");
+	var isTrickRoom = $("#trickroom").prop("checked");
 	var isWonderRoom = $("#wonderroom").prop("checked");
 	var isGravity = $(gravityType).prop("checked");
 	var isRuststorm = $("#ruststorm").prop("checked");
 	var isSR = [$("#srL").prop("checked"), $("#srR").prop("checked")];
-	var weather;
+	var weather = $("input:radio[name=" + weatherType + "]:checked").val();
 	var spikes;
 	if (gen === 2) {
 		spikes = [$("#gscSpikesL").prop("checked") ? 1 : 0, $("#gscSpikesR").prop("checked") ? 1 : 0];
-		weather = $("input:radio[name='gscWeather']:checked").val();
 	} else {
-		weather = $("input:radio[name='weather']:checked").val();
 		spikes = [~~$("input:radio[name='spikesL']:checked").val(), ~~$("input:radio[name='spikesR']:checked").val()];
 	}
 	var steelsurge = [$("#steelsurgeL").prop("checked"), $("#steelsurgeR").prop("checked")];
@@ -1440,6 +1602,7 @@ function createField() {
 	var isPowerSpot = [$("#powerSpotL").prop("checked"), $("#powerSpotR").prop("checked")];
 	// TODO: support switching in as well!
 	var isSwitchingOut = [$("#switchingL").prop("checked"), $("#switchingR").prop("checked")];
+	var fishingTokens = [parseInt($('#fishingTokensL').val()), parseInt($('#fishingTokensR').val())];
 
 	var createSide = function (i) {
 		return new calc.Side({
@@ -1473,6 +1636,7 @@ function createField() {
 			isDefenseDown: isDefenseDown[i],
 			isStenched: isStenched[i],
 			isBlottedOut: isBlottedOut[i],
+			fishingTokens: fishingTokens[i],
 		});
 	};
 	return new calc.Field({
@@ -1488,6 +1652,7 @@ function createField() {
 		isPoultryOfRuin: isPoultryOfRuin,
 		weather: weather,
 		isMagicRoom: isMagicRoom,
+		isTrickRoom: isTrickRoom,
 		isWonderRoom: isWonderRoom,
 		isGravity: isGravity,
 		isRuststorm: isRuststorm,
@@ -1574,6 +1739,7 @@ var GENERATION = {
 	'22': 22, 'megasr': 22,
 	'23': 23, 'if': 23,
 	'24': 24, 'fesv': 24,
+	'25': 25, 'bcd': 25,
 }; // NewGenChange
 
 var SETDEX = [
@@ -1601,7 +1767,8 @@ var SETDEX = [
 	typeof SETDEX_MMM4 === 'undefined' ? {} : SETDEX_MMM4,
 	typeof SETDEX_MEGASR === 'undefined' ? {} : SETDEX_MEGASR,
 	typeof SETDEX_IF === 'undefined' ? {} : SETDEX_IF,
-	typeof SETDEX_FESV === 'undefined' ? {} : SETDEX_FESV
+	typeof SETDEX_FESV === 'undefined' ? {} : SETDEX_FESV,
+	typeof SETDEX_BCD === 'undefined' ? {} : SETDEX_BCD
 ]; // NewGenChange
 
 /*
@@ -1726,6 +1893,62 @@ $(".gen").change(function () {
 		terrains.grassy = "#grassy";
 		terrains.misty = "#misty";
 		terrains.psychic = "#psychic";
+	}
+	if (gen === 23) {
+		weatherType = "'weather-if'";
+		weathers.clear = "#clear-if"; weatherNames.clear = "Clear";
+		weathers.sun = "#sun-if"; weatherNames.sun = "Sun";
+		weathers.rain = "#rain-if"; weatherNames.rain = "Rain";
+		weathers.sand = "#sand-if"; weatherNames.sand = "Sand";
+		weathers.cold = "#snow-if"; weatherNames.cold = "Snow";
+		weathers.grave = "#grave-if"; weatherNames.grave = "Grave";
+		weathers.acid = "#acid-if"; weatherNames.acid = "Acid";
+	} else if (gen === 14) {
+		weatherType = "'weather-sbs'";
+		weathers.clear = "#clear-sbs"; weatherNames.clear = "Clear";
+		weathers.sun = "#sun-sbs"; weatherNames.sun = "Sun";
+		weathers.rain = "#rain-sbs"; weatherNames.rain = "Rain";
+		weathers.sand = "#sand-sbs"; weatherNames.sand = "Sand";
+		weathers.cold = "#snow-sbs"; weatherNames.cold = "Snow";
+		weathers.strongwinds = "#strong-winds-sbs"; weatherNames.strongwinds = "Strong Winds";
+	} else if (gen === 13) {
+		weatherType = "'weather-mh'";
+		weathers.clear = "#clear-mh"; weatherNames.clear = "Clear";
+		weathers.sun = "#sun-mh"; weatherNames.sun = "Sun";
+		weathers.rain = "#rain-mh"; weatherNames.rain = "Rain";
+		weathers.sand = "#sand-mh"; weatherNames.sand = "Sand";
+		weathers.cold = "#snow-mh"; weatherNames.cold = "Snow";
+		weathers.strongsun = "#harsh-sunshine-mh"; weatherNames.strongsun = "Harsh Sunshine";
+		weathers.strongrain = "#heavy-rain-mh"; weatherNames.strongrain = "Heavy Rain";
+		weathers.strongwinds = "#strong-winds-mh"; weatherNames.strongwinds = "Strong Winds";
+		weathers.strongsand = "#dust-devil-mh"; weatherNames.strongsand = "Dust Devil";
+		weathers.strongcold = "#absolute-zero-mh"; weatherNames.strongcold = "Absolute Zero";
+	} else if (snowGens.includes(gen)) {
+		weatherType = "'weather'";
+		weathers.clear = "#clear"; weatherNames.clear = "Clear";
+		weathers.sun = "#sun"; weatherNames.sun = "Sun";
+		weathers.rain = "#rain"; weatherNames.rain = "Rain";
+		weathers.sand = "#sand"; weatherNames.sand = "Sand";
+		weathers.cold = "#snow"; weatherNames.cold = "Snow";
+		weathers.strongsun = "#harsh-sunshine"; weatherNames.strongsun = "Harsh Sunshine";
+		weathers.strongrain = "#heavy-rain"; weatherNames.strongsun = "Heavy Rain";
+		weathers.strongwinds = "#strong-winds"; weatherNames.strongsun = "Strong Winds";
+	} else if (hailGens.includes(gen)) {
+		weatherType = "'weather-hail'";
+		weathers.clear = "#clear-hail"; weatherNames.clear = "Clear";
+		weathers.sun = "#sun-hail"; weatherNames.sun = "Sun";
+		weathers.rain = "#rain-hail"; weatherNames.rain = "Rain";
+		weathers.sand = "#sand-hail"; weatherNames.sand = "Sand";
+		weathers.cold = "#hail-hail"; weatherNames.cold = "Hail";
+		weathers.strongsun = "#harsh-sunshine-hail"; weatherNames.strongsun = "Harsh Sunshine";
+		weathers.strongrain = "#heavy-rain-hail"; weatherNames.strongsun = "Heavy Rain";
+		weathers.strongwinds = "#strong-winds-hail"; weatherNames.strongsun = "Strong Winds";
+	} else {
+		weatherType = "'weather-nocold'";
+		weathers.clear = "#clear-nocold"; weatherNames.clear = "Clear";
+		weathers.sun = "#sun-nocold"; weatherNames.sun = "Sun";
+		weathers.rain = "#rain-nocold"; weatherNames.rain = "Rain";
+		weathers.sand = "#sand-nocold"; weatherNames.sand = "Sand";
 	}
 	var params = new URLSearchParams(window.location.search);
 	if (gen === 19) {
@@ -1943,7 +2166,7 @@ function getSelectOptions(arr, sort, defaultOption) {
 
 var stickyWeather = (function () {
 	var lastClicked = '';
-	$(".weather").click(function () {
+	$('.weather').click(function () {
 		if (this.id === lastClicked) {
 			$(this).toggleClass("locked-weather");
 		} else {

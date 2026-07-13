@@ -45,6 +45,7 @@ const MECHANICS = [
   calculateMEGASR, // Megas Revisited
   calculateIF, // Iron Fist
   calculateFESV, // FE SV
+  calculateSMSSSV, // BC D
 ]; // NewGenChange
 
 export function calculate(

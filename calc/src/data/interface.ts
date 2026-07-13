@@ -1,7 +1,7 @@
 export interface As<T> {__brand: T}
 export type ID = (string & As<'ID'>) | (string & { __isID: true }) | '';
 export type GenerationNum = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
-17 | 18 | 19 | 20 | 21 | 22 | 23 | 24; // NewGenChange
+17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25; // NewGenChange
 export type GenderName = 'M' | 'F' | 'N';
 export type StatID = 'hp' | StatIDExceptHP;
 export type StatIDExceptHP = 'atk' | 'def' | 'spa' | 'spd' | 'spe';
@@ -104,6 +104,7 @@ export interface MoveFlags {
   protect?: 1 | 0;
   disaster?: 1 | 0;
   fishing?: 1 | 0;
+  future?: 1 | 0;
 }
 
 export interface SelfOrSecondaryEffect {
@@ -160,6 +161,8 @@ export interface Specie extends Data<SpeciesName> {
   readonly otherFormes?: SpeciesName[];
   readonly baseSpecies?: SpeciesName;
   readonly abilities?: {0: AbilityName | ''};
+  readonly flags?: SpeciesFlags;
+
 }
 
 export interface SpeciesFlags {
@@ -170,6 +173,7 @@ export interface SpeciesFlags {
   diamondhand?: boolean;
   trans?: boolean;
   hoenn?: boolean;
+  fakemon?: boolean;
 }
 
 export interface Types {

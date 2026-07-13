@@ -47,10 +47,11 @@ export interface MoveData {
   readonly isProtect?: boolean;
   readonly isDisaster?: boolean;
   readonly isFishing?: boolean;
+  readonly isFuture?: boolean;
 }
 
 const RBY: {[name: string]: MoveData} = {
-  '(No Move)': {bp: 0, category: 'Status', type: 'Normal'},
+  '(No Move)': {bp: 0, category: 'Physical', type: 'Normal'},
   Absorb: {bp: 20, type: 'Grass', drain: [1, 2]},
   Acid: {bp: 40, type: 'Poison'},
   Amnesia: {bp: 0, category: 'Status', type: 'Psychic'},
@@ -5130,6 +5131,11 @@ const PM_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     makesContact: true,
   },
+  'Chi Shift': {
+    bp: 60,
+    type: 'Fighting',
+    category: 'Special',
+  },
   Decibloom: {
     bp: 80,
     type: 'Grass',
@@ -5176,6 +5182,12 @@ const PM_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Rock',
     category: 'Special',
     self: {boosts: {spa: 1}},
+  },
+  'Scathing Swarm': {
+    bp: 110,
+    type: 'Bug',
+    category: 'Special',
+    self: {boosts: {spa: -1}},
   },
   'Soul Wind': {
     bp: 90,
@@ -6085,6 +6097,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Special',
     type: 'Dark',
     multihit: 5,
+    isFuture: true,
   },
   'Abomination\'s Jig': {
     bp: 80,
@@ -6093,7 +6106,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     isDance: true,
     secondaries: true,
   },
-  'Absolute Zero': { // TODO: 1.5x Power in Frigid Terrain
+  'Absolute Zero': {
     bp: 80,
     category: 'Special',
     type: 'Ice',
@@ -6105,13 +6118,13 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Lemon',
     secondaries: true,
   },
-  'Advertising': { // TODO: Fixed 3 hits if Fishing Tokens >= 5
+  'Advertising': {
     bp: 25,
     category: 'Special',
     type: 'Electric',
     multihit: [3, 5],
   },
-  'Air Horn': { // TODO: Always crit against/with Big Button
+  'Air Horn': {
     bp: 55,
     category: 'Special',
     type: 'Silly',
@@ -6131,6 +6144,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     type: 'Steel',
     secondaries: true,
+    isFuture: true,
   },
   'Arrows of Light': {
     bp: 185,
@@ -6153,7 +6167,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     type: 'Silly',
   },
-  'awesomemove': { // TODO: 1.2x Power in Weather/Terrain, add Photon Geyser effect
+  'awesomemove': {
     bp: 95,
     category: 'Special',
     type: 'Stellar',
@@ -6169,12 +6183,12 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     secondaries: true,
     priority: -3,
   },
-  'Balatro Blast': { // TODO: Add Trump Card counter, +20 BP each
+  'Balatro Blast': {
     bp: 40,
     type: 'Silly',
     category: 'Special',
   },
-  'Big Bash': { // TODO: Always crits against/by Big Button
+  'Big Bash': {
     bp: 68,
     type: 'Normal',
     category: 'Physical',
@@ -6187,7 +6201,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Blaze Kick': {
     isKick: true,
   },
-  'Blazeball': { // TODO: Add recoil at half power
+  'Blazeball': {
     bp: 160,
     type: 'Fire',
     category: 'Special',
@@ -6208,6 +6222,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     bp: 0,
     type: 'Grass',
     category: 'Status',
+    isFuture: true,
   },
   'Blue Shell': {
     bp: 150,
@@ -6276,13 +6291,13 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     isBullet: true,
     secondaries: true,
   },
-  'Citrus Rend': { // TODO: 2x Power if moves first
+  'Citrus Rend': {
     bp: 70,
     type: 'Lemon',
     category: 'Physical',
     isBite: true,
   },
-  'Clash': { // TODO: Fails if any status moves in moveset
+  'Clash': {
     bp: 100,
     type: 'Fighting',
     category: 'Physical',
@@ -6298,7 +6313,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Normal',
     category: 'Status',
   },
-  'cuddle': { // TODO: Have a nice cuddle :)
+  'cuddle': {
     bp: 0,
     type: 'Friend',
     category: 'Status',
@@ -6315,7 +6330,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Silly',
     category: 'Special',
   },
-  'Diamond Hatchet': { // Todo: Make BP 120 if big button
+  'Diamond Hatchet': {
     bp: 100,
     type: 'Fighting',
     category: 'Physical',
@@ -6324,6 +6339,9 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   },
   'Draco Meteor': {
     isDisaster: true,
+  },
+  'Doom Desire': {
+    isFuture: true,
   },
   'Double Kick': {
     isKick: true,
@@ -6336,7 +6354,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     makesContact: true,
     isPunch: true,
   },
-  'Drippy Blade': { // TODO: Fail if less than 2 fishing tokens unless Kanon-Blue Sea
+  'Drippy Blade': {
     bp: 120,
     type: 'Water',
     category: 'Special',
@@ -6353,7 +6371,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Special',
     secondaries: true,
   },
-  'Enchanted Boomerang': { // TODO: Photon Geyser effect
+  'Enchanted Boomerang': {
     bp: 50,
     type: 'Fairy',
     category: 'Physical',
@@ -6378,7 +6396,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Eruption': {
     isDisaster: true,
   },
-  'Everstorm Halberd': { // TODO: Set damage, 150 to normal, 200 to fakemon
+  'Everstorm Halberd': {
     bp: 0,
     type: 'Dragon',
     category: 'Physical',
@@ -6390,7 +6408,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     makesContact: true,
   },
-  'Feebas Pro Shops': { // TODO: Ignore ghost type
+  'Feebas Pro Shops': {
     bp: 85,
     type: 'Fighting',
     category: 'Special',
@@ -6401,7 +6419,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Grass',
     category: 'Status',
   },
-  'Fiend Fire': { // TODO: Additional hits based on fishing tokens (max 4)
+  'Fiend Fire': {
     bp: 50,
     type: 'Fire',
     category: 'Special',
@@ -6412,7 +6430,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Status',
     isFishing: true,
   },
-  'Fish Burn': { // TODO: 1.5x damage if opp has Fishing Tokens
+  'Fish Burn': {
     bp: 60,
     type: 'Fire',
     category: 'Special',
@@ -6429,6 +6447,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Water',
     category: 'Special',
     isFishing: true,
+    isFuture: true,
   },
   'Fish Processing': {
     bp: 0,
@@ -6455,17 +6474,17 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Water',
     category: 'Status',
   },
-  'Flotsam Hook': { // TODO: Always crit if fishing tokens >= 3
+  'Flotsam Hook': {
     bp: 85,
     type: 'Water',
     category: 'Physical',
   },
-  'Flush': { // Todo: Re-proc hazard damage
+  'Flush': {
     bp: 90,
     type: 'Water',
     category: 'Special',
   },
-  'Flytrap': { // TODO: Super-effective against bugs
+  'Flytrap': {
     bp: 70,
     type: 'Grass',
     category: 'Physical',
@@ -6500,6 +6519,9 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     recoil: [1, 2],
   },
+  'Future Sight': {
+    isFuture: true,
+  },
   'Gender Affirming Care': {
     bp: 0,
     type: 'Silly',
@@ -6517,7 +6539,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     priority: 1,
     isFishing: true,
   },
-  'Goomba Stomp': { // OHKO Goomba unless big button, in which case 1/3 health
+  'Goomba Stomp': {
     bp: 100,
     type: 'Normal',
     category: 'Physical',
@@ -6542,7 +6564,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Status',
     priority: 3,
   },
-  'Hand of Space': { // TODO: 1.5x damage to diamond hand
+  'Hand of Space': {
     bp: 100,
     type: 'Water',
     category: 'Special',
@@ -6559,12 +6581,12 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'High Jump Kick': {
     isKick: true,
   },
-  'Hold Hands': { // TODO: Hold Hands :)
+  'Hold Hands': {
     bp: 0,
     type: 'Normal',
     category: 'Status',
   },
-  'Home Run': { // TODO: 2x damage if target is baseballed
+  'Home Run': {
     bp: 40,
     type: 'Silly',
     category: 'Physical',
@@ -6577,7 +6599,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     secondaries: false,
     isDisaster: true,
   },
-  'Incinerate': { // TODO 1.5x Damage if target has item
+  'Incinerate': {
     bp: 65,
     type: 'Fire',
     category: 'Special',
@@ -6622,7 +6644,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Status',
     priority: -2,
   },
-  'Kill Token': { // Todo: Fail if less than 3 tokens, +25bp per token
+  'Kill Token': {
     bp: 25,
     type: 'Dark',
     category: 'Physical',
@@ -6660,7 +6682,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Silly',
     category: 'Physical',
   },
-  'Lightning Strike': { // TODO: 120bp if moves second
+  'Lightning Strike': {
     bp: 90,
     type: 'Electric',
     category: 'Physical',
@@ -6670,7 +6692,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Electric',
     category: 'Status',
   },
-  'Lone Shot': { // TODO: SE against Silly
+  'Lone Shot': {
     bp: 100,
     type: 'Ground',
     category: 'Physical',
@@ -6703,7 +6725,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Lemon',
     category: 'Status',
   },
-  'Mald Fist': { // TODO: Add pp counter, +10bp for each pp
+  'Mald Fist': {
     bp: 50,
     type: 'Ghost',
     category: 'Physical',
@@ -6720,7 +6742,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     isProtect: true,
     priority: 4,
   },
-  'Minior Shower': { // TODO: Change type based on secondary, Photon Geyser Efect
+  'Minior Shower': {
     bp: 110,
     type: 'Stellar',
     category: 'Special',
@@ -6734,16 +6756,22 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Muddy Water': {
     isDisaster: true,
   },
-  'Multi-Attack': { // TODO: Photon Geyser effect
+  'Multi-Attack': {
     bp: 120,
     type: 'Normal',
     category: 'Physical',
     makesContact: true,
   },
-  'Necromancy': { // TODO: +20bp per fainted ally
+  'Necromancy': {
     bp: 60,
     type: 'Ghost',
     category: 'Special',
+  },
+  'Nose Honk': {
+    bp: 60,
+    type: 'Silly',
+    category: 'Special',
+    isSound: true,
   },
   'OH MY GOOOOD WAAAAAAAAAANISFOKIFNOUH': {
     bp: 300,
@@ -6768,13 +6796,13 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Special',
     secondaries: true,
   },
-  'Piss on Grave': { // TODO: Make OHKO Margaret Thatcher
+  'Piss on Grave': {
     bp: 95,
     type: 'Lemon',
     category: 'Special',
     isBullet: true,
   },
-  'POG': { // TODO: Always SE
+  'POG': {
     bp: 60,
     type: 'Steel',
     category: 'Physical',
@@ -6818,7 +6846,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Bug',
     category: 'Status',
   },
-  'silcoonsexactmovepool': { // TODO: Tackle, Poison Sting, Bug Bite
+  'silcoonsexactmovepool': {
     bp: 0,
     type: 'Bug',
     category: 'Status',
@@ -6831,7 +6859,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     makesContact: true,
     secondaries: true,
   },
-  'Size Difference': { // TODO: 2x power if moves second and longer name
+  'Size Difference': {
     bp: 100,
     type: 'Ice',
     category: 'Physical',
@@ -6854,7 +6882,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     multihit: 3,
     priority: 1,
   },
-  'Sour Shot': { // TODO: Always hits if acid rain
+  'Sour Shot': {
     bp: 85,
     type: 'Lemon',
     category: 'Physical',
@@ -6922,7 +6950,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Special',
     priority: 1,
   },
-  'The Kitchen Sink': { // TODO: User wins
+  'The Kitchen Sink': {
     bp: 76.6977492,
     type: '???',
     category: 'Physical',
@@ -6960,7 +6988,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Trop Kick': {
     isKick: true,
   },
-  'Trump Card': { // TODO: Photon Geyser effect
+  'Trump Card': {
     bp: 0,
     type: 'Normal',
     category: 'Special',
@@ -6981,7 +7009,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Rock',
     category: 'Physical',
   },
-  'Velvet Blade': { // TODO: 0.5x power if no status moves
+  'Velvet Blade': {
     bp: 90,
     type: 'Dark',
     category: 'Physical',
@@ -6994,7 +7022,7 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     secondaries: true,
   },
-  'Walk the Dog': { // TODO: 2x power if Big
+  'Walk the Dog': {
     bp: 40,
     type: 'Ground',
     category: 'Physical',
@@ -7035,14 +7063,14 @@ const IF_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     category: 'Physical',
     priority: -6,
   },
-  'Zekrom Kick': { // TODO: 2x BP if Zekrom
+  'Zekrom Kick': {
     bp: 45,
     type: 'Dragon',
     category: 'Physical',
     makesContact: true,
     isKick: true,
   },
-  'Zesty Cutter': { // TODO: +1 Priority if lowered stats on opp
+  'Zesty Cutter': {
     bp: 80,
     type: 'Lemon',
     category: 'Physical',
@@ -7053,7 +7081,7 @@ const IF: {[name: string]: MoveData} = extend(true, {}, SV, IF_PATCH);
 
 
 export const MOVES = [{}, RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV, JS, BWYB, TH, MH,
-  SV, TS, PM, SV, SV, SV, FEVGC, SV, MEGASR, IF, SV]; // NewGenChange
+  SV, TS, PM, SV, SV, SV, FEVGC, SV, MEGASR, IF, SV, SV]; // NewGenChange
 
 export class Moves implements I.Moves {
   private readonly gen: I.GenerationNum;
@@ -7151,6 +7179,7 @@ class Move implements I.Move {
     if (data.isProtect) this.flags.protect = 1;
     if (data.isDisaster) this.flags.disaster = 1;
     if (data.isFishing) this.flags.fishing = 1;
+    if (data.isFuture) this.flags.future = 1;
 
     assignWithout(this, data, Move.FLAGS);
 

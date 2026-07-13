@@ -16,6 +16,7 @@ import type {Move} from '../move';
 import type {Pokemon} from '../pokemon';
 import {Stats} from '../stats';
 import type {RawDesc} from '../desc';
+import {IF_MEGA_STONES} from '../data/items';
 
 const EV_ITEMS = [
   'Macho Brace',
@@ -30,7 +31,7 @@ const EV_ITEMS = [
 export function isGrounded(pokemon: Pokemon, field: Field) {
   return (field.isGravity || pokemon.hasItem('Iron Ball') ||
     (!pokemon.hasType('Flying') &&
-      !pokemon.hasAbility('Levitate') &&
+      !pokemon.hasAbility('Levitate', 'Impalpable', 'Shields Up') &&
       !pokemon.hasItem('Air Balloon')));
 }
 
@@ -116,19 +117,22 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
       (pokemon.hasAbility('Sand Rush', 'Sharpshooter', 'Soulstone', 'Tundra Rush') &&
         ['Sand', 'Dust Devil'].includes(weather)) ||
       (pokemon.hasAbility('Hydrophilic', 'Hydrotechnic', 'Marine Menace', 'Swift Swim',
-        'Wet Bugs') && weather.includes('Rain')) ||
+        'Wet Bugs', 'champion') && weather.includes('Rain')) ||
       (pokemon.hasAbility('Abominable', 'Polar Power', 'Slush Rush', 'Tundra Rush') &&
         ['Hail', 'Snow', 'Absolute Zero'].includes(weather)) ||
-      (pokemon.hasAbility('Surge Surfer') && terrain === 'Electric')
+      (pokemon.hasAbility('Surge Surfer') && terrain === 'Electric') ||
+      (pokemon.hasAbility('Monster Mash') && weather === 'Grave') ||
+      (pokemon.hasAbility('Toxic Wisdom') && weather === 'Acid') ||
+      (pokemon.hasAbility('awesomeability') && (weather || terrain))
   ) {
     if (gen.num === 11) {
       speedMods.push(6144);
     } else {
       speedMods.push(8192);
     }
-  } else if (pokemon.hasAbility('Quick Feet') && pokemon.status) {
+  } else if (pokemon.hasAbility('Quick Feet', 'Snakewood') && pokemon.status) {
     speedMods.push(6144);
-  } else if (pokemon.hasAbility('Slow Start') && pokemon.abilityOn) {
+  } else if (pokemon.hasAbility('Slow Start', 'Pristine Dessert') && pokemon.abilityOn) {
     speedMods.push(2048);
   } else if (isQPActive(pokemon, field) && getQPBoostedStat(pokemon, gen) === 'spe') {
     speedMods.push(6144);
@@ -154,6 +158,46 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
   if (opp) {
     if (pokemon.hasAbility('Demon Parade') && opp.hasStatus('brn')) {
       speedMods.push(8192);
+    } else if (opp.hasAbility('Supersour Syrup') && opp.abilityOn) {
+      switch (pokemon.boosts.spe) {
+      case -5:
+        speedMods.push(3584);
+        break;
+      case -4:
+        speedMods.push(3511);
+        break;
+      case -3:
+        speedMods.push(3413);
+        break;
+      case -2:
+        speedMods.push(3277);
+        break;
+      case -1:
+        speedMods.push(3072);
+        break;
+      case 0:
+        speedMods.push(2731);
+        break;
+      case 1:
+        speedMods.push(2731);
+        break;
+      case 2:
+        speedMods.push(3072);
+        break;
+      case 3:
+        speedMods.push(3277);
+        break;
+      case 4:
+        speedMods.push(3413);
+        break;
+      case 5:
+        speedMods.push(3511);
+        break;
+      case 6:
+        speedMods.push(3584);
+        break;
+      default:
+      }
     }
   }
 
@@ -177,11 +221,59 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
     speedMods.push(8192);
   }
 
+  if (pokemon.hasAbility('Katabatic Winds') && field.isGravity) {
+    speedMods.push(6144);
+  }
+
+  if ((pokemon.hasAbility('Big Lady') && pokemon.isBig) ||
+    (pokemon.hasAbility('Kaiju Killer') && opp?.isBig)) {
+    switch (pokemon.boosts.spe) {
+    case -6:
+      speedMods.push(4681);
+      break;
+    case -5:
+      speedMods.push(4778);
+      break;
+    case -4:
+      speedMods.push(4915);
+      break;
+    case -3:
+      speedMods.push(5120);
+      break;
+    case -2:
+      speedMods.push(5461);
+      break;
+    case -1:
+      speedMods.push(6144);
+      break;
+    case 0:
+      speedMods.push(6144);
+      break;
+    case 1:
+      speedMods.push(5461);
+      break;
+    case 2:
+      speedMods.push(5120);
+      break;
+    case 3:
+      speedMods.push(4915);
+      break;
+    case 4:
+      speedMods.push(4778);
+      break;
+    case 5:
+      speedMods.push(4681);
+      break;
+    default:
+    }
+  }
+
   speed = OF32(pokeRound((speed * chainMods(speedMods, 410, 131172)) / 4096));
-  if (pokemon.hasStatus('par') && !pokemon.hasAbility('Quick Feet')) {
+  if (pokemon.hasStatus('par') && !pokemon.hasAbility('Quick Feet', 'Snakewood')) {
     speed = Math.floor(OF32(speed * ((gen.num < 7 || gen.num === 10 || gen.num === 11) ? 25 : 50)) /
       100);
   }
+
 
   speed = Math.min((gen.num <= 2 || gen.num === 10) ? 999 : 10000, speed);
   return Math.max(0, speed);
@@ -207,6 +299,10 @@ export function getMoveEffectiveness(
     return 1;
   } else if (move.named('Freeze-Dry') && type === 'Water') {
     return 2;
+  } else if (move.named('Flytrap') && type === 'Bug') {
+    return 2;
+  } else if (move.named('Lone Shot') && type === 'Silly') {
+    return 2;
   } else if (move.named('Frozen Cleave') && type === 'Water') {
     return 2;
   } else if (move.named('Soul Wind') && type === 'Ghost') {
@@ -214,6 +310,8 @@ export function getMoveEffectiveness(
   } else if (move.named('Dragonator') && type === 'Dragon') {
     return 2;
   } else if (move.named('Magnet Bomb') && type === 'Steel' && gen.num === 13) {
+    return 2;
+  } else if (move.named('Feebas Pro Shops') && type === 'Ghost') {
     return 2;
   } else if (move.flags.powder && (type === 'Grass' || isGoggles)) {
     return 0;
@@ -311,10 +409,11 @@ export function checkWonderRoom(pokemon: Pokemon, wonderRoomActive?: boolean) {
 export function checkIntimidate(gen: Generation, source: Pokemon, target: Pokemon) {
   const blocked =
     target.hasAbility('Clear Body', 'Eliminate', 'Full Metal Body', 'Hunger Fate', 'Hyper Cutter',
-      'Metagaming', 'Obsidian Body', 'Protolithos', 'Rustle Rage', 'Smoke Absorb', 'White Smoke') ||
+      'Metagaming', 'Obsidian Body', 'Protolithos', 'Rustle Rage', 'Smoke Absorb', 'White Smoke',
+      'toxic masculinity') ||
     // More abilities now block Intimidate in Gen 8+ (DaWoblefet, Cloudy Mistral)
     ((gen.num >= 8 && gen.num !== 10) && target.hasAbility('Inner Focus', 'Own Tempo', 'Oblivious',
-      'Prideful', 'Scrappy')) ||
+      'Prideful', 'Scrappy', 'Socially Unaware', 'Bravery')) ||
     target.hasItem('Clear Amulet');
   if (source.hasAbility('Dominate', 'Eliminate', 'Incorporate', 'Inflame', 'Intimidate',
     'Migrate', 'Obliterate', 'Sea Monster', 'Underestimate', 'Venom Glare') &&
@@ -336,12 +435,60 @@ export function checkIntimidate(gen: Generation, source: Pokemon, target: Pokemo
   }
 }
 
+export function checkFlygonMega(source: Pokemon, desc: RawDesc, isAttacker: boolean) {
+  if (source.item) {
+    if (source.hasAbility('i\'ll get a mega this time i swear') &&
+      Object.keys(IF_MEGA_STONES).includes(source.item)) {
+      source.rawStats.hp += 2;
+      source.rawStats.atk += 22;
+      source.rawStats.def += 22;
+      source.rawStats.spa += 22;
+      source.rawStats.spd += 22;
+      source.rawStats.spe += 22;
+      if (isAttacker) {
+        desc.attackerAbility = source.ability;
+      } else {
+        desc.defenderAbility = source.ability;
+      }
+    }
+  }
+}
+
+export function checkChainedWrath(gen: Generation, field: Field, source: Pokemon, target: Pokemon) {
+  if (getFinalSpeed(gen, target, field, field.attackerSide, source) >
+    getFinalSpeed(gen, source, field, field.attackerSide, target) &&
+    source.hasAbility('Chained Wrath')) {
+    source.boosts.atk = Math.min(6, source.boosts.atk + 1);
+  }
+}
+
+export function checkBigAbilities(source: Pokemon, target: Pokemon) {
+  if (source.hasAbility('Big Lady') && source.isBig) {
+    source.boosts.atk = Math.min(6, source.boosts.atk + 1);
+    source.boosts.def = Math.min(6, source.boosts.def + 1);
+    source.boosts.spa = Math.min(6, source.boosts.spa + 1);
+    source.boosts.spd = Math.min(6, source.boosts.spd + 1);
+  } else if (source.hasAbility('Kaiju Killer') && target.isBig) {
+    source.boosts.atk = Math.min(6, source.boosts.atk + 1);
+    source.boosts.def = Math.min(6, source.boosts.def + 1);
+    source.boosts.spa = Math.min(6, source.boosts.spa + 1);
+    source.boosts.spd = Math.min(6, source.boosts.spd + 1);
+  }
+}
+
+export function checkKatabaticWinds(source: Pokemon, field: Field) {
+  if (source.hasAbility('Katabatic Winds') && field.isGravity) {
+    source.boosts.spd = Math.min(6, source.boosts.spd + 1);
+  }
+}
+
 export function checkSurprise(gen: Generation, source: Pokemon, target: Pokemon) {
   const blocked =
     target.hasAbility('Clear Body', 'Smoke Absorb', 'White Smoke', 'Hyper Cutter',
       'Full Metal Body') ||
     // More abilities now block Intimidate in Gen 8+ (DaWoblefet, Cloudy Mistral)
-    (target.hasAbility('Inner Focus', 'Own Tempo', 'Oblivious', 'Prideful', 'Scrappy')) ||
+    (target.hasAbility('Inner Focus', 'Own Tempo', 'Oblivious', 'Prideful', 'Scrappy',
+      'Socially Unaware', 'Bravery')) ||
     target.hasItem('Clear Amulet') || target.hasType('Psychic');
   if (source.hasAbility('Surprise') && source.abilityOn && !blocked) {
     if (target.hasAbility('Contrary', 'Competitive', 'Goo-Getter', 'Neutral Match', 'Unfiltered',
@@ -497,7 +644,7 @@ export function checkMultihitBoost(
     (defender.hasItem('Maranga Berry') && move.category === 'Special') ||
     (defender.hasItem('Kee Berry') && move.category === 'Physical')) {
     const defStat = defender.hasItem('Kee Berry') ? 'def' : 'spd';
-    if (attacker.hasAbility('Unaware')) {
+    if (attacker.hasAbility('Unaware', 'Socially Unaware')) {
       desc.attackerAbility = attacker.ability;
     } else {
       if (defender.hasAbility('Contrary', 'Unfiltered')) {
@@ -528,7 +675,7 @@ export function checkMultihitBoost(
   }
 
   if (defender.hasAbility('Healthy Lunch', 'Stamina')) {
-    if (attacker.hasAbility('Unaware')) {
+    if (attacker.hasAbility('Unaware', 'Socially Unaware')) {
       desc.attackerAbility = attacker.ability;
     } else {
       defender.boosts.def = Math.min(defender.boosts.def + 1, 6);
@@ -536,7 +683,7 @@ export function checkMultihitBoost(
       desc.defenderAbility = defender.ability;
     }
   } else if (defender.hasAbility('Water Compaction') && move.hasType('Water')) {
-    if (attacker.hasAbility('Unaware')) {
+    if (attacker.hasAbility('Unaware', 'Socially Unaware')) {
       desc.attackerAbility = attacker.ability;
     } else {
       defender.boosts.def = Math.min(defender.boosts.def + 2, 6);
@@ -544,7 +691,7 @@ export function checkMultihitBoost(
       desc.defenderAbility = defender.ability;
     }
   } else if (defender.hasAbility('Weak Armor')) {
-    if (attacker.hasAbility('Unaware')) {
+    if (attacker.hasAbility('Unaware', 'Socially Unaware')) {
       desc.attackerAbility = attacker.ability;
     } else {
       if (defender.hasItem('White Herb') && !defenderUsedItem && defender.boosts.def === 0) {
@@ -561,7 +708,7 @@ export function checkMultihitBoost(
   }
 
   if (move.dropsStats) {
-    if (attacker.hasAbility('Unaware')) {
+    if (attacker.hasAbility('Unaware', 'Socially Unaware')) {
       desc.attackerAbility = attacker.ability;
     } else {
       // No move with dropsStats has fancy logic regarding category here
@@ -735,10 +882,19 @@ export function getWeight(pokemon: Pokemon, desc: RawDesc, role: 'defender' | 'a
 
 export function getStabMod(pokemon: Pokemon, move: Move, desc: RawDesc) {
   let stabMod = 4096;
+  if (pokemon.hasAbility('Conversion-Z')) {
+    return stabMod;
+  }
   if (pokemon.hasOriginalType(move.type)) {
     stabMod += 2048;
-  } else if (pokemon.hasAbility('Protean', 'Libero', 'Escaton') && !pokemon.teraType) {
+  } else if (pokemon.hasAbility('Iron Lady')) {
     stabMod += 2048;
+  } else if (pokemon.hasAbility('Protean', 'Libero', 'Escaton') && !pokemon.teraType) {
+    if (pokemon.gen.num === 23) {
+      stabMod += 1229;
+    } else {
+      stabMod += 2048;
+    }
     desc.attackerAbility = pokemon.ability;
   } else if (pokemon.hasAbility('Insect Armor') && move.type === 'Bug') {
     stabMod += 2048;
@@ -815,13 +971,29 @@ export function getStatDescriptionText(
   return desc;
 }
 
-export function handleFixedDamageMoves(attacker: Pokemon, move: Move) {
+export function handleFixedDamageMoves(attacker: Pokemon, move: Move, defender?: Pokemon) {
   if (move.named('Seismic Toss', 'Night Shade', 'Rage Ray')) {
     return attacker.level;
   } else if (move.named('Dragon Rage')) {
     return 40;
   } else if (move.named('Sonic Boom')) {
     return 20;
+  } else if (move.named('Guillotine')) {
+    return defender?.maxHP();
+  } else if (move.named('Goomba Stomp') && defender?.named('Goomba')) {
+    if (defender.isBig) {
+      return Math.floor(defender.maxHP() / 3);
+    } else {
+      return defender.maxHP();
+    }
+  } else if (move.named('Piss on Grave') && defender?.named('Margaret Thatcher')) {
+    return defender.maxHP();
+  } else if (move.named('Everstorm Halberd')) {
+    if (defender?.flags?.fakemon) {
+      return 200;
+    } else {
+      return 150;
+    }
   }
   return 0;
 }

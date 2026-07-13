@@ -6,6 +6,7 @@ export class Field implements State.Field {
   weather?: Weather;
   terrain?: Terrain;
   isMagicRoom: boolean;
+  isTrickRoom: boolean;
   isWonderRoom: boolean;
   isGravity: boolean;
   isRuststorm: boolean;
@@ -28,6 +29,7 @@ export class Field implements State.Field {
     this.terrain = field.terrain;
     this.weather = field.weather;
     this.isMagicRoom = !!field.isMagicRoom;
+    this.isTrickRoom = !!field.isTrickRoom;
     this.isWonderRoom = !!field.isWonderRoom;
     this.isGravity = !!field.isGravity;
     this.isRuststorm = !!field.isRuststorm;
@@ -66,6 +68,7 @@ export class Field implements State.Field {
       weather: this.weather,
       terrain: this.terrain,
       isMagicRoom: this.isMagicRoom,
+      isTrickRoom: this.isTrickRoom,
       isWonderRoom: this.isWonderRoom,
       isGravity: this.isGravity,
       isRuststorm: this.isRuststorm,
@@ -117,6 +120,7 @@ export class Side implements State.Side {
   isStenched?: boolean;
   isBlottedOut?: boolean;
   isSigma?: boolean;
+  fishingTokens?: number;
 
   constructor(side: State.Side = {}) {
     this.spikes = side.spikes || 0;
@@ -149,6 +153,7 @@ export class Side implements State.Side {
     this.isStenched = !!side.isStenched;
     this.isBlottedOut = !!side.isBlottedOut;
     this.isSigma = !!side.isSigma;
+    this.fishingTokens = side.fishingTokens;
   }
 
   clone() {

@@ -25,6 +25,7 @@ export namespace State {
     toxicCounter?: number;
     moves?: I.MoveName[];
     overrides?: Partial<I.Specie>;
+    flags?: I.SpeciesFlags;
   }
 
   export interface Move {
@@ -36,6 +37,9 @@ export namespace State {
     hits?: number;
     timesUsed?: number;
     timesUsedWithMetronome?: number;
+    ppLeft?: number;
+    alliesFainted?: number;
+    numTrumps?: number;
     overrides?: Partial<I.Move>;
   }
 
@@ -44,6 +48,7 @@ export namespace State {
     weather?: I.Weather;
     terrain?: I.Terrain;
     isMagicRoom?: boolean;
+    isTrickRoom?: boolean;
     isWonderRoom?: boolean;
     isGravity?: boolean;
     isRuststorm?: boolean;
@@ -93,5 +98,6 @@ export namespace State {
     isStenched?: boolean;
     isBlottedOut?: boolean;
     isSigma?: boolean;
+    fishingTokens?: number;
   }
 }

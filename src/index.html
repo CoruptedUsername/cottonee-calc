@@ -56,9 +56,11 @@
 		<br><p><input class="gen visually-hidden" type="radio" name="gen" value="98" id="gen98" disabled/><label class="btn btn-wide btn" for="gen98" style="color: #ffffff">PMPL5 Tiers:</label></p>
 		<span class="genSelection" aria-labelledby="selectGenInstruction" role="radiogroup" title="Select the generation.">
 			<span class="visually-hidden" id="selectGenInstruction2">Select the generation.</span>
-			<input class="gen visually-hidden" type="radio" name="gen" value="23" id="gen23" /><label class="btn btn-wide btn-left" for="gen23">Iron Fist</label>
-			<input class="gen visually-hidden" type="radio" name="gen" value="22" id="gen22" /><label class="btn btn-xxxwide btn-right" for="gen22">Megas Revisited</label>
+			<input class="gen visually-hidden" type="radio" name="gen" value="19" id="gen19" checked="checked" /><label class="btn btn-wide btn-left" for="gen19">BC Meta C</label>
 			<!--<input class="gen visually-hidden" type="radio" name="gen" value="24" id="gen24" /><label class="btn btn-wide btn-right" for="gen24">FE SV</label>-->
+			<input class="gen visually-hidden" type="radio" name="gen" value="23" id="gen23" /><label class="btn btn-wide btn-mid" for="gen23">Iron Fist</label>
+			<input class="gen visually-hidden" type="radio" name="gen" value="22" id="gen22" /><label class="btn btn-xxxwide btn-mid" for="gen22">Megas Revisited</label>
+      	<input class="gen visually-hidden" type="radio" name="gen" value="16" id="gen16" /><label class="btn btn-wide btn-right" for="gen16">Paleomons</label>
 		</span> <!-- NewGenChange-->
 		<br><br><p><input class="gen visually-hidden" type="radio" name="gen" value="99" id="gen99" disabled/><label class="btn btn-wide btn" for="gen99" style="color: #ffffff">Other Tiers:</label></p>
 		<span class="genSelection" aria-labelledby="selectGenInstruction" role="radiogroup" title="Select the generation.">
@@ -69,10 +71,9 @@
       	<input class="gen visually-hidden" type="radio" name="gen" value="13" id="gen13" /><label class="btn btn-xxwide btn-mid" for="gen13">Monster Hunter</label>
       	<input class="gen visually-hidden" type="radio" name="gen" value="14" id="gen14" /><label class="btn btn-wide btn-mid" for="gen14">Six by Six</label>
       	<input class="gen visually-hidden" type="radio" name="gen" value="15" id="gen15" /><label class="btn btn-xxwide btn-mid" for="gen15">Tier Sovereign</label>
-      	<input class="gen visually-hidden" type="radio" name="gen" value="16" id="gen16" /><label class="btn btn-wide btn-mid" for="gen16">Paleomons</label>
       	<input class="gen visually-hidden" type="radio" name="gen" value="17" id="gen17" /><label class="btn btn-small btn-mid" for="gen17">DNU</label>
       	<input class="gen visually-hidden" type="radio" name="gen" value="18" id="gen18" /><label class="btn btn-wide btn-mid" for="gen18">BC Meta A</label>
-			<input class="gen visually-hidden" type="radio" name="gen" value="19" id="gen19" checked="checked" /><label class="btn btn-wide btn-mid" for="gen19">BC Meta C</label>
+      	<input class="gen visually-hidden" type="radio" name="gen" value="25" id="gen25" /><label class="btn btn-wide btn-mid" for="gen25">BC Meta D</label>
       	<input class="gen visually-hidden" type="radio" name="gen" value="20" id="gen20" /><label class="btn btn-wide btn-mid" for="gen20">FE VGC</label>
 			<input class="gen visually-hidden" type="radio" name="gen" value="21" id="gen21" /><label class="btn btn-wide btn-right" for="gen21">MMM4</label>
 		</span> <!-- NewGenChange-->
@@ -85,8 +86,8 @@
 		<span class="modeSelection" aria-labelledby="selectModeInstruction" role="radiogroup" title="Select the calculator's mode of function.">
             <span class="visually-hidden" id="selectModeInstruction">Select the calculator's mode of function.</span>
             <input class="mode visually-hidden" type="radio" name="mode" id="one-vs-one" checked="checked" /><label class="btn btn-left btn-wide" for="one-vs-one">One vs One</label>
-            <input class="mode visually-hidden" type="radio" name="mode" id="one-vs-all" /><label class="btn btn-mid btn-wide gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" for="one-vs-all">One vs All</label>
-            <input class="mode visually-hidden" type="radio" name="mode" id="all-vs-one" /><label class="btn btn-mid btn-wide gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" for="all-vs-one">All vs One</label>
+            <input class="mode visually-hidden" type="radio" name="mode" id="one-vs-all" /><label class="btn btn-mid btn-wide gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" for="one-vs-all">One vs All</label>
+            <input class="mode visually-hidden" type="radio" name="mode" id="all-vs-one" /><label class="btn btn-mid btn-wide gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" for="all-vs-one">All vs One</label>
             <input class="mode visually-hidden" type="radio" name="mode" id="randoms" /><label class="btn btn-mid btn-wide" for="randoms">Random Battles</label>
             <input class="mode visually-hidden" type="radio" name="mode" id="oms" /><label class="btn btn-right btn-xwide" for="oms">Other Metagames</label>
         </span>
@@ -172,7 +173,7 @@
 					<select aria-label="type4" class="gen-specific g23 type4 terrain-trigger calc-trigger"></select>
 					<small class="right">(<a class="analysis links-lighten" target="_blank" href="">Smogon&nbsp;analysis</a>)</small>
 				</div>
-				<div class="gen-specific g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g19 g13 g20">
+				<div class="gen-specific g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g13 g20">
 					<label>Tera Type</label>
 					<select class="teraType terrain-trigger calc-trigger"></select>
 					<input type="checkbox" title= "Has this Pok&eacute;mon terastalized?" class="teraToggle terrain-trigger calc-trigger">
@@ -208,8 +209,8 @@
 					<tr>
 						<th></th>
 						<th scope="col">Base</th>
-						<th class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" scope="col">IVs</th>
-						<th class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" scope="col">EVs</th>
+						<th class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" scope="col">IVs</th>
+						<th class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" scope="col">EVs</th>
 						<th class="gen-specific g1 g10 g2 hide" scope="col">DVs</th>
 						<th></th>
 						<th></th>
@@ -223,10 +224,10 @@
 						<td>
 							<input class="base calc-trigger" value="100" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="ivs calc-trigger" value="31" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" inputmode="decimal" />
 						</td>
 						<td class="gen-specific g1 g10 g2 hide">
@@ -243,10 +244,10 @@
 						<td>
 							<input class="base calc-trigger" value="100" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="ivs calc-trigger" value="31" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" inputmode="decimal" />
 						</td>
 						<td class="gen-specific g1 g10 g2 hide">
@@ -279,10 +280,10 @@
 						<td>
 							<input class="base calc-trigger" value="100" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="ivs calc-trigger" value="31" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" inputmode="decimal" />
 						</td>
 						<td class="gen-specific g1 g10 g2 hide">
@@ -308,17 +309,17 @@
 							</select>
 						</td>
 					</tr>
-					<tr class="sa gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="sa gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<th scope="row">
 							<label>Sp. Atk</label>
 						</th>
 						<td>
 							<input class="base calc-trigger" value="100" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="ivs calc-trigger" value="31" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" inputmode="decimal" />
 						</td>
 						<td class="gen-specific g1 g10 g2 hide">
@@ -344,17 +345,17 @@
 							</select>
 						</td>
 					</tr>
-					<tr class="sd gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="sd gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<th scope="row">
 							<label>Sp. Def</label>
 						</th>
 						<td>
 							<input class="base calc-trigger" value="100" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="ivs calc-trigger" value="31" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" inputmode="decimal" />
 						</td>
 						<td class="gen-specific g1 g10 g2 hide">
@@ -417,10 +418,10 @@
 						<td>
 							<input class="base calc-trigger" value="100" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="ivs calc-trigger" value="31" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" inputmode="decimal" />
 						</td>
 						<td class="gen-specific g1 g10 g2 hide">
@@ -454,7 +455,7 @@
 						</th>
 						<td></td>
 						<td></td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<span class="evs calc-trigger">0</span>
 						</td>
 					</tr>
@@ -462,7 +463,7 @@
 				</table>
 			</div>
 			<div class="info-group info-selectors">
-				<div class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+				<div class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 					<label for="natureL1">Nature</label>
 					<select class="nature calc-trigger" id="natureL1">
 						<option value="Adamant">Adamant (+Atk, -SpA)</option>
@@ -492,7 +493,7 @@
 						<option value="Timid">Timid (+Spe, -Atk)</option>
 					</select>
 				</div>
-				<div class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+				<div class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 					<label for="abilityL1">Ability</label>
 					<select class="ability terrain-trigger calc-trigger" id="abilityL1"></select>
 					<input hidden type="checkbox" title= "Is this ability active?" class="abilityToggle calc-trigger">
@@ -527,11 +528,11 @@
 						<option value="cool">Cooling</option>
 					</select>
 				</div>
-				<div class="gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+				<div class="gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 					<label for="itemL1">Item</label>
 					<select class="item terrain-trigger calc-trigger" id="itemL1"></select>
 				</div>
-				<div class="gen-specific g1 g10 g2 g3 g4 g5 g11 g6 g7 g8 g9 g24 g22 g21 g12 g14 g15 g16 g17 g18 g19 g20">
+				<div class="gen-specific g1 g10 g2 g3 g4 g5 g11 g6 g7 g8 g9 g24 g22 g21 g12 g14 g15 g16 g17 g18 g25 g19 g20">
 					<label for="statusL1">Status</label>
 					<select class="status calc-trigger" id="statusL1">
 						<option value="Healthy">Healthy</option>
@@ -638,14 +639,14 @@
 				<select class="move-selector calc-trigger small-select"></select>
 				<input class="move-bp calc-trigger" value="50" inputmode="decimal" />
 				<select class="move-type calc-trigger"></select>
-				<select class="move-cat calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+				<select class="move-cat calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 					<option value="Physical">Physical</option>
 					<option value="Special">Special</option>
 				</select>
 				<input aria-describedby="criticalHitInstruction" class="move-crit calc-trigger visually-hidden" type="checkbox" id="critL1" />
 				<label class="btn crit-btn" for="critL1" title="Force this attack to be a critical hit?">Crit</label>
 				<input aria-describedby="zMoveInstruction" class="move-z calc-trigger visually-hidden" type="checkbox" id="zL1"/>
-				<label class="btn z-btn gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" for="zL1" title="Make this attack a Z-move?">Z</label>
+				<label class="btn z-btn gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" for="zL1" title="Make this attack a Z-move?">Z</label>
 				<input aria-describedby="stellarBoostInstruction" class="move-stellar calc-trigger visually-hidden" type="checkbox" id="stellarL1" />
 				<label class="stellar-btn btn" style="display: none;" for="stellarL1" title="Make this attack Stellar boosted?">Stellar</label>
 				<select class="move-hits calc-trigger hide">
@@ -669,19 +670,29 @@
 					<option value="4">4 times</option>
 					<option value="5">5 times</option>
 				</select>
+				<select class="moveAlliesFainted calc-trigger hide" title="How many allies have fainted?">
+					<option value="0">Zero allies fainted</option>
+					<option value="1">One ally fainted</option>
+					<option value="2">Two allies fainted</option>
+					<option value="3">Three allies fainted</option>
+					<option value="4">Four allies fainted</option>
+					<option value="5">Five allies fainted</option>
+				</select>
+				<input class="num-trumps calc-trigger hide" value="0" inputmode="decimal" title="How many times has the move 'Trump Card' been used by your team?"/>
+				<input class="pp-counter calc-trigger hide" value="16" inputmode="decimal" title="How much PP do you have left on this move? (Before clicking the move)"/>
 			</div>
 			<div class="move2">
 				<select class="move-selector calc-trigger small-select"></select>
 				<input class="move-bp calc-trigger" value="0" inputmode="decimal" />
 				<select class="move-type calc-trigger"></select>
-				<select class="move-cat calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+				<select class="move-cat calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 					<option value="Physical">Physical</option>
 					<option value="Special">Special</option>
 				</select>
 				<input aria-describedby="criticalHitInstruction" class="move-crit calc-trigger visually-hidden" type="checkbox" id="critL2" />
 				<label class="btn crit-btn" for="critL2" title="Force this attack to be a critical hit?">Crit</label>
 				<input aria-describedby="zMoveInstruction" class="move-z calc-trigger visually-hidden" type="checkbox" id="zL2"/>
-				<label class="btn z-btn gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" for="zL2" title="Make this attack a Z-move?">Z</label>
+				<label class="btn z-btn gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" for="zL2" title="Make this attack a Z-move?">Z</label>
 				<input aria-describedby="stellarBoostInstruction" class="move-stellar calc-trigger visually-hidden" type="checkbox" id="stellarL2" />
 				<label class="stellar-btn btn" style="display: none;" for="stellarL2" title="Make this attack Stellar boosted?">Stellar</label>
 				<select class="move-hits calc-trigger hide">
@@ -705,19 +716,29 @@
 					<option value="4">4 times</option>
 					<option value="5">5 times</option>
 				</select>
+				<select class="moveAlliesFainted calc-trigger hide" title="How many allies have fainted?">
+					<option value="0">Zero allies fainted</option>
+					<option value="1">One ally fainted</option>
+					<option value="2">Two allies fainted</option>
+					<option value="3">Three allies fainted</option>
+					<option value="4">Four allies fainted</option>
+					<option value="5">Five allies fainted</option>
+				</select>
+				<input class="num-trumps calc-trigger hide" value="0" inputmode="decimal" title="How many times has the move 'Trump Card' been used by your team?"/>
+				<input class="pp-counter calc-trigger hide" value="16" inputmode="decimal" title="How much PP do you have left on this move? (Before clicking the move)"/>
 			</div>
 			<div class="move3">
 				<select class="move-selector calc-trigger small-select"></select>
 				<input class="move-bp calc-trigger" value="0" inputmode="decimal" />
 				<select class="move-type calc-trigger"></select>
-				<select class="move-cat calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+				<select class="move-cat calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 					<option value="Physical">Physical</option>
 					<option value="Special">Special</option>
 				</select>
 				<input aria-describedby="criticalHitInstruction" class="move-crit calc-trigger visually-hidden" type="checkbox" id="critL3" />
 				<label class="btn crit-btn" for="critL3" title="Force this attack to be a critical hit?">Crit</label>
 				<input aria-describedby="zMoveInstruction" class="move-z calc-trigger visually-hidden" type="checkbox" id="zL3"/>
-				<label class="btn z-btn gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" for="zL3" title="Make this attack a Z-move?">Z</label>
+				<label class="btn z-btn gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" for="zL3" title="Make this attack a Z-move?">Z</label>
 				<input aria-describedby="stellarBoostInstruction" class="move-stellar calc-trigger visually-hidden" type="checkbox" id="stellarL3" />
 				<label class="stellar-btn btn" style="display: none;" for="stellarL3" title="Make this attack Stellar boosted?">Stellar</label>
 				<select class="move-hits calc-trigger hide">
@@ -741,19 +762,29 @@
 					<option value="4">4 times</option>
 					<option value="5">5 times</option>
 				</select>
+				<select class="moveAlliesFainted calc-trigger hide" title="How many allies have fainted?">
+					<option value="0">Zero allies fainted</option>
+					<option value="1">One ally fainted</option>
+					<option value="2">Two allies fainted</option>
+					<option value="3">Three allies fainted</option>
+					<option value="4">Four allies fainted</option>
+					<option value="5">Five allies fainted</option>
+				</select>
+				<input class="num-trumps calc-trigger hide" value="0" inputmode="decimal" title="How many times has the move 'Trump Card' been used by your team?"/>
+				<input class="pp-counter calc-trigger hide" value="16" inputmode="decimal" title="How much PP do you have left on this move? (Before clicking the move)"/>
 			</div>
 			<div class="move4">
 				<select class="move-selector calc-trigger small-select"></select>
 				<input class="move-bp calc-trigger" value="0" inputmode="decimal" />
 				<select class="move-type calc-trigger"></select>
-				<select class="move-cat calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+				<select class="move-cat calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 					<option value="Physical">Physical</option>
 					<option value="Special">Special</option>
 				</select>
 				<input aria-describedby="criticalHitInstruction" class="move-crit calc-trigger visually-hidden" type="checkbox" id="critL4" />
 				<label class="btn crit-btn" for="critL4" title="Force this attack to be a critical hit?">Crit</label>
 				<input aria-describedby="zMoveInstruction" class="move-z calc-trigger visually-hidden" type="checkbox" id="zL4"/>
-				<label class="btn z-btn gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" for="zL4" title="Make this attack a Z-move?">Z</label>
+				<label class="btn z-btn gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" for="zL4" title="Make this attack a Z-move?">Z</label>
 				<input aria-describedby="stellarBoostInstruction" class="move-stellar calc-trigger visually-hidden" type="checkbox" id="stellarL4" />
 				<label class="stellar-btn btn" style="display: none;" for="stellarL4" title="Make this attack Stellar boosted?">Stellar</label>
 				<select class="move-hits calc-trigger hide">
@@ -777,6 +808,16 @@
 					<option value="4">4 times</option>
 					<option value="5">5 times</option>
 				</select>
+				<select class="moveAlliesFainted calc-trigger hide" title="How many allies have fainted?">
+					<option value="0">Zero allies fainted</option>
+					<option value="1">One ally fainted</option>
+					<option value="2">Two allies fainted</option>
+					<option value="3">Three allies fainted</option>
+					<option value="4">Four allies fainted</option>
+					<option value="5">Five allies fainted</option>
+				</select>
+				<input class="num-trumps calc-trigger hide" value="0" inputmode="decimal" title="How many times has the move 'Trump Card' been used by your team?"/>
+				<input class="pp-counter calc-trigger hide" value="16" inputmode="decimal" title="How much PP do you have left on this move? (Before clicking the move)"/>
 			</div>
 		</fieldset>
 	</div>
@@ -785,7 +826,7 @@
 		<div aria-label="Field information" role="region">
 			<fieldset class="field-info">
 				<legend align="center">Field</legend>
-				<div aria-labelledby="selectBattleFormatInstruction" class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" role="radiogroup" style="width: 10.6em; margin: 0 auto 5px;" title="Select the battle format.">
+				<div aria-labelledby="selectBattleFormatInstruction" class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" role="radiogroup" style="width: 10.6em; margin: 0 auto 5px;" title="Select the battle format.">
 					<span class="visually-hidden" id="selectBattleFormatInstruction">Select the battle format.</span>
 					<input class="visually-hidden calc-trigger" type="radio" name="format" value="Singles" id="singles-format" />
 					<label class="btn btn-left" for="singles-format">Singles</label>
@@ -796,12 +837,12 @@
 					<span class="visually-hidden" id="selectDefaultLevelInstruction">Select the default level.</span>
 					<input class="visually-hidden calc-trigger" type="radio" name="defaultLevel" value="100" id="default-level-100" />
 					<label class="btn btn-wide btn-left" for="default-level-100">Level 100</label>
-					<input class="visually-hidden calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" type="radio" name="defaultLevel" value="50" id="default-level-50" />
-					<label class="btn btn-wide btn-mid gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" for="default-level-50">Level 50</label>
+					<input class="visually-hidden calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" type="radio" name="defaultLevel" value="50" id="default-level-50" />
+					<label class="btn btn-wide btn-mid gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" for="default-level-50">Level 50</label>
 					<input class="visually-hidden calc-trigger" type="radio" name="defaultLevel" value="5" id="default-level-5" />
 					<label class="btn btn-wide btn-right" for="default-level-5">Level 5</label>
 				</div>
-				<div aria-labelledby="selectTerrainInstruction" class="gen-specific g6 g7 g8 g9 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" role="group" title="Select the current terrain.">
+				<div aria-labelledby="selectTerrainInstruction" class="gen-specific g6 g7 g8 g9 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" role="group" title="Select the current terrain.">
 					<span class="visually-hidden" id="selectTerrainInstruction">Select the current terrain.</span>
 					<input class="visually-hidden terrain-trigger calc-trigger" type="checkbox" name="terrain" value="Electric" id="electric" /><label class="btn btn-left" for="electric">Electric</label>
 					<input class="visually-hidden terrain-trigger calc-trigger" type="checkbox" name="terrain" value="Grassy" id="grassy" /><label class="btn btn-mid" for="grassy">Grassy</label>
@@ -817,7 +858,7 @@
 					<input class="visually-hidden terrain-trigger calc-trigger" type="checkbox" name="terrain2" value="Misty" id="misty2" /><label class="btn btn-small btn-mid" for="misty2">Misty</label>
 					<input class="visually-hidden terrain-trigger calc-trigger" type="checkbox" name="terrain2" value="Psychic" id="psychic2" /><label class="btn btn-right" for="psychic2">Psychic</label>
 				</div>
-				<div aria-labelledby="selectRuinInstruction" class="gen-specific g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g19 format-specific doubles" role="group" style="margin: 5px auto auto;" title="Select the ruin abilities from other Pok&eacute;mon on the field.">
+				<div aria-labelledby="selectRuinInstruction" class="gen-specific g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 format-specific doubles" role="group" style="margin: 5px auto auto;" title="Select the ruin abilities from other Pok&eacute;mon on the field.">
 					<span class="visually-hidden" id="selectRuinInstruction">Select the active Ruin abilities from other Poke&eacute;mon on the field.</span>
 					<input class="visually-hidden calc-trigger" type="checkbox" name="ruin" value="Beads" id="beads" />
 					<label class="btn btn-left" for="beads">Beads</label>
@@ -839,44 +880,22 @@
 					<input class="visually-hidden calc-trigger" type="checkbox" name="ruin" value="Vessel" id="poultry" />
 					<label class="btn btn-xxxwide btn-right" for="poultry">Poultry of Ruin</label>
 				</div>
-				<hr class="gen-specific g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" />
+				<hr class="gen-specific g11 g9 g24 g21 g12 g15 g16 g17 g18 g25 g19 g20" />
 				<div aria-labelledby="selectWeatherInstruction" role="radiogroup">
 					<span class="visually-hidden" id="selectWeatherInstruction">Select the current weather condition.</span>
-					<div class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" style="width: 22.2em; margin: 5px auto;" title="Select the current weather condition.">
+					<div class="gen-specific g11 g9 g24 g21 g12 g15 g16 g17 g18 g25 g19 g20" style="width: 22.2em; margin: 5px auto;" title="Select the current weather condition.">
 						<input class="weather visually-hidden calc-trigger" type="radio" name="weather" value="" id="clear" checked="checked" />
 						<label class="btn btn-small btn-left" for="clear">None</label>
-						<input class="weather visually-hidden calc-trigger" type="radio" name="weather" value="Sun" id="sun" />
-						<label class="btn btn-small btn-mid" for="sun">Sun</label>
 						<input class="weather visually-hidden calc-trigger" type="radio" name="weather" value="Rain" id="rain" />
 						<label class="btn btn-small btn-mid" for="rain">Rain</label>
 						<input class="weather visually-hidden calc-trigger" type="radio" name="weather" value="Sand" id="sand" />
 						<label class="btn btn-small btn-mid" for="sand">Sand</label>
-						<span class="gen-specific g3 g4 g5 g6 g7 g8">
-                            <input class="weather visually-hidden calc-trigger" type="radio" name="weather" value="Hail" id="hail" />
-                            <label class="btn btn-small btn-right" for="hail">Hail</label>
-                        </span>
-						<span class="gen-specific g9 g23 g24 g21 g11 g12 g13 g14 g15 g16 g17 g18 g19 g20">
-                            <input class="weather visually-hidden calc-trigger" type="radio" name="weather" value="Snow" id="snow" />
-                            <label class="btn btn-small btn-right" for="snow">Snow</label>
-                        </span>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather" value="Snow" id="snow" />
+						<label class="btn btn-small btn-mid" for="snow">Snow</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather" value="Sun" id="sun" />
+						<label class="btn btn-small btn-right" for="sun">Sun</label>
 					</div>
-					<div class="gen-specific g23" style="width: 22.2em; margin: 5px auto;" title="Select the current weather condition.">
-						<input class="weather visually-hidden calc-trigger" type="radio" name="weather2" value="" id="clear2" checked="checked" />
-						<label class="btn btn-xsmall btn-left" for="clear2">None</label>
-						<input class="weather visually-hidden calc-trigger" type="radio" name="weather2" value="Acid" id="acid2" />
-						<label class="btn btn-xsmall btn-mid" for="snow2">Acid</label>
-						<input class="weather visually-hidden calc-trigger" type="radio" name="weather2" value="Grave" id="grave2" />
-						<label class="btn btn-xsmall btn-mid" for="snow2">Grave</label>
-						<input class="weather visually-hidden calc-trigger" type="radio" name="weather2" value="Rain" id="rain2" />
-						<label class="btn btn-xsmall btn-mid" for="rain2">Rain</label>
-						<input class="weather visually-hidden calc-trigger" type="radio" name="weather2" value="Sand" id="sand2" />
-						<label class="btn btn-xsmall btn-mid" for="sand2">Sand</label>
-						<input class="weather visually-hidden calc-trigger" type="radio" name="weather2" value="Snow" id="snow2" />
-						<label class="btn btn-xsmall btn-mid" for="snow2">Snow</label>
-						<input class="weather visually-hidden calc-trigger" type="radio" name="weather2" value="Sun" id="sun2" />
-						<label class="btn btn-xsmall btn-right" for="sun2">Sun</label>
-					</div>
-					<div class="gen-specific g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" title="Select the current weather condition.">
+					<div class="gen-specific g9" title="Select the current weather condition.">
 						<input class="weather visually-hidden calc-trigger" type="radio" name="weather" value="Harsh Sunshine" id="harsh-sunshine" />
 						<label class="btn btn-xxxwide btn-left" for="harsh-sunshine">Harsh Sunshine</label>
 						<input class="weather visually-hidden calc-trigger" type="radio" name="weather" value="Heavy Rain" id="heavy-rain" />
@@ -884,36 +903,130 @@
 						<input class="weather visually-hidden calc-trigger" type="radio" name="weather" value="Strong Winds" id="strong-winds" />
 						<label class="btn btn-xxxwide btn-right" for="strong-winds">Strong Winds</label>
 					</div>
-					<div class="gen-specific g13" title="Select the current weather condition.">
-						<input class="weather visually-hidden calc-trigger" type="radio" name="weather" value="Absolute Zero" id="absolute-zero" />
-						<label class="btn btn-xxxwide btn-left" for="absolute-zero">Absolute Zero</label>
-						<input class="weather visually-hidden calc-trigger" type="radio" name="weather" value="Dust Devil" id="dust-devil" />
-						<label class="btn btn-xxxwide btn-right" for="dust-devil">Dust Devil</label>
+				</div>
+				<hr class="gen-specific g3 g4 g5 g6 g7 g8 g22" />
+				<div aria-labelledby="selectWeatherInstruction-hail" role="radiogroup">
+					<span class="visually-hidden" id="selectWeatherInstruction-hail">Select the current weather condition.</span>
+					<div class="gen-specific g3 g4 g5 g6 g7 g8 g22" style="width: 22.2em; margin: 5px auto;" title="Select the current weather condition.">
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-hail" value="" id="clear-hail" checked="checked" />
+						<label class="btn btn-small btn-left" for="clear-hail">None</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-hail" value="Snow" id="hail-hail" />
+						<label class="btn btn-small btn-mid" for="hail-hail">Hail</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-hail" value="Rain" id="rain-hail" />
+						<label class="btn btn-small btn-mid" for="rain-hail">Rain</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-hail" value="Sand" id="sand-hail" />
+						<label class="btn btn-small btn-mid" for="sand-hail">Sand</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-hail" value="Sun" id="sun-hail" />
+						<label class="btn btn-small btn-right" for="sun-hail">Sun</label>
+					</div>
+					<div class="gen-specific g6 g7 g8" title="Select the current weather condition.">
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-hail" value="Harsh Sunshine" id="harsh-sunshine-hail" />
+						<label class="btn btn-xxxwide btn-left" for="harsh-sunshine-hail">Harsh Sunshine</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-hail" value="Heavy Rain" id="heavy-rain-hail" />
+						<label class="btn btn-xxxwide btn-mid" for="heavy-rain-hail">Heavy Rain</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-hail" value="Strong Winds" id="strong-winds-hail" />
+						<label class="btn btn-xxxwide btn-right" for="strong-winds-hail">Strong Winds</label>
 					</div>
 				</div>
-				<div aria-labelledby="selectGscWeatherInstruction" class="gen-specific g2 hide" role="radiogroup" style="width: 17.8em; margin: 0 auto 5px;" title="Select the current weather condition.">
-					<span class="visually-hidden" id="selectGscWeatherInstruction">Select the current weather condition.</span>
-					<input class="weather visually-hidden calc-trigger" type="radio" name="gscWeather" value="" id="gscClear" checked="checked" />
-					<label class="btn btn-small btn-left" for="gscClear">None</label>
-					<input class="weather visually-hidden calc-trigger" type="radio" name="gscWeather" value="Sun" id="gscSun" />
-					<label class="btn btn-small btn-mid" for="gscSun">Sun</label>
-					<input class="weather visually-hidden calc-trigger" type="radio" name="gscWeather" value="Rain" id="gscRain" />
-					<label class="btn btn-small btn-mid" for="gscRain">Rain</label>
-					<input class="weather visually-hidden calc-trigger" type="radio" name="gscWeather" value="Sand" id="gscSand" />
-					<label class="btn btn-small btn-right" for="gscSand">Sand</label>
+				<hr class="gen-specific g2" />
+				<div aria-labelledby="selectWeatherInstruction-nocold" role="radiogroup">
+					<span class="visually-hidden" id="selectWeatherInstruction-nocold">Select the current weather condition.</span>
+					<div class="gen-specific g2" style="width: 22.2em; margin: 5px auto;" title="Select the current weather condition.">
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-nocold" value="" id="clear-nocold" checked="checked" />
+						<label class="btn btn-small btn-left" for="clear-nocold">None</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-nocold" value="Rain" id="rain-nocold" />
+						<label class="btn btn-small btn-mid" for="rain-nocold">Rain</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-nocold" value="Sand" id="sand-nocold" />
+						<label class="btn btn-small btn-mid" for="sand-nocold">Sand</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-nocold" value="Sun" id="sun-nocold" />
+						<label class="btn btn-small btn-right" for="sun-nocold">Sun</label>
+					</div>
 				</div>
-				<div class="gen-specific g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" style="width: 22.2em; margin: 5px auto; display: inline-block;">
+				<hr class="gen-specific g13" />
+				<div aria-labelledby="selectWeatherInstruction-mh" role="radiogroup">
+					<span class="visually-hidden" id="selectWeatherInstruction-mh">Select the current weather condition.</span>
+					<div class="gen-specific g13" style="width: 22.2em; margin: 5px auto;" title="Select the current weather condition.">
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-mh" value="" id="clear-mh" checked="checked" />
+						<label class="btn btn-small btn-left" for="clear-mh">None</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-mh" value="Rain" id="rain-mh" />
+						<label class="btn btn-small btn-mid" for="rain-mh">Rain</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-mh" value="Sand" id="sand-mh" />
+						<label class="btn btn-small btn-mid" for="sand-mh">Sand</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-mh" value="Snow" id="snow-mh" />
+						<label class="btn btn-small btn-mid" for="snow-mh">Snow</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-mh" value="Sun" id="sun-mh" />
+						<label class="btn btn-small btn-right" for="sun-mh">Sun</label>
+					</div>
+					<div class="gen-specific g13" title="Select the current weather condition.">
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-mh" value="Harsh Sunshine" id="harsh-sunshine-mh" />
+						<label class="btn btn-xxxwide btn-left" for="harsh-sunshine-mh">Harsh Sunshine</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-mh" value="Heavy Rain" id="heavy-rain-mh" />
+						<label class="btn btn-xxxwide btn-mid" for="heavy-rain-mh">Heavy Rain</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-mh" value="Strong Winds" id="strong-winds-mh" />
+						<label class="btn btn-xxxwide btn-right" for="strong-winds-mh">Strong Winds</label>
+					</div>
+					<div class="gen-specific g13" title="Select the current weather condition.">
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-mh" value="Absolute Zero" id="absolute-zero-mh" />
+						<label class="btn btn-xxxwide btn-left" for="absolute-zero-mh">Absolute Zero</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-mh" value="Dust Devil" id="dust-devil-mh" />
+						<label class="btn btn-xxxwide btn-right" for="dust-devil-mh">Dust Devil</label>
+					</div>
+				</div>
+				<hr class="gen-specific g14" />
+				<div aria-labelledby="selectWeatherInstruction-sbs" role="radiogroup">
+					<span class="visually-hidden" id="selectWeatherInstruction-sbs">Select the current weather condition.</span>
+					<div class="gen-specific g14" style="width: 22.2em; margin: 5px auto;" title="Select the current weather condition.">
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-sbs" value="" id="clear-sbs" checked="checked" />
+						<label class="btn btn-small btn-left" for="clear-sbs">None</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-sbs" value="Rain" id="rain-sbs" />
+						<label class="btn btn-small btn-mid" for="rain-sbs">Rain</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-sbs" value="Sand" id="sand-sbs" />
+						<label class="btn btn-small btn-mid" for="sand-sbs">Sand</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-sbs" value="Snow" id="snow-sbs" />
+						<label class="btn btn-small btn-mid" for="snow-sbs">Snow</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-sbs" value="Sun" id="sun-sbs" />
+						<label class="btn btn-small btn-right" for="sun-sbs">Sun</label>
+					</div>
+					<div class="gen-specific g14" title="Select the current weather condition.">
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-sbs" value="Strong Winds" id="strong-winds-sbs" />
+						<label class="btn btn-xxxwide" for="strong-winds-sbs">Strong Winds</label>
+					</div>
+				</div>
+				<hr class="gen-specific g23" />
+				<div aria-labelledby="selectWeatherInstruction-if" role="radiogroup">
+					<span class="visually-hidden" id="selectWeatherInstruction-if">Select the current weather condition.</span>
+					<div class="gen-specific g23" style="width: 22.2em; margin: 5px auto;" title="Select the current weather condition.">
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-if" value="" id="clear-if" checked="checked" />
+						<label class="btn btn-xsmall btn-left" for="clear-if">None</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-if" value="Acid" id="acid-if" />
+						<label class="btn btn-xsmall btn-mid" for="acid-if">Acid</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-if" value="Grave" id="grave-if" />
+						<label class="btn btn-xsmall btn-mid" for="grave-if">Grave</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-if" value="Rain" id="rain-if" />
+						<label class="btn btn-xsmall btn-mid" for="rain-if">Rain</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-if" value="Sand" id="sand-if" />
+						<label class="btn btn-xsmall btn-mid" for="sand-if">Sand</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-if" value="Snow" id="snow-if" />
+						<label class="btn btn-xsmall btn-mid" for="snow-if">Snow</label>
+						<input class="weather visually-hidden calc-trigger" type="radio" name="weather-if" value="Sun" id="sun-if" />
+						<label class="btn btn-xsmall btn-right" for="sun-if">Sun</label>
+					</div>
+				</div>
+				<div class="gen-specific g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" style="width: 22.2em; margin: 5px auto; display: inline-block;">
 					<span hidden id="magicRoomInstruction">Is Magic Room in effect?</span>
+					<span hidden id="trickRoomInstruction">Is Trick Room in effect?</span>
 					<span hidden id="wonderRoomInstruction">Is Wonder Room in effect?</span>
 					<input aria-describedby="magicRoomInstruction" class="visually-hidden calc-trigger" type="checkbox" id="magicroom" />
-					<label class="btn btn-xxxwide btn-left" for="magicroom">Magic Room</label>
+					<label class="btn btn-xwide btn-left" for="magicroom">Magic Room</label>
+					<input aria-describedby="trickRoomInstruction" class="visually-hidden calc-trigger" type="checkbox" id="trickroom" />
+					<label class="btn btn-xwide btn-mid" for="trickroom">Trick Room</label>
 					<input aria-describedby="wonderRoomInstruction" class="visually-hidden calc-trigger" type="checkbox" id="wonderroom" />
-					<label class="btn btn-xxxwide btn-right" for="wonderroom">Wonder Room</label>
+					<label class="btn btn-xwide btn-right" for="wonderroom">Wonder Room</label>
 				</div>
-				<div class="gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g14 g15 g16 g17 g18 g19 g20" style="width: 22.2em; margin: 5px auto; display: inline-block;">
+				<div class="gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g14 g15 g16 g17 g18 g25 g19 g20" style="width: 22.2em; margin: 5px auto; display: inline-block;">
 					<span hidden id="gravityInstruction">Is gravity in effect?</span>
 					<input aria-describedby="gravityInstruction" class="visually-hidden calc-trigger" type="checkbox" id="gravity" />
-					<label class="btn gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g14 g15 g16 g17 g18 g19 g20" for="gravity">Gravity</label>
+					<label class="btn gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g14 g15 g16 g17 g18 g25 g19 g20" for="gravity">Gravity</label>
 				</div>
 				<div class="gen-specific g13" style="width: 22.2em; margin: 5px auto; display: inline-block;">
 					<span hidden id="gravity2Instruction">Is gravity in effect?</span>
@@ -923,7 +1036,7 @@
 					<input aria-describedby="ruststormInstruction" class="visually-hidden calc-trigger" type="checkbox" id="ruststorm" />
 					<label class="btn btn-right btn-xwide gen-specific g13" for="ruststorm">Ruststorm</label>
 				</div>
-				<hr class="gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" />
+				<hr class="gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" />
 				<table class="field">
 					<thead>
 					<tr>
@@ -932,7 +1045,7 @@
 					</tr>
 					</thead>
 					<tbody>
-					<tr class="gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<div hidden id="selectStealthRockInstruction">Is Stealth Rock affecting this side of the field?</div>
 						<td><div class="left" title="Is Stealth Rock affecting this side of the field?">
 							<input aria-describedby="selectStealthRockInstruction" class="visually-hidden calc-trigger" type="checkbox" id="srL" />
@@ -984,7 +1097,7 @@
 							<label class="btn btn-wide btn-right" for="cannonadeR">Cannonade</label>
 						</div></td>
 					</tr>
-					<tr class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<div hidden id="selectSpikeInstruction">Are there Spikes on this side of the field?</div>
 						<td><div aria-labelledby="selectSpikeInstruction" class="left" role="radiogroup" title="Are there Spikes on this side of the field?">
 							<input class="visually-hidden calc-trigger" type="radio" name="spikesL" value="0" id="spikesL0" checked="checked" />
@@ -1035,8 +1148,7 @@
 					<tr>
 						<td><div class="left" title="How many Fishing Tokens does this team have?">
 							<div hidden id="selectFishingTokenInstruction">How many Fishing Tokens does this team have?</div>
-							<input aria-describedby="fishingTokenInstruction" class="visually-hidden calc-trigger" type="checkbox" id="fishingTokensL" />
-							<select class="fishingtokens calc-trigger">
+							<select class="fishingtokens gen-specific g23 calc-trigger" name="fishingTokens" id="fishingTokensL">
 								<option value="0" selected="selected">0 Fishing Tokens</option>
 								<option value="1">1 Fishing Token</option>
 								<option value="2">2 Fishing Tokens</option>
@@ -1051,8 +1163,7 @@
 							</select>
 						</div></td>
 						<td><div class="right" title="How many Fishing Tokens does this team have?">
-							<input aria-describedby="fishingTokenInstruction" class="visually-hidden calc-trigger" type="checkbox" id="fishingTokensR" />
-							<select class="fishingtokens calc-trigger">
+							<select class="fishingtokens gen-specific g23 calc-trigger" name="fishingTokens" id="fishingTokensR">
 								<option value="0" selected="selected">0 Fishing Tokens</option>
 								<option value="1">1 Fishing Token</option>
 								<option value="2">2 Fishing Tokens</option>
@@ -1067,7 +1178,7 @@
 							</select>
 						</div></td>
 					</tr>
-					<tr class="gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<td><div class="left" title="Is this Pok&eacute;mon protected?">
 							<div hidden id="selectProtectInstruction">Is this Pok&eacute;mon protected?</div>
 							<input aria-describedby="selectProtectInstruction" class="visually-hidden calc-trigger" type="checkbox" id="protectL" />
@@ -1089,7 +1200,7 @@
 							<label class="btn btn-wide" for="leechSeedR">Leech Seed</label>
 						</div></td>
 					</tr>
-					<tr class="gen-specific g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="gen-specific g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<td><div class="left" title="Has this Pok&eacute;mon been affected by Salt Cure?">
 							<div hidden id="selectSaltCureInstruction">Has this Pok&eacute;mon been affected by Salt Cure?</div>
 							<input aria-describedby="selectSaltCureInstruction" class="visually-hidden calc-trigger" type="checkbox" id="saltCureL" />
@@ -1188,7 +1299,7 @@
 							<label class="btn btn-wide" for="blotOutR">Blot Out</label>
 						</div></td>
 					</tr>
-					<tr class="gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<td><div class="left" title="Has this Pok&eacute;mon been revealed with Foresight or Odor Sleuth?">
 							<div hidden id="selectRevealInstruction">Has this Pok&eacute;mon been revealed with Foresight or Odor Sleuth?</div>
 							<input aria-describedby="selectRevealInstruction" class="visually-hidden calc-trigger" type="checkbox" id="foresightL" />
@@ -1199,7 +1310,7 @@
 							<label class="btn btn-wide" for="foresightR">Foresight</label>
 						</div></td>
 					</tr>
-					<tr class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<td><div class="left" title="Has this Pok&eacute;mon's power been boosted by an ally's Helping Hand?">
 							<div hidden id="selectHelpingHandInstruction">Has this Pok&eacute;mon's power been boosted by an ally's Helping Hand?</div>
 							<input aria-describedby="selectHelpingHandInstruction" class="visually-hidden calc-trigger" type="checkbox" id="helpingHandL" />
@@ -1210,7 +1321,7 @@
 							<label class="btn btn-xxwide" for="helpingHandR">Helping Hand</label>
 						</div></td>
 					</tr>
-					<tr class="gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<td><div class="left" title="Has this Pok&eacute;mon's speed been boosted by Tailwind?">
 							<div hidden id="selectTailwindInstruction">Has this Pok&eacute;mon's power been boosted by an ally's Helping Hand?</div>
 							<input aria-describedby="selectTailwindInstruction" class="visually-hidden calc-trigger" type="checkbox" id="tailwindL" />
@@ -1221,7 +1332,7 @@
 							<label class="btn btn-xxwide" for="tailwindR">Tailwind</label>
 						</div></td>
 					</tr>
-					<tr class="gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<td><div class="left" title="Is the Pok&eacute;mon affected by an ally's Flower Gift?">
 							<div hidden id="selectFlowerGiftInstruction">Is the Pok&eacute;mon affected by an ally's Flower Gift?</div>
 							<input aria-describedby="selectFlowerGiftInstruction" class="visually-hidden calc-trigger" type="checkbox" id="flowerGiftL" />
@@ -1232,7 +1343,7 @@
 							<label class="btn btn-xxwide" for="flowerGiftR">Flower Gift</label>
 						</div></td>
 					</tr>
-					<tr class="gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<td><div class="left" title="Is the Pok&eacute;mon affected by Power Trick?">
 							<div hidden id="selectPowerTrickInstruction">Is the Pok&eacute;mon affected by Power Trick?</div>
 							<input aria-describedby="selectPowerTrickInstruction" class="visually-hidden calc-trigger" type="checkbox" id="powerTrickL" />
@@ -1243,7 +1354,7 @@
 							<label class="btn btn-xxwide" for="powerTrickR">Power Trick</label>
 						</div></td>
 					</tr>
-					<tr class="gen-specific g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="gen-specific g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<td><div class="left" title="Is the Pok&eacute;mon affected by an ally's Steely Spirit?">
 							<div hidden id="selectSteelySpiritInstruction">Is the Pok&eacute;mon affected by an ally's Steely Spirit?</div>
 							<input aria-describedby="selectSteelySpiritInstruction" class="visually-hidden calc-trigger" type="checkbox" id="steelySpiritL" />
@@ -1254,7 +1365,7 @@
 							<label class="btn btn-xxwide" for="steelySpiritR">Steely Spirit</label>
 						</div></td>
 					</tr>
-					<tr class="gen-specific g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="gen-specific g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<td><div class="left" title="Is the Pok&eacute;mon protected by an ally's Friend Guard?">
 							<div hidden id="selectFriendGuardInstruction">Is the Pok&eacute;mon protected by an ally's Friend Guard?</div>
 							<input aria-describedby="selectFriendGuardInstruction" class="visually-hidden calc-trigger" type="checkbox" id="friendGuardL" />
@@ -1265,7 +1376,7 @@
 							<label class="btn btn-xxwide" for="friendGuardR">Friend Guard</label>
 						</div></td>
 					</tr>
-					<tr class="gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<td><div class="left" title="Is the Pok&eacute;mon protected by an ally's Aurora Veil?">
 							<div hidden id="selectAuroraVeilInstruction">Is the Pok&eacute;mon protected by an ally's Aurora Veil?</div>
 							<input aria-describedby="selectAuroraVeilInstruction" class="visually-hidden calc-trigger" type="checkbox" id="auroraVeilL" />
@@ -1287,7 +1398,7 @@
 							<label class="btn btn-xxwide" for="StatBoostR">+1 All Stats</label>
 						</div></td>
 					</tr>
-					<tr class="gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<td><div class="left" title="Is the Pok&eacute;mon boosted by an ally's Battery ability?">
 							<div hidden id="selectBatteryInstruction">Is the Pok&eacute;mon boosted by an ally's Battery ability?</div>
 							<input aria-describedby="selectBatteryInstruction" class="visually-hidden calc-trigger" type="checkbox" id="batteryL" />
@@ -1298,7 +1409,7 @@
 							<label class="btn btn-xxwide" for="batteryR">Battery</label>
 						</div></td>
 					</tr>
-					<tr class="gen-specific g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="gen-specific g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<td><div class="left" title="Is the Pok&eacute;mon boosted by an ally's Power Spot ability?">
 							<div hidden id="selectPowerSpotInstruction">Is the Pok&eacute;mon boosted by an ally's Power Spot ability?</div>
 							<input aria-describedby="selectPowerSpotInstruction" class="visually-hidden calc-trigger" type="checkbox" id="powerSpotL" />
@@ -1309,7 +1420,7 @@
 							<label class="btn btn-xxwide" for="powerSpotR">Power Spot</label>
 						</div></td>
 					</tr>
-					<tr class="gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<td><div class="left" title="Is the defending Pok&eacute;mon switching out?">
 							<div hidden id="selectSwitchingInstruction">Is the defending Pok&eacute;mon switching out?</div>
 							<input aria-describedby="selectSwitchingInstruction" class="visually-hidden calc-trigger" type="checkbox" id="switchingL" />
@@ -1362,13 +1473,13 @@
 					<select aria-label="type4" class="gen-specific g23 type4 terrain-trigger calc-trigger"></select>
 					<small class="right">(<a class="analysis links-lighten" target="_blank" href="">Smogon&nbsp;analysis</a>)</small>
 				</div>
-				<div class="gen-specific g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
-					<label>Tera Type</label>
+				<div class="gen-specific g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
+					<label id="teraLabel">Tera Type</label>
 					<select class="teraType terrain-trigger calc-trigger"></select>
 					<input type="checkbox" title= "Has this Pok&eacute;mon terastalized?" class="teraToggle terrain-trigger calc-trigger">
 				</div>
 				<div class="gen-specific g23">
-					<label>Big</label>
+					<label id="bigLabel">Big</label>
 					<input type="checkbox" title= "Is this Pok&eacute;mon big?" class="bigToggle terrain-trigger calc-trigger">
 				</div>
 				<div class="hide">
@@ -1394,8 +1505,8 @@
 					<tr>
 						<th></th>
 						<th scope="col">Base</th>
-						<th class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" scope="col">IVs</th>
-						<th class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" scope="col">EVs</th>
+						<th class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" scope="col">IVs</th>
+						<th class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" scope="col">EVs</th>
 						<th class="gen-specific g1 g10 g2 hide" scope="col">DVs</th>
 						<th></th>
 						<th></th>
@@ -1409,10 +1520,10 @@
 						<td>
 							<input class="base calc-trigger" value="100" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="ivs calc-trigger" value="31" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" inputmode="decimal" />
 						</td>
 						<td class="gen-specific g1 g10 g2 hide">
@@ -1429,10 +1540,10 @@
 						<td>
 							<input class="base calc-trigger" value="100" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="ivs calc-trigger" value="31" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" inputmode="decimal" />
 						</td>
 						<td class="gen-specific g1 g10 g2 hide">
@@ -1465,10 +1576,10 @@
 						<td>
 							<input class="base calc-trigger" value="100" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="ivs calc-trigger" value="31" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" inputmode="decimal" />
 						</td>
 						<td class="gen-specific g1 g10 g2 hide">
@@ -1494,17 +1605,17 @@
 							</select>
 						</td>
 					</tr>
-					<tr class="sa gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="sa gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<th scope="row">
 							<label>Sp. Atk</label>
 						</th>
 						<td>
 							<input class="base calc-trigger" value="100" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="ivs calc-trigger" value="31" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" inputmode="decimal" />
 						</td>
 						<td class="gen-specific g1 g10 g2 hide">
@@ -1530,17 +1641,17 @@
 							</select>
 						</td>
 					</tr>
-					<tr class="sd gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+					<tr class="sd gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 						<th scope="row">
 							<label>Sp. Def</label>
 						</th>
 						<td>
 							<input class="base calc-trigger" value="100" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="ivs calc-trigger" value="31" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" inputmode="decimal" />
 						</td>
 						<td class="gen-specific g1 g10 g2 hide">
@@ -1603,10 +1714,10 @@
 						<td>
 							<input class="base calc-trigger" value="100" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="ivs calc-trigger" value="31" inputmode="decimal" />
 						</td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" inputmode="decimal" />
 						</td>
 						<td class="gen-specific g1 g10 g2 hide">
@@ -1640,7 +1751,7 @@
 						</th>
 						<td></td>
 						<td></td>
-						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+						<td class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 							<span class="evs calc-trigger">0</span>
 						</td>
 					</tr>
@@ -1648,7 +1759,7 @@
 				</table>
 			</div>
 			<div class="info-group info-selectors">
-				<div class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+				<div class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 					<label for="natureR1">Nature</label>
 					<select class="nature calc-trigger" id="natureR1">
 						<option value="Adamant">Adamant (+Atk, -SpA)</option>
@@ -1678,7 +1789,7 @@
 						<option value="Timid">Timid (+Spe, -Atk)</option>
 					</select>
 				</div>
-				<div class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+				<div class="gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 					<label for="abilityR1">Ability</label>
 					<select class="ability terrain-trigger calc-trigger" id="abilityR1"></select>
 					<input hidden type="checkbox" title= "Is this ability active?" class="abilityToggle calc-trigger">
@@ -1713,11 +1824,11 @@
 						<option value="cool">Cooling</option>
 					</select>
 				</div>
-				<div class="gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+				<div class="gen-specific g2 g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 					<label for="itemR1">Item</label>
 					<select class="item terrain-trigger calc-trigger" id="itemR1"></select>
 				</div>
-				<div class="gen-specific g1 g10 g2 g3 g4 g5 g11 g6 g7 g8 g9 g24 g22 g21 g12 g14 g15 g16 g17 g18 g19 g20">
+				<div class="gen-specific g1 g10 g2 g3 g4 g5 g11 g6 g7 g8 g9 g24 g22 g21 g12 g14 g15 g16 g17 g18 g25 g19 g20">
 					<label for="statusR1">Status</label>
 					<select class="status calc-trigger" id="statusR1">
 						<option value="Healthy">Healthy</option>
@@ -1822,14 +1933,14 @@
 				<select class="move-selector calc-trigger small-select"></select>
 				<input class="move-bp calc-trigger" value="50" inputmode="decimal" />
 				<select class="move-type calc-trigger"></select>
-				<select class="move-cat calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+				<select class="move-cat calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 					<option value="Physical">Physical</option>
 					<option value="Special">Special</option>
 				</select>
 				<input aria-describedby="criticalHitInstruction" class="move-crit calc-trigger visually-hidden" type="checkbox" id="critR1" />
 				<label class="btn crit-btn" for="critR1" title="Force this attack to be a critical hit?">Crit</label>
 				<input aria-describedby="zMoveInstruction" class="move-z calc-trigger visually-hidden" type="checkbox" id="zR1"/>
-				<label class="btn z-btn gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" for="zR1" title="Make this attack a Z-move?">Z</label>
+				<label class="btn z-btn gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" for="zR1" title="Make this attack a Z-move?">Z</label>
 				<input aria-describedby="stellarBoostInstruction" class="move-stellar calc-trigger visually-hidden" type="checkbox" id="stellarR1" />
 				<label class="stellar-btn btn" style="display: none;" for="stellarR1" title="Make this attack Stellar boosted?">Stellar</label>
 				<select class="move-hits calc-trigger hide">
@@ -1853,19 +1964,29 @@
 					<option value="4">4 times</option>
 					<option value="5">5 times</option>
 				</select>
+				<select class="moveAlliesFainted calc-trigger hide" title="How many allies have fainted?">
+					<option value="0">Zero allies fainted</option>
+					<option value="1">One ally fainted</option>
+					<option value="2">Two allies fainted</option>
+					<option value="3">Three allies fainted</option>
+					<option value="4">Four allies fainted</option>
+					<option value="5">Five allies fainted</option>
+				</select>
+				<input class="num-trumps calc-trigger hide" value="0" inputmode="decimal" title="How many times has the move 'Trump Card' been used by your team?"/>
+				<input class="pp-counter calc-trigger hide" value="16" inputmode="decimal" title="How much PP do you have left on this move? (Before clicking the move)"/>
 			</div>
 			<div class="move2">
 				<select class="move-selector calc-trigger small-select"></select>
 				<input class="move-bp calc-trigger" value="0" inputmode="decimal" />
 				<select class="move-type calc-trigger"></select>
-				<select class="move-cat calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+				<select class="move-cat calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 					<option value="Physical">Physical</option>
 					<option value="Special">Special</option>
 				</select>
 				<input aria-describedby="criticalHitInstruction" class="move-crit calc-trigger visually-hidden" type="checkbox" id="critR2" />
 				<label class="btn crit-btn" for="critR2" title="Force this attack to be a critical hit?">Crit</label>
 				<input aria-describedby="zMoveInstruction" class="move-z calc-trigger visually-hidden" type="checkbox" id="zR2"/>
-				<label class="btn z-btn gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" for="zR2" title="Make this attack a Z-move?">Z</label>
+				<label class="btn z-btn gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" for="zR2" title="Make this attack a Z-move?">Z</label>
 				<input aria-describedby="stellarBoostInstruction" class="move-stellar calc-trigger visually-hidden" type="checkbox" id="stellarR2" />
 				<label class="stellar-btn btn" style="display: none;" for="stellarR2" title="Make this attack Stellar boosted?">Stellar</label>
 				<select class="move-hits calc-trigger hide">
@@ -1889,19 +2010,29 @@
 					<option value="4">4 times</option>
 					<option value="5">5 times</option>
 				</select>
+				<select class="moveAlliesFainted calc-trigger hide" title="How many allies have fainted?">
+					<option value="0">Zero allies fainted</option>
+					<option value="1">One ally fainted</option>
+					<option value="2">Two allies fainted</option>
+					<option value="3">Three allies fainted</option>
+					<option value="4">Four allies fainted</option>
+					<option value="5">Five allies fainted</option>
+				</select>
+				<input class="num-trumps calc-trigger hide" value="0" inputmode="decimal" title="How many times has the move 'Trump Card' been used by your team?"/>
+				<input class="pp-counter calc-trigger hide" value="16" inputmode="decimal" title="How much PP do you have left on this move? (Before clicking the move)"/>
 			</div>
 			<div class="move3">
 				<select class="move-selector calc-trigger small-select"></select>
 				<input class="move-bp calc-trigger" value="0" inputmode="decimal" />
 				<select class="move-type calc-trigger"></select>
-				<select class="move-cat calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+				<select class="move-cat calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 					<option value="Physical">Physical</option>
 					<option value="Special">Special</option>
 				</select>
 				<input aria-describedby="criticalHitInstruction" class="move-crit calc-trigger visually-hidden" type="checkbox" id="critR3" />
 				<label class="btn crit-btn" for="critR3" title="Force this attack to be a critical hit?">Crit</label>
 				<input aria-describedby="zMoveInstruction" class="move-z calc-trigger visually-hidden" type="checkbox" id="zR3"/>
-				<label class="btn z-btn gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" for="zR3" title="Make this attack a Z-move?">Z</label>
+				<label class="btn z-btn gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" for="zR3" title="Make this attack a Z-move?">Z</label>
 				<input aria-describedby="stellarBoostInstruction" class="move-stellar calc-trigger visually-hidden" type="checkbox" id="stellarR3" />
 				<label class="stellar-btn btn" style="display: none;" for="stellarR3" title="Make this attack Stellar boosted?">Stellar</label>
 				<select class="move-hits calc-trigger hide">
@@ -1925,19 +2056,29 @@
 					<option value="4">4 times</option>
 					<option value="5">5 times</option>
 				</select>
+				<select class="moveAlliesFainted calc-trigger hide" title="How many allies have fainted?">
+					<option value="0">Zero allies fainted</option>
+					<option value="1">One ally fainted</option>
+					<option value="2">Two allies fainted</option>
+					<option value="3">Three allies fainted</option>
+					<option value="4">Four allies fainted</option>
+					<option value="5">Five allies fainted</option>
+				</select>
+				<input class="num-trumps calc-trigger hide" value="0" inputmode="decimal" title="How many times has the move 'Trump Card' been used by your team?"/>
+				<input class="pp-counter calc-trigger hide" value="16" inputmode="decimal" title="How much PP do you have left on this move? (Before clicking the move)"/>
 			</div>
 			<div class="move4">
 				<select class="move-selector calc-trigger small-select"></select>
 				<input class="move-bp calc-trigger" value="0" inputmode="decimal" />
 				<select class="move-type calc-trigger"></select>
-				<select class="move-cat calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20">
+				<select class="move-cat calc-trigger gen-specific g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20">
 					<option value="Physical">Physical</option>
 					<option value="Special">Special</option>
 				</select>
 				<input aria-describedby="criticalHitInstruction" class="move-crit calc-trigger visually-hidden" type="checkbox" id="critR4" />
 				<label class="btn crit-btn" for="critR4" title="Force this attack to be a critical hit?">Crit</label>
 				<input aria-describedby="zMoveInstruction" class="move-z calc-trigger visually-hidden" type="checkbox" id="zR4"/>
-				<label class="btn z-btn gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g19 g20" for="zR4" title="Make this attack a Z-move?">Z</label>
+				<label class="btn z-btn gen-specific g7 g8 g9 g23 g24 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" for="zR4" title="Make this attack a Z-move?">Z</label>
 				<input aria-describedby="stellarBoostInstruction" class="move-stellar calc-trigger visually-hidden" type="checkbox" id="stellarR4" />
 				<label class="stellar-btn btn" style="display: none;" for="stellarR4" title="Make this attack Stellar boosted?">Stellar</label>
 				<select class="move-hits calc-trigger hide">
@@ -1961,6 +2102,16 @@
 					<option value="4">4 times</option>
 					<option value="5">5 times</option>
 				</select>
+				<select class="moveAlliesFainted calc-trigger hide" title="How many allies have fainted?">
+					<option value="0">Zero allies fainted</option>
+					<option value="1">One ally fainted</option>
+					<option value="2">Two allies fainted</option>
+					<option value="3">Three allies fainted</option>
+					<option value="4">Four allies fainted</option>
+					<option value="5">Five allies fainted</option>
+				</select>
+				<input class="num-trumps calc-trigger hide" value="0" inputmode="decimal" title="How many times has the move 'Trump Card' been used by your team?"/>
+				<input class="pp-counter calc-trigger hide" value="16" inputmode="decimal" title="How much PP do you have left on this move? (Before clicking the move)"/>
 			</div>
 		</fieldset>
 	</div>
@@ -1977,6 +2128,7 @@
 	<script type="text/javascript" src="./calc/util.js?"></script>
 	<script type="text/javascript" src="./calc/stats.js?"></script>
 	<script type="text/javascript" src="./calc/data/species.js?"></script> <!--NewGenChange-->
+	<script type="text/javascript" src="./js/data/sets/gen25.js?"></script>
 	<script type="text/javascript" src="./js/data/sets/gen24.js?"></script>
 	<script type="text/javascript" src="./js/data/sets/gen23.js?"></script>
 	<script type="text/javascript" src="./js/data/sets/gen22.js?"></script>
