@@ -133,7 +133,7 @@ function isImmuneToHail(source: Pokemon, field: Field): boolean {
     (source.hasAbility('Abominable', 'Cryowarning', 'Polar Power', 'Tundra Rush', 'Tundra Veil') &&
       source.gen.num === 20);
 }
-// hi
+
 function isImmuneToAcid(source: Pokemon, field: Field): boolean {
   return isImmuneToWeather(source, field) ||
     !(source.hasType('Water', 'Steel') && !source.hasType('Bug', 'Lemon')) ||
