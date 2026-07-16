@@ -62,7 +62,7 @@ export interface RawDesc {
   rivalry?: 'buffed' | 'nerfed';
   terrain?: Terrain;
   weather?: Weather;
-  isDefenderDynamaxed?: boolean;
+  isDefenderDynamaxed?: boolean | 'gmax';
   isDefenseDown?: boolean;
   isCharged?: boolean;
   isDragonCharged?: boolean;
@@ -1488,6 +1488,11 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   if (description.isProtected) {
     output += 'protected ';
   }
+  if (description.isDefenderDynamaxed === 'gmax') {
+    output += 'Gigantamax ';
+  } else if (description.isDefenderDynamaxed) {
+    output += 'Dynamax ';
+  }
   if (description.isDrowsy) {
     output += 'drowsy ';
   }
@@ -1496,9 +1501,6 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   }
   if (description.isSerious) {
     output += 'Serious ';
-  }
-  if (description.isDefenderDynamaxed) {
-    output += 'Dynamax ';
   }
   if (description.defenderTera) {
     output += `Tera ${description.defenderTera} `;

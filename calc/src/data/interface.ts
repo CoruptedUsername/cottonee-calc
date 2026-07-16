@@ -137,7 +137,7 @@ export interface Move extends Data<MoveName> {
   readonly zMove?: {
     basePower?: number;
   };
-  readonly isMax?: boolean | string;
+  readonly isMax?: boolean | 'gmax';
   readonly maxMove?: {
     basePower: number;
   };
@@ -159,6 +159,7 @@ export interface Specie extends Data<SpeciesName> {
   readonly gender?: GenderName;
   readonly nfe?: boolean;
   readonly abilities?: {0: AbilityName | ''};
+  readonly canGigantamax?: MoveName;
   readonly otherFormes?: SpeciesName[];
   readonly baseSpecies?: SpeciesName;
   readonly flags?: SpeciesFlags;
