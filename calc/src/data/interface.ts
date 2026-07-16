@@ -1,7 +1,7 @@
 export interface As<T> {__brand: T}
 export type ID = (string & As<'ID'>) | (string & { __isID: true }) | '';
-export type GenerationNum = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
-17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25; // NewGenChange
+export type GenerationNum = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |
+16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25; // NewGenChange
 export type GenderName = 'M' | 'F' | 'N';
 export type StatID = 'hp' | StatIDExceptHP;
 export type StatIDExceptHP = 'atk' | 'def' | 'spa' | 'spd' | 'spe';
@@ -78,7 +78,7 @@ export interface Items {
 
 export interface Item extends Data<ItemName> {
   readonly kind: 'Item';
-  readonly megaEvolves?: SpeciesName;
+  readonly megaStone?: Readonly<{[megaEvolves: SpeciesName]: SpeciesName}>;
   readonly isBerry?: boolean;
   readonly naturalGift?: Readonly<{basePower: number; type: TypeName}>;
 }
@@ -156,13 +156,12 @@ export interface Specie extends Data<SpeciesName> {
   [TypeName, TypeName, TypeName, TypeName];
   readonly baseStats: Readonly<StatsTable>;
   readonly weightkg: number;
-  readonly nfe?: boolean;
   readonly gender?: GenderName;
+  readonly nfe?: boolean;
+  readonly abilities?: {0: AbilityName | ''};
   readonly otherFormes?: SpeciesName[];
   readonly baseSpecies?: SpeciesName;
-  readonly abilities?: {0: AbilityName | ''};
   readonly flags?: SpeciesFlags;
-
 }
 
 export interface SpeciesFlags {

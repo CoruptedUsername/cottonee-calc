@@ -15,6 +15,7 @@ import {
   checkItem,
   checkIntimidate,
   checkDownload,
+  checkRawStatChanges,
   checkMultihitBoost,
   countBoosts,
   handleFixedDamageMoves,
@@ -35,6 +36,8 @@ export function calculateDPP(
   checkForecast(defender, field.weather);
   checkItem(attacker);
   checkItem(defender);
+  checkRawStatChanges(attacker, field.attackerSide.isPowerTrick);
+  checkRawStatChanges(defender, field.defenderSide.isPowerTrick);
   checkIntimidate(gen, attacker, defender);
   checkIntimidate(gen, defender, attacker);
   checkDownload(attacker, defender);
@@ -248,6 +251,18 @@ export function calculateDPP(
     filterMod = 0.75;
     desc.defenderAbility = defender.ability;
   }
+
+  let metronomeMod = 1;
+  if (attacker.hasItem('Metronome') && move.timesUsedWithMetronome! >= 1) {
+    const timesUsedWithMetronome = Math.floor(move.timesUsedWithMetronome!);
+    if (timesUsedWithMetronome <= 9) {
+      metronomeMod = 1 + 0.1 * timesUsedWithMetronome;
+    } else {
+      metronomeMod = 2;
+    }
+    desc.attackerItem = attacker.item;
+  }
+
   let ebeltMod = 1;
   if (attacker.hasItem('Expert Belt') && typeEffectiveness > 1) {
     ebeltMod = 1.2;
@@ -273,6 +288,7 @@ export function calculateDPP(
     damage[i] = Math.floor(damage[i] * type2Effectiveness);
     damage[i] = Math.floor(damage[i] * filterMod);
     damage[i] = Math.floor(damage[i] * ebeltMod);
+    damage[i] = Math.floor(damage[i] * metronomeMod);
     damage[i] = Math.floor(damage[i] * tintedMod);
     damage[i] = Math.floor(damage[i] * berryMod);
     damage[i] = Math.max(1, damage[i]);
@@ -318,6 +334,7 @@ export function calculateDPP(
         newFinalDamage = Math.floor(newFinalDamage * type2Effectiveness);
         newFinalDamage = Math.floor(newFinalDamage * filterMod);
         newFinalDamage = Math.floor(newFinalDamage * ebeltMod);
+        newFinalDamage = Math.floor(newFinalDamage * metronomeMod);
         newFinalDamage = Math.floor(newFinalDamage * tintedMod);
         newFinalDamage = Math.max(1, newFinalDamage);
         damageArray[i] = newFinalDamage;
@@ -370,7 +387,7 @@ export function calculateBasePowerDPP(
     desc.moveBP = basePower;
     break;
   case 'Fling':
-    basePower = getFlingPower(attacker.item);
+    basePower = getFlingPower(attacker.item, gen.num);
     desc.moveBP = basePower;
     desc.attackerItem = attacker.item;
     break;
@@ -392,6 +409,12 @@ export function calculateBasePowerDPP(
     break;
   case 'Punishment':
     basePower = Math.min(200, 60 + 20 * countBoosts(gen, defender.boosts));
+    desc.moveBP = basePower;
+    break;
+  case 'Pursuit':
+    const switching = field.defenderSide.isSwitching === 'out';
+    basePower = move.bp * (switching ? 2 : 1);
+    if (switching) desc.isSwitching = 'out';
     desc.moveBP = basePower;
     break;
   case 'Wake-Up Slap':
@@ -457,7 +480,8 @@ export function calculateBPModsDPP(
      move.hasType('Water', 'Dragon')) ||
     (attacker.hasItem('Griseous Orb') &&
      attacker.named('Giratina-Origin') &&
-     move.hasType('Ghost', 'Dragon'))
+     move.hasType('Ghost', 'Dragon')) ||
+    (move.named('Struggle') && getItemBoostType(attacker.item) === 'Normal')
   ) {
     basePower = Math.floor(basePower * 1.2);
     desc.attackerItem = attacker.item;
@@ -485,6 +509,18 @@ export function calculateBPModsDPP(
     basePower = Math.floor(basePower * 1.25);
     desc.defenderAbility = defender.ability;
   }
+
+  if (attacker.hasAbility('Rivalry') && ![attacker.gender, defender.gender].includes('N')) {
+    if (attacker.gender === defender.gender) {
+      basePower = Math.floor(basePower * 1.25);
+      desc.rivalry = 'buffed';
+    } else {
+      basePower = Math.floor(basePower * 0.75);
+      desc.rivalry = 'nerfed';
+    }
+    desc.attackerAbility = attacker.ability;
+  }
+
   return basePower;
 }
 
@@ -499,21 +535,22 @@ export function calculateAttackDPP(
 ) {
   const isPhysical = move.category === 'Physical';
   const attackStat = isPhysical ? 'atk' : 'spa';
-  desc.attackEVs = getStatDescriptionText(gen, attacker, attackStat, attacker.nature);
-  let attack: number;
+  desc.attackEVs =
+    getStatDescriptionText(gen, attacker, attackStat, field.attackerSide.isPowerTrick);
+  if (field.attackerSide.isPowerTrick && isPhysical) {
+    desc.isPowerTrickAttacker = true;
+  }
+  let attack = attacker.rawStats[attackStat];
   const attackBoost = attacker.boosts[attackStat];
-  const rawAttack = attacker.rawStats[attackStat];
-  if (attackBoost === 0 || (isCritical && attackBoost < 0)) {
-    attack = rawAttack;
-  } else if (defender.hasAbility('Unaware')) {
-    attack = rawAttack;
+
+  if (defender.hasAbility('Unaware')) {
     desc.defenderAbility = defender.ability;
   } else if (attacker.hasAbility('Simple')) {
-    attack = getSimpleModifiedStat(rawAttack, attackBoost);
+    attack = getSimpleModifiedStat(attack, attackBoost);
     desc.attackerAbility = attacker.ability;
     desc.attackBoost = attackBoost;
-  } else {
-    attack = getModifiedStat(rawAttack, attackBoost);
+  } else if (attackBoost > 0 || (!isCritical && attackBoost < 0)) {
+    attack = getModifiedStat(attack, attackBoost);
     desc.attackBoost = attackBoost;
   }
 
@@ -571,21 +608,22 @@ export function calculateDefenseDPP(
 ) {
   const isPhysical = move.category === 'Physical';
   const defenseStat = isPhysical ? 'def' : 'spd';
-  desc.defenseEVs = getStatDescriptionText(gen, defender, defenseStat, defender.nature);
-  let defense: number;
+  desc.defenseEVs =
+    getStatDescriptionText(gen, defender, defenseStat, field.defenderSide.isPowerTrick);
+  let defense = defender.rawStats[defenseStat];
+  if (field.defenderSide.isPowerTrick && isPhysical) {
+    desc.isPowerTrickDefender = true;
+  }
   const defenseBoost = defender.boosts[defenseStat];
-  const rawDefense = defender.rawStats[defenseStat];
-  if (defenseBoost === 0 || (isCritical && defenseBoost > 0)) {
-    defense = rawDefense;
-  } else if (attacker.hasAbility('Unaware')) {
-    defense = rawDefense;
+
+  if (attacker.hasAbility('Unaware')) {
     desc.attackerAbility = attacker.ability;
   } else if (defender.hasAbility('Simple')) {
-    defense = getSimpleModifiedStat(rawDefense, defenseBoost);
+    defense = getSimpleModifiedStat(defense, defenseBoost);
     desc.defenderAbility = defender.ability;
     desc.defenseBoost = defenseBoost;
-  } else {
-    defense = getModifiedStat(rawDefense, defenseBoost);
+  } else if (defenseBoost < 0 || (!isCritical && defenseBoost > 0)) {
+    defense = getModifiedStat(defense, defenseBoost);
     desc.defenseBoost = defenseBoost;
   }
 
@@ -688,15 +726,6 @@ function calculateFinalModsDPP(
     desc.attackerItem = attacker.item;
   }
 
-  if (move.named('Pursuit') && field.defenderSide.isSwitching === 'out') {
-    // technician negates switching boost, thanks DaWoblefet
-    if (attacker.hasAbility('Technician')) {
-      baseDamage = Math.floor(baseDamage * 1);
-    } else {
-      baseDamage = Math.floor(baseDamage * 2);
-      desc.isSwitching = 'out';
-    }
-  }
   return baseDamage;
 }
 

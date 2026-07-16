@@ -23,7 +23,7 @@ import {
   checkItem,
   checkMultihitBoost,
   checkSeedBoost,
-  checkWonderRoom,
+  checkRawStatChanges,
   computeFinalStats,
   countBoosts,
   getBaseDamage,
@@ -56,8 +56,8 @@ export function calculateMEGASR(
   checkItem(defender, field.isMagicRoom);
   checkDauntlessShield(attacker, gen);
   checkDauntlessShield(defender, gen);
-  checkWonderRoom(attacker, field.isWonderRoom);
-  checkWonderRoom(defender, field.isWonderRoom);
+  checkRawStatChanges(attacker, field.attackerSide.isPowerTrick, field.isWonderRoom);
+  checkRawStatChanges(defender, field.defenderSide.isPowerTrick, field.isWonderRoom);
   checkSeedBoost(attacker, field);
   checkSeedBoost(defender, field);
 
@@ -559,7 +559,7 @@ export function calculateBasePowerMEGASR(
     desc.moveBP = basePower;
     break;
   case 'Fling':
-    basePower = getFlingPower(attacker.item);
+    basePower = getFlingPower(attacker.item, gen.num);
     desc.moveBP = basePower;
     desc.attackerItem = attacker.item;
     break;
@@ -666,7 +666,8 @@ export function calculateBPModsMEGASR(
   // (or when it's already a Mega-Evolution)
   if (!resistedKnockOffDamage && defenderItem) {
     const item = gen.items.get(toID(defenderItem))!;
-    resistedKnockOffDamage = !!(item.megaEvolves && defender.name.includes(item.megaEvolves));
+    resistedKnockOffDamage = !!(item.megaStone &&
+      (item.megaStone[defender.name] || Object.values(item.megaStone).includes(defender.name)));
   }
 
   // Resist knock off damage if your item was already knocked off
@@ -685,7 +686,7 @@ export function calculateBPModsMEGASR(
   ) {
     bpMods.push(6144);
     desc.attackerAbility = attacker.ability;
-  } else if (attacker.hasAbility('Analytic') && turnOrder !== 'first') {
+  } else if (attacker.hasAbility('Analytic') && (turnOrder !== 'first' || attacker.abilityOn)) {
     bpMods.push(5325);
     desc.attackerAbility = attacker.ability;
   } else if (
@@ -851,9 +852,11 @@ export function calculateAttackMEGASR(
     : move.category === 'Special' ? 'spa' : 'atk';
   desc.attackEVs =
     move.named('Foul Play')
-      ? getStatDescriptionText(gen, defender, attackStat, defender.nature)
-      : getStatDescriptionText(gen, attacker, attackStat, attacker.nature);
-
+      ? getStatDescriptionText(gen, defender, attackStat, field.defenderSide.isPowerTrick)
+      : getStatDescriptionText(gen, attacker, attackStat, field.attackerSide.isPowerTrick);
+  if (field.attackerSide.isPowerTrick && move.category === 'Physical' && !move.named('Foul Play')) {
+    desc.isPowerTrickAttacker = true;
+  }
   if (attackSource.boosts[attackStat] === 0 ||
       (isCritical && attackSource.boosts[attackStat] < 0)) {
     attack = attackSource.rawStats[attackStat];
@@ -976,17 +979,24 @@ export function calculateDefenseMEGASR(
       'Steel') ? 'def' : 'spd'
     : move.category === 'Special' ? 'spd' : 'def';
   const hitsPhysical = defenseStat === 'def';
-  desc.defenseEVs = getStatDescriptionText(gen, defender, defenseStat, defender.nature);
-  if (defender.boosts[defenseStat] === 0 ||
-    (isCritical && defender.boosts[defenseStat] > 0) ||
+
+  desc.defenseEVs = getStatDescriptionText(
+    gen, defender, defenseStat, field.defenderSide.isPowerTrick, field.isWonderRoom
+  );
+  if (field.defenderSide.isPowerTrick && (field.isWonderRoom !== hitsPhysical)) {
+    desc.isPowerTrickDefender = true;
+  }
+
+  const boosts = defender.boosts[defenseStat];
+  if (boosts === 0 || (isCritical && boosts > 0) ||
     move.ignoreDefensive) {
     defense = defender.rawStats[defenseStat];
   } else if (attacker.hasAbility('Unaware')) {
     defense = defender.rawStats[defenseStat];
     desc.attackerAbility = attacker.ability;
   } else {
-    defense = getModifiedStat(defender.rawStats[defenseStat]!, defender.boosts[defenseStat]!);
-    desc.defenseBoost = defender.boosts[defenseStat];
+    defense = getModifiedStat(defender.rawStats[defenseStat]!, boosts);
+    desc.defenseBoost = boosts;
   }
 
   // unlike all other defense modifiers, Sandstorm SpD boost gets applied directly

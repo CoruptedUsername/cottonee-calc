@@ -31,12 +31,12 @@ const EV_ITEMS = [
 export function isGrounded(pokemon: Pokemon, field: Field) {
   return (field.isGravity || pokemon.hasItem('Iron Ball') ||
     (!pokemon.hasType('Flying') &&
-      !pokemon.hasAbility('Levitate', 'Impalpable', 'Shields Up') &&
+      !pokemon.hasAbility('Levitate', 'Impalpable', 'Shields Up', 'Eelevate') &&
       !pokemon.hasItem('Air Balloon')));
 }
 
 export function getModifiedStat(stat: number, mod: number, gen?: Generation) {
-  if (gen && (gen.num < 3 || gen.num === 10)) {
+  if (gen && [1, 2, 10].includes(gen.num)) {
     if (mod >= 0) {
       const pastGenBoostTable = [1, 1.5, 2, 2.5, 3, 3.5, 4];
       stat = Math.floor(stat * pastGenBoostTable[mod]);
@@ -270,7 +270,7 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
 
   speed = OF32(pokeRound((speed * chainMods(speedMods, 410, 131172)) / 4096));
   if (pokemon.hasStatus('par') && !pokemon.hasAbility('Quick Feet', 'Snakewood')) {
-    speed = Math.floor(OF32(speed * ((gen.num < 7 || gen.num === 10 || gen.num === 11) ? 25 : 50)) /
+    speed = Math.floor(OF32(speed * ([1, 2, 3, 4, 5, 6, 10, 11].includes(gen.num) ? 25 : 50)) /
       100);
   }
 
@@ -315,6 +315,8 @@ export function getMoveEffectiveness(
     return 2;
   } else if (move.flags.powder && (type === 'Grass' || isGoggles)) {
     return 0;
+  } else if (move.named('Nihil Light') && type === 'Fairy') {
+    return 1;
   } else {
     let effectiveness = gen.types.get(toID(move.type))!.effectiveness[type]!;
     if (effectiveness === 0 && isRingTarget) {
@@ -400,10 +402,19 @@ export function checkItem(pokemon: Pokemon, magicRoomActive?: boolean, isStenche
   }
 }
 
-export function checkWonderRoom(pokemon: Pokemon, wonderRoomActive?: boolean) {
+export function checkRawStatChanges(
+  pokemon: Pokemon,
+  powerTrickActive?: boolean,
+  wonderRoomActive?: boolean,
+) {
+  if (powerTrickActive) {
+    [pokemon.rawStats.atk, pokemon.rawStats.def] = [pokemon.rawStats.def, pokemon.rawStats.atk];
+  }
   if (wonderRoomActive) {
     [pokemon.rawStats.def, pokemon.rawStats.spd] = [pokemon.rawStats.spd, pokemon.rawStats.def];
   }
+//  Power Trick acts first - the two checks could be separated into their own
+//  functions, but keeping them together ensures they apply in the correct order
 }
 
 export function checkIntimidate(gen: Generation, source: Pokemon, target: Pokemon) {
@@ -520,13 +531,13 @@ export function checkDownload(source: Pokemon, target: Pokemon, wonderRoomActive
 }
 
 export function checkIntrepidSword(source: Pokemon, gen: Generation) {
-  if (source.hasAbility('Intrepid Sword') && gen.num > 7) {
+  if (source.hasAbility('Intrepid Sword') && (gen.num === 8 || source.abilityOn)) {
     source.boosts.atk = Math.min(6, source.boosts.atk + 1);
   }
 }
 
 export function checkDauntlessShield(source: Pokemon, gen: Generation) {
-  if (source.hasAbility('Dauntless Shield') && gen.num > 7) {
+  if (source.hasAbility('Dauntless Shield') && (gen.num === 8 || source.abilityOn)) {
     source.boosts.def = Math.min(6, source.boosts.def + 1);
   }
 }
@@ -855,9 +866,17 @@ export function getFinalDamage(
  * @param target Target pokemon (after stat modifications)
  * @returns 'Physical' | 'Special'
  */
-export function getShellSideArmCategory(source: Pokemon, target: Pokemon): MoveCategory {
-  const physicalDamage = source.stats.atk / target.stats.def;
-  const specialDamage = source.stats.spa / target.stats.spd;
+export function getShellSideArmCategory(
+  source: Pokemon,
+  target: Pokemon,
+  wonderRoomActive?: boolean
+): MoveCategory {
+  let physicalDamage = source.stats.atk / target.stats.def;
+  let specialDamage = source.stats.spa / target.stats.spd;
+  if (wonderRoomActive) {
+    physicalDamage = source.stats.atk / target.stats.spd;
+    specialDamage = source.stats.spa / target.stats.def;
+  }
   return physicalDamage > specialDamage ? 'Physical' : 'Special';
 }
 
@@ -957,15 +976,27 @@ export function getStatDescriptionText(
   gen: Generation,
   pokemon: Pokemon,
   stat: StatID,
-  natureName?: NatureName
+  powerTrickActive?: boolean,
+  wonderRoomActive?: boolean,
 ): string {
-  const nature = gen.natures.get(toID(natureName))!;
+  const initialStat: StatID = stat;
+  if (wonderRoomActive) {
+    if (stat === 'def') { stat = 'spd'; } else if (stat === 'spd') { stat = 'def'; }
+  }
+  if (powerTrickActive) {
+    if (stat === 'atk') { stat = 'def'; } else if (stat === 'def') { stat = 'atk'; }
+  }
+  //  decoding what checkRawStatChanges does
+  const nature = gen.natures.get(toID(pokemon.nature))!;
   let desc = pokemon.evs[stat] +
     (stat === 'hp' || nature.plus === nature.minus ? ''
     : nature.plus === stat ? '+'
     : nature.minus === stat ? '-'
     : '') + ' ' +
-     Stats.displayStat(stat);
+     Stats.displayStat(initialStat);
+  if (stat !== initialStat) {
+    desc = desc + ' (' + Stats.displayStat(stat) + ')';
+  }
   const iv = pokemon.ivs[stat];
   if (iv !== 31) desc += ` ${iv} IVs`;
   return desc;

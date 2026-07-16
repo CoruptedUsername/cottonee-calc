@@ -38,6 +38,8 @@ export interface RawDesc {
   isAuroraVeil?: boolean;
   isFlowerGiftAttacker?: boolean;
   isFlowerGiftDefender?: boolean;
+  isPowerTrickAttacker?: boolean;
+  isPowerTrickDefender?: boolean;
   isSteelySpiritAttacker?: boolean;
   isFriendGuard?: boolean;
   isHelpingHand?: boolean;
@@ -125,7 +127,7 @@ function isImmuneToRocks(source: Pokemon, field: Field): boolean {
 }
 
 function isImmuneToSpikes(source: Pokemon, field: Field): boolean {
-  return isImmuneToHazards(source, field) || source.hasAbility('Levitate') ||
+  return isImmuneToHazards(source, field) || source.hasAbility('Levitate', 'Eelevate') ||
     (source.hasAbility('Plow') && source.gen.num === 13) ||
     (source.hasAbility('Earth Eater') && source.gen.num === 22) ||
     (source.hasAbility('Sunlit Flight') && source.gen.num === 20) ||
@@ -284,13 +286,15 @@ export function getRecovery(
       [minD, maxD] = multiDamageRange(damage) as [number[], number[]];
     }
     const percentHealed = move.drain[0] / move.drain[1];
-    const max = Math.round(defender.curHP() * percentHealed);
+    const attackerHasBigRoot = attacker.hasItem('Big Root');
+    let maxDrain = Math.round(defender.curHP() * percentHealed);
+    if (attackerHasBigRoot) maxDrain = Math.trunc(maxDrain * 5324 / 4096);
     for (let i = 0; i < minD.length; i++) {
       const range = [minD[i], maxD[i]];
       for (const j in recovery) {
         let drained = Math.max(Math.round(range[j] * percentHealed), 1);
-        if (attacker.hasItem('Big Root')) drained = Math.trunc(drained * 5324 / 4096);
-        recovery[j] += Math.min(drained, max);
+        if (attackerHasBigRoot) drained = Math.trunc(drained * 5324 / 4096);
+        recovery[j] += Math.min(drained, maxDrain);
       }
     }
   }
@@ -418,7 +422,8 @@ export function getRecoil(
 
     recoil = [minRecoilDamage, maxRecoilDamage];
     switch (gen.num) {
-    case 1: case 10:
+    case 1:
+    case 10:
       recoil = toDisplay(notation, 1, attacker.maxHP());
       text = '1hp damage on miss';
       break;
@@ -715,8 +720,10 @@ export function getHazards(gen: Generation, defender: Pokemon, field: Field) {
   if (defenderSide.isSR && !isImmuneToRocks(defender, field)) {
     const rockType = gen.types.get('rock' as ID)!;
     const effectiveness =
-      rockType.effectiveness[defender.types[0]]! *
-      (defender.types[1] ? rockType.effectiveness[defender.types[1]]! : 1);
+      defender.teraType && defender.teraType !== 'Stellar'
+        ? rockType.effectiveness[defender.teraType]!
+        : rockType.effectiveness[defender.types[0]]! *
+          (defender.types[1] ? rockType.effectiveness[defender.types[1]]! : 1);
     if (defender.hasAbility('Fervent Scales', 'Dragon\'s Gale')) {
       damage += Math.floor((effectiveness * defender.maxHP()) / 16);
     } else {
@@ -727,13 +734,11 @@ export function getHazards(gen: Generation, defender: Pokemon, field: Field) {
   if (defenderSide.steelsurge && !isImmuneToHazards(defender, field)) {
     const steelType = gen.types.get('steel' as ID)!;
     const effectiveness =
-      steelType.effectiveness[defender.types[0]]! *
-      (defender.types[1] ? steelType.effectiveness[defender.types[1]]! : 1);
-    if (defender.hasAbility('Fervent Scales', 'Dragon\'s Gale')) {
-      damage += Math.floor((effectiveness * defender.maxHP()) / 16);
-    } else {
-      damage += Math.floor((effectiveness * defender.maxHP()) / 8);
-    }
+      defender.teraType && defender.teraType !== 'Stellar'
+        ? steelType.effectiveness[defender.teraType]!
+        : steelType.effectiveness[defender.types[0]]! *
+        (defender.types[1] ? steelType.effectiveness[defender.types[1]]! : 1);
+    damage += Math.floor((effectiveness * defender.maxHP()) / 8);
     texts.push('Steelsurge');
   }
 
@@ -1044,13 +1049,14 @@ function getEndOfTurn(
     }
   }
 
-  if (!isImmuneToIndirect(defender, field) && TRAPPING.includes(move.name)) {
+  if (!isImmuneToIndirect(defender, field) && TRAPPING.includes(move.name) &&
+  ![1, 10].includes(gen.num)) {
     if (attacker.hasItem('Binding Band')) {
       if (defender.hasAbility('Fervent Scales')) {
-        damage -= [1, 2, 3, 10].includes(gen.num) ? Math.floor(defender.maxHP() / 12)
+        damage -= [2, 3, 4, 5].includes(gen.num) ? Math.floor(defender.maxHP() / 12)
           : Math.floor(defender.maxHP() / 16);
       } else {
-        damage -= [1, 2, 3, 10].includes(gen.num) ? Math.floor(defender.maxHP() / 6)
+        damage -= [2, 3, 4, 5].includes(gen.num) ? Math.floor(defender.maxHP() / 6)
           : Math.floor(defender.maxHP() / 8);
       }
       texts.push('trapping damage');
@@ -1067,10 +1073,11 @@ function getEndOfTurn(
   }
   if (field.defenderSide.isSaltCured && !isImmuneToIndirect(defender, field)) {
     const isWaterOrSteel = defender.hasType('Water', 'Steel');
+    const divisor = gen.num === 0 ? isWaterOrSteel ? 8 : 16 : isWaterOrSteel ? 4 : 8;
     if (defender.hasAbility('Fervent Scales')) {
-      damage -= Math.floor(defender.maxHP() / (isWaterOrSteel ? 8 : 16));
+      damage -= Math.floor(defender.maxHP() / (divisor * 2));
     } else {
-      damage -= Math.floor(defender.maxHP() / (isWaterOrSteel ? 4 : 8));
+      damage -= Math.floor(defender.maxHP() / divisor);
     }
     texts.push('Salt Cure');
   }
@@ -1419,6 +1426,9 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   if (description.isFlowerGiftAttacker) {
     output += 'with an ally\'s Flower Gift ';
   }
+  if (description.isPowerTrickAttacker) {
+    output += 'with Power Trick ';
+  }
   if (description.isSteelySpiritAttacker) {
     output += 'with an ally\'s Steely Spirit ';
   }
@@ -1498,7 +1508,7 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   }
   output += description.defenderName;
   if (description.weather && description.terrain) {
-    // do nothing
+    output += ' in ' + description.weather + ' and ' + description.terrain + ' Terrain';
   } else if (description.weather) {
     if (description.weather === 'Grave') {
       output += ' in ' + 'a Graveyard';
@@ -1517,6 +1527,9 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   }
   if (description.isFlowerGiftDefender) {
     output += ' with an ally\'s Flower Gift';
+  }
+  if (description.isPowerTrickDefender) {
+    output += ' with Power Trick';
   }
   if (description.isFriendGuard) {
     output += ' with an ally\'s Friend Guard';

@@ -282,7 +282,7 @@ export function calculateAttackADV(
 ) {
   const isPhysical = move.category === 'Physical';
   const attackStat = isPhysical ? 'atk' : 'spa';
-  desc.attackEVs = getStatDescriptionText(gen, attacker, attackStat, attacker.nature);
+  desc.attackEVs = getStatDescriptionText(gen, attacker, attackStat);
 
   let at = attacker.rawStats[attackStat];
 
@@ -291,7 +291,8 @@ export function calculateAttackADV(
     desc.attackerAbility = attacker.ability;
   }
 
-  if (!attacker.hasItem('Sea Incense') && move.hasType(getItemBoostType(attacker.item))) {
+  if (!attacker.hasItem('Sea Incense') && (move.hasType(getItemBoostType(attacker.item))) ||
+    (move.named('Struggle') && getItemBoostType(attacker.item) === 'Normal')) {
     at = Math.floor(at * 1.1);
     desc.attackerItem = attacker.item;
   } else if (attacker.hasItem('Sea Incense') && move.hasType('Water')) {
@@ -342,7 +343,7 @@ export function calculateDefenseADV(
 ) {
   const isPhysical = move.category === 'Physical';
   const defenseStat = isPhysical ? 'def' : 'spd';
-  desc.defenseEVs = getStatDescriptionText(gen, defender, defenseStat, defender.nature);
+  desc.defenseEVs = getStatDescriptionText(gen, defender, defenseStat);
 
   let df = defender.rawStats[defenseStat];
 
@@ -399,11 +400,6 @@ function calculateFinalModsADV(
     }
   }
 
-  if (move.named('Pursuit') && field.defenderSide.isSwitching === 'out') {
-    baseDamage = Math.floor(baseDamage * 2);
-    desc.isSwitching = 'out';
-  }
-
   if (field.gameType !== 'Singles' && move.target === 'allAdjacentFoes') {
     baseDamage = Math.floor(baseDamage / 2);
   }
@@ -430,6 +426,11 @@ function calculateFinalModsADV(
   if (isCritical) {
     baseDamage *= 2;
     desc.isCritical = true;
+  }
+
+  if (move.named('Pursuit') && field.defenderSide.isSwitching === 'out') {
+    baseDamage = Math.floor(baseDamage * 2);
+    desc.isSwitching = 'out';
   }
 
   if (move.named('Weather Ball') && field.weather) {

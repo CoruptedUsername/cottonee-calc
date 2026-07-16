@@ -4,12 +4,12 @@ import type {Move} from './move';
 import type {Pokemon} from './pokemon';
 import type {Result} from './result';
 
+import {calculateChampions} from './mechanics/champions';
 import {calculateRBYGSC} from './mechanics/gen12';
 import {calculateADV} from './mechanics/gen3';
 import {calculateDPP} from './mechanics/gen4';
 import {calculateBWXY} from './mechanics/gen56';
 import {calculateSMSSSV} from './mechanics/gen789';
-import {calculateTS} from './mechanics/tiersovereign';
 import {calculatePM} from './mechanics/paleomons';
 import {calculateMH} from './mechanics/monsterhunter';
 import {calculateTH} from './mechanics/touhoumons';
@@ -17,10 +17,9 @@ import {calculateBWFYB} from './mechanics/bestwishes';
 import {calculateFEVGC} from './mechanics/fevgc';
 import {calculateMEGASR} from './mechanics/megasrevisited';
 import {calculateIF} from './mechanics/ironfist';
-import {calculateFESV} from './mechanics/fesv';
 
 const MECHANICS = [
-  () => {},
+  calculateChampions,
   calculateRBYGSC,
   calculateRBYGSC,
   calculateADV,
@@ -35,7 +34,7 @@ const MECHANICS = [
   calculateTH, // Touhoumons
   calculateMH, // Monster Hunter
   calculateSMSSSV, // Six by Six
-  calculateTS, // Tier Sovereign
+  calculateSMSSSV, // Tier Sovereign
   calculatePM, // Paleomons
   calculateSMSSSV, // DNU
   calculateSMSSSV, // BC A
@@ -44,7 +43,7 @@ const MECHANICS = [
   calculateSMSSSV, // MMM4
   calculateMEGASR, // Megas Revisited
   calculateIF, // Iron Fist
-  calculateFESV, // FE SV
+  calculateSMSSSV, // FE SV
   calculateSMSSSV, // BC D
 ]; // NewGenChange
 
@@ -61,5 +60,5 @@ export function calculate(
     defender.clone(),
     move.clone(),
     field ? field.clone() : new Field()
-  ) as Result;
+  );
 }

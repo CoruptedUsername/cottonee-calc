@@ -69,8 +69,6 @@
 			<input class="gen visually-hidden" type="radio" name="gen" value="11" id="gen11" /><label class="btn btn-xxwide btn-mid" for="gen11">Best Wishes</label>
       	<input class="gen visually-hidden" type="radio" name="gen" value="12" id="gen12" /><label class="btn btn-wide btn-mid" for="gen12">Touhou</label>
       	<input class="gen visually-hidden" type="radio" name="gen" value="13" id="gen13" /><label class="btn btn-xxwide btn-mid" for="gen13">Monster Hunter</label>
-      	<input class="gen visually-hidden" type="radio" name="gen" value="14" id="gen14" /><label class="btn btn-wide btn-mid" for="gen14">Six by Six</label>
-      	<input class="gen visually-hidden" type="radio" name="gen" value="15" id="gen15" /><label class="btn btn-xxwide btn-mid" for="gen15">Tier Sovereign</label>
       	<input class="gen visually-hidden" type="radio" name="gen" value="17" id="gen17" /><label class="btn btn-small btn-mid" for="gen17">DNU</label>
       	<input class="gen visually-hidden" type="radio" name="gen" value="18" id="gen18" /><label class="btn btn-wide btn-mid" for="gen18">BC Meta A</label>
       	<input class="gen visually-hidden" type="radio" name="gen" value="25" id="gen25" /><label class="btn btn-wide btn-mid" for="gen25">BC Meta D</label>
@@ -86,8 +84,8 @@
 		<span class="modeSelection" aria-labelledby="selectModeInstruction" role="radiogroup" title="Select the calculator's mode of function.">
             <span class="visually-hidden" id="selectModeInstruction">Select the calculator's mode of function.</span>
             <input class="mode visually-hidden" type="radio" name="mode" id="one-vs-one" checked="checked" /><label class="btn btn-left btn-wide" for="one-vs-one">One vs One</label>
-            <input class="mode visually-hidden" type="radio" name="mode" id="one-vs-all" /><label class="btn btn-mid btn-wide gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" for="one-vs-all">One vs All</label>
-            <input class="mode visually-hidden" type="radio" name="mode" id="all-vs-one" /><label class="btn btn-mid btn-wide gen-specific g3 g4 g5 g11 g6 g7 g8 g9 g23 g24 g22 g21 g12 g13 g14 g15 g16 g17 g18 g25 g19 g20" for="all-vs-one">All vs One</label>
+            <input class="mode visually-hidden" type="radio" name="mode" id="one-vs-all" /><label class="btn btn-mid btn-wide gen-specific g3 g4 g5 g6 g7 g8 g9" for="one-vs-all">One vs All</label>
+            <input class="mode visually-hidden" type="radio" name="mode" id="all-vs-one" /><label class="btn btn-mid btn-wide gen-specific g3 g4 g5 g6 g7 g8 g9" for="all-vs-one">All vs One</label>
             <input class="mode visually-hidden" type="radio" name="mode" id="randoms" /><label class="btn btn-mid btn-wide" for="randoms">Random Battles</label>
             <input class="mode visually-hidden" type="radio" name="mode" id="oms" /><label class="btn btn-right btn-xwide" for="oms">Other Metagames</label>
         </span>
@@ -188,7 +186,7 @@
 				</div>
 				<div class="hide">
 					<label>Gender</label>
-					<select class="gender calc-trigger"><option></option><option selected="selected">Male</option><option>Female</option></select>
+					<select class="gender calc-trigger"><option value="">(Select)</option><option value="M">Male</option><option value="F">Female</option><option value="N">Genderless</option></select>
 				</div>
 				<div>
 					<label for="levelL1">Level</label>
@@ -1488,7 +1486,7 @@
 				</div>
 				<div class="hide">
 					<label>Gender</label>
-					<select class="gender calc-trigger"><option></option><option selected="selected">Male</option><option>Female</option></select>
+					<select class="gender calc-trigger"><option value="">(Select)</option><option value="M">Male</option><option value="F">Female</option><option value="N">Genderless</option></select>
 				</div>
 				<div>
 					<label for="levelR1">Level</label>

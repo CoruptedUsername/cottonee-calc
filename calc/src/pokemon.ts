@@ -63,7 +63,7 @@ export class Pokemon implements State.Pokemon {
     this.types = this.species.types;
     this.weightkg = this.species.weightkg;
 
-    this.level = options.level || 100;
+    this.level = gen.num === 0 ? 50 : options.level || 100;
     this.gender = options.gender || this.species.gender || 'M';
     this.ability = options.ability || this.species.abilities?.[0] || undefined;
     this.abilityOn = !!options.abilityOn;
@@ -79,8 +79,8 @@ export class Pokemon implements State.Pokemon {
     this.teraType = options.teraType;
     this.item = options.item;
     this.nature = options.nature || ('Serious' as I.NatureName);
-    this.ivs = Pokemon.withDefault(gen, options.ivs, 31);
-    this.evs = Pokemon.withDefault(gen, options.evs, gen.num >= 3 ? 0 : 252);
+    this.ivs = Pokemon.withDefault(gen, gen.num === 0 ? {} : options.ivs, 31);
+    this.evs = Pokemon.withDefault(gen, options.evs, gen.num === 0 || gen.num >= 3 ? 0 : 252);
     this.boosts = Pokemon.withDefault(gen, options.boosts, 0, false);
     this.flags = this.species.flags;
 
@@ -90,7 +90,7 @@ export class Pokemon implements State.Pokemon {
       this.weightkg = gen.species.get(toID(this.species.baseSpecies))!.weightkg;
     }
 
-    if (gen.num < 3) {
+    if (gen.num > 0 && gen.num < 3) {
       this.ivs.hp = Stats.DVToIV(
         Stats.getHPDV({
           atk: this.ivs.atk,
@@ -148,7 +148,10 @@ export class Pokemon implements State.Pokemon {
 
   hasType(...types: I.TypeName[]) {
     for (const type of types) {
-      if (this.teraType ? this.teraType === type : this.types.includes(type)) return true;
+      if (this.teraType && this.teraType !== 'Stellar'
+        ? this.teraType === type : this.types.includes(type)) {
+        return true;
+      }
     }
     return false;
   }
@@ -241,12 +244,12 @@ export class Pokemon implements State.Pokemon {
     const cur: Partial<I.StatsTable> = {};
     if (current) {
       assignWithout(cur, current, SPC);
-      if (current.spc) {
+      if (current.spc !== undefined) {
         cur.spa = current.spc;
         cur.spd = current.spc;
       }
-      if (match && gen.num <= 2 && current.spa !== current.spd) {
-        throw new Error('Special Attack and Special Defense must match before Gen 3');
+      if (match && gen.num > 0 && gen.num <= 2 && current.spa !== current.spd) {
+        throw new Error('Special Attack and Special Defense must match in Gen 1 and Gen 2');
       }
     }
     return {hp: val, atk: val, def: val, spa: val, spd: val, spe: val, ...cur};
