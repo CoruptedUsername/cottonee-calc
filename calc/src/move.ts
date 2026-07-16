@@ -67,7 +67,7 @@ export class Move implements State.Move {
         data.type,
         data.name,
         options.species,
-        !!(data.category === 'Status'),
+        data.category === 'Status',
         options.ability
       );
       const maxMove = gen.moves.get(toID(maxMoveName));

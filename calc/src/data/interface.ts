@@ -13,7 +13,7 @@ export type MoveName = string & As<'MoveName'>;
 export type SpeciesName = string & As<'SpeciesName'>;
 
 export type StatusName = 'slp' | 'psn' | 'brn' | 'frz' | 'par' | 'tox' | 'dgb' | 'drs' | 'frb' |
-  'bsb';
+'bsb';
 
 export type GameType = 'Singles' | 'Doubles';
 export type Terrain = 'Electric' | 'Grassy' | 'Psychic' | 'Misty' | 'Frigid' | 'Fishing';

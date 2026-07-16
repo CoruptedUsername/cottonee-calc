@@ -363,7 +363,7 @@ function calcPercentHP(poke, max, current, skipDraw) {
 	var percent = Math.round(100 * Number(current) / Number(max));
 	if (percent === 0 && current > 0) {
 		percent = 1;
-	} else if (percent === 100 & current < max) {
+	} else if (percent === 100 && current < max) {
 		percent = 99;
 	}
 
