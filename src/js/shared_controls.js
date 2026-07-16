@@ -2095,17 +2095,12 @@ $(".gen").change(function () {
 	// declaring these variables with var here makes z moves not work; TODO
 	pokedex = calc.SPECIES[gen];
 	setdex = SETDEX[gen];
-	console.log(SETDEX);
 	randdex = RANDDEX[gen];
 	if ('Aegislash' in randdex) randdex['Aegislash-Shield'] = randdex['Aegislash'];
 	typeChart = calc.TYPE_CHART[gen];
 	moves = calc.MOVES[gen];
 	items = calc.ITEMS[gen];
 	abilities = calc.ABILITIES[gen];
-	console.log(typeChart);
-	console.log(moves);
-	console.log(items);
-	console.log(abilities);
 	clearField();
 	if (gen === 20) {
 		$("#default-level-50").prop("checked", true);

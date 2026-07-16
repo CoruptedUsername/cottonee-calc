@@ -83,30 +83,6 @@ export interface RawDesc {
   pp?: number;
 }
 
-function combineDamage(dam1: Damage, dam2: Damage): Damage {
-  if (typeof dam1 === 'number') {
-    dam1 = [dam1];
-  }
-  if (typeof dam2 === 'number') {
-    dam2 = [dam2];
-  }
-  if (dam1[0].constructor === Array) {
-    return 0;
-  }
-  if (dam2[0].constructor === Array) {
-    return 0;
-  }
-  dam1 = dam1 as number[];
-  dam2 = dam2 as number[];
-  const finalDam: number[] = [];
-  for (const i of dam1) {
-    for (const j of dam2) {
-      finalDam.push(i + j);
-    }
-  }
-  return finalDam.sort();
-}
-
 function isImmuneToIndirect(source: Pokemon, field: Field): boolean {
   return source.hasAbility('Magic Guard') ||
     (source.hasAbility('Magic Sticks') && source.gen.num === 20) ||
