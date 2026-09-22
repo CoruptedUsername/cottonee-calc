@@ -16924,19 +16924,36 @@ const BCC: {[name: string]: SpeciesData} = {
 };
 
 // Blank Canvas Meta D
-
 const BCD: {[name: string]: SpeciesData} = {
+  Aberrockin: {
+    bs: {hp: 100, at: 32, df: 78, sa: 107, sd: 95, sp: 72},
+    types: ['Psychic', 'Normal'],
+    abilities: {0: 'Punk Rock'},
+    weightkg: 52,
+  },
   Arsenstorm: {
     bs: {hp: 110, at: 50, df: 65, sa: 80, sd: 90, sp: 55},
     types: ['Poison', 'Ground'],
     abilities: {0: 'Neutralizing Gas'},
     weightkg: 15,
   },
+  Brainstrom: {
+    bs: {hp: 70, at: 55, df: 70, sa: 111, sd: 71, sp: 116},
+    types: ['Ice', 'Psychic'],
+    abilities: {0: 'Natural Cure'},
+    weightkg: 8,
+  },
   Brasspecter: {
     bs: {hp: 110, at: 95, df: 100, sa: 40, sd: 95, sp: 35},
     types: ['Steel', 'Ghost'],
     abilities: {0: 'Tough Claws'},
     weightkg: 40,
+  },
+  Bugpipes: {
+    bs: {hp: 105, at: 40, df: 70, sa: 90, sd: 100, sp: 20},
+    types: ['Bug', 'Steel'],
+    abilities: {0: 'Compound Eyes'},
+    weightkg: 217,
   },
   Craggon: {
     bs: {hp: 120, at: 81, df: 81, sa: 82, sd: 81, sp: 100},
@@ -16950,11 +16967,29 @@ const BCD: {[name: string]: SpeciesData} = {
     abilities: {0: 'Filter'},
     weightkg: 66.6,
   },
+  Drug: {
+    bs: {hp: 70, at: 90, df: 60, sa: 90, sd: 60, sp: 130},
+    types: ['Dragon', 'Bug'],
+    abilities: {0: 'Supreme Overlord'},
+    weightkg: 0.67,
+  },
   Eighremophas: {
     bs: {hp: 96, at: 72, df: 80, sa: 72, sd: 96, sp: 48},
     types: ['Ghost', 'Poison'],
     abilities: {0: 'Merciless'},
     weightkg: 88.8,
+  },
+  Flingangel: {
+    bs: {hp: 70, at: 103, df: 70, sa: 31, sd: 65, sp: 103},
+    types: ['Fairy', 'Steel'],
+    abilities: {0: 'Defiant'},
+    weightkg: 3.5,
+  },
+  Frospes: {
+    bs: {hp: 90, at: 111, df: 75, sa: 43, sd: 75, sp: 112},
+    types: ['Ice', 'Dark'],
+    abilities: {0: 'Skill Link'},
+    weightkg: 4.2,
   },
   Goodjur: {
     bs: {hp: 75, at: 25, df: 70, sa: 135, sd: 70, sp: 90},
@@ -16962,11 +16997,35 @@ const BCD: {[name: string]: SpeciesData} = {
     abilities: {0: 'Natural Cure'},
     weightkg: 42.5,
   },
+  Grizbearab: {
+    bs: {hp: 98, at: 77, df: 68, sa: 102, sd: 102, sp: 98},
+    types: ['Dark'],
+    abilities: {0: 'Dark'},
+    weightkg: 135,
+  },
   Guttergar: {
     bs: {hp: 116, at: 108, df: 55, sa: 30, sd: 104, sp: 63},
     types: ['Water'],
     abilities: {0: 'Mold Breaker'},
     weightkg: 106,
+  },
+  Honeydue: {
+    bs: {hp: 70, at: 105, df: 70, sa: 105, sd: 70, sp: 105},
+    types: ['Water', 'Bug'],
+    abilities: {0: 'Queenly Majesty'},
+    weightkg: 15,
+  },
+  Horronimbus: {
+    bs: {hp: 100, at: 55, df: 80, sa: 100, sd: 95, sp: 85},
+    types: ['Electric', 'Flying'],
+    abilities: {0: 'Cloud Nine'},
+    weightkg: 0.1,
+  },
+  Irdonerkeb: {
+    bs: {hp: 70, at: 95, df: 120, sa: 69, sd: 69, sp: 108},
+    types: ['Steel'],
+    abilities: {0: 'Misty Surge'},
+    weightkg: 999,
   },
   'Iron Mike': {
     bs: {hp: 88, at: 30, df: 68, sa: 106, sd: 76, sp: 106},
@@ -16974,11 +17033,47 @@ const BCD: {[name: string]: SpeciesData} = {
     abilities: {0: 'Quark Drive'},
     weightkg: 51.8,
   },
+  Iusperare: {
+    bs: {hp: 70, at: 100, df: 70, sa: 40, sd: 85, sp: 110},
+    types: ['Fighting', 'Rock'],
+    abilities: {0: 'Compound Eyes'},
+    weightkg: 200,
+  },
+  Kappaqua: {
+    bs: {hp: 85, at: 105, df: 80, sa: 30, sd: 80, sp: 80},
+    types: ['Ground', 'Water'],
+    abilities: {0: 'Thermal Exchange'},
+    weightkg: 300,
+  },
+  Lactoxic: {
+    bs: {hp: 90, at: 41, df: 70, sa: 20, sd: 100, sp: 106},
+    types: ['Normal', 'Poison'],
+    abilities: {0: 'Thick Fat'},
+    weightkg: 208,
+  },
+  Marultan: {
+    bs: {hp: 75, at: 40, df: 70, sa: 110, sd: 100, sp: 100},
+    types: ['Grass', 'Poison'],
+    abilities: {0: 'Clear Body'},
+    weightkg: 350,
+  },
   Mediocjur: {
     bs: {hp: 90, at: 110, df: 100, sa: 35, sd: 100, sp: 55},
     types: ['Grass', 'Fire'],
     abilities: {0: 'Rock Head'},
     weightkg: 283,
+  },
+  Monster: {
+    bs: {hp: 100, at: 95, df: 70, sa: 70, sd: 100, sp: 65},
+    types: ['Dark', 'Poison'],
+    abilities: {0: 'Sticky Hold'},
+    weightkg: 760.2,
+  },
+  Nekolepsy: {
+    bs: {hp: 95, at: 30, df: 80, sa: 105, sd: 95, sp: 65},
+    types: ['Fairy', 'Dark'],
+    abilities: {0: 'Storm Drain'},
+    weightkg: 7,
   },
   Orchrefait: {
     bs: {hp: 80, at: 20, df: 95, sa: 100, sd: 75, sp: 105},
@@ -17015,6 +17110,36 @@ const BCD: {[name: string]: SpeciesData} = {
     types: ['Electric', 'Water'],
     abilities: {0: 'Iron Barbs'},
     weightkg: 6.1,
+  },
+  Tartzacoatl: {
+    bs: {hp: 100, at: 55, df: 105, sa: 100, sd: 70, sp: 40},
+    types: ['Flying', 'Rock'],
+    abilities: {0: 'Aroma Veil'},
+    weightkg: 44,
+  },
+  Valentine: {
+    bs: {hp: 100, at: 50, df: 95, sa: 100, sd: 80, sp: 65},
+    types: ['Fighting', 'Fairy'],
+    abilities: {0: 'Mummy'},
+    weightkg: 15,
+  },
+  Vertabrea: {
+    bs: {hp: 73, at: 31, df: 87, sa: 118, sd: 70, sp: 103},
+    types: ['Rock', 'Ghost'],
+    abilities: {0: 'Levitate'},
+    weightkg: 126,
+  },
+  'Woolly Crawler': {
+    bs: {hp: 67, at: 113, df: 65, sa: 111, sd: 63, sp: 101},
+    types: ['Grass', 'Ground'],
+    abilities: {0: 'Protosynthesis'},
+    weightkg: 400,
+  },
+  'Wyrmware-N': {
+    bs: {hp: 90, at: 90, df: 75, sa: 100, sd: 75, sp: 101},
+    types: ['Dragon', 'Electric'],
+    abilities: {0: 'Magic Bounce'},
+    weightkg: 125,
   },
 };
 
